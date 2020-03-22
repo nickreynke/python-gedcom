@@ -18,3 +18,9 @@ recursive-exclude gedcom *.md
 
 # Include GEDCOM test files
 include tests/files/*.ged
+
+# Exclude Node related files
+exclude .nvmrc
+exclude commitlint.config.js
+exclude package.json
+exclude package-lock.json
