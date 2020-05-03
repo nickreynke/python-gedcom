@@ -23,5 +23,8 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
+**Version**
+Version of the Python GEDCOM module you are using.
+
 **Additional context**
 Add any other context about the problem here.
