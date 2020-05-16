@@ -74,7 +74,7 @@ GEDCOM_PROGRAM_DEFINED_TAG_PHOTO = "_PHOTO"
 """Value: `_PHOTO`
 
 Used by some programs to identify the primary multimedia object for an 
-individual, the same as _PRIM."""
+individual, the same as `gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY`."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED = "_PREF"
 """Value: `_PREF`
@@ -146,7 +146,7 @@ GEDCOM_TAG_ANCES_INTEREST = "ANCI"
 """Value: `ANCI`
 
 Indicates an interest in additional research for ancestors of this individual.
-(See also DESI)"""
+(See also `gedcom.tags.GEDCOM_TAG_DESCENDANTS_INT`)"""
 
 GEDCOM_TAG_ANNULMENT = "ANUL"
 """Value: `ANUL`
@@ -168,7 +168,7 @@ GEDCOM_TAG_BAPTISM_LDS = "BAPL"
 """Value: `BAPL`
 
 The event of baptism performed at age eight or later by priesthood authority
-of the LDS Church. (See also BAPM)"""
+of the LDS Church. (See also `gedcom.tags.GEDCOM_TAG_BAPTISM`)"""
 
 GEDCOM_TAG_BAPTISM = "BAPM"
 """Value: `BAPM`
@@ -339,7 +339,7 @@ GEDCOM_TAG_DESCENDANTS_INT = "DESI"
 """Value: `DESI`
 
 Indicates an interest in research to identify additional descendants of this
-individual. (See also ANCI)"""
+individual. (See also `gedcom.tags.GEDCOM_TAG_ANCES_INTEREST`)"""
 
 GEDCOM_TAG_DESTINATION = "DEST"
 """Value: `DEST`
@@ -369,7 +369,7 @@ Indicator of a level of education attained."""
 GEDCOM_TAG_EMAIL = "EMAIL"
 """Value: `EMAIL`
 
-An electronic address that can be used for contact such as an email address..."""
+An electronic address that can be used for contact such as an email address."""
 
 GEDCOM_TAG_EMIGRATION = "EMIG"
 """Value: `EMIG`
@@ -397,8 +397,8 @@ GEDCOM_TAG_FACT = "FACT"
 """Value: `FACT`
 
 Pertaining to a noteworthy attribute or fact concerning an individual, a group,
-or an organization. A FACT structure is usually qualified or classified by a
-subordinate use of the TYPE tag."""
+or an organization. A `FACT` structure is usually qualified or classified by a
+subordinate use of the `gedcom.tags.GEDCOM_TAG_TYPE` tag."""
 
 GEDCOM_TAG_FAMILY = "FAM"
 """Value: `FAM`.
@@ -557,7 +557,7 @@ GEDCOM_TAG_NAME = "NAME"
 """Value: `NAME`.
 
 A word or combination of words used to help identify an individual, title, or
-other item. More than one NAME line should be used for people who were known
+other item. More than one `NAME` line should be used for people who were known
 by multiple names."""
 
 GEDCOM_TAG_NATIONALITY = "NATI"
@@ -575,7 +575,7 @@ GEDCOM_TAG_CHILDREN_COUNT = "NCHI"
 
 The number of children that this person is known to be the parent of (all
 marriages) when subordinate to an individual, or that belong to this family
-when subordinate to a FAM_RECORD."""
+when subordinate to a `gedcom.tags.GEDCOM_TAG_FAMILY` record."""
 
 GEDCOM_TAG_NICKNAME = "NICK"
 """Value: `NICK`
@@ -865,4 +865,4 @@ GEDCOM_TAG_WILL = "WILL"
 
 A legal document treated as an event, by which a person disposes of his or her
 estate, to take effect after death. The event date is the date the will was
-signed while the person was alive. (See also PROBate)"""
+signed while the person was alive. (See also `gedcom.tags.GEDCOM_TAG_PROBATE`)"""
