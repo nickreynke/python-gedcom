@@ -16,3 +16,9 @@ exclude docs
 recursive-exclude docs *
 recursive-exclude gedcom *.md
 recursive-exclude tests *
+
+# Exclude Node related files
+exclude .nvmrc
+exclude commitlint.config.js
+exclude package.json
+exclude package-lock.json
