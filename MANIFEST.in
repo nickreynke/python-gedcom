@@ -15,6 +15,4 @@ exclude logo.png
 exclude docs
 recursive-exclude docs *
 recursive-exclude gedcom *.md
-
-# Include GEDCOM test files
-include tests/files/*.ged
+recursive-exclude tests *
