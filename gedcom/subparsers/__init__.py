@@ -20,6 +20,9 @@
 #
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
+"""Module containing parsers for extracting various substructures from the
+different record types as defined in the GEDCOM standard."""
+
 __all__ = [
     "address_structure",
     "association_structure",
