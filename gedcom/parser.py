@@ -32,6 +32,7 @@ out of each line - which can in return be manipulated.
 """
 
 import re as regex
+from sys import version_info
 
 import gedcom.tags as tags
 import gedcom.standards as standards
@@ -52,6 +53,8 @@ from gedcom.element.root import RootElement
 from gedcom.errors import GedcomVersionUnsupportedError
 from gedcom.errors import GedcomFormatUnsupportedError
 from gedcom.errors import GedcomFormatViolationError
+from gedcom.errors import NotAnActualIndividualError
+from gedcom.errors import NotAnActualFamilyError
 
 ERROR_TEMPLATE = "Line <{0}:{1}> of document violates GEDCOM format {2}\nSee: {3}"
 
@@ -66,6 +69,12 @@ RECORD_ELEMENTS = {
     tags.GEDCOM_TAG_SUBMITTER: SubmitterElement,
     tags.GEDCOM_TAG_REPOSITORY: RepositoryElement
 }
+
+FAMILY_MEMBERS_TYPE_ALL = "ALL"
+FAMILY_MEMBERS_TYPE_CHILDREN = tags.GEDCOM_TAG_CHILD
+FAMILY_MEMBERS_TYPE_HUSBAND = tags.GEDCOM_TAG_HUSBAND
+FAMILY_MEMBERS_TYPE_PARENTS = "PARENTS"
+FAMILY_MEMBERS_TYPE_WIFE = tags.GEDCOM_TAG_WIFE
 
 
 class Parser():
@@ -304,3 +313,263 @@ class Parser():
         element_list.append(element)
         for child in element.get_child_elements():
             self.__build_list(child, element_list)
+
+    # Methods for analyzing individuals and relationships between individuals
+
+    def get_marriages(self, individual):
+        """Returns a list of marriages of an individual formatted as a tuple (`str` date, `str` place)
+        :type individual: IndividualElement
+        :rtype: tuple
+        """
+        marriages = []
+        if not isinstance(individual, IndividualElement):
+            raise NotAnActualIndividualError(
+                "Operation only valid for elements with %s tag" % tags.GEDCOM_TAG_INDIVIDUAL
+            )
+        # Get and analyze families where individual is spouse.
+        families = self.get_families(individual, tags.GEDCOM_TAG_FAMILY_SPOUSE)
+        for family in families:
+            for family_data in family.get_child_elements():
+                if family_data.get_tag() == tags.GEDCOM_TAG_MARRIAGE:
+                    date = ''
+                    place = ''
+                    for marriage_data in family_data.get_child_elements():
+                        if marriage_data.get_tag() == tags.GEDCOM_TAG_DATE:
+                            date = marriage_data.get_value()
+                        if marriage_data.get_tag() == tags.GEDCOM_TAG_PLACE:
+                            place = marriage_data.get_value()
+                    marriages.append((date, place))
+        return marriages
+
+    def get_marriage_years(self, individual):
+        """Returns a list of marriage years (as integers) for an individual
+        :type individual: IndividualElement
+        :rtype: list of int
+        """
+        dates = []
+
+        if not isinstance(individual, IndividualElement):
+            raise NotAnActualIndividualError(
+                "Operation only valid for elements with %s tag" % tags.GEDCOM_TAG_INDIVIDUAL
+            )
+
+        # Get and analyze families where individual is spouse.
+        families = self.get_families(individual, tags.GEDCOM_TAG_FAMILY_SPOUSE)
+        for family in families:
+            for child in family.get_child_elements():
+                if child.get_tag() == tags.GEDCOM_TAG_MARRIAGE:
+                    for childOfChild in child.get_child_elements():
+                        if childOfChild.get_tag() == tags.GEDCOM_TAG_DATE:
+                            date = childOfChild.get_value().split()[-1]
+                            try:
+                                dates.append(int(date))
+                            except ValueError:
+                                pass
+        return dates
+
+    def marriage_year_match(self, individual, year):
+        """Checks if one of the marriage years of an individual matches the supplied year. Year is an integer.
+        :type individual: IndividualElement
+        :type year: int
+        :rtype: bool
+        """
+        if not isinstance(individual, IndividualElement):
+            raise NotAnActualIndividualError(
+                "Operation only valid for elements with %s tag" % tags.GEDCOM_TAG_INDIVIDUAL
+            )
+
+        years = self.get_marriage_years(individual)
+        return year in years
+
+    def marriage_range_match(self, individual, from_year, to_year):
+        """Check if one of the marriage years of an individual is in a given range. Years are integers.
+        :type individual: IndividualElement
+        :type from_year: int
+        :type to_year: int
+        :rtype: bool
+        """
+        if not isinstance(individual, IndividualElement):
+            raise NotAnActualIndividualError(
+                "Operation only valid for elements with %s tag" % tags.GEDCOM_TAG_INDIVIDUAL
+            )
+
+        years = self.get_marriage_years(individual)
+        for year in years:
+            if from_year <= year <= to_year:
+                return True
+        return False
+
+    def get_families(self, individual, family_type=tags.GEDCOM_TAG_FAMILY_SPOUSE):
+        """Return family elements listed for an individual
+        family_type can be `tags.GEDCOM_TAG_FAMILY_SPOUSE` (families where the individual is a spouse) or
+        `tags.GEDCOM_TAG_FAMILY_CHILD` (families where the individual is a child). If a value is not
+        provided, `tags.GEDCOM_TAG_FAMILY_SPOUSE` is default value.
+        :type individual: IndividualElement
+        :type family_type: str
+        :rtype: list of FamilyElement
+        """
+        if not isinstance(individual, IndividualElement):
+            raise NotAnActualIndividualError(
+                "Operation only valid for elements with %s tag" % tags.GEDCOM_TAG_INDIVIDUAL
+            )
+
+        families = []
+        element_dictionary = self.get_element_dictionary()
+
+        for child_element in individual.get_child_elements():
+            is_family = (child_element.get_tag() == family_type
+                         and child_element.get_value() in element_dictionary
+                         and element_dictionary[child_element.get_value()].is_family())
+            if is_family:
+                families.append(element_dictionary[child_element.get_value()])
+
+        return families
+
+    def get_ancestors(self, individual, ancestor_type="ALL"):
+        """Return elements corresponding to ancestors of an individual
+        Optional `ancestor_type`. Default "ALL" returns all ancestors, "NAT" can be
+        used to specify only natural (genetic) ancestors.
+        :type individual: IndividualElement
+        :type ancestor_type: str
+        :rtype: list of Element
+        """
+        if not isinstance(individual, IndividualElement):
+            raise NotAnActualIndividualError(
+                "Operation only valid for elements with %s tag" % tags.GEDCOM_TAG_INDIVIDUAL
+            )
+
+        parents = self.get_parents(individual, ancestor_type)
+        ancestors = []
+        ancestors.extend(parents)
+
+        for parent in parents:
+            ancestors.extend(self.get_ancestors(parent))
+
+        return ancestors
+
+    def get_parents(self, individual, parent_type="ALL"):
+        """Return elements corresponding to parents of an individual
+        Optional parent_type. Default "ALL" returns all parents. "NAT" can be
+        used to specify only natural (genetic) parents.
+        :type individual: IndividualElement
+        :type parent_type: str
+        :rtype: list of IndividualElement
+        """
+        if not isinstance(individual, IndividualElement):
+            raise NotAnActualIndividualError(
+                "Operation only valid for elements with %s tag" % tags.GEDCOM_TAG_INDIVIDUAL
+            )
+
+        parents = []
+        families = self.get_families(individual, tags.GEDCOM_TAG_FAMILY_CHILD)
+
+        for family in families:
+            if parent_type == "NAT":
+                for family_member in family.get_child_elements():
+
+                    if family_member.get_tag() == tags.GEDCOM_TAG_CHILD \
+                            and family_member.get_value() == individual.get_pointer():
+
+                        for child in family_member.get_child_elements():
+                            if child.get_value() == "Natural":
+                                if child.get_tag() == tags.GEDCOM_PROGRAM_DEFINED_TAG_MREL:
+                                    parents += self.get_family_members(family, tags.GEDCOM_TAG_WIFE)
+                                elif child.get_tag() == tags.GEDCOM_PROGRAM_DEFINED_TAG_FREL:
+                                    parents += self.get_family_members(family, tags.GEDCOM_TAG_HUSBAND)
+            else:
+                parents += self.get_family_members(family, "PARENTS")
+
+        return parents
+
+    def find_path_to_ancestor(self, descendant, ancestor, path=None):
+        """Return path from descendant to ancestor
+        :rtype: object
+        """
+        if not isinstance(descendant, IndividualElement) and isinstance(ancestor, IndividualElement):
+            raise NotAnActualIndividualError(
+                "Operation only valid for elements with %s tag." % tags.GEDCOM_TAG_INDIVIDUAL
+            )
+
+        if not path:
+            path = [descendant]
+
+        if path[-1].get_pointer() == ancestor.get_pointer():
+            return path
+        else:
+            parents = self.get_parents(descendant, "NAT")
+            for parent in parents:
+                potential_path = self.find_path_to_ancestor(parent, ancestor, path + [parent])
+                if potential_path is not None:
+                    return potential_path
+
+        return None
+
+    def get_family_members(self, family, members_type=FAMILY_MEMBERS_TYPE_ALL):
+        """Return array of family members: individual, spouse, and children
+        Optional argument `members_type` can be used to return specific subsets:
+        "FAMILY_MEMBERS_TYPE_ALL": Default, return all members of the family
+        "FAMILY_MEMBERS_TYPE_PARENTS": Return individuals with "HUSB" and "WIFE" tags (parents)
+        "FAMILY_MEMBERS_TYPE_HUSBAND": Return individuals with "HUSB" tags (father)
+        "FAMILY_MEMBERS_TYPE_WIFE": Return individuals with "WIFE" tags (mother)
+        "FAMILY_MEMBERS_TYPE_CHILDREN": Return individuals with "CHIL" tags (children)
+        :type family: FamilyElement
+        :type members_type: str
+        :rtype: list of IndividualElement
+        """
+        if not isinstance(family, FamilyElement):
+            raise NotAnActualFamilyError(
+                "Operation only valid for element with %s tag." % tags.GEDCOM_TAG_FAMILY
+            )
+
+        family_members = []
+        element_dictionary = self.get_element_dictionary()
+
+        for child_element in family.get_child_elements():
+            # Default is ALL
+            is_family = (child_element.get_tag() == tags.GEDCOM_TAG_HUSBAND
+                         or child_element.get_tag() == tags.GEDCOM_TAG_WIFE
+                         or child_element.get_tag() == tags.GEDCOM_TAG_CHILD)
+
+            if members_type == FAMILY_MEMBERS_TYPE_PARENTS:
+                is_family = (child_element.get_tag() == tags.GEDCOM_TAG_HUSBAND
+                             or child_element.get_tag() == tags.GEDCOM_TAG_WIFE)
+            elif members_type == FAMILY_MEMBERS_TYPE_HUSBAND:
+                is_family = child_element.get_tag() == tags.GEDCOM_TAG_HUSBAND
+            elif members_type == FAMILY_MEMBERS_TYPE_WIFE:
+                is_family = child_element.get_tag() == tags.GEDCOM_TAG_WIFE
+            elif members_type == FAMILY_MEMBERS_TYPE_CHILDREN:
+                is_family = child_element.get_tag() == tags.GEDCOM_TAG_CHILD
+
+            if is_family and child_element.get_value() in element_dictionary:
+                family_members.append(element_dictionary[child_element.get_value()])
+
+        return family_members
+
+    # Other methods
+
+    def to_gedcom_string(self, recursive=False):
+        """Formats all elements and optionally all of the sub-elements into a GEDCOM string
+        :type recursive: bool
+        """
+        is_gte_python_3 = version_info[0] >= 3
+        output = '' if is_gte_python_3 else b''
+
+        for element in self.get_root_child_elements():
+            if is_gte_python_3:
+                output += element.to_gedcom_string(recursive)
+            else:
+                output += element.to_gedcom_string(recursive).encode('utf-8-sig')
+
+        return output
+
+    def print_gedcom(self):
+        """Write GEDCOM data to stdout"""
+        from sys import stdout
+        self.save_gedcom(stdout)
+
+    def save_gedcom(self, open_file, recursive=True):
+        """Save GEDCOM data to a file
+        :type open_file: file
+        :type recursive: bool
+        """
+        open_file.write(self.to_gedcom_string(recursive))

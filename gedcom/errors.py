@@ -33,24 +33,24 @@ Module containing the exception handling classes.
 
 class GedcomFormatViolationError(Exception):
     """Raised when the document format does not appear to conform
-    to the standard and strict parsing required.
+    to the GEDCOM standard and strict parsing required.
     """
 
 
 class GedcomStructureViolationError(Exception):
     """Raised when the structure of a record does not conform to
-    the standard.
+    the GEDCOM standard.
     """
 
 
 class GedcomCharacterSetUnsupportedError(Exception):
-    """Raised when a Gedcom appears to contain a character set
-    the parser is not yet able to support.
+    """Raised when a GEDCOM appears to contain a character set
+    the standard or the parser does not support.
     """
 
 
 class GedcomVersionUnsupportedError(Exception):
-    """Raised when a particular Gedcom version is not supported
+    """Raised when a particular GEDCOM version is not supported
     by the parser and the standard for the version requires the
     parser to reject it.
     """
@@ -62,3 +62,39 @@ class GedcomFormatUnsupportedError(Exception):
     in the 5.5.5 standard are treated as LINEAGE-LINKED and
     allowed.
     """
+
+
+class NotAnActualIndividualError(Exception):
+    """Raised if record does not appear to be an `INDIVIDUAL_RECORD`"""
+
+
+class NotAnActualFamilyError(Exception):
+    """Raised if record does not appear to be a `FAM_RECORD`"""
+
+
+class NotAnActualSourceError(Exception):
+    """Raised if record does not appear to be a `SOURCE_RECORD`"""
+
+
+class NotAnActualRepositoryError(Exception):
+    """Raised if record does not appear to be a `REPOSITORY_RECORD`"""
+
+
+class NotAnActualNoteError(Exception):
+    """Raised if record does not appear to be a `NOTE_RECORD`"""
+
+
+class NotAnActualObjectError(Exception):
+    """Raised if record does not appear to be a `MULTIMEDIA_RECORD`"""
+
+
+class NotAnActualHeaderError(Exception):
+    """Raised if record does not appear to be a `HEADER`"""
+
+
+class NotAnActualSubmitterError(Exception):
+    """Raised if record does not appear to be a `SUBMITTER_RECORD`"""
+
+
+class NotAnActualSubmissionError(Exception):
+    """Raised if record does not appear to be a `SUBMISSION_RECORD`"""
