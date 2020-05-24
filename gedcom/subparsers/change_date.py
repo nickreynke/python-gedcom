@@ -28,6 +28,7 @@ Substructure parser for the CHANGE_DATE record identified by the
 import gedcom.tags as tags
 from gedcom.subparsers.note_structure import note_structure
 
+
 def change_date(element):
     """Parses and extracts the CHANGE_DATE
     :rtype: dict

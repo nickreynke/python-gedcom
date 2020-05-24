@@ -28,6 +28,7 @@ Substructure parser for the PLACE_STRUCTURE record identified by the
 import gedcom.tags as tags
 from gedcom.subparsers.note_structure import note_structure
 
+
 def place_structure(element):
     """Parse and extract a PLACE_STRUCTURE
     :rtype: dict

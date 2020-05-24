@@ -44,6 +44,7 @@ try:
 except ModuleNotFoundError:
     ANSEL_AVAILABLE = False
 
+
 def validate_encoding(file_path, codec):
     """Check the encoding is compatible with the encoding reported
     :type file_path: str
@@ -67,6 +68,7 @@ def validate_encoding(file_path, codec):
             "Processing aborted as unsure how to properly proceed.\n" + \
             "See: {0}".format(standards.GEDCOM_5_5_1)
         raise GedcomCharacterSetUnsupportedError(errmsg)
+
 
 def get_encoding(file_path):
     """Examines file to determine encoding to use and then validates it
@@ -105,6 +107,7 @@ def get_encoding(file_path):
 
     validate_encoding(file_path, codec)
     return codec
+
 
 def get_version(file_path, codec):
     """Probes Gedcom to identify version used, should expand this in future

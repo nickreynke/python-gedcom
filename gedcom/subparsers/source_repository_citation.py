@@ -28,6 +28,7 @@ Substructure parser for the SOURCE_REPOSITORY_CITATION record identified by the
 import gedcom.tags as tags
 from gedcom.subparsers.note_structure import note_structure
 
+
 def source_repository_citation(element):
     """Parse and extract a SOURCE_REPOSITORY_CITATION
     :rtype: dict

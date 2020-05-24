@@ -25,6 +25,7 @@ Substructure parser for the NOTE_STRUCTURE record identified by the
 `gedcom.tags.GEDCOM_TAG_NOTE` tag.
 """
 
+
 def note_structure(element):
     """Parse and extract a NOTE_STRUCTURE
     :rtype: dict

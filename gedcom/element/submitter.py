@@ -38,6 +38,7 @@ from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.change_date import change_date
 from gedcom.subparsers.multimedia_link import multimedia_link
 
+
 class SubmitterElement(Element):
     """Element associated with a `SUBMITTER_RECORD`"""
 

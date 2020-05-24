@@ -46,6 +46,7 @@ SUBMISSION_TAGS = {
     tags.GEDCOM_TAG_REC_ID_NUMBER: 'record_id'
 }
 
+
 class SubmissionElement(Element):
     """Element associated with a `SUBMISSION_RECORD`"""
 

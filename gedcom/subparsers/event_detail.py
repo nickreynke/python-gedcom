@@ -41,6 +41,7 @@ EVENT_TAGS = {
     tags.GEDCOM_TAG_RESTRICTION: 'restriction'
 }
 
+
 def event_detail(element):
     """Parses and extracts the EVENT_DETAIL
     :rtype: dict

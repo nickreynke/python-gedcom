@@ -38,6 +38,7 @@ from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.change_date import change_date
 from gedcom.subparsers.user_reference_number import user_reference_number
 
+
 class RepositoryElement(Element):
     """Element associated with a `REPOSITORY_RECORD`"""
 

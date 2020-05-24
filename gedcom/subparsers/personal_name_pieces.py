@@ -39,6 +39,7 @@ NAME_TAGS = {
     tags.GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME: 'rufname'
 }
 
+
 def personal_name_pieces(element):
     """Parse and extract PERSONAL_NAME_PIECES
     :rtype: dict

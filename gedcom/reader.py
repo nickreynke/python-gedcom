@@ -66,6 +66,7 @@ RECORD_KEYS = {
     'repository': 'key_to_repository'
 }
 
+
 class Reader(Parser):
     """Simple wrapper class around the core parser with simple methods for
     extracting parsed records as structured data.

@@ -49,6 +49,7 @@ FAMILY_SINGLE_TAGS = {
     tags.GEDCOM_TAG_REC_ID_NUMBER: 'record_id'
 }
 
+
 class FamilyElement(Element):
     """Element associated with a `FAM_RECORD`"""
 

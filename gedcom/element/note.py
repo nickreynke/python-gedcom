@@ -37,6 +37,7 @@ from gedcom.subparsers.source_citation import source_citation
 from gedcom.subparsers.change_date import change_date
 from gedcom.subparsers.user_reference_number import user_reference_number
 
+
 class NoteElement(Element):
     """Element associated with a `NOTE_RECORD`"""
 

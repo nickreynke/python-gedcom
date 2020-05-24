@@ -52,6 +52,7 @@ SOURCE_SINGLE_TAGS = {
     tags.GEDCOM_PROGRAM_DEFINED_TAG_APID: 'apid'
 }
 
+
 class SourceElement(Element):
     """Element associated with a SOURCE_RECORD"""
 

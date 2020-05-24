@@ -28,6 +28,7 @@ Substructure parser for the SPOUSE_TO_FAMILY_LINK record identified by the
 import gedcom.tags as tags
 from gedcom.subparsers.note_structure import note_structure
 
+
 def spouse_to_family_link(element):
     """Parse and extract a SPOUSE_TO_FAMILY_LINK
     :rtype: dict

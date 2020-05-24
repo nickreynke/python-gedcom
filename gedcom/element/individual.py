@@ -56,6 +56,7 @@ INDIVIDUAL_SINGLE_TAGS = {
     tags.GEDCOM_TAG_AFN: 'ancestral_file_number'
 }
 
+
 class IndividualElement(Element):
     """Element associated with an `INDIVIDUAL_RECORD`"""
 

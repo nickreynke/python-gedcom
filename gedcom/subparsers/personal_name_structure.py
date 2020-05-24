@@ -28,6 +28,7 @@ Substructure parser for the PERSONAL_NAME_STRUCTURE record identified by the
 import gedcom.tags as tags
 from gedcom.subparsers.personal_name_pieces import personal_name_pieces
 
+
 def extract_name(element):
     """Parse and extract name record in a PERSONAL_NAME_STRUCTURE
     :rtype: dict
@@ -43,6 +44,7 @@ def extract_name(element):
         if child.get_tag() == tags.GEDCOM_TAG_TYPE:
             record['type'] = child.get_value()
     return record
+
 
 def personal_name_structure(element):
     """Parse and extract a PERSONAL_NAME_STRUCTURE
