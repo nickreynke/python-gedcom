@@ -62,7 +62,7 @@ def test_parse_from_string():
 4 LONG W122.234319
 """
     gedcom_parser = Parser()
-    gedcom_parser.parse([(a + '\n').encode('utf-8-sig') for a in case_1.splitlines()])
+    gedcom_parser.parse([(a + '\n') for a in case_1.splitlines()])
     element_1 = gedcom_parser.get_root_child_elements()[0]
     assert isinstance(element_1, IndividualElement)
     assert element_1.get_tag() == 'INDI'
@@ -86,7 +86,7 @@ def test_parse_from_string():
 2 _FREL Natural
 2 _MREL Natural
 """
-    gedcom_parser.parse([(a + '\n').encode('utf-8-sig') for a in case_2.splitlines()])
+    gedcom_parser.parse([(a + '\n') for a in case_2.splitlines()])
     element_2 = gedcom_parser.get_root_child_elements()[0]
     assert element_2.get_tag() == 'FAM'
     assert element_2.get_pointer() == '@F28@'
@@ -112,7 +112,7 @@ def test_to_gedcom_string():
 """
 
     gedcom_parser = Parser()
-    gedcom_parser.parse([(a + '\n').encode('utf-8-sig') for a in case_1.splitlines()])
+    gedcom_parser.parse([(a + '\n') for a in case_1.splitlines()])
 
     case_1_string_array = case_1.splitlines()
     gedcom_string = gedcom_parser.to_gedcom_string(True)
