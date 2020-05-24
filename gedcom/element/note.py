@@ -27,79 +27,45 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-GEDCOM element for a `MULTIMEDIA_RECORD` media record identified by the
-`gedcom.tags.GEDCOM_TAG_OBJECT` tag.
+GEDCOM element for a `NOTE_RECORD` note record identified by the
+`gedcom.tags.GEDCOM_TAG_NOTE` tag.
 """
 
 import gedcom.tags as tags
 from gedcom.element.element import Element
-from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.source_citation import source_citation
 from gedcom.subparsers.change_date import change_date
 from gedcom.subparsers.user_reference_number import user_reference_number
 
-class ObjectElement(Element):
-    """Element associated with a `MULTIMEDIA_RECORD`"""
+class NoteElement(Element):
+    """Element associated with a `NOTE_RECORD`"""
 
     def get_tag(self):
-        return tags.GEDCOM_TAG_OBJECT
+        return tags.GEDCOM_TAG_NOTE
 
     def get_record(self):
         """Parse and return the record in dictionary format
         :rtype: dict
         """
         record = {
-            'key_to_object': self.get_pointer(),
-            'file': '',
-            'format': '',
-            'type': '',
-            'title': '',
+            'key_to_note': self.get_pointer(),
+            'note': self.get_multi_line_value(),
             'references': [],
             'record_id': '',
             'citations': [],
-            'notes': [],
             'change_date': {}
         }
         for child in self.get_child_elements():
-            if child.get_tag() == tags.GEDCOM_TAG_FILE:
-                record['file'] = child.get_value()
-
-                for gchild in child.get_child_elements():
-                    if gchild.get_tag() == tags.GEDCOM_TAG_FORMAT:
-                        record['format'] = gchild.get_value()
-
-                        for ggchild in gchild.get_child_elements():
-                            if ggchild.get_tag() == tags.GEDCOM_TAG_TYPE:
-                                record['type'] = ggchild.get_value()
-                        continue
-
-                    if gchild.get_tag() == tags.GEDCOM_TAG_TITLE:
-                        record['title'] = gchild.get_value()
-                        continue
-                continue
-
-            if child.get_tag() == tags.GEDCOM_TAG_FORMAT:
-                record['format'] = child.get_value()
-                continue
-
-            if child.get_tag() == tags.GEDCOM_TAG_TYPE:
-                record['type'] = child.get_value()
-                continue
-
-            if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-                record['notes'].append(note_structure(child))
-                continue
-
-            if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
-                record['citations'].append(source_citation(child))
-                continue
-
             if child.get_tag() == tags.GEDCOM_TAG_REFERENCE:
                 record['references'].append(user_reference_number(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REC_ID_NUMBER:
                 record['record_id'] = child.get_value()
+                continue
+
+            if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
+                record['citations'].append(source_citation(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_CHANGE:

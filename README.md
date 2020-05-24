@@ -72,11 +72,15 @@ was licensed under the GPL v2 and then continued by
 The project was taken over by [Nicklas Reincke](https://github.com/nickreynke) in 2018.
 Together with [Damon Brodie](https://github.com/nomadyow) a lot of changes were made and the parser was optimized.
 
+Ansel support, additional tags, and extensive record and substructure level parsing support were added by
+[Christopher Horn](https://github.com/cdhorn) in 2020.
+
 ## License
 
 Licensed under the [GNU General Public License v2](http://www.gnu.org/licenses/gpl-2.0.html)
 
 **Python GEDCOM Parser**
+<br>Copyright (C) 2020 Christopher Horn (cdhorn at embarqmail dot com)
 <br>Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
 <br>Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
 <br>Copyright (C) 2016 Andreas Oberritter

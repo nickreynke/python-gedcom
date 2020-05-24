@@ -27,75 +27,61 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-GEDCOM element for a `MULTIMEDIA_RECORD` media record identified by the
-`gedcom.tags.GEDCOM_TAG_OBJECT` tag.
+GEDCOM element for a `SUBMITTER_RECORD` submitter record identified by the
+`gedcom.tags.GEDCOM_TAG_SUBMITTER` tag.
 """
 
 import gedcom.tags as tags
 from gedcom.element.element import Element
+from gedcom.subparsers.address_structure import address_structure
 from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.source_citation import source_citation
 from gedcom.subparsers.change_date import change_date
-from gedcom.subparsers.user_reference_number import user_reference_number
+from gedcom.subparsers.multimedia_link import multimedia_link
 
-class ObjectElement(Element):
-    """Element associated with a `MULTIMEDIA_RECORD`"""
+class SubmitterElement(Element):
+    """Element associated with a `SUBMITTER_RECORD`"""
 
     def get_tag(self):
-        return tags.GEDCOM_TAG_OBJECT
+        return tags.GEDCOM_TAG_SUBMITTER
 
     def get_record(self):
         """Parse and return the record in dictionary format
         :rtype: dict
         """
         record = {
-            'key_to_object': self.get_pointer(),
-            'file': '',
-            'format': '',
-            'type': '',
-            'title': '',
-            'references': [],
+            'key_to_submitter': self.get_pointer(),
+            'name': '',
+            'address': {},
+            'media': [],
+            'language': '',
+            'registered_file_number': '',
             'record_id': '',
-            'citations': [],
             'notes': [],
             'change_date': {}
         }
         for child in self.get_child_elements():
-            if child.get_tag() == tags.GEDCOM_TAG_FILE:
-                record['file'] = child.get_value()
-
-                for gchild in child.get_child_elements():
-                    if gchild.get_tag() == tags.GEDCOM_TAG_FORMAT:
-                        record['format'] = gchild.get_value()
-
-                        for ggchild in gchild.get_child_elements():
-                            if ggchild.get_tag() == tags.GEDCOM_TAG_TYPE:
-                                record['type'] = ggchild.get_value()
-                        continue
-
-                    if gchild.get_tag() == tags.GEDCOM_TAG_TITLE:
-                        record['title'] = gchild.get_value()
-                        continue
+            if child.get_tag() == tags.GEDCOM_TAG_NAME:
+                record['name'] = child.get_value()
                 continue
 
-            if child.get_tag() == tags.GEDCOM_TAG_FORMAT:
-                record['format'] = child.get_value()
-                continue
-
-            if child.get_tag() == tags.GEDCOM_TAG_TYPE:
-                record['type'] = child.get_value()
+            if child.get_tag() == tags.GEDCOM_TAG_ADDRESS:
+                record['address'] = address_structure(self)
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_NOTE:
                 record['notes'].append(note_structure(child))
                 continue
 
-            if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
-                record['citations'].append(source_citation(child))
+            if child.get_tag() == tags.GEDCOM_TAG_OBJECT:
+                record['media'].append(multimedia_link(child))
                 continue
 
-            if child.get_tag() == tags.GEDCOM_TAG_REFERENCE:
-                record['references'].append(user_reference_number(child))
+            if child.get_tag() == tags.GEDCOM_TAG_LANGUAGE:
+                record['language'] = child.get_value()
+                continue
+
+            if child.get_tag() == tags.GEDCOM_TAG_REC_FILE_NUMBER:
+                record['registered_file_number'] = child.get_value()
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REC_ID_NUMBER:
