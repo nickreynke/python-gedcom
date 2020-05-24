@@ -84,19 +84,19 @@ def get_encoding(file_path):
     # gedcom codec with some gedcom specific extensions so we use that.
     codec = 'unknown'
     probe = chardet.detect(sample_data)
-    if probe['encoding'] == 'utf-8':
+    if probe['encoding'] in ['UTF-8', 'UTF-8-SIG']:
         codec = 'utf-8-sig'
-    elif probe['encoding'] == 'utf-16':
+    elif probe['encoding'] == 'UTF-16':
         codec = 'utf-16'
-    elif probe['encoding'] == 'ascii':
+    elif probe['encoding'] == 'ASCII':
         codec = 'ascii'
-    elif probe['encoding'] == 'ansel':
+    elif probe['encoding'] == 'ANSEL':
         codec = 'ansel'
     elif 'ISO-8859' in probe['encoding']:
         if ANSEL_AVAILABLE:
             codec = 'gedcom'
         else:
-            errmsg = "This parser supports ANSEL but the Python ansel module is not " + \
+            errmsg = "This parser can support ANSEL but the Python ansel module is not " + \
                 "available at this time.\nSee: {0}".format(standards.GEDCOM_5_5_1)
             raise GedcomCharacterSetUnsupportedError(errmsg)
 
