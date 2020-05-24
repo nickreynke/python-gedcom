@@ -22,7 +22,7 @@
 
 """
 Substructure parser for the ASSOCIATION_STRUCTURE record identified by the
-`gedcom.tags.GEDCOM_TAG_ASSOCIATION` tag.
+`gedcom.tags.GEDCOM_TAG_ASSOCIATES` tag.
 """
 
 import gedcom.tags as tags
