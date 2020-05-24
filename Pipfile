@@ -12,6 +12,7 @@ pdoc3 = "*"
 bump2version = "*"
 
 [packages]
+chardet = "*"
 
 [requires]
 python_version = "3.5"
