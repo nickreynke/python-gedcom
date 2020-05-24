@@ -2,12 +2,7 @@
 
 # Python GEDCOM Parser
 #
-# Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
-# Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
-# Copyright (C) 2016 Andreas Oberritter
-# Copyright (C) 2012 Madeleine Price Ball
-# Copyright (C) 2005 Daniel Zappala (zappala at cs.byu.edu)
-# Copyright (C) 2005 Brigham Young University
+# Copyright (C) 2020 Christopher Horn (cdhorn at embarqmail dot com)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,17 +20,23 @@
 #
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
-"""GEDCOM element consisting of tag `gedcom.tags.GEDCOM_TAG_FILE`"""
+"""
+Substructure parser for the NOTE_STRUCTURE record identified by the
+`gedcom.tags.GEDCOM_TAG_NOTE` tag.
+"""
 
-from gedcom.element.element import Element
-import gedcom.tags
+def note_structure(element):
+    """Parse and extract a NOTE_STRUCTURE
+    :rtype: dict
+    """
+    record = {
+        'key_to_note': element.get_value(),
+        'note': ''
+    }
+    if record['key_to_note'] not in [None, '']:
+        if '@' in record['key_to_note']:
+            return record
+    record['key_to_note'] = ''
+    record['note'] = element.get_multi_line_value()
 
-
-class NotAnActualFileError(Exception):
-    pass
-
-
-class FileElement(Element):
-
-    def get_tag(self):
-        return gedcom.tags.GEDCOM_TAG_FILE
+    return record

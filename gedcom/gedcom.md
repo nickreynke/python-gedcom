@@ -82,6 +82,7 @@ Disabling strict parsing will allow the parser to gracefully handle the followin
 Licensed under the [GNU General Public License v2](http://www.gnu.org/licenses/gpl-2.0.html)
 
 **Python GEDCOM Parser**
+<br>Copyright (C) 2020 Christopher Horn (cdhorn at embarqmail dot com)
 <br>Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
 <br>Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
 <br>Copyright (C) 2016 Andreas Oberritter

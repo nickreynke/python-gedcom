@@ -34,8 +34,13 @@ A Python module for parsing, analyzing, and manipulating GEDCOM files.
 __all__ = [
     # Subpackages
     "element",
+    "subparsers",
     # Modules
+    "errors",
     "helpers",
+    "detect",
     "parser",
+    "reader",
+    "standards",
     "tags"
 ]

@@ -2,7 +2,7 @@
 
 # Python GEDCOM Parser
 #
-# Copyright (C) 2020 Christopher Horn
+# Copyright (C) 2020 Christopher Horn (cdhorn at embarqmail dot com)
 # Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
 # Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
 # Copyright (C) 2016 Andreas Oberritter
@@ -27,13 +27,21 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-GEDCOM tags.
+Standard GEDCOM tags and some common program defined extensions
 """
+
+GEDCOM_PROGRAM_DEFINED_TAG_ADMINISTRATIVE_ID = "_AIDN"
+"""Value: `_AIDN`
+
+Identifier for a location with the intention of an administrative authority,
+e.g. community identifier. GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_APID = "_APID"
 """Value: `_APID`
 
-Ancestry page id for a citation, points to page in database of record."""
+Ancestry page identifier. For a citation, points to the page in a Ancestry
+database for the record supporting the citation. For a source record it
+points to the database as a whole."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE = "_DCAUSE"
 """Value: `_DCAUSE`
@@ -45,6 +53,12 @@ GEDCOM_PROGRAM_DEFINED_TAG_DEGREE = "_DEG"
 
 Degree or recognition of accomplishment received by an individual."""
 
+GEDCOM_PROGRAM_DEFINED_TAG_DEMOGRAPHIC_DATA = "_DMGD"
+"""Value: `_DMGD`
+
+A number of ojects, during an ascertainment, e.g. the count of households.
+GEDCOM-L Addendum"""
+
 GEDCOM_PROGRAM_DEFINED_TAG_FREL = "_FREL"
 """Value: `_FREL`
 
@@ -54,6 +68,33 @@ GEDCOM_PROGRAM_DEFINED_TAG_FUNERAL = "_FUN"
 """Value: `_FUN`
 
 Funeral for an individual."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT = "_GOV"
+"""Value: `_GOV`
+
+The official government id of the object in the Historical Place Register /
+Historic Gazeteer. GEDCOM-L Addendum."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT_TYPE = "_GOVTYPE"
+"""Value: `_GOVTYPE`
+
+An integer positive number as defined in the GOV system.
+See http://gov.genealogy.net.net/type/list. GEDCOM-L Addendum."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON = "_HME"
+"""Value: `_HME`
+
+Home person in the tree."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_LOCATION = "_LOC"
+"""Value: `_LOC`
+
+Location data record. GEDCOM-L Addendum."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_MAIDENHEAD = "_MAIDENHEAD"
+"""Value: `_MAIDENHEAD`
+
+The maidenhead code. GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_MEDICAL = "_MDCL"
 """Value: `_MDCL`
@@ -70,11 +111,23 @@ GEDCOM_PROGRAM_DEFINED_TAG_MREL = "_MREL"
 
 Relationship to a mother."""
 
+GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE = "_NAME"
+"""Value: `_NAME`
+
+Name of addresse in a `gedcom.tags.GEDCOM_TAG_ADDRESS` structure.
+GEDCOM-L Addendum."""
+
 GEDCOM_PROGRAM_DEFINED_TAG_PHOTO = "_PHOTO"
 """Value: `_PHOTO`
 
-Used by some programs to identify the primary multimedia object for an 
+Used by some programs to identify the primary multimedia object for an
 individual, the same as `gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY`."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_POSTAL_CODE = "_POST"
+"""Value: `_POST`
+
+The official zip code, called ADDRESS_POSTAL_CODE in the standard.
+GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED = "_PREF"
 """Value: `_PREF`
@@ -85,6 +138,23 @@ GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY = "_PRIM"
 """Value: `_PRIM`
 
 Primary multimedia object for an individual."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_SCHEMA = "_SCHEMA"
+"""Value: `_SCHEMA`
+
+Schema substructure extension to describe user defined tags. GEDCOM-L
+Addendum."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME = "_RUFNAME"
+"""Value: `_RUFNAME`
+
+An official given name of a German individual used in legal documents.
+GEDCOM-L Addendum."""
+
+GEDCOM_PROGRAM_DEFINED_TAG_UUID = "_UID"
+"""Value: `_UID`
+
+Universal identification number. GEDCOM-L Addendum."""
 
 GEDCOM_TAG_ABBREVIATION = "ABBR"
 """Value: `ABBR`
@@ -107,13 +177,18 @@ GEDCOM_TAG_ADDRESS2 = "ADR2"
 
 The second line of an address."""
 
+GEDCOM_TAG_ADDRESS3 = "ADR3"
+"""Value: `ADR3`
+
+The third line of an address."""
+
 GEDCOM_TAG_ADOPTION = "ADOP"
 """Value: `ADOP`
 
 Pertaining to creation of a child-parent relationship that does not exist
 biologically."""
 
-GEDCOM_TAG_AGE = "AFN"
+GEDCOM_TAG_AFN = "AFN"
 """Value: `AFN`
 
 Ancestral File Number, a unique permanent record file number of an individual
@@ -300,7 +375,7 @@ GEDCOM_TAG_COPYRIGHT = "COPR"
 A statement that accompanies data to protect it from unlawful duplication
 and distribution."""
 
-GEDCOM_TAG_COPPORATE = "CORP"
+GEDCOM_TAG_CORPORATE = "CORP"
 """Value: `CORP`
 
 A name of an institution, agency, corporation, or company."""
@@ -704,7 +779,7 @@ applies."""
 GEDCOM_TAG_REPOSITORY = "REPO"
 """Value: `REPO`
 
-An institution or person that has the specified item as part of their 
+An institution or person that has the specified item as part of their
 collection(s)."""
 
 GEDCOM_TAG_RESIDENCE = "RESI"
@@ -855,7 +930,7 @@ GEDCOM_TAG_WIFE = "WIFE"
 
 An individual in the role as a mother and/or married woman."""
 
-GEDCOM_TAG_WEB = "WWW"
+GEDCOM_TAG_WWW = "WWW"
 """Value: `WWW`
 
 World Wide Web home page."""
