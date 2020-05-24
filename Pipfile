@@ -13,6 +13,7 @@ bump2version = "*"
 
 [packages]
 chardet = "*"
+ansel = "*"
 
 [requires]
 python_version = "3.5"
