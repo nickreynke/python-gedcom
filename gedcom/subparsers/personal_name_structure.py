@@ -21,17 +21,26 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the PERSONAL_NAME_STRUCTURE record identified by the
-`gedcom.tags.GEDCOM_TAG_NAME` tag.
+Substructure parser for a `PERSONAL_NAME_STRUCTURE` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_NAME` tag.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.personal_name_pieces import personal_name_pieces
 
 
-def extract_name(element):
-    """Parse and extract name record in a PERSONAL_NAME_STRUCTURE
-    :rtype: dict
+def extract_name(element: Element) -> dict:
+    """Parse and extract a `NAME` for a `PERSONAL_NAME_STRUCTURE` structure.
+
+    The `element` should contain one of the name tags:
+
+    `gedcom.tags.GEDCOM_TAG_NAME`
+
+    `gedcom.tags.GEDCOM_TAG_PHONETIC`
+
+    `gedcom.tags.GEDCOM_TAG_ROMANIZED`
     """
     record = {
         'name': '',
@@ -46,9 +55,10 @@ def extract_name(element):
     return record
 
 
-def personal_name_structure(element):
-    """Parse and extract a PERSONAL_NAME_STRUCTURE
-    :rtype: dict
+def personal_name_structure(element: Element) -> dict:
+    """Parse and extract a `PERSONAL_NAME_STRUCTURE` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_NAME` tag.
     """
     record = extract_name(element)
     record['phonetic'] = []

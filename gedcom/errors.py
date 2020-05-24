@@ -51,16 +51,16 @@ class GedcomCharacterSetUnsupportedError(Exception):
 
 class GedcomVersionUnsupportedError(Exception):
     """Raised when a particular GEDCOM version is not supported
-    by the parser and the standard for the version requires the
+    by the parser and the standard for that version requires the
     parser to reject it.
     """
 
 
 class GedcomFormatUnsupportedError(Exception):
     """Raised if the GEDCOM format is not recognized by the
-    parser. Note some misspellings as documented on page 148
-    in the 5.5.5 standard are treated as LINEAGE-LINKED and
-    allowed.
+    parser. Note some common misspellings as documented on page 148
+    in the 5.5.5 GEDCOM standard are treated as `LINEAGE-LINKED`
+    and allowed when parsing older GEDCOM data.
     """
 
 

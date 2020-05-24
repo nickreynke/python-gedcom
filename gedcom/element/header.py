@@ -50,12 +50,11 @@ HEADER_TAGS = {
 class HeaderElement(Element):
     """Element associated with a `HEADER`"""
 
-    def get_tag(self):
+    def get_tag(self) -> str:
         return tags.GEDCOM_TAG_HEADER
 
-    def get_record(self):
-        """Parse and return the full record in dictionary format
-        :rtype: dict
+    def get_record(self) -> dict:
+        """Parse and return the full record in dictionary format.
         """
         record = {
             'source': '',

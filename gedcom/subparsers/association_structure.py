@@ -21,18 +21,21 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the ASSOCIATION_STRUCTURE record identified by the
-`gedcom.tags.GEDCOM_TAG_ASSOCIATES` tag.
+Substructure parser for the `ASSOCIATION_STRUCTURE` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_ASSOCIATES` tag.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.source_citation import source_citation
 
 
-def association_structure(element):
-    """Parses and extracts the ASSOCIATION_STRUCTURE
-    :rtype: dict
+def association_structure(element: Element) -> dict:
+    """Parses and extracts the `ASSOCIATION_STRUCTURE` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_ASSOCIATES` tag.
     """
     record = {
         'key_to_individual': element.get_value(),

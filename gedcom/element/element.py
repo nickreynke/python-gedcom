@@ -26,18 +26,20 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Base GEDCOM element
+Base GEDCOM element.
 """
 
 from sys import version_info
+from typing import List
+
 from gedcom.helpers import deprecated
 import gedcom.tags
 
 
 class Element(object):
-    """GEDCOM element
+    """GEDCOM element.
 
-    Each line in a GEDCOM file is an element with the format
+    Each line in a GEDCOM file is an element with the format:
 
     `level [pointer] tag [value]`
 
@@ -62,7 +64,8 @@ class Element(object):
     Tags available to an element are seen here: `gedcom.tags`
     """
 
-    def __init__(self, level, pointer, tag, value, crlf="\n", multi_line=True):
+    def __init__(self, level: int, pointer: str, tag: str, value: str,
+                 crlf: str = "\n", multi_line: bool = True):
         # basic element info
         self.__level = level
         self.__pointer = pointer
@@ -77,39 +80,33 @@ class Element(object):
         if multi_line:
             self.set_multi_line_value(value)
 
-    def get_level(self):
-        """Returns the level of this element from within the GEDCOM file
-        :rtype: int
+    def get_level(self) -> int:
+        """Returns the level of this element from within the GEDCOM file.
         """
         return self.__level
 
-    def get_pointer(self):
-        """Returns the pointer of this element from within the GEDCOM file
-        :rtype: str
+    def get_pointer(self) -> str:
+        """Returns the pointer of this element from within the GEDCOM file.
         """
         return self.__pointer
 
-    def get_tag(self):
-        """Returns the tag of this element from within the GEDCOM file
-        :rtype: str
+    def get_tag(self) -> str:
+        """Returns the tag of this element from within the GEDCOM file.
         """
         return self.__tag
 
-    def get_value(self):
-        """Return the value of this element from within the GEDCOM file
-        :rtype: str
+    def get_value(self) -> str:
+        """Return the value of this element from within the GEDCOM file.
         """
         return self.__value
 
-    def set_value(self, value):
-        """Sets the value of this element
-        :type value: str
+    def set_value(self, value: str):
+        """Sets the value of this element.
         """
         self.__value = value
 
-    def get_multi_line_value(self):
-        """Returns the value of this element including concatenations or continuations
-        :rtype: str
+    def get_multi_line_value(self) -> str:
+        """Returns the value of this element including concatenations or continuations.
         """
         result = self.get_value()
         last_crlf = self.__crlf
@@ -123,17 +120,14 @@ class Element(object):
                 last_crlf = element.__crlf
         return result
 
-    def __available_characters(self):
+    def __available_characters(self) -> int:
         """Get the number of available characters of the elements original string
-        :rtype: int
         """
         element_characters = len(self.to_gedcom_string())
         return 0 if element_characters > 255 else 255 - element_characters
 
-    def __line_length(self, line):
-        """@TODO Write docs.
-        :type line: str
-        :rtype: int
+    def __line_length(self, line: str) -> int:
+        """Return line length.
         """
         total_characters = len(line)
         available_characters = self.__available_characters()
@@ -146,40 +140,36 @@ class Element(object):
             return available_characters
         return available_characters - spaces
 
-    def __set_bounded_value(self, value):
+    def __set_bounded_value(self, value: str) -> int:
         """@TODO Write docs.
-        :type value: str
-        :rtype: int
         """
         line_length = self.__line_length(value)
         self.set_value(value[:line_length])
         return line_length
 
-    def __add_bounded_child(self, tag, value):
+    def __add_bounded_child(self, tag: str, value: str) -> int:
         """@TODO Write docs.
-        :type tag: str
-        :type value: str
-        :rtype: int
         """
         child = self.new_child_element(tag)
         return child.__set_bounded_value(value)
 
-    def __add_concatenation(self, string):
+    def __add_concatenation(self, string: str):
         """@TODO Write docs.
-        :rtype: str
         """
         index = 0
         size = len(string)
         while index < size:
             index += self.__add_bounded_child(gedcom.tags.GEDCOM_TAG_CONCATENATION, string[index:])
 
-    def set_multi_line_value(self, value):
-        """Sets the value of this element, adding concatenation and continuation lines when necessary
-        :type value: str
+    def set_multi_line_value(self, value: str):
+        """Sets the value of this element, adding concatenation and continuation lines
+        when necessary.
         """
         self.set_value('')
         self.get_child_elements()[:] = [child for child in self.get_child_elements() if
-                                        child.get_tag() not in (gedcom.tags.GEDCOM_TAG_CONCATENATION, gedcom.tags.GEDCOM_TAG_CONTINUED)]
+                                        child.get_tag() not in
+                                        (gedcom.tags.GEDCOM_TAG_CONCATENATION,
+                                         gedcom.tags.GEDCOM_TAG_CONTINUED)]
 
         lines = value.splitlines()
         if lines:
@@ -191,19 +181,14 @@ class Element(object):
                 n = self.__add_bounded_child(gedcom.tags.GEDCOM_TAG_CONTINUED, line)
                 self.__add_concatenation(line[n:])
 
-    def get_child_elements(self):
-        """Returns the direct child elements of this element
-        :rtype: list of Element
+    def get_child_elements(self) -> List[Element]:
+        """Returns the direct child elements of this element.
         """
         return self.__children
 
-    def new_child_element(self, tag, pointer="", value=""):
-        """Creates and returns a new child element of this element
-
-        :type tag: str
-        :type pointer: str
-        :type value: str
-        :rtype: Element
+    def new_child_element(self, tag: str, pointer: str = "",
+                          value: str = "") -> Element:
+        """Creates and returns a new child element of this element.
         """
         from gedcom.element.family import FamilyElement
         from gedcom.element.individual import IndividualElement
@@ -217,68 +202,70 @@ class Element(object):
 
         # Differentiate between the type of the new child element
         if tag == gedcom.tags.GEDCOM_TAG_FAMILY:
-            child_element = FamilyElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = FamilyElement(self.get_level() + 1, pointer, tag,
+                                          value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_INDIVIDUAL:
-            child_element = IndividualElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = IndividualElement(self.get_level() + 1, pointer, tag,
+                                              value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_NOTE:
-            child_element = NoteElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = NoteElement(self.get_level() + 1, pointer, tag,
+                                        value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_OBJECT:
-            child_element = ObjectElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = ObjectElement(self.get_level() + 1, pointer, tag,
+                                          value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_REPOSITORY:
-            child_element = RepositoryElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = RepositoryElement(self.get_level() + 1, pointer, tag,
+                                              value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_SOURCE:
-            child_element = SourceElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = SourceElement(self.get_level() + 1, pointer, tag,
+                                          value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_SUBMITTER:
-            child_element = SubmitterElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = SubmitterElement(self.get_level() + 1, pointer, tag,
+                                             value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_SUBMISSION:
-            child_element = SubmissionElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = SubmissionElement(self.get_level() + 1, pointer, tag,
+                                              value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_HEADER:
-            child_element = HeaderElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = HeaderElement(self.get_level() + 1, pointer, tag,
+                                          value, self.__crlf)
         else:
-            child_element = Element(self.get_level() + 1, pointer, tag, value, self.__crlf)
+            child_element = Element(self.get_level() + 1, pointer, tag,
+                                    value, self.__crlf)
 
         self.add_child_element(child_element)
 
         return child_element
 
-    def add_child_element(self, element):
-        """Adds a child element to this element
-
-        :type element: Element
+    def add_child_element(self, element: Element):
+        """Adds a child element to this element.
         """
         self.get_child_elements().append(element)
         element.set_parent_element(self)
 
         return element
 
-    def get_parent_element(self):
-        """Returns the parent element of this element
-        :rtype: Element
+    def get_parent_element(self) -> Element:
+        """Returns the parent element of this element.
         """
         return self.__parent
 
-    def set_parent_element(self, element):
-        """Adds a parent element to this element
+    def set_parent_element(self, element: Element):
+        """Adds a parent element to this element.
 
         There's usually no need to call this method manually,
         `add_child_element()` calls it automatically.
-
-        :type element: Element
         """
         self.__parent = element
 
     @deprecated
-    def get_individual(self):
-        """Returns this element and all of its sub-elements represented as a GEDCOM string
+    def get_individual(self) -> str:
+        """Returns this element and all of its sub-elements represented as a GEDCOM string.
         ::deprecated:: As of version 1.0.0 use `to_gedcom_string()` method instead
-        :rtype: str
         """
         return self.to_gedcom_string(True)
 
-    def to_gedcom_string(self, recursive=False):
-        """Formats this element and optionally all of its sub-elements into a GEDCOM string
-        :type recursive: bool
-        :rtype: str
+    def to_gedcom_string(self, recursive: bool = False) -> str:
+        """Formats this element and optionally all of its sub-elements into a GEDCOM string.
         """
 
         result = str(self.get_level())
@@ -302,7 +289,7 @@ class Element(object):
 
         return result
 
-    def __str__(self):
+    def __str__(self) -> str:
         """:rtype: str"""
         if version_info[0] >= 3:
             return self.to_gedcom_string()

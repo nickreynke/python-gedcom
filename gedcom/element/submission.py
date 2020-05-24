@@ -50,12 +50,11 @@ SUBMISSION_TAGS = {
 class SubmissionElement(Element):
     """Element associated with a `SUBMISSION_RECORD`"""
 
-    def get_tag(self):
+    def get_tag(self) -> str:
         return tags.GEDCOM_TAG_SUBMISSION
 
-    def get_record(self):
+    def get_record(self) -> dict:
         """Parse and return the record in dictionary format
-        :rtype: dict
         """
         record = {
             'key_to_submission': self.get_pointer(),

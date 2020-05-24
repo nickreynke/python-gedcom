@@ -28,8 +28,10 @@
 
 """
 Module containing a `gedcom.reader.Reader` with higher order methods than the
-base `gedcom.parser.Parser`
+base `gedcom.parser.Parser` for extracting records as structured data.
 """
+
+from typing import Union
 
 from gedcom.parser import Parser
 from gedcom.element.header import HeaderElement
@@ -68,15 +70,14 @@ RECORD_KEYS = {
 
 
 class Reader(Parser):
-    """Simple wrapper class around the core parser with simple methods for
+    """Simple wrapper around the core `gedcom.parser.Parser` with methods for
     extracting parsed records as structured data.
     """
 
-    def get_records_by_type(self, record_type, output='list'):
-        """Return either a list or dictionary with all the requested records
-        :type: record_type: str
-        :type: output: str
-        :rtype: list or dict
+    def get_records_by_type(self, record_type: str,
+                            return_output_as_list: bool = True) -> Union[list, dict]:
+        """Return either a list or dictionary with all of the requested records for the
+        given `gedcom.records` record type.
         """
         record_list = []
         record_dict = {}
@@ -84,7 +85,7 @@ class Reader(Parser):
         for element in self.get_root_child_elements():
             if isinstance(element, ELEMENT_TYPES[record_type]):
                 record = element.get_record()
-                if output == 'list':
+                if return_output_as_list:
                     record_list.append(record)
                 else:
                     if RECORD_KEYS[record_type] is not None:
@@ -92,19 +93,18 @@ class Reader(Parser):
                     else:
                         record_dict.update({'@HEAD@': record})
 
-        if output == 'list':
+        if return_output_as_list:
             return record_list
 
         return record_dict
 
-    def get_all_records(self, entries='list'):
-        """Return a dictionary with all the requested records
-        :type: entries: str
-        :rtype: dict
-        """
+    def get_all_records(self, return_entries_as_list: bool = True) -> dict:
+        """Return a dictionary with all of the available records in the GEDCOM broken
+        down by record type."""
         record_dict = {}
+
         for key in RECORD_KEYS:
-            if entries == 'list':
+            if return_entries_as_list:
                 record_dict.update({key: []})
             else:
                 record_dict.update({key: {}})
@@ -113,7 +113,7 @@ class Reader(Parser):
             for key in ELEMENT_TYPES:
                 if isinstance(element, ELEMENT_TYPES[key]):
                     record = element.get_record()
-                    if entries == 'list':
+                    if return_entries_as_list:
                         record_dict[key].append(record)
                     else:
                         if key != 'header':

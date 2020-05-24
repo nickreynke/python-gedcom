@@ -21,17 +21,20 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the CHANGE_DATE record identified by the
-`gedcom.tags.GEDCOM_TAG_CHANGE` tag.
+Substructure parser for a `CHANGE_DATE` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_CHANGE` tag.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 
 
-def change_date(element):
-    """Parses and extracts the CHANGE_DATE
-    :rtype: dict
+def change_date(element: Element) -> dict:
+    """Parses and extracts a `CHANGE_DATE` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_CHANGE` tag.
     """
     record = {
         'date': '',

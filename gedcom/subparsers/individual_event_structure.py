@@ -21,11 +21,15 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the INDIVIDUAL_EVENT_STRUCTURE embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.
+Substructure parser for a `INDIVIDUAL_EVENT_STRUCTURE` embedded record.
+
+This is referenced as part of a larger structure so there is no anchor tag.
 """
 
+from typing import List
+
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.individual_event_detail import individual_event_detail
 
 EVENT_TAGS = {
@@ -61,9 +65,10 @@ BIRTH_EVENT_TAGS = {
 }
 
 
-def individual_event_structure(element):
-    """Parses and extracts the INDIVIDUAL_EVENT_STRUCTURE
-    :rtype: dict
+def individual_event_structure(element: Element) -> List[dict]:
+    """Parses and extracts a `INDIVIDUAL_EVENT_STRUCTURE` structure.
+
+    The `element` should be the parent that contains it.
     """
     records = []
     for child in element.get_child_elements():

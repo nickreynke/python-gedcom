@@ -21,11 +21,13 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the PERSONAL_NAME_PIECES embedded record. As this is
-referenced in place in part of another structure there is no identifier tag.
+Substructure parser for a `PERSONAL_NAME_PIECES` embedded record.
+
+This is referenced as part of a larger structure so there is no anchor tag.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.source_citation import source_citation
 
@@ -40,9 +42,10 @@ NAME_TAGS = {
 }
 
 
-def personal_name_pieces(element):
-    """Parse and extract PERSONAL_NAME_PIECES
-    :rtype: dict
+def personal_name_pieces(element: Element) -> dict:
+    """Parse and extract a `PERSONAL_NAME_PIECES` structure.
+
+    The `element` should be the parent that contains it.
     """
     record = {
         'prefix': '',

@@ -26,17 +26,19 @@
 #
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
-"""The official FamilySearch 5.5 standard"""
+"""Module containing links to the documentation for the various GEDCOM standards."""
+
 GEDCOM_5_5 = "https://edge.fscdn.org/assets/img/documents/" + \
     "gedcom55-82e1509bd8dbe7477e3b500e4f62c240.pdf"
+"""The official FamilySearch GEDCOM 5.5 Standard."""
 
-"""The official FamilySearch 5.5.1 standard"""
 GEDCOM_5_5_1 = "https://edge.fscdn.org/assets/img/documents/" + \
     "ged551-5bac5e57fe88dd37df0e153d9c515335.pdf"
+"""The official FamilySearch GEDCOM 5.5.1 Standard."""
 
-"""The GEDCOM-L working group 5.5.1 addendum"""
 GEDCOM_5_5_1_GEDCOM_L_ADDENDUM = "https://genealogy.net/GEDCOM/" + \
     "GEDCOM551%20GEDCOM-L%20Addendum-R1.pdf"
+"""The GEDCOM-L working group GEDCOM 5.5.1 Addendum."""
 
-"""The gedcom.org 5.5.5 specification with annotations"""
 GEDCOM_5_5_5 = "https://www.gedcom.org/specs/GEDCOM555.zip"
+"""The gedcom.org GEDCOM 5.5.5 Specification With Annotations."""

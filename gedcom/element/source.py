@@ -56,12 +56,11 @@ SOURCE_SINGLE_TAGS = {
 class SourceElement(Element):
     """Element associated with a SOURCE_RECORD"""
 
-    def get_tag(self):
+    def get_tag(self) -> str:
         return tags.GEDCOM_TAG_SOURCE
 
-    def get_record(self):
-        """Parse and return the record in dictionary format
-        :rtype: dict
+    def get_record(self) -> dict:
+        """Parse and return the full record in dictionary format.
         """
         record = {
             'key_to_source': self.get_pointer(),

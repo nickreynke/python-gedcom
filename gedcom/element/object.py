@@ -42,12 +42,11 @@ from gedcom.subparsers.user_reference_number import user_reference_number
 class ObjectElement(Element):
     """Element associated with a `MULTIMEDIA_RECORD`"""
 
-    def get_tag(self):
+    def get_tag(self) -> str:
         return tags.GEDCOM_TAG_OBJECT
 
-    def get_record(self):
-        """Parse and return the record in dictionary format
-        :rtype: dict
+    def get_record(self) -> dict:
+        """Parse and return the full record in dictionary format.
         """
         record = {
             'key_to_object': self.get_pointer(),

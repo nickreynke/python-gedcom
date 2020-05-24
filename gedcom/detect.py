@@ -27,12 +27,14 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Functions to detect GEDCOM encoding and version.
+Module containing functions for detecting GEDCOM file encoding and version.
 """
 
+from typing import Tuple
 import chardet
 import ansel
 
+import gedcom.tags as tags
 import gedcom.standards as standards
 from gedcom.errors import GedcomFormatViolationError
 from gedcom.errors import GedcomCharacterSetUnsupportedError
@@ -40,14 +42,13 @@ from gedcom.errors import GedcomCharacterSetUnsupportedError
 ansel.register()
 
 
-def validate_encoding(file_path, codec):
-    """Check the encoding is compatible with the encoding reported
-    :type file_path: str
-    :type codec: str
+def __validate_encoding(file_path, codec):
+    """Check the encoding is compatible with the encoding as reported by the
+    `gedcom.tags.GEDCOM_TAG_CHARACTER` header tag.
     """
     with open(file_path, 'r', encoding=codec) as gedcom_data:
         for line in gedcom_data:
-            if 'CHAR' in line:
+            if tags.GEDCOM_TAG_CHARACTER in line:
                 character_set = line.split(' ')[2].lower().strip()
                 break
 
@@ -65,10 +66,11 @@ def validate_encoding(file_path, codec):
         raise GedcomCharacterSetUnsupportedError(errmsg)
 
 
-def get_encoding(file_path):
-    """Examines file to determine encoding to use and then validates it
-    :type file_path: str
-    :rtype: str
+def get_encoding(file_path: str) -> str:
+    """Probe a GEDCOM file to determine the encoding and validate it against the encoding
+    as reported in the `HEADER` record by the `gedcom.tags.GEDCOM_TAG_CHARACTER` tag.
+
+    Returns: codec
     """
     with open(file_path, 'rb') as gedcom_data:
         sample_data = gedcom_data.read(262144)
@@ -95,16 +97,15 @@ def get_encoding(file_path):
             "the file.\nSee: {0}".format(standards.GEDCOM_5_5_1)
         raise GedcomCharacterSetUnsupportedError(errmsg)
 
-    validate_encoding(file_path, codec)
+    __validate_encoding(file_path, codec)
     return codec
 
 
-def get_version(file_path, codec):
-    """Probes Gedcom to identify version used, should expand this in future
-    Returns probed version, reported version, reported format
-    :type file_path: str
-    :type encoding: str
-    :rtype: str, str, str
+def get_version(file_path: str, codec: str) -> Tuple[str, str, str]:
+    """Probe a GEDCOM file to identify the version of the standard used as some reported 5.5
+    files are really 5.5.1.
+
+    Returns: probed version, reported version, reported format
     """
     in_gedc_tag = False
     gedcom_version = None
@@ -127,10 +128,10 @@ def get_version(file_path, codec):
             " not found as expected.\nSee: {0}".format(standards.GEDCOM_5_5_1)
         raise GedcomFormatViolationError(errmsg)
 
-    real_version = gedcom_version
+    probed_version = gedcom_version
 
     # UTF was added in the 5.5.1 specification
     if gedcom_version == '5.5' and 'utf' in codec:
-        real_version = gedcom_version
+        probed_version = gedcom_version
 
-    return real_version, gedcom_version, gedcom_format
+    return probed_version, gedcom_version, gedcom_format

@@ -21,11 +21,13 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the MULTIMEDIA_LINK record identified by the
-`gedcom.tags.GEDCOM_TAG_OBJECT` tag.
+Substructure parser for a `MULTIMEDIA_LINK` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_OBJECT` tag.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 
 MEDIA_TAGS = {
     tags.GEDCOM_TAG_FILE: 'file',
@@ -37,9 +39,10 @@ MEDIA_TAGS = {
 }
 
 
-def multimedia_link(element):
-    """Parse and extract a MULTIMEDIA_LINK
-    :rtype: dict
+def multimedia_link(element: Element) -> dict:
+    """Parse and extract a `MULTIMEDIA_LINK` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_OBJECT` tag.
     """
     record = {
         'key_to_object': element.get_value(),

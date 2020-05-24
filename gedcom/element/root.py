@@ -31,7 +31,8 @@ from gedcom.element.element import Element
 
 
 class RootElement(Element):
-    """Virtual GEDCOM root element containing all logical records as children"""
+    """Virtual GEDCOM root element containing all logical records as children."""
 
-    def __init__(self, level=-1, pointer="", tag="ROOT", value="", crlf="\n", multi_line=True):
+    def __init__(self, level: int = -1, pointer: str = "", tag: str = "ROOT", value: str = "",
+                 crlf: str = "\n", multi_line: bool = True):
         super(RootElement, self).__init__(level, pointer, tag, value, crlf, multi_line)

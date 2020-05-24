@@ -21,17 +21,20 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the PLACE_STRUCTURE record identified by the
-`gedcom.tags.GEDCOM_TAG_PLACE` tag.
+Substructure parser for a `PLACE_STRUCTURE` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_PLACE` tag.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 
 
-def place_structure(element):
-    """Parse and extract a PLACE_STRUCTURE
-    :rtype: dict
+def place_structure(element: Element) -> dict:
+    """Parse and extract a `PLACE_STRUCTURE` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_PLACE` tag.
     """
     record = {
         'name': element.get_value(),
