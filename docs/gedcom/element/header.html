@@ -79,12 +79,11 @@ HEADER_TAGS = {
 class HeaderElement(Element):
     &#34;&#34;&#34;Element associated with a `HEADER`&#34;&#34;&#34;
 
-    def get_tag(self):
+    def get_tag(self) -&gt; str:
         return tags.GEDCOM_TAG_HEADER
 
-    def get_record(self):
-        &#34;&#34;&#34;Parse and return the full record in dictionary format
-        :rtype: dict
+    def get_record(self) -&gt; dict:
+        &#34;&#34;&#34;Parse and return the full record in dictionary format.
         &#34;&#34;&#34;
         record = {
             &#39;source&#39;: &#39;&#39;,
@@ -200,7 +199,7 @@ class HeaderElement(Element):
 <dl>
 <dt id="gedcom.element.header.HeaderElement"><code class="flex name class">
 <span>class <span class="ident">HeaderElement</span></span>
-<span>(</span><span>level, pointer, tag, value, crlf='\n', multi_line=True)</span>
+<span>(</span><span>level: int, pointer: str, tag: str, value: str, crlf: str = '\n', multi_line: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Element associated with a <code>HEADER</code></p></div>
@@ -211,12 +210,11 @@ class HeaderElement(Element):
 <pre><code class="python">class HeaderElement(Element):
     &#34;&#34;&#34;Element associated with a `HEADER`&#34;&#34;&#34;
 
-    def get_tag(self):
+    def get_tag(self) -&gt; str:
         return tags.GEDCOM_TAG_HEADER
 
-    def get_record(self):
-        &#34;&#34;&#34;Parse and return the full record in dictionary format
-        :rtype: dict
+    def get_record(self) -&gt; dict:
+        &#34;&#34;&#34;Parse and return the full record in dictionary format.
         &#34;&#34;&#34;
         record = {
             &#39;source&#39;: &#39;&#39;,
@@ -327,18 +325,16 @@ class HeaderElement(Element):
 <h3>Methods</h3>
 <dl>
 <dt id="gedcom.element.header.HeaderElement.get_record"><code class="name flex">
-<span>def <span class="ident">get_record</span></span>(<span>self)</span>
+<span>def <span class="ident">get_record</span></span>(<span>self) -> dict</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parse and return the full record in dictionary format
-:rtype: dict</p></div>
+<div class="desc"><p>Parse and return the full record in dictionary format.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_record(self):
-    &#34;&#34;&#34;Parse and return the full record in dictionary format
-    :rtype: dict
+<pre><code class="python">def get_record(self) -&gt; dict:
+    &#34;&#34;&#34;Parse and return the full record in dictionary format.
     &#34;&#34;&#34;
     record = {
         &#39;source&#39;: &#39;&#39;,

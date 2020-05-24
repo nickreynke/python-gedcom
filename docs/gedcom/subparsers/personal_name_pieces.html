@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.subparsers.personal_name_pieces API documentation</title>
-<meta name="description" content="Substructure parser for the PERSONAL_NAME_PIECES embedded record. As this is
-referenced in place in part of another structure there is no identifier tag." />
+<meta name="description" content="Substructure parser for a `PERSONAL_NAME_PIECES` embedded record …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -21,8 +20,8 @@ referenced in place in part of another structure there is no identifier tag." />
 <h1 class="title">Module <code>gedcom.subparsers.personal_name_pieces</code></h1>
 </header>
 <section id="section-intro">
-<p>Substructure parser for the PERSONAL_NAME_PIECES embedded record. As this is
-referenced in place in part of another structure there is no identifier tag.</p>
+<p>Substructure parser for a <code>PERSONAL_NAME_PIECES</code> embedded record.</p>
+<p>This is referenced as part of a larger structure so there is no anchor tag.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -50,11 +49,13 @@ referenced in place in part of another structure there is no identifier tag.</p>
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 &#34;&#34;&#34;
-Substructure parser for the PERSONAL_NAME_PIECES embedded record. As this is
-referenced in place in part of another structure there is no identifier tag.
+Substructure parser for a `PERSONAL_NAME_PIECES` embedded record.
+
+This is referenced as part of a larger structure so there is no anchor tag.
 &#34;&#34;&#34;
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.source_citation import source_citation
 
@@ -69,9 +70,10 @@ NAME_TAGS = {
 }
 
 
-def personal_name_pieces(element):
-    &#34;&#34;&#34;Parse and extract PERSONAL_NAME_PIECES
-    :rtype: dict
+def personal_name_pieces(element: Element) -&gt; dict:
+    &#34;&#34;&#34;Parse and extract a `PERSONAL_NAME_PIECES` structure.
+
+    The `element` should be the parent that contains it.
     &#34;&#34;&#34;
     record = {
         &#39;prefix&#39;: &#39;&#39;,
@@ -108,18 +110,19 @@ def personal_name_pieces(element):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="gedcom.subparsers.personal_name_pieces.personal_name_pieces"><code class="name flex">
-<span>def <span class="ident">personal_name_pieces</span></span>(<span>element)</span>
+<span>def <span class="ident">personal_name_pieces</span></span>(<span>element: <a title="gedcom.element.element.Element" href="../element/element.html#gedcom.element.element.Element">Element</a>) -> dict</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parse and extract PERSONAL_NAME_PIECES
-:rtype: dict</p></div>
+<div class="desc"><p>Parse and extract a <code>PERSONAL_NAME_PIECES</code> structure.</p>
+<p>The <code>element</code> should be the parent that contains it.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def personal_name_pieces(element):
-    &#34;&#34;&#34;Parse and extract PERSONAL_NAME_PIECES
-    :rtype: dict
+<pre><code class="python">def personal_name_pieces(element: Element) -&gt; dict:
+    &#34;&#34;&#34;Parse and extract a `PERSONAL_NAME_PIECES` structure.
+
+    The `element` should be the parent that contains it.
     &#34;&#34;&#34;
     record = {
         &#39;prefix&#39;: &#39;&#39;,

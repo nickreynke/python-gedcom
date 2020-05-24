@@ -33,7 +33,7 @@ from gedcom.subparsers.note_structure import note_structure
 
 def spouse_to_family_link(element: Element) -> dict:
     """Parse and extract a `SPOUSE_TO_FAMILY_LINK` structure.
-    
+
     The `element` should contain the `gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE` tag.
     """
     record = {

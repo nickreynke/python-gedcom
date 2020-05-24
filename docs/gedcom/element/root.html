@@ -58,9 +58,10 @@ from gedcom.element.element import Element
 
 
 class RootElement(Element):
-    &#34;&#34;&#34;Virtual GEDCOM root element containing all logical records as children&#34;&#34;&#34;
+    &#34;&#34;&#34;Virtual GEDCOM root element containing all logical records as children.&#34;&#34;&#34;
 
-    def __init__(self, level=-1, pointer=&#34;&#34;, tag=&#34;ROOT&#34;, value=&#34;&#34;, crlf=&#34;\n&#34;, multi_line=True):
+    def __init__(self, level: int = -1, pointer: str = &#34;&#34;, tag: str = &#34;ROOT&#34;, value: str = &#34;&#34;,
+                 crlf: str = &#34;\n&#34;, multi_line: bool = True):
         super(RootElement, self).__init__(level, pointer, tag, value, crlf, multi_line)</code></pre>
 </details>
 </section>
@@ -75,18 +76,19 @@ class RootElement(Element):
 <dl>
 <dt id="gedcom.element.root.RootElement"><code class="flex name class">
 <span>class <span class="ident">RootElement</span></span>
-<span>(</span><span>level=-1, pointer='', tag='ROOT', value='', crlf='\n', multi_line=True)</span>
+<span>(</span><span>level: int = -1, pointer: str = '', tag: str = 'ROOT', value: str = '', crlf: str = '\n', multi_line: bool = True)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Virtual GEDCOM root element containing all logical records as children</p></div>
+<div class="desc"><p>Virtual GEDCOM root element containing all logical records as children.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class RootElement(Element):
-    &#34;&#34;&#34;Virtual GEDCOM root element containing all logical records as children&#34;&#34;&#34;
+    &#34;&#34;&#34;Virtual GEDCOM root element containing all logical records as children.&#34;&#34;&#34;
 
-    def __init__(self, level=-1, pointer=&#34;&#34;, tag=&#34;ROOT&#34;, value=&#34;&#34;, crlf=&#34;\n&#34;, multi_line=True):
+    def __init__(self, level: int = -1, pointer: str = &#34;&#34;, tag: str = &#34;ROOT&#34;, value: str = &#34;&#34;,
+                 crlf: str = &#34;\n&#34;, multi_line: bool = True):
         super(RootElement, self).__init__(level, pointer, tag, value, crlf, multi_line)</code></pre>
 </details>
 <h3>Ancestors</h3>

@@ -158,6 +158,7 @@ __all__ = [
     &#34;detect&#34;,
     &#34;parser&#34;,
     &#34;reader&#34;,
+    &#34;records&#34;,
     &#34;standards&#34;,
     &#34;tags&#34;
 ]</code></pre>
@@ -168,7 +169,7 @@ __all__ = [
 <dl>
 <dt><code class="name"><a title="gedcom.detect" href="detect.html">gedcom.detect</a></code></dt>
 <dd>
-<div class="desc"><p>Functions to detect GEDCOM encoding and version.</p></div>
+<div class="desc"><p>Module containing functions for detecting GEDCOM file encoding and version.</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.element" href="element/index.html">gedcom.element</a></code></dt>
 <dd>
@@ -191,19 +192,25 @@ out of each line - which can in return be manipulated.</p></div>
 <dt><code class="name"><a title="gedcom.reader" href="reader.html">gedcom.reader</a></code></dt>
 <dd>
 <div class="desc"><p>Module containing a <code><a title="gedcom.reader.Reader" href="reader.html#gedcom.reader.Reader">Reader</a></code> with higher order methods than the
-base <code><a title="gedcom.parser.Parser" href="parser.html#gedcom.parser.Parser">Parser</a></code></p></div>
+base <code><a title="gedcom.parser.Parser" href="parser.html#gedcom.parser.Parser">Parser</a></code> for extracting records as structured data.</p></div>
+</dd>
+<dt><code class="name"><a title="gedcom.records" href="records.html">gedcom.records</a></code></dt>
+<dd>
+<div class="desc"><p>Module containing the standard GEDCOM record types recognized by the
+GEDCOM <code><a title="gedcom.reader.Reader" href="reader.html#gedcom.reader.Reader">Reader</a></code>.</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.standards" href="standards.html">gedcom.standards</a></code></dt>
 <dd>
-<div class="desc"><p>The official FamilySearch 5.5 standard</p></div>
+<div class="desc"><p>Module containing links to the documentation for the various GEDCOM standards.</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers" href="subparsers/index.html">gedcom.subparsers</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Module containing parsers for extracting various substructures from the
+different record types as defined in the GEDCOM standard.</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.tags" href="tags.html">gedcom.tags</a></code></dt>
 <dd>
-<div class="desc"><p>Standard GEDCOM tags and some common program defined extensions</p></div>
+<div class="desc"><p>Module containing the standard GEDCOM tags and some of the most common program defined extensions.</p></div>
 </dd>
 </dl>
 </section>
@@ -237,6 +244,7 @@ base <code><a title="gedcom.parser.Parser" href="parser.html#gedcom.parser.Parse
 <li><code><a title="gedcom.helpers" href="helpers.html">gedcom.helpers</a></code></li>
 <li><code><a title="gedcom.parser" href="parser.html">gedcom.parser</a></code></li>
 <li><code><a title="gedcom.reader" href="reader.html">gedcom.reader</a></code></li>
+<li><code><a title="gedcom.records" href="records.html">gedcom.records</a></code></li>
 <li><code><a title="gedcom.standards" href="standards.html">gedcom.standards</a></code></li>
 <li><code><a title="gedcom.subparsers" href="subparsers/index.html">gedcom.subparsers</a></code></li>
 <li><code><a title="gedcom.tags" href="tags.html">gedcom.tags</a></code></li>

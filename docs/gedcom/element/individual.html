@@ -60,7 +60,9 @@ GEDCOM element for a `INDIVIDUAL_RECORD` individual record identified by the
 `gedcom.tags.GEDCOM_TAG_INDIVIDUAL` tag.
 &#34;&#34;&#34;
 
+from typing import Tuple, List
 import re as regex
+
 import gedcom.tags as tags
 from gedcom.element.element import Element
 from gedcom.subparsers.personal_name_structure import personal_name_structure
@@ -89,12 +91,11 @@ INDIVIDUAL_SINGLE_TAGS = {
 class IndividualElement(Element):
     &#34;&#34;&#34;Element associated with an `INDIVIDUAL_RECORD`&#34;&#34;&#34;
 
-    def get_tag(self):
+    def get_tag(self) -&gt; str:
         return tags.GEDCOM_TAG_INDIVIDUAL
 
-    def get_record(self):
-        &#34;&#34;&#34;Parse and return the record in dictionary format
-        :rtype: dict
+    def get_record(self) -&gt; dict:
+        &#34;&#34;&#34;Parse and return the full record in dictionary format.
         &#34;&#34;&#34;
         record = {
             &#39;key_to_individual&#39;: self.get_pointer(),
@@ -182,9 +183,8 @@ class IndividualElement(Element):
 
         return record
 
-    def is_deceased(self):
-        &#34;&#34;&#34;Checks if this individual is deceased
-        :rtype: bool
+    def is_deceased(self) -&gt; bool:
+        &#34;&#34;&#34;Checks if this individual is deceased.
         &#34;&#34;&#34;
         for child in self.get_child_elements():
             if child.get_tag() == tags.GEDCOM_TAG_DEATH:
@@ -192,9 +192,8 @@ class IndividualElement(Element):
 
         return False
 
-    def is_child(self):
-        &#34;&#34;&#34;Checks if this element is a child of a family
-        :rtype: bool
+    def is_child(self) -&gt; bool:
+        &#34;&#34;&#34;Checks if this element is a child of a family.
         &#34;&#34;&#34;
         found_child = False
 
@@ -204,9 +203,8 @@ class IndividualElement(Element):
 
         return found_child
 
-    def is_private(self):
-        &#34;&#34;&#34;Checks if this individual is marked private
-        :rtype: bool
+    def is_private(self) -&gt; bool:
+        &#34;&#34;&#34;Checks if this individual is marked private.
         &#34;&#34;&#34;
         for child in self.get_child_elements():
             if child.get_tag() == tags.GEDCOM_TAG_PRIVATE:
@@ -216,9 +214,8 @@ class IndividualElement(Element):
 
         return False
 
-    def get_name(self):
+    def get_name(self) -&gt; Tuple[str, str]:
         &#34;&#34;&#34;Returns an individual&#39;s names as a tuple: (`str` given_name, `str` surname)
-        :rtype: tuple
         &#34;&#34;&#34;
         given_name = &#34;&#34;
         surname = &#34;&#34;
@@ -259,38 +256,32 @@ class IndividualElement(Element):
         # If we reach here we are probably returning empty strings
         return given_name, surname
 
-    def get_all_names(self):
-        &#34;&#34;&#34;Return all names&#34;&#34;&#34;
-        return [a.get_value() for a in self.get_child_elements() if a.get_tag() == tags.GEDCOM_TAG_NAME]
+    def get_all_names(self) -&gt; List[str]:
+        &#34;&#34;&#34;Return all names.&#34;&#34;&#34;
+        return [a.get_value() for a in self.get_child_elements()
+                if a.get_tag() == tags.GEDCOM_TAG_NAME]
 
-    def surname_match(self, surname_to_match):
-        &#34;&#34;&#34;Matches a string with the surname of an individual
-        :type surname_to_match: str
-        :rtype: bool
+    def surname_match(self, surname_to_match: str) -&gt; bool:
+        &#34;&#34;&#34;Matches a string with the surname of an individual.
         &#34;&#34;&#34;
         (given_name, surname) = self.get_name()
         return regex.search(surname_to_match, surname, regex.IGNORECASE)
 
     @deprecated
-    def given_match(self, name):
-        &#34;&#34;&#34;Matches a string with the given name of an individual
+    def given_match(self, name: str) -&gt; bool:
+        &#34;&#34;&#34;Matches a string with the given name of an individual.
         ::deprecated:: As of version 1.0.0 use `given_name_match()` method instead
-        :type name: str
-        :rtype: bool
         &#34;&#34;&#34;
         return self.given_name_match(name)
 
-    def given_name_match(self, given_name_to_match):
-        &#34;&#34;&#34;Matches a string with the given name of an individual
-        :type given_name_to_match: str
-        :rtype: bool
+    def given_name_match(self, given_name_to_match: str) -&gt; bool:
+        &#34;&#34;&#34;Matches a string with the given name of an individual.
         &#34;&#34;&#34;
         (given_name, surname) = self.get_name()
         return regex.search(given_name_to_match, given_name, regex.IGNORECASE)
 
-    def get_gender(self):
-        &#34;&#34;&#34;Returns the gender of a person in string format
-        :rtype: str
+    def get_gender(self) -&gt; str:
+        &#34;&#34;&#34;Returns the gender of a person in string format.
         &#34;&#34;&#34;
         gender = &#34;&#34;
 
@@ -300,10 +291,9 @@ class IndividualElement(Element):
 
         return gender
 
-    def get_birth_data(self):
+    def get_birth_data(self) -&gt; Tuple[str, str, List[str]]:
         &#34;&#34;&#34;Returns the birth data of a person formatted as a tuple:
         (`str` date, `str` place, `list` sources)
-        :rtype: tuple
         &#34;&#34;&#34;
         date = &#34;&#34;
         place = &#34;&#34;
@@ -324,9 +314,8 @@ class IndividualElement(Element):
 
         return date, place, sources
 
-    def get_birth_year(self):
-        &#34;&#34;&#34;Returns the birth year of a person in integer format
-        :rtype: int
+    def get_birth_year(self) -&gt; int:
+        &#34;&#34;&#34;Returns the birth year of a person in integer format.
         &#34;&#34;&#34;
         date = &#34;&#34;
 
@@ -344,9 +333,9 @@ class IndividualElement(Element):
         except ValueError:
             return -1
 
-    def get_death_data(self):
-        &#34;&#34;&#34;Returns the death data of a person formatted as a tuple: (`str` date, `str` place, `list` sources)
-        :rtype: tuple
+    def get_death_data(self) -&gt; Tuple[str, str, List[str]]:
+        &#34;&#34;&#34;Returns the death data of a person formatted as a tuple:
+        (`str` date, `str` place, `list` sources)
         &#34;&#34;&#34;
         date = &#34;&#34;
         place = &#34;&#34;
@@ -364,9 +353,8 @@ class IndividualElement(Element):
 
         return date, place, sources
 
-    def get_death_year(self):
-        &#34;&#34;&#34;Returns the death year of a person in integer format
-        :rtype: int
+    def get_death_year(self) -&gt; int:
+        &#34;&#34;&#34;Returns the death year of a person in integer format.
         &#34;&#34;&#34;
         date = &#34;&#34;
 
@@ -385,16 +373,16 @@ class IndividualElement(Element):
             return -1
 
     @deprecated
-    def get_burial(self):
-        &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple: (`str` date, `str´ place, `list` sources)
+    def get_burial(self) -&gt; Tuple[str, str, List[str]]:
+        &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple:
+        (`str` date, `str´ place, `list` sources)
         ::deprecated:: As of version 1.0.0 use `get_burial_data()` method instead
-        :rtype: tuple
         &#34;&#34;&#34;
         self.get_burial_data()
 
-    def get_burial_data(self):
-        &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple: (`str` date, `str´ place, `list` sources)
-        :rtype: tuple
+    def get_burial_data(self) -&gt; Tuple[str, str, List[str]]:
+        &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple:
+        (`str` date, `str´ place, `list` sources)
         &#34;&#34;&#34;
         date = &#34;&#34;
         place = &#34;&#34;
@@ -416,16 +404,16 @@ class IndividualElement(Element):
         return date, place, sources
 
     @deprecated
-    def get_census(self):
-        &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples: (`str` date, `str´ place, `list` sources)
+    def get_census(self) -&gt; List[Tuple[str, str, List[str]]]:
+        &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples:
+        (`str` date, `str´ place, `list` sources)
         ::deprecated:: As of version 1.0.0 use `get_census_data()` method instead
-        :rtype: list of tuple
         &#34;&#34;&#34;
         self.get_census_data()
 
-    def get_census_data(self):
-        &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples: (`str` date, `str´ place, `list` sources)
-        :rtype: list of tuple
+    def get_census_data(self) -&gt; List[Tuple[str, str, List[str]]]:
+        &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples:
+        (`str` date, `str´ place, `list` sources)
         &#34;&#34;&#34;
         census = []
 
@@ -451,9 +439,8 @@ class IndividualElement(Element):
 
         return census
 
-    def get_last_change_date(self):
-        &#34;&#34;&#34;Returns the date of when the person data was last changed formatted as a string
-        :rtype: str
+    def get_last_change_date(self) -&gt; str:
+        &#34;&#34;&#34;Returns the date of when the person data was last changed formatted as a string.
         &#34;&#34;&#34;
         date = &#34;&#34;
 
@@ -465,9 +452,8 @@ class IndividualElement(Element):
 
         return date
 
-    def get_occupation(self):
-        &#34;&#34;&#34;Returns the occupation of a person
-        :rtype: str
+    def get_occupation(self) -&gt; str:
+        &#34;&#34;&#34;Returns the occupation of a person.
         &#34;&#34;&#34;
         occupation = &#34;&#34;
 
@@ -477,18 +463,13 @@ class IndividualElement(Element):
 
         return occupation
 
-    def birth_year_match(self, year):
-        &#34;&#34;&#34;Returns `True` if the given year matches the birth year of this person
-        :type year: int
-        :rtype: bool
+    def birth_year_match(self, year: int) -&gt; bool:
+        &#34;&#34;&#34;Returns `True` if the given year matches the birth year of this person.
         &#34;&#34;&#34;
         return self.get_birth_year() == year
 
-    def birth_range_match(self, from_year, to_year):
-        &#34;&#34;&#34;Checks if the birth year of a person lies within the given range
-        :type from_year: int
-        :type to_year: int
-        :rtype: bool
+    def birth_range_match(self, from_year: int, to_year: int) -&gt; bool:
+        &#34;&#34;&#34;Checks if the birth year of a person lies within the given range.
         &#34;&#34;&#34;
         birth_year = self.get_birth_year()
 
@@ -497,18 +478,13 @@ class IndividualElement(Element):
 
         return False
 
-    def death_year_match(self, year):
-        &#34;&#34;&#34;Returns `True` if the given year matches the death year of this person
-        :type year: int
-        :rtype: bool
+    def death_year_match(self, year: int) -&gt; bool:
+        &#34;&#34;&#34;Returns `True` if the given year matches the death year of this person.
         &#34;&#34;&#34;
         return self.get_death_year() == year
 
-    def death_range_match(self, from_year, to_year):
-        &#34;&#34;&#34;Checks if the death year of a person lies within the given range
-        :type from_year: int
-        :type to_year: int
-        :rtype: bool
+    def death_range_match(self, from_year: int, to_year: int) -&gt; bool:
+        &#34;&#34;&#34;Checks if the death year of a person lies within the given range.
         &#34;&#34;&#34;
         death_year = self.get_death_year()
 
@@ -517,8 +493,8 @@ class IndividualElement(Element):
 
         return False
 
-    def criteria_match(self, criteria):
-        &#34;&#34;&#34;Checks if this individual matches all of the given criteria
+    def criteria_match(self, criteria: str) -&gt; bool:
+        &#34;&#34;&#34;Checks if this individual matches all of the given criteria.
 
         `criteria` is a colon-separated list, where each item in the
         list has the form [name]=[value]. The following criteria are supported:
@@ -532,9 +508,6 @@ class IndividualElement(Element):
         birth_range=[from_year-to_year]
              Match a person whose birth year is in the range of years from
              [from_year] to [to_year], including both [from_year] and [to_year].
-
-        :type criteria: str
-        :rtype: bool
         &#34;&#34;&#34;
 
         # Check if criteria is a valid criteria and can be split by `:` and `=` characters
@@ -607,7 +580,7 @@ class IndividualElement(Element):
 <dl>
 <dt id="gedcom.element.individual.IndividualElement"><code class="flex name class">
 <span>class <span class="ident">IndividualElement</span></span>
-<span>(</span><span>level, pointer, tag, value, crlf='\n', multi_line=True)</span>
+<span>(</span><span>level: int, pointer: str, tag: str, value: str, crlf: str = '\n', multi_line: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Element associated with an <code>INDIVIDUAL_RECORD</code></p></div>
@@ -618,12 +591,11 @@ class IndividualElement(Element):
 <pre><code class="python">class IndividualElement(Element):
     &#34;&#34;&#34;Element associated with an `INDIVIDUAL_RECORD`&#34;&#34;&#34;
 
-    def get_tag(self):
+    def get_tag(self) -&gt; str:
         return tags.GEDCOM_TAG_INDIVIDUAL
 
-    def get_record(self):
-        &#34;&#34;&#34;Parse and return the record in dictionary format
-        :rtype: dict
+    def get_record(self) -&gt; dict:
+        &#34;&#34;&#34;Parse and return the full record in dictionary format.
         &#34;&#34;&#34;
         record = {
             &#39;key_to_individual&#39;: self.get_pointer(),
@@ -711,9 +683,8 @@ class IndividualElement(Element):
 
         return record
 
-    def is_deceased(self):
-        &#34;&#34;&#34;Checks if this individual is deceased
-        :rtype: bool
+    def is_deceased(self) -&gt; bool:
+        &#34;&#34;&#34;Checks if this individual is deceased.
         &#34;&#34;&#34;
         for child in self.get_child_elements():
             if child.get_tag() == tags.GEDCOM_TAG_DEATH:
@@ -721,9 +692,8 @@ class IndividualElement(Element):
 
         return False
 
-    def is_child(self):
-        &#34;&#34;&#34;Checks if this element is a child of a family
-        :rtype: bool
+    def is_child(self) -&gt; bool:
+        &#34;&#34;&#34;Checks if this element is a child of a family.
         &#34;&#34;&#34;
         found_child = False
 
@@ -733,9 +703,8 @@ class IndividualElement(Element):
 
         return found_child
 
-    def is_private(self):
-        &#34;&#34;&#34;Checks if this individual is marked private
-        :rtype: bool
+    def is_private(self) -&gt; bool:
+        &#34;&#34;&#34;Checks if this individual is marked private.
         &#34;&#34;&#34;
         for child in self.get_child_elements():
             if child.get_tag() == tags.GEDCOM_TAG_PRIVATE:
@@ -745,9 +714,8 @@ class IndividualElement(Element):
 
         return False
 
-    def get_name(self):
+    def get_name(self) -&gt; Tuple[str, str]:
         &#34;&#34;&#34;Returns an individual&#39;s names as a tuple: (`str` given_name, `str` surname)
-        :rtype: tuple
         &#34;&#34;&#34;
         given_name = &#34;&#34;
         surname = &#34;&#34;
@@ -788,38 +756,32 @@ class IndividualElement(Element):
         # If we reach here we are probably returning empty strings
         return given_name, surname
 
-    def get_all_names(self):
-        &#34;&#34;&#34;Return all names&#34;&#34;&#34;
-        return [a.get_value() for a in self.get_child_elements() if a.get_tag() == tags.GEDCOM_TAG_NAME]
+    def get_all_names(self) -&gt; List[str]:
+        &#34;&#34;&#34;Return all names.&#34;&#34;&#34;
+        return [a.get_value() for a in self.get_child_elements()
+                if a.get_tag() == tags.GEDCOM_TAG_NAME]
 
-    def surname_match(self, surname_to_match):
-        &#34;&#34;&#34;Matches a string with the surname of an individual
-        :type surname_to_match: str
-        :rtype: bool
+    def surname_match(self, surname_to_match: str) -&gt; bool:
+        &#34;&#34;&#34;Matches a string with the surname of an individual.
         &#34;&#34;&#34;
         (given_name, surname) = self.get_name()
         return regex.search(surname_to_match, surname, regex.IGNORECASE)
 
     @deprecated
-    def given_match(self, name):
-        &#34;&#34;&#34;Matches a string with the given name of an individual
+    def given_match(self, name: str) -&gt; bool:
+        &#34;&#34;&#34;Matches a string with the given name of an individual.
         ::deprecated:: As of version 1.0.0 use `given_name_match()` method instead
-        :type name: str
-        :rtype: bool
         &#34;&#34;&#34;
         return self.given_name_match(name)
 
-    def given_name_match(self, given_name_to_match):
-        &#34;&#34;&#34;Matches a string with the given name of an individual
-        :type given_name_to_match: str
-        :rtype: bool
+    def given_name_match(self, given_name_to_match: str) -&gt; bool:
+        &#34;&#34;&#34;Matches a string with the given name of an individual.
         &#34;&#34;&#34;
         (given_name, surname) = self.get_name()
         return regex.search(given_name_to_match, given_name, regex.IGNORECASE)
 
-    def get_gender(self):
-        &#34;&#34;&#34;Returns the gender of a person in string format
-        :rtype: str
+    def get_gender(self) -&gt; str:
+        &#34;&#34;&#34;Returns the gender of a person in string format.
         &#34;&#34;&#34;
         gender = &#34;&#34;
 
@@ -829,10 +791,9 @@ class IndividualElement(Element):
 
         return gender
 
-    def get_birth_data(self):
+    def get_birth_data(self) -&gt; Tuple[str, str, List[str]]:
         &#34;&#34;&#34;Returns the birth data of a person formatted as a tuple:
         (`str` date, `str` place, `list` sources)
-        :rtype: tuple
         &#34;&#34;&#34;
         date = &#34;&#34;
         place = &#34;&#34;
@@ -853,9 +814,8 @@ class IndividualElement(Element):
 
         return date, place, sources
 
-    def get_birth_year(self):
-        &#34;&#34;&#34;Returns the birth year of a person in integer format
-        :rtype: int
+    def get_birth_year(self) -&gt; int:
+        &#34;&#34;&#34;Returns the birth year of a person in integer format.
         &#34;&#34;&#34;
         date = &#34;&#34;
 
@@ -873,9 +833,9 @@ class IndividualElement(Element):
         except ValueError:
             return -1
 
-    def get_death_data(self):
-        &#34;&#34;&#34;Returns the death data of a person formatted as a tuple: (`str` date, `str` place, `list` sources)
-        :rtype: tuple
+    def get_death_data(self) -&gt; Tuple[str, str, List[str]]:
+        &#34;&#34;&#34;Returns the death data of a person formatted as a tuple:
+        (`str` date, `str` place, `list` sources)
         &#34;&#34;&#34;
         date = &#34;&#34;
         place = &#34;&#34;
@@ -893,9 +853,8 @@ class IndividualElement(Element):
 
         return date, place, sources
 
-    def get_death_year(self):
-        &#34;&#34;&#34;Returns the death year of a person in integer format
-        :rtype: int
+    def get_death_year(self) -&gt; int:
+        &#34;&#34;&#34;Returns the death year of a person in integer format.
         &#34;&#34;&#34;
         date = &#34;&#34;
 
@@ -914,16 +873,16 @@ class IndividualElement(Element):
             return -1
 
     @deprecated
-    def get_burial(self):
-        &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple: (`str` date, `str´ place, `list` sources)
+    def get_burial(self) -&gt; Tuple[str, str, List[str]]:
+        &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple:
+        (`str` date, `str´ place, `list` sources)
         ::deprecated:: As of version 1.0.0 use `get_burial_data()` method instead
-        :rtype: tuple
         &#34;&#34;&#34;
         self.get_burial_data()
 
-    def get_burial_data(self):
-        &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple: (`str` date, `str´ place, `list` sources)
-        :rtype: tuple
+    def get_burial_data(self) -&gt; Tuple[str, str, List[str]]:
+        &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple:
+        (`str` date, `str´ place, `list` sources)
         &#34;&#34;&#34;
         date = &#34;&#34;
         place = &#34;&#34;
@@ -945,16 +904,16 @@ class IndividualElement(Element):
         return date, place, sources
 
     @deprecated
-    def get_census(self):
-        &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples: (`str` date, `str´ place, `list` sources)
+    def get_census(self) -&gt; List[Tuple[str, str, List[str]]]:
+        &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples:
+        (`str` date, `str´ place, `list` sources)
         ::deprecated:: As of version 1.0.0 use `get_census_data()` method instead
-        :rtype: list of tuple
         &#34;&#34;&#34;
         self.get_census_data()
 
-    def get_census_data(self):
-        &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples: (`str` date, `str´ place, `list` sources)
-        :rtype: list of tuple
+    def get_census_data(self) -&gt; List[Tuple[str, str, List[str]]]:
+        &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples:
+        (`str` date, `str´ place, `list` sources)
         &#34;&#34;&#34;
         census = []
 
@@ -980,9 +939,8 @@ class IndividualElement(Element):
 
         return census
 
-    def get_last_change_date(self):
-        &#34;&#34;&#34;Returns the date of when the person data was last changed formatted as a string
-        :rtype: str
+    def get_last_change_date(self) -&gt; str:
+        &#34;&#34;&#34;Returns the date of when the person data was last changed formatted as a string.
         &#34;&#34;&#34;
         date = &#34;&#34;
 
@@ -994,9 +952,8 @@ class IndividualElement(Element):
 
         return date
 
-    def get_occupation(self):
-        &#34;&#34;&#34;Returns the occupation of a person
-        :rtype: str
+    def get_occupation(self) -&gt; str:
+        &#34;&#34;&#34;Returns the occupation of a person.
         &#34;&#34;&#34;
         occupation = &#34;&#34;
 
@@ -1006,18 +963,13 @@ class IndividualElement(Element):
 
         return occupation
 
-    def birth_year_match(self, year):
-        &#34;&#34;&#34;Returns `True` if the given year matches the birth year of this person
-        :type year: int
-        :rtype: bool
+    def birth_year_match(self, year: int) -&gt; bool:
+        &#34;&#34;&#34;Returns `True` if the given year matches the birth year of this person.
         &#34;&#34;&#34;
         return self.get_birth_year() == year
 
-    def birth_range_match(self, from_year, to_year):
-        &#34;&#34;&#34;Checks if the birth year of a person lies within the given range
-        :type from_year: int
-        :type to_year: int
-        :rtype: bool
+    def birth_range_match(self, from_year: int, to_year: int) -&gt; bool:
+        &#34;&#34;&#34;Checks if the birth year of a person lies within the given range.
         &#34;&#34;&#34;
         birth_year = self.get_birth_year()
 
@@ -1026,18 +978,13 @@ class IndividualElement(Element):
 
         return False
 
-    def death_year_match(self, year):
-        &#34;&#34;&#34;Returns `True` if the given year matches the death year of this person
-        :type year: int
-        :rtype: bool
+    def death_year_match(self, year: int) -&gt; bool:
+        &#34;&#34;&#34;Returns `True` if the given year matches the death year of this person.
         &#34;&#34;&#34;
         return self.get_death_year() == year
 
-    def death_range_match(self, from_year, to_year):
-        &#34;&#34;&#34;Checks if the death year of a person lies within the given range
-        :type from_year: int
-        :type to_year: int
-        :rtype: bool
+    def death_range_match(self, from_year: int, to_year: int) -&gt; bool:
+        &#34;&#34;&#34;Checks if the death year of a person lies within the given range.
         &#34;&#34;&#34;
         death_year = self.get_death_year()
 
@@ -1046,8 +993,8 @@ class IndividualElement(Element):
 
         return False
 
-    def criteria_match(self, criteria):
-        &#34;&#34;&#34;Checks if this individual matches all of the given criteria
+    def criteria_match(self, criteria: str) -&gt; bool:
+        &#34;&#34;&#34;Checks if this individual matches all of the given criteria.
 
         `criteria` is a colon-separated list, where each item in the
         list has the form [name]=[value]. The following criteria are supported:
@@ -1061,9 +1008,6 @@ class IndividualElement(Element):
         birth_range=[from_year-to_year]
              Match a person whose birth year is in the range of years from
              [from_year] to [to_year], including both [from_year] and [to_year].
-
-        :type criteria: str
-        :rtype: bool
         &#34;&#34;&#34;
 
         # Check if criteria is a valid criteria and can be split by `:` and `=` characters
@@ -1131,22 +1075,16 @@ class IndividualElement(Element):
 <h3>Methods</h3>
 <dl>
 <dt id="gedcom.element.individual.IndividualElement.birth_range_match"><code class="name flex">
-<span>def <span class="ident">birth_range_match</span></span>(<span>self, from_year, to_year)</span>
+<span>def <span class="ident">birth_range_match</span></span>(<span>self, from_year: int, to_year: int) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks if the birth year of a person lies within the given range
-:type from_year: int
-:type to_year: int
-:rtype: bool</p></div>
+<div class="desc"><p>Checks if the birth year of a person lies within the given range.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def birth_range_match(self, from_year, to_year):
-    &#34;&#34;&#34;Checks if the birth year of a person lies within the given range
-    :type from_year: int
-    :type to_year: int
-    :rtype: bool
+<pre><code class="python">def birth_range_match(self, from_year: int, to_year: int) -&gt; bool:
+    &#34;&#34;&#34;Checks if the birth year of a person lies within the given range.
     &#34;&#34;&#34;
     birth_year = self.get_birth_year()
 
@@ -1157,29 +1095,25 @@ class IndividualElement(Element):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.birth_year_match"><code class="name flex">
-<span>def <span class="ident">birth_year_match</span></span>(<span>self, year)</span>
+<span>def <span class="ident">birth_year_match</span></span>(<span>self, year: int) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns <code>True</code> if the given year matches the birth year of this person
-:type year: int
-:rtype: bool</p></div>
+<div class="desc"><p>Returns <code>True</code> if the given year matches the birth year of this person.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def birth_year_match(self, year):
-    &#34;&#34;&#34;Returns `True` if the given year matches the birth year of this person
-    :type year: int
-    :rtype: bool
+<pre><code class="python">def birth_year_match(self, year: int) -&gt; bool:
+    &#34;&#34;&#34;Returns `True` if the given year matches the birth year of this person.
     &#34;&#34;&#34;
     return self.get_birth_year() == year</code></pre>
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.criteria_match"><code class="name flex">
-<span>def <span class="ident">criteria_match</span></span>(<span>self, criteria)</span>
+<span>def <span class="ident">criteria_match</span></span>(<span>self, criteria: str) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks if this individual matches all of the given criteria</p>
+<div class="desc"><p>Checks if this individual matches all of the given criteria.</p>
 <p><code>criteria</code> is a colon-separated list, where each item in the
 list has the form [name]=[value]. The following criteria are supported:</p>
 <p>surname=[name]
@@ -1190,15 +1124,13 @@ birth=[year]
 Match a person whose birth year is a four-digit [year].
 birth_range=[from_year-to_year]
 Match a person whose birth year is in the range of years from
-[from_year] to [to_year], including both [from_year] and [to_year].</p>
-<p>:type criteria: str
-:rtype: bool</p></div>
+[from_year] to [to_year], including both [from_year] and [to_year].</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def criteria_match(self, criteria):
-    &#34;&#34;&#34;Checks if this individual matches all of the given criteria
+<pre><code class="python">def criteria_match(self, criteria: str) -&gt; bool:
+    &#34;&#34;&#34;Checks if this individual matches all of the given criteria.
 
     `criteria` is a colon-separated list, where each item in the
     list has the form [name]=[value]. The following criteria are supported:
@@ -1212,9 +1144,6 @@ Match a person whose birth year is in the range of years from
     birth_range=[from_year-to_year]
          Match a person whose birth year is in the range of years from
          [from_year] to [to_year], including both [from_year] and [to_year].
-
-    :type criteria: str
-    :rtype: bool
     &#34;&#34;&#34;
 
     # Check if criteria is a valid criteria and can be split by `:` and `=` characters
@@ -1277,22 +1206,16 @@ Match a person whose birth year is in the range of years from
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.death_range_match"><code class="name flex">
-<span>def <span class="ident">death_range_match</span></span>(<span>self, from_year, to_year)</span>
+<span>def <span class="ident">death_range_match</span></span>(<span>self, from_year: int, to_year: int) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks if the death year of a person lies within the given range
-:type from_year: int
-:type to_year: int
-:rtype: bool</p></div>
+<div class="desc"><p>Checks if the death year of a person lies within the given range.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def death_range_match(self, from_year, to_year):
-    &#34;&#34;&#34;Checks if the death year of a person lies within the given range
-    :type from_year: int
-    :type to_year: int
-    :rtype: bool
+<pre><code class="python">def death_range_match(self, from_year: int, to_year: int) -&gt; bool:
+    &#34;&#34;&#34;Checks if the death year of a person lies within the given range.
     &#34;&#34;&#34;
     death_year = self.get_death_year()
 
@@ -1303,53 +1226,48 @@ Match a person whose birth year is in the range of years from
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.death_year_match"><code class="name flex">
-<span>def <span class="ident">death_year_match</span></span>(<span>self, year)</span>
+<span>def <span class="ident">death_year_match</span></span>(<span>self, year: int) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns <code>True</code> if the given year matches the death year of this person
-:type year: int
-:rtype: bool</p></div>
+<div class="desc"><p>Returns <code>True</code> if the given year matches the death year of this person.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def death_year_match(self, year):
-    &#34;&#34;&#34;Returns `True` if the given year matches the death year of this person
-    :type year: int
-    :rtype: bool
+<pre><code class="python">def death_year_match(self, year: int) -&gt; bool:
+    &#34;&#34;&#34;Returns `True` if the given year matches the death year of this person.
     &#34;&#34;&#34;
     return self.get_death_year() == year</code></pre>
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_all_names"><code class="name flex">
-<span>def <span class="ident">get_all_names</span></span>(<span>self)</span>
+<span>def <span class="ident">get_all_names</span></span>(<span>self) -> List[str]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Return all names</p></div>
+<div class="desc"><p>Return all names.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_all_names(self):
-    &#34;&#34;&#34;Return all names&#34;&#34;&#34;
-    return [a.get_value() for a in self.get_child_elements() if a.get_tag() == tags.GEDCOM_TAG_NAME]</code></pre>
+<pre><code class="python">def get_all_names(self) -&gt; List[str]:
+    &#34;&#34;&#34;Return all names.&#34;&#34;&#34;
+    return [a.get_value() for a in self.get_child_elements()
+            if a.get_tag() == tags.GEDCOM_TAG_NAME]</code></pre>
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_birth_data"><code class="name flex">
-<span>def <span class="ident">get_birth_data</span></span>(<span>self)</span>
+<span>def <span class="ident">get_birth_data</span></span>(<span>self) -> Tuple[str, str, List[str]]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the birth data of a person formatted as a tuple:
-(<code>str</code> date, <code>str</code> place, <code>list</code> sources)
-:rtype: tuple</p></div>
+(<code>str</code> date, <code>str</code> place, <code>list</code> sources)</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_birth_data(self):
+<pre><code class="python">def get_birth_data(self) -&gt; Tuple[str, str, List[str]]:
     &#34;&#34;&#34;Returns the birth data of a person formatted as a tuple:
     (`str` date, `str` place, `list` sources)
-    :rtype: tuple
     &#34;&#34;&#34;
     date = &#34;&#34;
     place = &#34;&#34;
@@ -1372,18 +1290,16 @@ Match a person whose birth year is in the range of years from
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_birth_year"><code class="name flex">
-<span>def <span class="ident">get_birth_year</span></span>(<span>self)</span>
+<span>def <span class="ident">get_birth_year</span></span>(<span>self) -> int</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the birth year of a person in integer format
-:rtype: int</p></div>
+<div class="desc"><p>Returns the birth year of a person in integer format.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_birth_year(self):
-    &#34;&#34;&#34;Returns the birth year of a person in integer format
-    :rtype: int
+<pre><code class="python">def get_birth_year(self) -&gt; int:
+    &#34;&#34;&#34;Returns the birth year of a person in integer format.
     &#34;&#34;&#34;
     date = &#34;&#34;
 
@@ -1403,38 +1319,38 @@ Match a person whose birth year is in the range of years from
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_burial"><code class="name flex">
-<span>def <span class="ident">get_burial</span></span>(<span>self)</span>
+<span>def <span class="ident">get_burial</span></span>(<span>self) -> Tuple[str, str, List[str]]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the burial data of a person formatted as a tuple: (<code>str</code> date, <code>str´ place,</code>list` sources)
-::deprecated:: As of version 1.0.0 use <code>get_burial_data()</code> method instead
-:rtype: tuple</p></div>
+<div class="desc"><p>Returns the burial data of a person formatted as a tuple:
+(<code>str</code> date, <code>str´ place,</code>list` sources)
+::deprecated:: As of version 1.0.0 use <code>get_burial_data()</code> method instead</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@deprecated
-def get_burial(self):
-    &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple: (`str` date, `str´ place, `list` sources)
+def get_burial(self) -&gt; Tuple[str, str, List[str]]:
+    &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple:
+    (`str` date, `str´ place, `list` sources)
     ::deprecated:: As of version 1.0.0 use `get_burial_data()` method instead
-    :rtype: tuple
     &#34;&#34;&#34;
     self.get_burial_data()</code></pre>
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_burial_data"><code class="name flex">
-<span>def <span class="ident">get_burial_data</span></span>(<span>self)</span>
+<span>def <span class="ident">get_burial_data</span></span>(<span>self) -> Tuple[str, str, List[str]]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the burial data of a person formatted as a tuple: (<code>str</code> date, <code>str´ place,</code>list` sources)
-:rtype: tuple</p></div>
+<div class="desc"><p>Returns the burial data of a person formatted as a tuple:
+(<code>str</code> date, <code>str´ place,</code>list` sources)</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_burial_data(self):
-    &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple: (`str` date, `str´ place, `list` sources)
-    :rtype: tuple
+<pre><code class="python">def get_burial_data(self) -&gt; Tuple[str, str, List[str]]:
+    &#34;&#34;&#34;Returns the burial data of a person formatted as a tuple:
+    (`str` date, `str´ place, `list` sources)
     &#34;&#34;&#34;
     date = &#34;&#34;
     place = &#34;&#34;
@@ -1457,38 +1373,38 @@ def get_burial(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_census"><code class="name flex">
-<span>def <span class="ident">get_census</span></span>(<span>self)</span>
+<span>def <span class="ident">get_census</span></span>(<span>self) -> List[Tuple[str, str, List[str]]]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns a list of censuses of an individual formatted as tuples: (<code>str</code> date, <code>str´ place,</code>list` sources)
-::deprecated:: As of version 1.0.0 use <code>get_census_data()</code> method instead
-:rtype: list of tuple</p></div>
+<div class="desc"><p>Returns a list of censuses of an individual formatted as tuples:
+(<code>str</code> date, <code>str´ place,</code>list` sources)
+::deprecated:: As of version 1.0.0 use <code>get_census_data()</code> method instead</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@deprecated
-def get_census(self):
-    &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples: (`str` date, `str´ place, `list` sources)
+def get_census(self) -&gt; List[Tuple[str, str, List[str]]]:
+    &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples:
+    (`str` date, `str´ place, `list` sources)
     ::deprecated:: As of version 1.0.0 use `get_census_data()` method instead
-    :rtype: list of tuple
     &#34;&#34;&#34;
     self.get_census_data()</code></pre>
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_census_data"><code class="name flex">
-<span>def <span class="ident">get_census_data</span></span>(<span>self)</span>
+<span>def <span class="ident">get_census_data</span></span>(<span>self) -> List[Tuple[str, str, List[str]]]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns a list of censuses of an individual formatted as tuples: (<code>str</code> date, <code>str´ place,</code>list` sources)
-:rtype: list of tuple</p></div>
+<div class="desc"><p>Returns a list of censuses of an individual formatted as tuples:
+(<code>str</code> date, <code>str´ place,</code>list` sources)</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_census_data(self):
-    &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples: (`str` date, `str´ place, `list` sources)
-    :rtype: list of tuple
+<pre><code class="python">def get_census_data(self) -&gt; List[Tuple[str, str, List[str]]]:
+    &#34;&#34;&#34;Returns a list of censuses of an individual formatted as tuples:
+    (`str` date, `str´ place, `list` sources)
     &#34;&#34;&#34;
     census = []
 
@@ -1516,18 +1432,18 @@ def get_census(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_death_data"><code class="name flex">
-<span>def <span class="ident">get_death_data</span></span>(<span>self)</span>
+<span>def <span class="ident">get_death_data</span></span>(<span>self) -> Tuple[str, str, List[str]]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the death data of a person formatted as a tuple: (<code>str</code> date, <code>str</code> place, <code>list</code> sources)
-:rtype: tuple</p></div>
+<div class="desc"><p>Returns the death data of a person formatted as a tuple:
+(<code>str</code> date, <code>str</code> place, <code>list</code> sources)</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_death_data(self):
-    &#34;&#34;&#34;Returns the death data of a person formatted as a tuple: (`str` date, `str` place, `list` sources)
-    :rtype: tuple
+<pre><code class="python">def get_death_data(self) -&gt; Tuple[str, str, List[str]]:
+    &#34;&#34;&#34;Returns the death data of a person formatted as a tuple:
+    (`str` date, `str` place, `list` sources)
     &#34;&#34;&#34;
     date = &#34;&#34;
     place = &#34;&#34;
@@ -1547,18 +1463,16 @@ def get_census(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_death_year"><code class="name flex">
-<span>def <span class="ident">get_death_year</span></span>(<span>self)</span>
+<span>def <span class="ident">get_death_year</span></span>(<span>self) -> int</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the death year of a person in integer format
-:rtype: int</p></div>
+<div class="desc"><p>Returns the death year of a person in integer format.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_death_year(self):
-    &#34;&#34;&#34;Returns the death year of a person in integer format
-    :rtype: int
+<pre><code class="python">def get_death_year(self) -&gt; int:
+    &#34;&#34;&#34;Returns the death year of a person in integer format.
     &#34;&#34;&#34;
     date = &#34;&#34;
 
@@ -1578,18 +1492,16 @@ def get_census(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_gender"><code class="name flex">
-<span>def <span class="ident">get_gender</span></span>(<span>self)</span>
+<span>def <span class="ident">get_gender</span></span>(<span>self) -> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the gender of a person in string format
-:rtype: str</p></div>
+<div class="desc"><p>Returns the gender of a person in string format.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_gender(self):
-    &#34;&#34;&#34;Returns the gender of a person in string format
-    :rtype: str
+<pre><code class="python">def get_gender(self) -&gt; str:
+    &#34;&#34;&#34;Returns the gender of a person in string format.
     &#34;&#34;&#34;
     gender = &#34;&#34;
 
@@ -1601,18 +1513,16 @@ def get_census(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_last_change_date"><code class="name flex">
-<span>def <span class="ident">get_last_change_date</span></span>(<span>self)</span>
+<span>def <span class="ident">get_last_change_date</span></span>(<span>self) -> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the date of when the person data was last changed formatted as a string
-:rtype: str</p></div>
+<div class="desc"><p>Returns the date of when the person data was last changed formatted as a string.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_last_change_date(self):
-    &#34;&#34;&#34;Returns the date of when the person data was last changed formatted as a string
-    :rtype: str
+<pre><code class="python">def get_last_change_date(self) -&gt; str:
+    &#34;&#34;&#34;Returns the date of when the person data was last changed formatted as a string.
     &#34;&#34;&#34;
     date = &#34;&#34;
 
@@ -1626,18 +1536,16 @@ def get_census(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_name"><code class="name flex">
-<span>def <span class="ident">get_name</span></span>(<span>self)</span>
+<span>def <span class="ident">get_name</span></span>(<span>self) -> Tuple[str, str]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns an individual's names as a tuple: (<code>str</code> given_name, <code>str</code> surname)
-:rtype: tuple</p></div>
+<div class="desc"><p>Returns an individual's names as a tuple: (<code>str</code> given_name, <code>str</code> surname)</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_name(self):
+<pre><code class="python">def get_name(self) -&gt; Tuple[str, str]:
     &#34;&#34;&#34;Returns an individual&#39;s names as a tuple: (`str` given_name, `str` surname)
-    :rtype: tuple
     &#34;&#34;&#34;
     given_name = &#34;&#34;
     surname = &#34;&#34;
@@ -1680,18 +1588,16 @@ def get_census(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_occupation"><code class="name flex">
-<span>def <span class="ident">get_occupation</span></span>(<span>self)</span>
+<span>def <span class="ident">get_occupation</span></span>(<span>self) -> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the occupation of a person
-:rtype: str</p></div>
+<div class="desc"><p>Returns the occupation of a person.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_occupation(self):
-    &#34;&#34;&#34;Returns the occupation of a person
-    :rtype: str
+<pre><code class="python">def get_occupation(self) -&gt; str:
+    &#34;&#34;&#34;Returns the occupation of a person.
     &#34;&#34;&#34;
     occupation = &#34;&#34;
 
@@ -1703,18 +1609,16 @@ def get_census(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.get_record"><code class="name flex">
-<span>def <span class="ident">get_record</span></span>(<span>self)</span>
+<span>def <span class="ident">get_record</span></span>(<span>self) -> dict</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parse and return the record in dictionary format
-:rtype: dict</p></div>
+<div class="desc"><p>Parse and return the full record in dictionary format.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_record(self):
-    &#34;&#34;&#34;Parse and return the record in dictionary format
-    :rtype: dict
+<pre><code class="python">def get_record(self) -&gt; dict:
+    &#34;&#34;&#34;Parse and return the full record in dictionary format.
     &#34;&#34;&#34;
     record = {
         &#39;key_to_individual&#39;: self.get_pointer(),
@@ -1804,60 +1708,50 @@ def get_census(self):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.given_match"><code class="name flex">
-<span>def <span class="ident">given_match</span></span>(<span>self, name)</span>
+<span>def <span class="ident">given_match</span></span>(<span>self, name: str) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Matches a string with the given name of an individual
-::deprecated:: As of version 1.0.0 use <code>given_name_match()</code> method instead
-:type name: str
-:rtype: bool</p></div>
+<div class="desc"><p>Matches a string with the given name of an individual.
+::deprecated:: As of version 1.0.0 use <code>given_name_match()</code> method instead</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@deprecated
-def given_match(self, name):
-    &#34;&#34;&#34;Matches a string with the given name of an individual
+def given_match(self, name: str) -&gt; bool:
+    &#34;&#34;&#34;Matches a string with the given name of an individual.
     ::deprecated:: As of version 1.0.0 use `given_name_match()` method instead
-    :type name: str
-    :rtype: bool
     &#34;&#34;&#34;
     return self.given_name_match(name)</code></pre>
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.given_name_match"><code class="name flex">
-<span>def <span class="ident">given_name_match</span></span>(<span>self, given_name_to_match)</span>
+<span>def <span class="ident">given_name_match</span></span>(<span>self, given_name_to_match: str) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Matches a string with the given name of an individual
-:type given_name_to_match: str
-:rtype: bool</p></div>
+<div class="desc"><p>Matches a string with the given name of an individual.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def given_name_match(self, given_name_to_match):
-    &#34;&#34;&#34;Matches a string with the given name of an individual
-    :type given_name_to_match: str
-    :rtype: bool
+<pre><code class="python">def given_name_match(self, given_name_to_match: str) -&gt; bool:
+    &#34;&#34;&#34;Matches a string with the given name of an individual.
     &#34;&#34;&#34;
     (given_name, surname) = self.get_name()
     return regex.search(given_name_to_match, given_name, regex.IGNORECASE)</code></pre>
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.is_child"><code class="name flex">
-<span>def <span class="ident">is_child</span></span>(<span>self)</span>
+<span>def <span class="ident">is_child</span></span>(<span>self) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks if this element is a child of a family
-:rtype: bool</p></div>
+<div class="desc"><p>Checks if this element is a child of a family.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def is_child(self):
-    &#34;&#34;&#34;Checks if this element is a child of a family
-    :rtype: bool
+<pre><code class="python">def is_child(self) -&gt; bool:
+    &#34;&#34;&#34;Checks if this element is a child of a family.
     &#34;&#34;&#34;
     found_child = False
 
@@ -1869,18 +1763,16 @@ def given_match(self, name):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.is_deceased"><code class="name flex">
-<span>def <span class="ident">is_deceased</span></span>(<span>self)</span>
+<span>def <span class="ident">is_deceased</span></span>(<span>self) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks if this individual is deceased
-:rtype: bool</p></div>
+<div class="desc"><p>Checks if this individual is deceased.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def is_deceased(self):
-    &#34;&#34;&#34;Checks if this individual is deceased
-    :rtype: bool
+<pre><code class="python">def is_deceased(self) -&gt; bool:
+    &#34;&#34;&#34;Checks if this individual is deceased.
     &#34;&#34;&#34;
     for child in self.get_child_elements():
         if child.get_tag() == tags.GEDCOM_TAG_DEATH:
@@ -1890,18 +1782,16 @@ def given_match(self, name):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.is_private"><code class="name flex">
-<span>def <span class="ident">is_private</span></span>(<span>self)</span>
+<span>def <span class="ident">is_private</span></span>(<span>self) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks if this individual is marked private
-:rtype: bool</p></div>
+<div class="desc"><p>Checks if this individual is marked private.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def is_private(self):
-    &#34;&#34;&#34;Checks if this individual is marked private
-    :rtype: bool
+<pre><code class="python">def is_private(self) -&gt; bool:
+    &#34;&#34;&#34;Checks if this individual is marked private.
     &#34;&#34;&#34;
     for child in self.get_child_elements():
         if child.get_tag() == tags.GEDCOM_TAG_PRIVATE:
@@ -1913,20 +1803,16 @@ def given_match(self, name):
 </details>
 </dd>
 <dt id="gedcom.element.individual.IndividualElement.surname_match"><code class="name flex">
-<span>def <span class="ident">surname_match</span></span>(<span>self, surname_to_match)</span>
+<span>def <span class="ident">surname_match</span></span>(<span>self, surname_to_match: str) -> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Matches a string with the surname of an individual
-:type surname_to_match: str
-:rtype: bool</p></div>
+<div class="desc"><p>Matches a string with the surname of an individual.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def surname_match(self, surname_to_match):
-    &#34;&#34;&#34;Matches a string with the surname of an individual
-    :type surname_to_match: str
-    :rtype: bool
+<pre><code class="python">def surname_match(self, surname_to_match: str) -&gt; bool:
+    &#34;&#34;&#34;Matches a string with the surname of an individual.
     &#34;&#34;&#34;
     (given_name, surname) = self.get_name()
     return regex.search(surname_to_match, surname, regex.IGNORECASE)</code></pre>
