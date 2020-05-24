@@ -206,19 +206,34 @@ class Element(object):
         :rtype: Element
         """
         from gedcom.element.family import FamilyElement
-        from gedcom.element.file import FileElement
         from gedcom.element.individual import IndividualElement
+        from gedcom.element.note import NoteElement
         from gedcom.element.object import ObjectElement
+        from gedcom.element.repository import RepositoryElement
+        from gedcom.element.source import SourceElement
+        from gedcom.element.submitter import SubmitterElement
+        from gedcom.element.submission import SubmissionElement
+        from gedcom.element.header import HeaderElement
 
         # Differentiate between the type of the new child element
         if tag == gedcom.tags.GEDCOM_TAG_FAMILY:
             child_element = FamilyElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
-        elif tag == gedcom.tags.GEDCOM_TAG_FILE:
-            child_element = FileElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_INDIVIDUAL:
             child_element = IndividualElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+        elif tag == gedcom.tags.GEDCOM_TAG_NOTE:
+            child_element = NoteElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
         elif tag == gedcom.tags.GEDCOM_TAG_OBJECT:
             child_element = ObjectElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+        elif tag == gedcom.tags.GEDCOM_TAG_REPOSITORY:
+            child_element = RepositoryElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+        elif tag == gedcom.tags.GEDCOM_TAG_SOURCE:
+            child_element = SourceElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+        elif tag == gedcom.tags.GEDCOM_TAG_SUBMITTER:
+            child_element = SubmitterElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+        elif tag == gedcom.tags.GEDCOM_TAG_SUBMISSION:
+            child_element = SubmissionElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
+        elif tag == gedcom.tags.GEDCOM_TAG_HEADER:
+            child_element = HeaderElement(self.get_level() + 1, pointer, tag, value, self.__crlf)
         else:
             child_element = Element(self.get_level() + 1, pointer, tag, value, self.__crlf)
 
