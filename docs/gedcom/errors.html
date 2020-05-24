@@ -78,16 +78,16 @@ class GedcomCharacterSetUnsupportedError(Exception):
 
 class GedcomVersionUnsupportedError(Exception):
     &#34;&#34;&#34;Raised when a particular GEDCOM version is not supported
-    by the parser and the standard for the version requires the
+    by the parser and the standard for that version requires the
     parser to reject it.
     &#34;&#34;&#34;
 
 
 class GedcomFormatUnsupportedError(Exception):
     &#34;&#34;&#34;Raised if the GEDCOM format is not recognized by the
-    parser. Note some misspellings as documented on page 148
-    in the 5.5.5 standard are treated as LINEAGE-LINKED and
-    allowed.
+    parser. Note some common misspellings as documented on page 148
+    in the 5.5.5 GEDCOM standard are treated as `LINEAGE-LINKED`
+    and allowed when parsing older GEDCOM data.
     &#34;&#34;&#34;
 
 
@@ -164,18 +164,18 @@ the standard or the parser does not support.</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Raised if the GEDCOM format is not recognized by the
-parser. Note some misspellings as documented on page 148
-in the 5.5.5 standard are treated as LINEAGE-LINKED and
-allowed.</p></div>
+parser. Note some common misspellings as documented on page 148
+in the 5.5.5 GEDCOM standard are treated as <code>LINEAGE-LINKED</code>
+and allowed when parsing older GEDCOM data.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class GedcomFormatUnsupportedError(Exception):
     &#34;&#34;&#34;Raised if the GEDCOM format is not recognized by the
-    parser. Note some misspellings as documented on page 148
-    in the 5.5.5 standard are treated as LINEAGE-LINKED and
-    allowed.
+    parser. Note some common misspellings as documented on page 148
+    in the 5.5.5 GEDCOM standard are treated as `LINEAGE-LINKED`
+    and allowed when parsing older GEDCOM data.
     &#34;&#34;&#34;</code></pre>
 </details>
 <h3>Ancestors</h3>
@@ -234,7 +234,7 @@ the GEDCOM standard.</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Raised when a particular GEDCOM version is not supported
-by the parser and the standard for the version requires the
+by the parser and the standard for that version requires the
 parser to reject it.</p></div>
 <details class="source">
 <summary>
@@ -242,7 +242,7 @@ parser to reject it.</p></div>
 </summary>
 <pre><code class="python">class GedcomVersionUnsupportedError(Exception):
     &#34;&#34;&#34;Raised when a particular GEDCOM version is not supported
-    by the parser and the standard for the version requires the
+    by the parser and the standard for that version requires the
     parser to reject it.
     &#34;&#34;&#34;</code></pre>
 </details>

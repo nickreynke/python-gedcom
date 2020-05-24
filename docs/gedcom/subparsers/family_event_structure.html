@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.subparsers.family_event_structure API documentation</title>
-<meta name="description" content="Substructure parser for the FAMILY_EVENT_STRUCTURE embedded record. As this is
-referenced in place as part of another structure there is no identifier …" />
+<meta name="description" content="Substructure parser for a `FAMILY_EVENT_STRUCTURE` embedded record …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -21,8 +20,8 @@ referenced in place as part of another structure there is no identifier …" />
 <h1 class="title">Module <code>gedcom.subparsers.family_event_structure</code></h1>
 </header>
 <section id="section-intro">
-<p>Substructure parser for the FAMILY_EVENT_STRUCTURE embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.</p>
+<p>Substructure parser for a <code>FAMILY_EVENT_STRUCTURE</code> embedded record.</p>
+<p>This is referenced as part of a larger structure so there is no anchor tag.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -50,11 +49,15 @@ referenced in place as part of another structure there is no identifier tag.</p>
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 &#34;&#34;&#34;
-Substructure parser for the FAMILY_EVENT_STRUCTURE embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.
+Substructure parser for a `FAMILY_EVENT_STRUCTURE` embedded record.
+
+This is referenced as part of a larger structure so there is no anchor tag.
 &#34;&#34;&#34;
 
+from typing import List
+
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.family_event_detail import family_event_detail
 
 EVENT_TAGS = {
@@ -73,9 +76,10 @@ EVENT_TAGS = {
 }
 
 
-def family_event_structure(element):
-    &#34;&#34;&#34;Parses and extracts the FAMILY_EVENT_STRUCTURE
-    :rtype: dict
+def family_event_structure(element: Element) -&gt; List[dict]:
+    &#34;&#34;&#34;Parses and extracts a `FAMILY_EVENT_STRUCTURE` structure.
+
+    The `element` should be the parent that contains it.
     &#34;&#34;&#34;
     records = []
     for child in element.get_child_elements():
@@ -97,18 +101,19 @@ def family_event_structure(element):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="gedcom.subparsers.family_event_structure.family_event_structure"><code class="name flex">
-<span>def <span class="ident">family_event_structure</span></span>(<span>element)</span>
+<span>def <span class="ident">family_event_structure</span></span>(<span>element: <a title="gedcom.element.element.Element" href="../element/element.html#gedcom.element.element.Element">Element</a>) -> List[dict]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parses and extracts the FAMILY_EVENT_STRUCTURE
-:rtype: dict</p></div>
+<div class="desc"><p>Parses and extracts a <code>FAMILY_EVENT_STRUCTURE</code> structure.</p>
+<p>The <code>element</code> should be the parent that contains it.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def family_event_structure(element):
-    &#34;&#34;&#34;Parses and extracts the FAMILY_EVENT_STRUCTURE
-    :rtype: dict
+<pre><code class="python">def family_event_structure(element: Element) -&gt; List[dict]:
+    &#34;&#34;&#34;Parses and extracts a `FAMILY_EVENT_STRUCTURE` structure.
+
+    The `element` should be the parent that contains it.
     &#34;&#34;&#34;
     records = []
     for child in element.get_child_elements():

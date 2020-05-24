@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.subparsers.lds_individual_ordinance API documentation</title>
-<meta name="description" content="Substructure parser for the LDS_INDIVIDUAL_ORDINANCE embedded record. As this is
-referenced in place as part of another structure there is no …" />
+<meta name="description" content="Substructure parser for a `LDS_INDIVIDUAL_ORDINANCE` embedded record …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -21,8 +20,8 @@ referenced in place as part of another structure there is no …" />
 <h1 class="title">Module <code>gedcom.subparsers.lds_individual_ordinance</code></h1>
 </header>
 <section id="section-intro">
-<p>Substructure parser for the LDS_INDIVIDUAL_ORDINANCE embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.</p>
+<p>Substructure parser for a <code>LDS_INDIVIDUAL_ORDINANCE</code> embedded record.</p>
+<p>This is referenced as part of a larger structure so there is no anchor tag.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -50,11 +49,15 @@ referenced in place as part of another structure there is no identifier tag.</p>
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 &#34;&#34;&#34;
-Substructure parser for the LDS_INDIVIDUAL_ORDINANCE embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.
+Substructure parser for a `LDS_INDIVIDUAL_ORDINANCE` embedded record.
+
+This is referenced as part of a larger structure so there is no anchor tag.
 &#34;&#34;&#34;
 
+from typing import List
+
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.source_citation import source_citation
 
@@ -73,9 +76,10 @@ ORDINANCE_ATTRIBUTE_TAGS = {
 }
 
 
-def lds_individual_ordinance(element):
-    &#34;&#34;&#34;Parses and extracts the LDS_INDIVIDUAL_ORDINANCE
-    :rtype: dict
+def lds_individual_ordinance(element: Element) -&gt; List[dict]:
+    &#34;&#34;&#34;Parses and extracts a `LDS_INDIVIDUAL_ORDINANCE` structure.
+
+    The `element` should be the parent that contains it.
     &#34;&#34;&#34;
     records = []
     for child in element.get_child_elements():
@@ -127,18 +131,19 @@ def lds_individual_ordinance(element):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="gedcom.subparsers.lds_individual_ordinance.lds_individual_ordinance"><code class="name flex">
-<span>def <span class="ident">lds_individual_ordinance</span></span>(<span>element)</span>
+<span>def <span class="ident">lds_individual_ordinance</span></span>(<span>element: <a title="gedcom.element.element.Element" href="../element/element.html#gedcom.element.element.Element">Element</a>) -> List[dict]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parses and extracts the LDS_INDIVIDUAL_ORDINANCE
-:rtype: dict</p></div>
+<div class="desc"><p>Parses and extracts a <code>LDS_INDIVIDUAL_ORDINANCE</code> structure.</p>
+<p>The <code>element</code> should be the parent that contains it.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def lds_individual_ordinance(element):
-    &#34;&#34;&#34;Parses and extracts the LDS_INDIVIDUAL_ORDINANCE
-    :rtype: dict
+<pre><code class="python">def lds_individual_ordinance(element: Element) -&gt; List[dict]:
+    &#34;&#34;&#34;Parses and extracts a `LDS_INDIVIDUAL_ORDINANCE` structure.
+
+    The `element` should be the parent that contains it.
     &#34;&#34;&#34;
     records = []
     for child in element.get_child_elements():

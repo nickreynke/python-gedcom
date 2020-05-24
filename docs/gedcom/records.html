@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
-<title>gedcom.subparsers.individual_event_detail API documentation</title>
-<meta name="description" content="Substructure parser for a `INDIVIDUAL_EVENT_DETAIL` emdedded record …" />
+<title>gedcom.records API documentation</title>
+<meta name="description" content="Module containing the standard GEDCOM record types recognized by the
+GEDCOM `gedcom.reader.Reader`." />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -17,11 +18,11 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>gedcom.subparsers.individual_event_detail</code></h1>
+<h1 class="title">Module <code>gedcom.records</code></h1>
 </header>
 <section id="section-intro">
-<p>Substructure parser for a <code>INDIVIDUAL_EVENT_DETAIL</code> emdedded record.</p>
-<p>This is referenced as part of a larger structure so there is no anchor tag.</p>
+<p>Module containing the standard GEDCOM record types recognized by the
+GEDCOM <code><a title="gedcom.reader.Reader" href="reader.html#gedcom.reader.Reader">Reader</a></code>.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -31,6 +32,12 @@
 # Python GEDCOM Parser
 #
 # Copyright (C) 2020 Christopher Horn (cdhorn at embarqmail dot com)
+# Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
+# Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
+# Copyright (C) 2016 Andreas Oberritter
+# Copyright (C) 2012 Madeleine Price Ball
+# Copyright (C) 2005 Daniel Zappala (zappala at cs.byu.edu)
+# Copyright (C) 2005 Brigham Young University
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,63 +55,75 @@
 #
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
-&#34;&#34;&#34;
-Substructure parser for a `INDIVIDUAL_EVENT_DETAIL` emdedded record.
-
-This is referenced as part of a larger structure so there is no anchor tag.
-&#34;&#34;&#34;
-
-import gedcom.tags as tags
-from gedcom.element.element import Element
-from gedcom.subparsers.event_detail import event_detail
+&#34;&#34;&#34;Module containing the standard GEDCOM record types recognized by the
+GEDCOM `gedcom.reader.Reader`.&#34;&#34;&#34;
 
 
-def individual_event_detail(element: Element) -&gt; dict:
-    &#34;&#34;&#34;Parses and extracts a `INDIVIDUAL_EVENT_DETAIL` structure.
+GEDCOM_RECORD_FAMILY = &#39;family&#39;
+&#34;&#34;&#34;Identifies the `FAM_RECORD` record type.&#34;&#34;&#34;
 
-    The `element` should be the parent that contains it.
-    &#34;&#34;&#34;
-    record = event_detail(element)
-    record[&#39;age&#39;] = &#39;&#39;
-    for child in element.get_child_elements():
-        if child.get_tag() == tags.GEDCOM_TAG_AGE:
-            record[&#39;age&#39;] = child.get_value()
+GEDCOM_RECORD_HEADER = &#39;header&#39;
+&#34;&#34;&#34;Identifies the `HEADER` record type.&#34;&#34;&#34;
 
-    return record</code></pre>
+GEDCOM_RECORD_INDIVIDUAL = &#39;individual&#39;
+&#34;&#34;&#34;Identifies the `INDIVIDUAL_RECORD` record type.&#34;&#34;&#34;
+
+GEDCOM_RECORD_NOTE = &#39;note&#39;
+&#34;&#34;&#34;Identifies the `NOTE_RECORD` record type.&#34;&#34;&#34;
+
+GEDCOM_RECORD_SOURCE = &#39;source&#39;
+&#34;&#34;&#34;Identifies the `SOURCE_RECORD` record type.&#34;&#34;&#34;
+
+GEDCOM_RECORD_REPOSITORY = &#39;repository&#39;
+&#34;&#34;&#34;Identifies the `REPOSITORY_RECORD` record type.&#34;&#34;&#34;
+
+GEDCOM_RECORD_SUBMISSION = &#39;submission&#39;
+&#34;&#34;&#34;Identifies the `SUBMISSION_RECORD` record type.&#34;&#34;&#34;
+
+GEDCOM_RECORD_SUBMITTER = &#39;submitter&#39;
+&#34;&#34;&#34;Identifies the `SUBMITTER_RECORD` record type.&#34;&#34;&#34;</code></pre>
 </details>
 </section>
 <section>
 </section>
 <section>
-</section>
-<section>
-<h2 class="section-title" id="header-functions">Functions</h2>
+<h2 class="section-title" id="header-variables">Global variables</h2>
 <dl>
-<dt id="gedcom.subparsers.individual_event_detail.individual_event_detail"><code class="name flex">
-<span>def <span class="ident">individual_event_detail</span></span>(<span>element: <a title="gedcom.element.element.Element" href="../element/element.html#gedcom.element.element.Element">Element</a>) -> dict</span>
-</code></dt>
+<dt id="gedcom.records.GEDCOM_RECORD_FAMILY"><code class="name">var <span class="ident">GEDCOM_RECORD_FAMILY</span></code></dt>
 <dd>
-<div class="desc"><p>Parses and extracts a <code>INDIVIDUAL_EVENT_DETAIL</code> structure.</p>
-<p>The <code>element</code> should be the parent that contains it.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def individual_event_detail(element: Element) -&gt; dict:
-    &#34;&#34;&#34;Parses and extracts a `INDIVIDUAL_EVENT_DETAIL` structure.
-
-    The `element` should be the parent that contains it.
-    &#34;&#34;&#34;
-    record = event_detail(element)
-    record[&#39;age&#39;] = &#39;&#39;
-    for child in element.get_child_elements():
-        if child.get_tag() == tags.GEDCOM_TAG_AGE:
-            record[&#39;age&#39;] = child.get_value()
-
-    return record</code></pre>
-</details>
+<div class="desc"><p>Identifies the <code>FAM_RECORD</code> record type.</p></div>
+</dd>
+<dt id="gedcom.records.GEDCOM_RECORD_HEADER"><code class="name">var <span class="ident">GEDCOM_RECORD_HEADER</span></code></dt>
+<dd>
+<div class="desc"><p>Identifies the <code>HEADER</code> record type.</p></div>
+</dd>
+<dt id="gedcom.records.GEDCOM_RECORD_INDIVIDUAL"><code class="name">var <span class="ident">GEDCOM_RECORD_INDIVIDUAL</span></code></dt>
+<dd>
+<div class="desc"><p>Identifies the <code>INDIVIDUAL_RECORD</code> record type.</p></div>
+</dd>
+<dt id="gedcom.records.GEDCOM_RECORD_NOTE"><code class="name">var <span class="ident">GEDCOM_RECORD_NOTE</span></code></dt>
+<dd>
+<div class="desc"><p>Identifies the <code>NOTE_RECORD</code> record type.</p></div>
+</dd>
+<dt id="gedcom.records.GEDCOM_RECORD_REPOSITORY"><code class="name">var <span class="ident">GEDCOM_RECORD_REPOSITORY</span></code></dt>
+<dd>
+<div class="desc"><p>Identifies the <code>REPOSITORY_RECORD</code> record type.</p></div>
+</dd>
+<dt id="gedcom.records.GEDCOM_RECORD_SOURCE"><code class="name">var <span class="ident">GEDCOM_RECORD_SOURCE</span></code></dt>
+<dd>
+<div class="desc"><p>Identifies the <code>SOURCE_RECORD</code> record type.</p></div>
+</dd>
+<dt id="gedcom.records.GEDCOM_RECORD_SUBMISSION"><code class="name">var <span class="ident">GEDCOM_RECORD_SUBMISSION</span></code></dt>
+<dd>
+<div class="desc"><p>Identifies the <code>SUBMISSION_RECORD</code> record type.</p></div>
+</dd>
+<dt id="gedcom.records.GEDCOM_RECORD_SUBMITTER"><code class="name">var <span class="ident">GEDCOM_RECORD_SUBMITTER</span></code></dt>
+<dd>
+<div class="desc"><p>Identifies the <code>SUBMITTER_RECORD</code> record type.</p></div>
 </dd>
 </dl>
+</section>
+<section>
 </section>
 <section>
 </section>
@@ -117,12 +136,19 @@ def individual_event_detail(element: Element) -&gt; dict:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="gedcom.subparsers" href="index.html">gedcom.subparsers</a></code></li>
+<li><code><a title="gedcom" href="index.html">gedcom</a></code></li>
 </ul>
 </li>
-<li><h3><a href="#header-functions">Functions</a></h3>
+<li><h3><a href="#header-variables">Global variables</a></h3>
 <ul class="">
-<li><code><a title="gedcom.subparsers.individual_event_detail.individual_event_detail" href="#gedcom.subparsers.individual_event_detail.individual_event_detail">individual_event_detail</a></code></li>
+<li><code><a title="gedcom.records.GEDCOM_RECORD_FAMILY" href="#gedcom.records.GEDCOM_RECORD_FAMILY">GEDCOM_RECORD_FAMILY</a></code></li>
+<li><code><a title="gedcom.records.GEDCOM_RECORD_HEADER" href="#gedcom.records.GEDCOM_RECORD_HEADER">GEDCOM_RECORD_HEADER</a></code></li>
+<li><code><a title="gedcom.records.GEDCOM_RECORD_INDIVIDUAL" href="#gedcom.records.GEDCOM_RECORD_INDIVIDUAL">GEDCOM_RECORD_INDIVIDUAL</a></code></li>
+<li><code><a title="gedcom.records.GEDCOM_RECORD_NOTE" href="#gedcom.records.GEDCOM_RECORD_NOTE">GEDCOM_RECORD_NOTE</a></code></li>
+<li><code><a title="gedcom.records.GEDCOM_RECORD_REPOSITORY" href="#gedcom.records.GEDCOM_RECORD_REPOSITORY">GEDCOM_RECORD_REPOSITORY</a></code></li>
+<li><code><a title="gedcom.records.GEDCOM_RECORD_SOURCE" href="#gedcom.records.GEDCOM_RECORD_SOURCE">GEDCOM_RECORD_SOURCE</a></code></li>
+<li><code><a title="gedcom.records.GEDCOM_RECORD_SUBMISSION" href="#gedcom.records.GEDCOM_RECORD_SUBMISSION">GEDCOM_RECORD_SUBMISSION</a></code></li>
+<li><code><a title="gedcom.records.GEDCOM_RECORD_SUBMITTER" href="#gedcom.records.GEDCOM_RECORD_SUBMITTER">GEDCOM_RECORD_SUBMITTER</a></code></li>
 </ul>
 </li>
 </ul>

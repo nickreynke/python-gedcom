@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.subparsers.source_repository_citation API documentation</title>
-<meta name="description" content="Substructure parser for the SOURCE_REPOSITORY_CITATION record identified by the
-`gedcom.tags.GEDCOM_TAG_REPOSITORY` tag." />
+<meta name="description" content="Substructure parser for a `SOURCE_REPOSITORY_CITATION` record …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -21,8 +20,8 @@
 <h1 class="title">Module <code>gedcom.subparsers.source_repository_citation</code></h1>
 </header>
 <section id="section-intro">
-<p>Substructure parser for the SOURCE_REPOSITORY_CITATION record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_REPOSITORY" href="../tags.html#gedcom.tags.GEDCOM_TAG_REPOSITORY">GEDCOM_TAG_REPOSITORY</a></code> tag.</p>
+<p>Substructure parser for a <code>SOURCE_REPOSITORY_CITATION</code> record.</p>
+<p>This is anchored by the <code><a title="gedcom.tags.GEDCOM_TAG_REPOSITORY" href="../tags.html#gedcom.tags.GEDCOM_TAG_REPOSITORY">GEDCOM_TAG_REPOSITORY</a></code> tag.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -50,17 +49,20 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 &#34;&#34;&#34;
-Substructure parser for the SOURCE_REPOSITORY_CITATION record identified by the
-`gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
+Substructure parser for a `SOURCE_REPOSITORY_CITATION` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
 &#34;&#34;&#34;
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 
 
-def source_repository_citation(element):
-    &#34;&#34;&#34;Parse and extract a SOURCE_REPOSITORY_CITATION
-    :rtype: dict
+def source_repository_citation(element: Element) -&gt; dict:
+    &#34;&#34;&#34;Parse and extract a `SOURCE_REPOSITORY_CITATION` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
     &#34;&#34;&#34;
     record = {
         &#39;key_to_repository&#39;: element.get_value(),
@@ -94,18 +96,19 @@ def source_repository_citation(element):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="gedcom.subparsers.source_repository_citation.source_repository_citation"><code class="name flex">
-<span>def <span class="ident">source_repository_citation</span></span>(<span>element)</span>
+<span>def <span class="ident">source_repository_citation</span></span>(<span>element: <a title="gedcom.element.element.Element" href="../element/element.html#gedcom.element.element.Element">Element</a>) -> dict</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parse and extract a SOURCE_REPOSITORY_CITATION
-:rtype: dict</p></div>
+<div class="desc"><p>Parse and extract a <code>SOURCE_REPOSITORY_CITATION</code> structure.</p>
+<p>The <code>element</code> should contain the <code><a title="gedcom.tags.GEDCOM_TAG_REPOSITORY" href="../tags.html#gedcom.tags.GEDCOM_TAG_REPOSITORY">GEDCOM_TAG_REPOSITORY</a></code> tag.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def source_repository_citation(element):
-    &#34;&#34;&#34;Parse and extract a SOURCE_REPOSITORY_CITATION
-    :rtype: dict
+<pre><code class="python">def source_repository_citation(element: Element) -&gt; dict:
+    &#34;&#34;&#34;Parse and extract a `SOURCE_REPOSITORY_CITATION` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
     &#34;&#34;&#34;
     record = {
         &#39;key_to_repository&#39;: element.get_value(),

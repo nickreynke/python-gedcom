@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.detect API documentation</title>
-<meta name="description" content="Functions to detect GEDCOM encoding and version." />
+<meta name="description" content="Module containing functions for detecting GEDCOM file encoding and version." />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
 <h1 class="title">Module <code>gedcom.detect</code></h1>
 </header>
 <section id="section-intro">
-<p>Functions to detect GEDCOM encoding and version.</p>
+<p>Module containing functions for detecting GEDCOM file encoding and version.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -54,9 +54,10 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 &#34;&#34;&#34;
-Functions to detect GEDCOM encoding and version.
+Module containing functions for detecting GEDCOM file encoding and version.
 &#34;&#34;&#34;
 
+from typing import Tuple
 import chardet
 import ansel
 
@@ -69,11 +70,8 @@ ansel.register()
 
 
 def __validate_encoding(file_path, codec):
-    &#34;&#34;&#34;Check the encoding is compatible with the encoding as reported by the `gedcom.tags.GEDCOM_TAG_CHARACTER` header tag.
-
-    :type file_path: str
-
-    :type codec: str
+    &#34;&#34;&#34;Check the encoding is compatible with the encoding as reported by the
+    `gedcom.tags.GEDCOM_TAG_CHARACTER` header tag.
     &#34;&#34;&#34;
     with open(file_path, &#39;r&#39;, encoding=codec) as gedcom_data:
         for line in gedcom_data:
@@ -95,12 +93,11 @@ def __validate_encoding(file_path, codec):
         raise GedcomCharacterSetUnsupportedError(errmsg)
 
 
-def get_encoding(file_path):
-    &#34;&#34;&#34;Probe a GEDCOM file to determine the encoding and validate it against the encoding reported in the file header by the `gedcom.tags.GEDCOM_TAG_CHARACTER` tag.
+def get_encoding(file_path: str) -&gt; str:
+    &#34;&#34;&#34;Probe a GEDCOM file to determine the encoding and validate it against the encoding
+    as reported in the `HEADER` record by the `gedcom.tags.GEDCOM_TAG_CHARACTER` tag.
 
-    :type file_path: str
-
-    :rtype: str
+    Returns: codec
     &#34;&#34;&#34;
     with open(file_path, &#39;rb&#39;) as gedcom_data:
         sample_data = gedcom_data.read(262144)
@@ -131,18 +128,11 @@ def get_encoding(file_path):
     return codec
 
 
-def get_version(file_path, codec):
-    &#34;&#34;&#34;Probes a GEDCOM file to identify the version of the standard used as some reported 5.5 files are really 5.5.1. Returns probed version, reported version, reported format
+def get_version(file_path: str, codec: str) -&gt; Tuple[str, str, str]:
+    &#34;&#34;&#34;Probe a GEDCOM file to identify the version of the standard used as some reported 5.5
+    files are really 5.5.1.
 
-    :type file_path: str
-
-    :type codec: str
-
-    :rtype real_version: str
-
-    :rtype reported_version: str
-
-    :rtype reported_format: str
+    Returns: probed version, reported version, reported format
     &#34;&#34;&#34;
     in_gedc_tag = False
     gedcom_version = None
@@ -165,13 +155,13 @@ def get_version(file_path, codec):
             &#34; not found as expected.\nSee: {0}&#34;.format(standards.GEDCOM_5_5_1)
         raise GedcomFormatViolationError(errmsg)
 
-    real_version = gedcom_version
+    probed_version = gedcom_version
 
     # UTF was added in the 5.5.1 specification
     if gedcom_version == &#39;5.5&#39; and &#39;utf&#39; in codec:
-        real_version = gedcom_version
+        probed_version = gedcom_version
 
-    return real_version, gedcom_version, gedcom_format</code></pre>
+    return probed_version, gedcom_version, gedcom_format</code></pre>
 </details>
 </section>
 <section>
@@ -182,22 +172,21 @@ def get_version(file_path, codec):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="gedcom.detect.get_encoding"><code class="name flex">
-<span>def <span class="ident">get_encoding</span></span>(<span>file_path)</span>
+<span>def <span class="ident">get_encoding</span></span>(<span>file_path: str) -> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Probe a GEDCOM file to determine the encoding and validate it against the encoding reported in the file header by the <code><a title="gedcom.tags.GEDCOM_TAG_CHARACTER" href="tags.html#gedcom.tags.GEDCOM_TAG_CHARACTER">GEDCOM_TAG_CHARACTER</a></code> tag.</p>
-<p>:type file_path: str</p>
-<p>:rtype: str</p></div>
+<div class="desc"><p>Probe a GEDCOM file to determine the encoding and validate it against the encoding
+as reported in the <code>HEADER</code> record by the <code><a title="gedcom.tags.GEDCOM_TAG_CHARACTER" href="tags.html#gedcom.tags.GEDCOM_TAG_CHARACTER">GEDCOM_TAG_CHARACTER</a></code> tag.</p>
+<p>Returns: codec</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_encoding(file_path):
-    &#34;&#34;&#34;Probe a GEDCOM file to determine the encoding and validate it against the encoding reported in the file header by the `gedcom.tags.GEDCOM_TAG_CHARACTER` tag.
+<pre><code class="python">def get_encoding(file_path: str) -&gt; str:
+    &#34;&#34;&#34;Probe a GEDCOM file to determine the encoding and validate it against the encoding
+    as reported in the `HEADER` record by the `gedcom.tags.GEDCOM_TAG_CHARACTER` tag.
 
-    :type file_path: str
-
-    :rtype: str
+    Returns: codec
     &#34;&#34;&#34;
     with open(file_path, &#39;rb&#39;) as gedcom_data:
         sample_data = gedcom_data.read(262144)
@@ -229,31 +218,21 @@ def get_version(file_path, codec):
 </details>
 </dd>
 <dt id="gedcom.detect.get_version"><code class="name flex">
-<span>def <span class="ident">get_version</span></span>(<span>file_path, codec)</span>
+<span>def <span class="ident">get_version</span></span>(<span>file_path: str, codec: str) -> Tuple[str, str, str]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Probes a GEDCOM file to identify the version of the standard used as some reported 5.5 files are really 5.5.1. Returns probed version, reported version, reported format</p>
-<p>:type file_path: str</p>
-<p>:type codec: str</p>
-<p>:rtype real_version: str</p>
-<p>:rtype reported_version: str</p>
-<p>:rtype reported_format: str</p></div>
+<div class="desc"><p>Probe a GEDCOM file to identify the version of the standard used as some reported 5.5
+files are really 5.5.1.</p>
+<p>Returns: probed version, reported version, reported format</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_version(file_path, codec):
-    &#34;&#34;&#34;Probes a GEDCOM file to identify the version of the standard used as some reported 5.5 files are really 5.5.1. Returns probed version, reported version, reported format
+<pre><code class="python">def get_version(file_path: str, codec: str) -&gt; Tuple[str, str, str]:
+    &#34;&#34;&#34;Probe a GEDCOM file to identify the version of the standard used as some reported 5.5
+    files are really 5.5.1.
 
-    :type file_path: str
-
-    :type codec: str
-
-    :rtype real_version: str
-
-    :rtype reported_version: str
-
-    :rtype reported_format: str
+    Returns: probed version, reported version, reported format
     &#34;&#34;&#34;
     in_gedc_tag = False
     gedcom_version = None
@@ -276,13 +255,13 @@ def get_version(file_path, codec):
             &#34; not found as expected.\nSee: {0}&#34;.format(standards.GEDCOM_5_5_1)
         raise GedcomFormatViolationError(errmsg)
 
-    real_version = gedcom_version
+    probed_version = gedcom_version
 
     # UTF was added in the 5.5.1 specification
     if gedcom_version == &#39;5.5&#39; and &#39;utf&#39; in codec:
-        real_version = gedcom_version
+        probed_version = gedcom_version
 
-    return real_version, gedcom_version, gedcom_format</code></pre>
+    return probed_version, gedcom_version, gedcom_format</code></pre>
 </details>
 </dd>
 </dl>

@@ -181,13 +181,13 @@ class Element(object):
                 n = self.__add_bounded_child(gedcom.tags.GEDCOM_TAG_CONTINUED, line)
                 self.__add_concatenation(line[n:])
 
-    def get_child_elements(self) -> List[Element]:
+    def get_child_elements(self) -> List['Element']:
         """Returns the direct child elements of this element.
         """
         return self.__children
 
     def new_child_element(self, tag: str, pointer: str = "",
-                          value: str = "") -> Element:
+                          value: str = "") -> 'Element':
         """Creates and returns a new child element of this element.
         """
         from gedcom.element.family import FamilyElement
@@ -236,7 +236,7 @@ class Element(object):
 
         return child_element
 
-    def add_child_element(self, element: Element):
+    def add_child_element(self, element: 'Element'):
         """Adds a child element to this element.
         """
         self.get_child_elements().append(element)
@@ -244,12 +244,12 @@ class Element(object):
 
         return element
 
-    def get_parent_element(self) -> Element:
+    def get_parent_element(self) -> 'Element':
         """Returns the parent element of this element.
         """
         return self.__parent
 
-    def set_parent_element(self, element: Element):
+    def set_parent_element(self, element: 'Element'):
         """Adds a parent element to this element.
 
         There's usually no need to call this method manually,

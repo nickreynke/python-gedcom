@@ -32,6 +32,7 @@ a substructure that repeats itself in a number of record types.
 import gedcom.tags as tags
 from gedcom.element.element import Element
 
+
 def user_reference_number(element: Element) -> dict:
     """Parse and extract a `USER_REFERENCE_NUMBER` structure.
 

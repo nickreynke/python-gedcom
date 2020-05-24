@@ -79,12 +79,11 @@ SUBMISSION_TAGS = {
 class SubmissionElement(Element):
     &#34;&#34;&#34;Element associated with a `SUBMISSION_RECORD`&#34;&#34;&#34;
 
-    def get_tag(self):
+    def get_tag(self) -&gt; str:
         return tags.GEDCOM_TAG_SUBMISSION
 
-    def get_record(self):
+    def get_record(self) -&gt; dict:
         &#34;&#34;&#34;Parse and return the record in dictionary format
-        :rtype: dict
         &#34;&#34;&#34;
         record = {
             &#39;key_to_submission&#39;: self.get_pointer(),
@@ -124,7 +123,7 @@ class SubmissionElement(Element):
 <dl>
 <dt id="gedcom.element.submission.SubmissionElement"><code class="flex name class">
 <span>class <span class="ident">SubmissionElement</span></span>
-<span>(</span><span>level, pointer, tag, value, crlf='\n', multi_line=True)</span>
+<span>(</span><span>level: int, pointer: str, tag: str, value: str, crlf: str = '\n', multi_line: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Element associated with a <code>SUBMISSION_RECORD</code></p></div>
@@ -135,12 +134,11 @@ class SubmissionElement(Element):
 <pre><code class="python">class SubmissionElement(Element):
     &#34;&#34;&#34;Element associated with a `SUBMISSION_RECORD`&#34;&#34;&#34;
 
-    def get_tag(self):
+    def get_tag(self) -&gt; str:
         return tags.GEDCOM_TAG_SUBMISSION
 
-    def get_record(self):
+    def get_record(self) -&gt; dict:
         &#34;&#34;&#34;Parse and return the record in dictionary format
-        :rtype: dict
         &#34;&#34;&#34;
         record = {
             &#39;key_to_submission&#39;: self.get_pointer(),
@@ -175,18 +173,16 @@ class SubmissionElement(Element):
 <h3>Methods</h3>
 <dl>
 <dt id="gedcom.element.submission.SubmissionElement.get_record"><code class="name flex">
-<span>def <span class="ident">get_record</span></span>(<span>self)</span>
+<span>def <span class="ident">get_record</span></span>(<span>self) -> dict</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parse and return the record in dictionary format
-:rtype: dict</p></div>
+<div class="desc"><p>Parse and return the record in dictionary format</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_record(self):
+<pre><code class="python">def get_record(self) -&gt; dict:
     &#34;&#34;&#34;Parse and return the record in dictionary format
-    :rtype: dict
     &#34;&#34;&#34;
     record = {
         &#39;key_to_submission&#39;: self.get_pointer(),

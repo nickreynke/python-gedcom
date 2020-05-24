@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.subparsers.child_to_family_link API documentation</title>
-<meta name="description" content="Substructure parser for the CHILD_TO_FAMILY_LINK record identified by the
-`gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` tag." />
+<meta name="description" content="Substructure parser for a `CHILD_TO_FAMILY_LINK` record …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -21,8 +20,8 @@
 <h1 class="title">Module <code>gedcom.subparsers.child_to_family_link</code></h1>
 </header>
 <section id="section-intro">
-<p>Substructure parser for the CHILD_TO_FAMILY_LINK record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="../tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD">GEDCOM_TAG_FAMILY_CHILD</a></code> tag.</p>
+<p>Substructure parser for a <code>CHILD_TO_FAMILY_LINK</code> record.</p>
+<p>This is anchored by the <code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="../tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD">GEDCOM_TAG_FAMILY_CHILD</a></code> tag.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -50,17 +49,20 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 &#34;&#34;&#34;
-Substructure parser for the CHILD_TO_FAMILY_LINK record identified by the
-`gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` tag.
+Substructure parser for a `CHILD_TO_FAMILY_LINK` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` tag.
 &#34;&#34;&#34;
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 
 
-def child_to_family_link(element):
-    &#34;&#34;&#34;Parses and extracts the CHILD_TO_FAMILY_LINK
-    :rtype: dict
+def child_to_family_link(element: Element) -&gt; dict:
+    &#34;&#34;&#34;Parses and extracts a `CHILD_TO_FAMILY_LINK` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` tag.
     &#34;&#34;&#34;
     record = {
         &#39;key_to_family&#39;: element.get_value(),
@@ -91,18 +93,19 @@ def child_to_family_link(element):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="gedcom.subparsers.child_to_family_link.child_to_family_link"><code class="name flex">
-<span>def <span class="ident">child_to_family_link</span></span>(<span>element)</span>
+<span>def <span class="ident">child_to_family_link</span></span>(<span>element: <a title="gedcom.element.element.Element" href="../element/element.html#gedcom.element.element.Element">Element</a>) -> dict</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parses and extracts the CHILD_TO_FAMILY_LINK
-:rtype: dict</p></div>
+<div class="desc"><p>Parses and extracts a <code>CHILD_TO_FAMILY_LINK</code> structure.</p>
+<p>The <code>element</code> should contain the <code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="../tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD">GEDCOM_TAG_FAMILY_CHILD</a></code> tag.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def child_to_family_link(element):
-    &#34;&#34;&#34;Parses and extracts the CHILD_TO_FAMILY_LINK
-    :rtype: dict
+<pre><code class="python">def child_to_family_link(element: Element) -&gt; dict:
+    &#34;&#34;&#34;Parses and extracts a `CHILD_TO_FAMILY_LINK` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` tag.
     &#34;&#34;&#34;
     record = {
         &#39;key_to_family&#39;: element.get_value(),

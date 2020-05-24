@@ -6,7 +6,7 @@
 <meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.reader API documentation</title>
 <meta name="description" content="Module containing a `gedcom.reader.Reader` with higher order methods than the
-base `gedcom.parser.Parser`" />
+base `gedcom.parser.Parser` for extracting records as structured data." />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@ base `gedcom.parser.Parser`" />
 </header>
 <section id="section-intro">
 <p>Module containing a <code><a title="gedcom.reader.Reader" href="#gedcom.reader.Reader">Reader</a></code> with higher order methods than the
-base <code><a title="gedcom.parser.Parser" href="parser.html#gedcom.parser.Parser">Parser</a></code></p>
+base <code><a title="gedcom.parser.Parser" href="parser.html#gedcom.parser.Parser">Parser</a></code> for extracting records as structured data.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -57,8 +57,10 @@ base <code><a title="gedcom.parser.Parser" href="parser.html#gedcom.parser.Parse
 
 &#34;&#34;&#34;
 Module containing a `gedcom.reader.Reader` with higher order methods than the
-base `gedcom.parser.Parser`
+base `gedcom.parser.Parser` for extracting records as structured data.
 &#34;&#34;&#34;
+
+from typing import Union
 
 from gedcom.parser import Parser
 from gedcom.element.header import HeaderElement
@@ -97,15 +99,14 @@ RECORD_KEYS = {
 
 
 class Reader(Parser):
-    &#34;&#34;&#34;Simple wrapper class around the core parser with simple methods for
+    &#34;&#34;&#34;Simple wrapper around the core `gedcom.parser.Parser` with methods for
     extracting parsed records as structured data.
     &#34;&#34;&#34;
 
-    def get_records_by_type(self, record_type, output=&#39;list&#39;):
-        &#34;&#34;&#34;Return either a list or dictionary with all the requested records
-        :type: record_type: str
-        :type: output: str
-        :rtype: list or dict
+    def get_records_by_type(self, record_type: str,
+                            return_output_as_list: bool = True) -&gt; Union[list, dict]:
+        &#34;&#34;&#34;Return either a list or dictionary with all of the requested records for the
+        given `gedcom.records` record type.
         &#34;&#34;&#34;
         record_list = []
         record_dict = {}
@@ -113,7 +114,7 @@ class Reader(Parser):
         for element in self.get_root_child_elements():
             if isinstance(element, ELEMENT_TYPES[record_type]):
                 record = element.get_record()
-                if output == &#39;list&#39;:
+                if return_output_as_list:
                     record_list.append(record)
                 else:
                     if RECORD_KEYS[record_type] is not None:
@@ -121,19 +122,18 @@ class Reader(Parser):
                     else:
                         record_dict.update({&#39;@HEAD@&#39;: record})
 
-        if output == &#39;list&#39;:
+        if return_output_as_list:
             return record_list
 
         return record_dict
 
-    def get_all_records(self, entries=&#39;list&#39;):
-        &#34;&#34;&#34;Return a dictionary with all the requested records
-        :type: entries: str
-        :rtype: dict
-        &#34;&#34;&#34;
+    def get_all_records(self, return_entries_as_list: bool = True) -&gt; dict:
+        &#34;&#34;&#34;Return a dictionary with all of the available records in the GEDCOM broken
+        down by record type.&#34;&#34;&#34;
         record_dict = {}
+
         for key in RECORD_KEYS:
-            if entries == &#39;list&#39;:
+            if return_entries_as_list:
                 record_dict.update({key: []})
             else:
                 record_dict.update({key: {}})
@@ -142,7 +142,7 @@ class Reader(Parser):
             for key in ELEMENT_TYPES:
                 if isinstance(element, ELEMENT_TYPES[key]):
                     record = element.get_record()
-                    if entries == &#39;list&#39;:
+                    if return_entries_as_list:
                         record_dict[key].append(record)
                     else:
                         if key != &#39;header&#39;:
@@ -166,22 +166,21 @@ class Reader(Parser):
 <span>class <span class="ident">Reader</span></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Simple wrapper class around the core parser with simple methods for
+<div class="desc"><p>Simple wrapper around the core <code><a title="gedcom.parser.Parser" href="parser.html#gedcom.parser.Parser">Parser</a></code> with methods for
 extracting parsed records as structured data.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Reader(Parser):
-    &#34;&#34;&#34;Simple wrapper class around the core parser with simple methods for
+    &#34;&#34;&#34;Simple wrapper around the core `gedcom.parser.Parser` with methods for
     extracting parsed records as structured data.
     &#34;&#34;&#34;
 
-    def get_records_by_type(self, record_type, output=&#39;list&#39;):
-        &#34;&#34;&#34;Return either a list or dictionary with all the requested records
-        :type: record_type: str
-        :type: output: str
-        :rtype: list or dict
+    def get_records_by_type(self, record_type: str,
+                            return_output_as_list: bool = True) -&gt; Union[list, dict]:
+        &#34;&#34;&#34;Return either a list or dictionary with all of the requested records for the
+        given `gedcom.records` record type.
         &#34;&#34;&#34;
         record_list = []
         record_dict = {}
@@ -189,7 +188,7 @@ extracting parsed records as structured data.</p></div>
         for element in self.get_root_child_elements():
             if isinstance(element, ELEMENT_TYPES[record_type]):
                 record = element.get_record()
-                if output == &#39;list&#39;:
+                if return_output_as_list:
                     record_list.append(record)
                 else:
                     if RECORD_KEYS[record_type] is not None:
@@ -197,19 +196,18 @@ extracting parsed records as structured data.</p></div>
                     else:
                         record_dict.update({&#39;@HEAD@&#39;: record})
 
-        if output == &#39;list&#39;:
+        if return_output_as_list:
             return record_list
 
         return record_dict
 
-    def get_all_records(self, entries=&#39;list&#39;):
-        &#34;&#34;&#34;Return a dictionary with all the requested records
-        :type: entries: str
-        :rtype: dict
-        &#34;&#34;&#34;
+    def get_all_records(self, return_entries_as_list: bool = True) -&gt; dict:
+        &#34;&#34;&#34;Return a dictionary with all of the available records in the GEDCOM broken
+        down by record type.&#34;&#34;&#34;
         record_dict = {}
+
         for key in RECORD_KEYS:
-            if entries == &#39;list&#39;:
+            if return_entries_as_list:
                 record_dict.update({key: []})
             else:
                 record_dict.update({key: {}})
@@ -218,7 +216,7 @@ extracting parsed records as structured data.</p></div>
             for key in ELEMENT_TYPES:
                 if isinstance(element, ELEMENT_TYPES[key]):
                     record = element.get_record()
-                    if entries == &#39;list&#39;:
+                    if return_entries_as_list:
                         record_dict[key].append(record)
                     else:
                         if key != &#39;header&#39;:
@@ -235,24 +233,22 @@ extracting parsed records as structured data.</p></div>
 <h3>Methods</h3>
 <dl>
 <dt id="gedcom.reader.Reader.get_all_records"><code class="name flex">
-<span>def <span class="ident">get_all_records</span></span>(<span>self, entries='list')</span>
+<span>def <span class="ident">get_all_records</span></span>(<span>self, return_entries_as_list: bool = True) -> dict</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Return a dictionary with all the requested records
-:type: entries: str
-:rtype: dict</p></div>
+<div class="desc"><p>Return a dictionary with all of the available records in the GEDCOM broken
+down by record type.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_all_records(self, entries=&#39;list&#39;):
-    &#34;&#34;&#34;Return a dictionary with all the requested records
-    :type: entries: str
-    :rtype: dict
-    &#34;&#34;&#34;
+<pre><code class="python">def get_all_records(self, return_entries_as_list: bool = True) -&gt; dict:
+    &#34;&#34;&#34;Return a dictionary with all of the available records in the GEDCOM broken
+    down by record type.&#34;&#34;&#34;
     record_dict = {}
+
     for key in RECORD_KEYS:
-        if entries == &#39;list&#39;:
+        if return_entries_as_list:
             record_dict.update({key: []})
         else:
             record_dict.update({key: {}})
@@ -261,7 +257,7 @@ extracting parsed records as structured data.</p></div>
         for key in ELEMENT_TYPES:
             if isinstance(element, ELEMENT_TYPES[key]):
                 record = element.get_record()
-                if entries == &#39;list&#39;:
+                if return_entries_as_list:
                     record_dict[key].append(record)
                 else:
                     if key != &#39;header&#39;:
@@ -273,22 +269,19 @@ extracting parsed records as structured data.</p></div>
 </details>
 </dd>
 <dt id="gedcom.reader.Reader.get_records_by_type"><code class="name flex">
-<span>def <span class="ident">get_records_by_type</span></span>(<span>self, record_type, output='list')</span>
+<span>def <span class="ident">get_records_by_type</span></span>(<span>self, record_type: str, return_output_as_list: bool = True) -> Union[list, dict]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Return either a list or dictionary with all the requested records
-:type: record_type: str
-:type: output: str
-:rtype: list or dict</p></div>
+<div class="desc"><p>Return either a list or dictionary with all of the requested records for the
+given <code><a title="gedcom.records" href="records.html">gedcom.records</a></code> record type.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_records_by_type(self, record_type, output=&#39;list&#39;):
-    &#34;&#34;&#34;Return either a list or dictionary with all the requested records
-    :type: record_type: str
-    :type: output: str
-    :rtype: list or dict
+<pre><code class="python">def get_records_by_type(self, record_type: str,
+                        return_output_as_list: bool = True) -&gt; Union[list, dict]:
+    &#34;&#34;&#34;Return either a list or dictionary with all of the requested records for the
+    given `gedcom.records` record type.
     &#34;&#34;&#34;
     record_list = []
     record_dict = {}
@@ -296,7 +289,7 @@ extracting parsed records as structured data.</p></div>
     for element in self.get_root_child_elements():
         if isinstance(element, ELEMENT_TYPES[record_type]):
             record = element.get_record()
-            if output == &#39;list&#39;:
+            if return_output_as_list:
                 record_list.append(record)
             else:
                 if RECORD_KEYS[record_type] is not None:
@@ -304,7 +297,7 @@ extracting parsed records as structured data.</p></div>
                 else:
                     record_dict.update({&#39;@HEAD@&#39;: record})
 
-    if output == &#39;list&#39;:
+    if return_output_as_list:
         return record_list
 
     return record_dict</code></pre>

@@ -71,12 +71,11 @@ from gedcom.subparsers.user_reference_number import user_reference_number
 class RepositoryElement(Element):
     &#34;&#34;&#34;Element associated with a `REPOSITORY_RECORD`&#34;&#34;&#34;
 
-    def get_tag(self):
+    def get_tag(self) -&gt; str:
         return tags.GEDCOM_TAG_REPOSITORY
 
-    def get_record(self):
-        &#34;&#34;&#34;Parse and return the record in dictionary format
-        :rtype: dict
+    def get_record(self) -&gt; dict:
+        &#34;&#34;&#34;Parse and return the full record in dictionary format.
         &#34;&#34;&#34;
         record = {
             &#39;key_to_repository&#39;: self.get_pointer(),
@@ -125,7 +124,7 @@ class RepositoryElement(Element):
 <dl>
 <dt id="gedcom.element.repository.RepositoryElement"><code class="flex name class">
 <span>class <span class="ident">RepositoryElement</span></span>
-<span>(</span><span>level, pointer, tag, value, crlf='\n', multi_line=True)</span>
+<span>(</span><span>level: int, pointer: str, tag: str, value: str, crlf: str = '\n', multi_line: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Element associated with a <code>REPOSITORY_RECORD</code></p></div>
@@ -136,12 +135,11 @@ class RepositoryElement(Element):
 <pre><code class="python">class RepositoryElement(Element):
     &#34;&#34;&#34;Element associated with a `REPOSITORY_RECORD`&#34;&#34;&#34;
 
-    def get_tag(self):
+    def get_tag(self) -&gt; str:
         return tags.GEDCOM_TAG_REPOSITORY
 
-    def get_record(self):
-        &#34;&#34;&#34;Parse and return the record in dictionary format
-        :rtype: dict
+    def get_record(self) -&gt; dict:
+        &#34;&#34;&#34;Parse and return the full record in dictionary format.
         &#34;&#34;&#34;
         record = {
             &#39;key_to_repository&#39;: self.get_pointer(),
@@ -185,18 +183,16 @@ class RepositoryElement(Element):
 <h3>Methods</h3>
 <dl>
 <dt id="gedcom.element.repository.RepositoryElement.get_record"><code class="name flex">
-<span>def <span class="ident">get_record</span></span>(<span>self)</span>
+<span>def <span class="ident">get_record</span></span>(<span>self) -> dict</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Parse and return the record in dictionary format
-:rtype: dict</p></div>
+<div class="desc"><p>Parse and return the full record in dictionary format.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_record(self):
-    &#34;&#34;&#34;Parse and return the record in dictionary format
-    :rtype: dict
+<pre><code class="python">def get_record(self) -&gt; dict:
+    &#34;&#34;&#34;Parse and return the full record in dictionary format.
     &#34;&#34;&#34;
     record = {
         &#39;key_to_repository&#39;: self.get_pointer(),

@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.subparsers API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Module containing parsers for extracting various substructures from the
+different record types as defined in the GEDCOM standard." />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -20,6 +21,8 @@
 <h1 class="title">Module <code>gedcom.subparsers</code></h1>
 </header>
 <section id="section-intro">
+<p>Module containing parsers for extracting various substructures from the
+different record types as defined in the GEDCOM standard.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -45,6 +48,9 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
+
+&#34;&#34;&#34;Module containing parsers for extracting various substructures from the
+different record types as defined in the GEDCOM standard.&#34;&#34;&#34;
 
 __all__ = [
     &#34;address_structure&#34;,
@@ -76,107 +82,87 @@ __all__ = [
 <dl>
 <dt><code class="name"><a title="gedcom.subparsers.address_structure" href="address_structure.html">gedcom.subparsers.address_structure</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the ADDRESS_STRUCTURE embedded record …</p></div>
+<div class="desc"><p>Substructure parser for a <code>ADDRESS_STRUCTURE</code> embedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.association_structure" href="association_structure.html">gedcom.subparsers.association_structure</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the ASSOCIATION_STRUCTURE record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_ASSOCIATES" href="../tags.html#gedcom.tags.GEDCOM_TAG_ASSOCIATES">GEDCOM_TAG_ASSOCIATES</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for the <code>ASSOCIATION_STRUCTURE</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.change_date" href="change_date.html">gedcom.subparsers.change_date</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the CHANGE_DATE record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_CHANGE" href="../tags.html#gedcom.tags.GEDCOM_TAG_CHANGE">GEDCOM_TAG_CHANGE</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>CHANGE_DATE</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.child_to_family_link" href="child_to_family_link.html">gedcom.subparsers.child_to_family_link</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the CHILD_TO_FAMILY_LINK record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="../tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD">GEDCOM_TAG_FAMILY_CHILD</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>CHILD_TO_FAMILY_LINK</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.event_detail" href="event_detail.html">gedcom.subparsers.event_detail</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the EVENT_DETAIL embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>EVENT_DETAIL</code> embedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.family_event_detail" href="family_event_detail.html">gedcom.subparsers.family_event_detail</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the FAMILY_EVENT_DETAIL emdedded record. As this is
-referenced in place as part of another structure there is no identifier tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>FAMILY_EVENT_DETAIL</code> emdedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.family_event_structure" href="family_event_structure.html">gedcom.subparsers.family_event_structure</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the FAMILY_EVENT_STRUCTURE embedded record. As this is
-referenced in place as part of another structure there is no identifier …</p></div>
+<div class="desc"><p>Substructure parser for a <code>FAMILY_EVENT_STRUCTURE</code> embedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.individual_attribute_structure" href="individual_attribute_structure.html">gedcom.subparsers.individual_attribute_structure</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the INDIVIDUAL_ATTRIBUTE_STRUCTURE embedded record. As
-this is referenced in place as part of another structure there is no …</p></div>
+<div class="desc"><p>Substructure parser for the <code>INDIVIDUAL_ATTRIBUTE_STRUCTURE</code> embedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.individual_event_detail" href="individual_event_detail.html">gedcom.subparsers.individual_event_detail</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the INDIVIDUAL_EVENT_DETAIL emdedded record. As this
-is referenced in place as part of another structure there is no …</p></div>
+<div class="desc"><p>Substructure parser for a <code>INDIVIDUAL_EVENT_DETAIL</code> emdedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.individual_event_structure" href="individual_event_structure.html">gedcom.subparsers.individual_event_structure</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the INDIVIDUAL_EVENT_STRUCTURE embedded record. As this is
-referenced in place as part of another structure there is no …</p></div>
+<div class="desc"><p>Substructure parser for a <code>INDIVIDUAL_EVENT_STRUCTURE</code> embedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.lds_individual_ordinance" href="lds_individual_ordinance.html">gedcom.subparsers.lds_individual_ordinance</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the LDS_INDIVIDUAL_ORDINANCE embedded record. As this is
-referenced in place as part of another structure there is no …</p></div>
+<div class="desc"><p>Substructure parser for a <code>LDS_INDIVIDUAL_ORDINANCE</code> embedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.lds_spouse_sealing" href="lds_spouse_sealing.html">gedcom.subparsers.lds_spouse_sealing</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the LDS_SPOUSE_SEALING embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>LDS_SPOUSE_SEALING</code> embedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.multimedia_link" href="multimedia_link.html">gedcom.subparsers.multimedia_link</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the MULTIMEDIA_LINK record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_OBJECT" href="../tags.html#gedcom.tags.GEDCOM_TAG_OBJECT">GEDCOM_TAG_OBJECT</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>MULTIMEDIA_LINK</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.note_structure" href="note_structure.html">gedcom.subparsers.note_structure</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the NOTE_STRUCTURE record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_NOTE" href="../tags.html#gedcom.tags.GEDCOM_TAG_NOTE">GEDCOM_TAG_NOTE</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>NOTE_STRUCTURE</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.personal_name_pieces" href="personal_name_pieces.html">gedcom.subparsers.personal_name_pieces</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the PERSONAL_NAME_PIECES embedded record. As this is
-referenced in place in part of another structure there is no identifier tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>PERSONAL_NAME_PIECES</code> embedded record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.personal_name_structure" href="personal_name_structure.html">gedcom.subparsers.personal_name_structure</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the PERSONAL_NAME_STRUCTURE record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_NAME" href="../tags.html#gedcom.tags.GEDCOM_TAG_NAME">GEDCOM_TAG_NAME</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>PERSONAL_NAME_STRUCTURE</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.place_structure" href="place_structure.html">gedcom.subparsers.place_structure</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the PLACE_STRUCTURE record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_PLACE" href="../tags.html#gedcom.tags.GEDCOM_TAG_PLACE">GEDCOM_TAG_PLACE</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>PLACE_STRUCTURE</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.source_citation" href="source_citation.html">gedcom.subparsers.source_citation</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the SOURCE_CITATION record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_SOURCE" href="../tags.html#gedcom.tags.GEDCOM_TAG_SOURCE">GEDCOM_TAG_SOURCE</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>SOURCE_CITATION</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.source_repository_citation" href="source_repository_citation.html">gedcom.subparsers.source_repository_citation</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the SOURCE_REPOSITORY_CITATION record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_REPOSITORY" href="../tags.html#gedcom.tags.GEDCOM_TAG_REPOSITORY">GEDCOM_TAG_REPOSITORY</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>SOURCE_REPOSITORY_CITATION</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.spouse_to_family_link" href="spouse_to_family_link.html">gedcom.subparsers.spouse_to_family_link</a></code></dt>
 <dd>
-<div class="desc"><p>Substructure parser for the SPOUSE_TO_FAMILY_LINK record identified by the
-<code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="../tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE">GEDCOM_TAG_FAMILY_SPOUSE</a></code> tag.</p></div>
+<div class="desc"><p>Substructure parser for a <code>SPOUSE_TO_FAMILY_LINK</code> record …</p></div>
 </dd>
 <dt><code class="name"><a title="gedcom.subparsers.user_reference_number" href="user_reference_number.html">gedcom.subparsers.user_reference_number</a></code></dt>
 <dd>
-<div class="desc"><p>Parser for a USER_REFERENCE_NUMBER structure identified by the top level
-<code><a title="gedcom.tags.GEDCOM_TAG_REFERENCE" href="../tags.html#gedcom.tags.GEDCOM_TAG_REFERENCE">GEDCOM_TAG_REFERENCE</a></code> tag.</p></div>
+<div class="desc"><p>Parser for a <code>USER_REFERENCE_NUMBER</code> structure …</p></div>
 </dd>
 </dl>
 </section>
