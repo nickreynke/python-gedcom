@@ -21,17 +21,20 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the CHILD_TO_FAMILY_LINK record identified by the
-`gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` tag.
+Substructure parser for a `CHILD_TO_FAMILY_LINK` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` tag.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 
 
-def child_to_family_link(element):
-    """Parses and extracts the CHILD_TO_FAMILY_LINK
-    :rtype: dict
+def child_to_family_link(element: Element) -> dict:
+    """Parses and extracts a `CHILD_TO_FAMILY_LINK` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` tag.
     """
     record = {
         'key_to_family': element.get_value(),

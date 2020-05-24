@@ -53,12 +53,11 @@ FAMILY_SINGLE_TAGS = {
 class FamilyElement(Element):
     """Element associated with a `FAM_RECORD`"""
 
-    def get_tag(self):
+    def get_tag(self) -> str:
         return tags.GEDCOM_TAG_FAMILY
 
-    def get_record(self):
-        """Parse and return the record in dictionary format
-        :rtype: dict
+    def get_record(self) -> dict:
+        """Parse and return the full record in dictionary format.
         """
         record = {
             'key_to_family': self.get_pointer(),

@@ -42,12 +42,11 @@ from gedcom.subparsers.multimedia_link import multimedia_link
 class SubmitterElement(Element):
     """Element associated with a `SUBMITTER_RECORD`"""
 
-    def get_tag(self):
+    def get_tag(self) -> str:
         return tags.GEDCOM_TAG_SUBMITTER
 
-    def get_record(self):
+    def get_record(self) -> dict:
         """Parse and return the record in dictionary format
-        :rtype: dict
         """
         record = {
             'key_to_submitter': self.get_pointer(),

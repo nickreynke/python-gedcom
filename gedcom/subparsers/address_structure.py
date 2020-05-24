@@ -21,14 +21,15 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the ADDRESS_STRUCTURE embedded record.
+Substructure parser for a `ADDRESS_STRUCTURE` embedded record.
 
-Note this is usually referenced as part of a larger structure and the
-`gedcom.tags.GEDCOM_TAG_ADDRESS` tag is at the same level as some of
+This is referenced as part of a larger structure so there is no anchor tag.
+The `gedcom.tags.GEDCOM_TAG_ADDRESS` tag is at the same level as some of
 the other parts of this structure.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 
 ADDRESS_TAGS = {
     tags.GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE: 'addresse',
@@ -49,9 +50,10 @@ CONTACT_TAGS = {
 }
 
 
-def address_structure(element):
-    """Parses and extracts the ADDRESS_STRUCTURE
-    :rtype: dict
+def address_structure(element: Element) -> dict:
+    """Parses and extracts a `ADDRESS_STRUCTURE` structure.
+
+    The `element` should be the parent that contains it.
     """
     record = {
         'address': '',

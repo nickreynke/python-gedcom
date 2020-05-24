@@ -41,12 +41,11 @@ from gedcom.subparsers.user_reference_number import user_reference_number
 class NoteElement(Element):
     """Element associated with a `NOTE_RECORD`"""
 
-    def get_tag(self):
+    def get_tag(self) -> str:
         return tags.GEDCOM_TAG_NOTE
 
-    def get_record(self):
-        """Parse and return the record in dictionary format
-        :rtype: dict
+    def get_record(self) -> dict:
+        """Parse and return the full record in dictionary format.
         """
         record = {
             'key_to_note': self.get_pointer(),

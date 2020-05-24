@@ -27,21 +27,32 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Standard GEDCOM tags and some common program defined extensions
+Module containing the standard GEDCOM tags and some of the most common program defined extensions.
 """
+
+GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE = "_NAME"
+"""Value: `_NAME`
+
+Name of addresse in a `gedcom.tags.GEDCOM_TAG_ADDRESS` structure.
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_ADMINISTRATIVE_ID = "_AIDN"
 """Value: `_AIDN`
 
 Identifier for a location with the intention of an administrative authority,
-e.g. community identifier. GEDCOM-L Addendum."""
+e.g. community identifier.
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_APID = "_APID"
 """Value: `_APID`
 
 Ancestry page identifier. For a citation, points to the page in a Ancestry
 database for the record supporting the citation. For a source record it
-points to the database as a whole."""
+points to the database as a whole.
+
+Ancestry.com Extension."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE = "_DCAUSE"
 """Value: `_DCAUSE`
@@ -57,12 +68,13 @@ GEDCOM_PROGRAM_DEFINED_TAG_DEMOGRAPHIC_DATA = "_DMGD"
 """Value: `_DMGD`
 
 A number of ojects, during an ascertainment, e.g. the count of households.
-GEDCOM-L Addendum"""
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_FREL = "_FREL"
 """Value: `_FREL`
 
-Relationship to a father."""
+Type of relationship between child and the father in a family."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_FUNERAL = "_FUN"
 """Value: `_FUN`
@@ -73,13 +85,17 @@ GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT = "_GOV"
 """Value: `_GOV`
 
 The official government id of the object in the Historical Place Register /
-Historic Gazeteer. GEDCOM-L Addendum."""
+Historic Gazeteer.
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT_TYPE = "_GOVTYPE"
 """Value: `_GOVTYPE`
 
 An integer positive number as defined in the GOV system.
-See http://gov.genealogy.net.net/type/list. GEDCOM-L Addendum."""
+See http://gov.genealogy.net.net/type/list.
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON = "_HME"
 """Value: `_HME`
@@ -89,12 +105,16 @@ Home person in the tree."""
 GEDCOM_PROGRAM_DEFINED_TAG_LOCATION = "_LOC"
 """Value: `_LOC`
 
-Location data record. GEDCOM-L Addendum."""
+Location data record.
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_MAIDENHEAD = "_MAIDENHEAD"
 """Value: `_MAIDENHEAD`
 
-The maidenhead code. GEDCOM-L Addendum."""
+The maidenhead code.
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_MEDICAL = "_MDCL"
 """Value: `_MDCL`
@@ -109,13 +129,7 @@ A military related event in the individuals life."""
 GEDCOM_PROGRAM_DEFINED_TAG_MREL = "_MREL"
 """Value: `_MREL`
 
-Relationship to a mother."""
-
-GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE = "_NAME"
-"""Value: `_NAME`
-
-Name of addresse in a `gedcom.tags.GEDCOM_TAG_ADDRESS` structure.
-GEDCOM-L Addendum."""
+Type of relationship between child and the mother in a family."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_PHOTO = "_PHOTO"
 """Value: `_PHOTO`
@@ -127,7 +141,8 @@ GEDCOM_PROGRAM_DEFINED_TAG_POSTAL_CODE = "_POST"
 """Value: `_POST`
 
 The official zip code, called ADDRESS_POSTAL_CODE in the standard.
-GEDCOM-L Addendum."""
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED = "_PREF"
 """Value: `_PREF`
@@ -142,19 +157,23 @@ Primary multimedia object for an individual."""
 GEDCOM_PROGRAM_DEFINED_TAG_SCHEMA = "_SCHEMA"
 """Value: `_SCHEMA`
 
-Schema substructure extension to describe user defined tags. GEDCOM-L
-Addendum."""
+Schema substructure extension to describe user defined tags.
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME = "_RUFNAME"
 """Value: `_RUFNAME`
 
 An official given name of a German individual used in legal documents.
-GEDCOM-L Addendum."""
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_PROGRAM_DEFINED_TAG_UUID = "_UID"
 """Value: `_UID`
 
-Universal identification number. GEDCOM-L Addendum."""
+Universal identification number.
+
+5.5.1 GEDCOM-L Addendum."""
 
 GEDCOM_TAG_ABBREVIATION = "ABBR"
 """Value: `ABBR`

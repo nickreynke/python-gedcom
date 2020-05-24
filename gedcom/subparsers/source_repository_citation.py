@@ -21,17 +21,20 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the SOURCE_REPOSITORY_CITATION record identified by the
-`gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
+Substructure parser for a `SOURCE_REPOSITORY_CITATION` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 
 
-def source_repository_citation(element):
-    """Parse and extract a SOURCE_REPOSITORY_CITATION
-    :rtype: dict
+def source_repository_citation(element: Element) -> dict:
+    """Parse and extract a `SOURCE_REPOSITORY_CITATION` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
     """
     record = {
         'key_to_repository': element.get_value(),

@@ -41,6 +41,7 @@ __all__ = [
     "detect",
     "parser",
     "reader",
+    "records",
     "standards",
     "tags"
 ]

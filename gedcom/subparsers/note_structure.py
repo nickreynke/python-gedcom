@@ -21,14 +21,18 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the NOTE_STRUCTURE record identified by the
-`gedcom.tags.GEDCOM_TAG_NOTE` tag.
+Substructure parser for a `NOTE_STRUCTURE` record.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_NOTE` tag.
 """
 
+from gedcom.element.element import Element
 
-def note_structure(element):
-    """Parse and extract a NOTE_STRUCTURE
-    :rtype: dict
+
+def note_structure(element: Element) -> dict:
+    """Parse and extract a `NOTE_STRUCTURE` structure.
+
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_NOTE` tag.
     """
     record = {
         'key_to_note': element.get_value(),

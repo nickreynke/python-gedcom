@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>gedcom.errors API documentation</title>
+<meta name="description" content="Module containing the exception handling classes." />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>gedcom.errors</code></h1>
+</header>
+<section id="section-intro">
+<p>Module containing the exception handling classes.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># -*- coding: utf-8 -*-
+
+# Python GEDCOM Parser
+#
+# Copyright (C) 2020 Christopher Horn (cdhorn at embarqmail dot com)
+# Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
+# Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
+# Copyright (C) 2016 Andreas Oberritter
+# Copyright (C) 2012 Madeleine Price Ball
+# Copyright (C) 2005 Daniel Zappala (zappala at cs.byu.edu)
+# Copyright (C) 2005 Brigham Young University
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
+
+&#34;&#34;&#34;
+Module containing the exception handling classes.
+&#34;&#34;&#34;
+
+
+class GedcomFormatViolationError(Exception):
+    &#34;&#34;&#34;Raised when the document format does not appear to conform
+    to the GEDCOM standard and strict parsing required.
+    &#34;&#34;&#34;
+
+
+class GedcomStructureViolationError(Exception):
+    &#34;&#34;&#34;Raised when the structure of a record does not conform to
+    the GEDCOM standard.
+    &#34;&#34;&#34;
+
+
+class GedcomCharacterSetUnsupportedError(Exception):
+    &#34;&#34;&#34;Raised when a GEDCOM appears to contain a character set
+    the standard or the parser does not support.
+    &#34;&#34;&#34;
+
+
+class GedcomVersionUnsupportedError(Exception):
+    &#34;&#34;&#34;Raised when a particular GEDCOM version is not supported
+    by the parser and the standard for the version requires the
+    parser to reject it.
+    &#34;&#34;&#34;
+
+
+class GedcomFormatUnsupportedError(Exception):
+    &#34;&#34;&#34;Raised if the GEDCOM format is not recognized by the
+    parser. Note some misspellings as documented on page 148
+    in the 5.5.5 standard are treated as LINEAGE-LINKED and
+    allowed.
+    &#34;&#34;&#34;
+
+
+class NotAnActualIndividualError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be an `INDIVIDUAL_RECORD`&#34;&#34;&#34;
+
+
+class NotAnActualFamilyError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `FAM_RECORD`&#34;&#34;&#34;
+
+
+class NotAnActualSourceError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `SOURCE_RECORD`&#34;&#34;&#34;
+
+
+class NotAnActualRepositoryError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `REPOSITORY_RECORD`&#34;&#34;&#34;
+
+
+class NotAnActualNoteError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `NOTE_RECORD`&#34;&#34;&#34;
+
+
+class NotAnActualObjectError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `MULTIMEDIA_RECORD`&#34;&#34;&#34;
+
+
+class NotAnActualHeaderError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `HEADER`&#34;&#34;&#34;
+
+
+class NotAnActualSubmitterError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `SUBMITTER_RECORD`&#34;&#34;&#34;
+
+
+class NotAnActualSubmissionError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `SUBMISSION_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="gedcom.errors.GedcomCharacterSetUnsupportedError"><code class="flex name class">
+<span>class <span class="ident">GedcomCharacterSetUnsupportedError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised when a GEDCOM appears to contain a character set
+the standard or the parser does not support.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GedcomCharacterSetUnsupportedError(Exception):
+    &#34;&#34;&#34;Raised when a GEDCOM appears to contain a character set
+    the standard or the parser does not support.
+    &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.GedcomFormatUnsupportedError"><code class="flex name class">
+<span>class <span class="ident">GedcomFormatUnsupportedError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if the GEDCOM format is not recognized by the
+parser. Note some misspellings as documented on page 148
+in the 5.5.5 standard are treated as LINEAGE-LINKED and
+allowed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GedcomFormatUnsupportedError(Exception):
+    &#34;&#34;&#34;Raised if the GEDCOM format is not recognized by the
+    parser. Note some misspellings as documented on page 148
+    in the 5.5.5 standard are treated as LINEAGE-LINKED and
+    allowed.
+    &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.GedcomFormatViolationError"><code class="flex name class">
+<span>class <span class="ident">GedcomFormatViolationError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised when the document format does not appear to conform
+to the GEDCOM standard and strict parsing required.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GedcomFormatViolationError(Exception):
+    &#34;&#34;&#34;Raised when the document format does not appear to conform
+    to the GEDCOM standard and strict parsing required.
+    &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.GedcomStructureViolationError"><code class="flex name class">
+<span>class <span class="ident">GedcomStructureViolationError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised when the structure of a record does not conform to
+the GEDCOM standard.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GedcomStructureViolationError(Exception):
+    &#34;&#34;&#34;Raised when the structure of a record does not conform to
+    the GEDCOM standard.
+    &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.GedcomVersionUnsupportedError"><code class="flex name class">
+<span>class <span class="ident">GedcomVersionUnsupportedError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised when a particular GEDCOM version is not supported
+by the parser and the standard for the version requires the
+parser to reject it.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GedcomVersionUnsupportedError(Exception):
+    &#34;&#34;&#34;Raised when a particular GEDCOM version is not supported
+    by the parser and the standard for the version requires the
+    parser to reject it.
+    &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualFamilyError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualFamilyError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be a <code>FAM_RECORD</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualFamilyError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `FAM_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualHeaderError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualHeaderError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be a <code>HEADER</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualHeaderError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `HEADER`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualIndividualError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualIndividualError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be an <code>INDIVIDUAL_RECORD</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualIndividualError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be an `INDIVIDUAL_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualNoteError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualNoteError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be a <code>NOTE_RECORD</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualNoteError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `NOTE_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualObjectError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualObjectError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be a <code>MULTIMEDIA_RECORD</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualObjectError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `MULTIMEDIA_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualRepositoryError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualRepositoryError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be a <code>REPOSITORY_RECORD</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualRepositoryError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `REPOSITORY_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualSourceError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualSourceError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be a <code>SOURCE_RECORD</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualSourceError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `SOURCE_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualSubmissionError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualSubmissionError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be a <code>SUBMISSION_RECORD</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualSubmissionError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `SUBMISSION_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="gedcom.errors.NotAnActualSubmitterError"><code class="flex name class">
+<span>class <span class="ident">NotAnActualSubmitterError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised if record does not appear to be a <code>SUBMITTER_RECORD</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NotAnActualSubmitterError(Exception):
+    &#34;&#34;&#34;Raised if record does not appear to be a `SUBMITTER_RECORD`&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="gedcom" href="index.html">gedcom</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="gedcom.errors.GedcomCharacterSetUnsupportedError" href="#gedcom.errors.GedcomCharacterSetUnsupportedError">GedcomCharacterSetUnsupportedError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.GedcomFormatUnsupportedError" href="#gedcom.errors.GedcomFormatUnsupportedError">GedcomFormatUnsupportedError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.GedcomFormatViolationError" href="#gedcom.errors.GedcomFormatViolationError">GedcomFormatViolationError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.GedcomStructureViolationError" href="#gedcom.errors.GedcomStructureViolationError">GedcomStructureViolationError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.GedcomVersionUnsupportedError" href="#gedcom.errors.GedcomVersionUnsupportedError">GedcomVersionUnsupportedError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualFamilyError" href="#gedcom.errors.NotAnActualFamilyError">NotAnActualFamilyError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualHeaderError" href="#gedcom.errors.NotAnActualHeaderError">NotAnActualHeaderError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualIndividualError" href="#gedcom.errors.NotAnActualIndividualError">NotAnActualIndividualError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualNoteError" href="#gedcom.errors.NotAnActualNoteError">NotAnActualNoteError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualObjectError" href="#gedcom.errors.NotAnActualObjectError">NotAnActualObjectError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualRepositoryError" href="#gedcom.errors.NotAnActualRepositoryError">NotAnActualRepositoryError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualSourceError" href="#gedcom.errors.NotAnActualSourceError">NotAnActualSourceError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualSubmissionError" href="#gedcom.errors.NotAnActualSubmissionError">NotAnActualSubmissionError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="gedcom.errors.NotAnActualSubmitterError" href="#gedcom.errors.NotAnActualSubmitterError">NotAnActualSubmitterError</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

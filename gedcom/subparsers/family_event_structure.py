@@ -21,11 +21,15 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the FAMILY_EVENT_STRUCTURE embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.
+Substructure parser for a `FAMILY_EVENT_STRUCTURE` embedded record.
+
+This is referenced as part of a larger structure so there is no anchor tag.
 """
 
+from typing import List
+
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.family_event_detail import family_event_detail
 
 EVENT_TAGS = {
@@ -44,9 +48,10 @@ EVENT_TAGS = {
 }
 
 
-def family_event_structure(element):
-    """Parses and extracts the FAMILY_EVENT_STRUCTURE
-    :rtype: dict
+def family_event_structure(element: Element) -> List[dict]:
+    """Parses and extracts a `FAMILY_EVENT_STRUCTURE` structure.
+
+    The `element` should be the parent that contains it.
     """
     records = []
     for child in element.get_child_elements():

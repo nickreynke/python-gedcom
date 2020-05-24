@@ -21,11 +21,15 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Substructure parser for the LDS_INDIVIDUAL_ORDINANCE embedded record. As this is
-referenced in place as part of another structure there is no identifier tag.
+Substructure parser for a `LDS_INDIVIDUAL_ORDINANCE` embedded record.
+
+This is referenced as part of a larger structure so there is no anchor tag.
 """
 
+from typing import List
+
 import gedcom.tags as tags
+from gedcom.element.element import Element
 from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.source_citation import source_citation
 
@@ -44,9 +48,10 @@ ORDINANCE_ATTRIBUTE_TAGS = {
 }
 
 
-def lds_individual_ordinance(element):
-    """Parses and extracts the LDS_INDIVIDUAL_ORDINANCE
-    :rtype: dict
+def lds_individual_ordinance(element: Element) -> List[dict]:
+    """Parses and extracts a `LDS_INDIVIDUAL_ORDINANCE` structure.
+
+    The `element` should be the parent that contains it.
     """
     records = []
     for child in element.get_child_elements():

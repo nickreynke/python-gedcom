@@ -21,16 +21,21 @@
 # Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
 
 """
-Parser for a USER_REFERENCE_NUMBER structure identified by the top level
-`gedcom.tags.GEDCOM_TAG_REFERENCE` tag.
+Parser for a `USER_REFERENCE_NUMBER` structure.
+
+This is anchored by the `gedcom.tags.GEDCOM_TAG_REFERENCE` tag.
+
+This is not a formally documented structure in the standard but it is
+a substructure that repeats itself in a number of record types.
 """
 
 import gedcom.tags as tags
+from gedcom.element.element import Element
 
+def user_reference_number(element: Element) -> dict:
+    """Parse and extract a `USER_REFERENCE_NUMBER` structure.
 
-def user_reference_number(element):
-    """Parse and extract USER_REFERENCE_NUMBER
-    :rtype: dict
+    The `element` should contain the `gedcom.tags.GEDCOM_TAG_REFERENCE` tag.
     """
     record = {
         'reference': element.get_value(),

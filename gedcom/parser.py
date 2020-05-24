@@ -32,7 +32,9 @@ out of each line - which can in return be manipulated.
 """
 
 import re as regex
+from sys import stdout
 from sys import version_info
+from typing import Tuple, List, IO
 
 import gedcom.tags as tags
 import gedcom.standards as standards
@@ -78,10 +80,10 @@ FAMILY_MEMBERS_TYPE_WIFE = tags.GEDCOM_TAG_WIFE
 
 
 class Parser():
-    """Parses and manipulates GEDCOM 5.5 format data
+    """Parses and manipulates GEDCOM formatted data.
 
-    For documentation of the GEDCOM 5.5 format, see:
-    http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm
+    For documentation of the different GEDCOM standards see the
+    links defined in `gedcom.standards`
 
     This parser reads and parses a GEDCOM file.
 
@@ -106,8 +108,8 @@ class Parser():
         self.__element_list = []
         self.__element_dictionary = {}
 
-    def get_element_list(self):
-        """Returns a list containing all elements from within the GEDCOM file
+    def get_element_list(self) -> List[Element]:
+        """Returns a list containing all elements from within the GEDCOM file.
 
         By default elements are in the same order as they appeared in the file.
 
@@ -118,17 +120,15 @@ class Parser():
         Consider using `gedcom.parser.Parser.get_root_element()` or
         `gedcom.parser.Parser.get_root_child_elements()` to access
         the hierarchical GEDCOM tree, unless you rarely modify the database.
-
-        :rtype: list of Element
         """
         if not self.__element_list:
             for element in self.get_root_child_elements():
                 self.__build_list(element, self.__element_list)
         return self.__element_list
 
-    def get_element_dictionary(self):
+    def get_element_dictionary(self) -> dict:
         """Returns a dictionary containing all elements, identified by a pointer,
-        from within the GEDCOM file
+        from within the GEDCOM file.
 
         Only elements identified by a pointer are listed in the dictionary.
         The keys for the dictionary are the pointers.
@@ -136,8 +136,6 @@ class Parser():
         This dictionary gets generated on-the-fly, but gets cached. If the
         database was modified, you should call `invalidate_cache()` once to let
         this method return updated data.
-
-        :rtype: dict of Element
         """
         if not self.__element_dictionary:
             self.__element_dictionary = {
@@ -147,28 +145,22 @@ class Parser():
 
         return self.__element_dictionary
 
-    def get_root_element(self):
-        """Returns a virtual root element containing all logical records as children
+    def get_root_element(self) -> RootElement:
+        """Returns a virtual root element containing all logical records as children.
 
         When printed, this element converts to an empty string.
-
-        :rtype: RootElement
         """
         return self.__root_element
 
-    def get_root_child_elements(self):
-        """Returns a list of logical records in the GEDCOM file
+    def get_root_child_elements(self) -> List[Element]:
+        """Returns a list of logical records in the GEDCOM file.
 
         By default, elements are in the same order as they appeared in the file.
-
-        :rtype: list of Element
         """
         return self.get_root_element().get_child_elements()
 
-    def parse_file(self, file_path, strict=True):
-        """Opens and parses a file, from the given file path, as GEDCOM 5.5 formatted data
-        :type file_path: str
-        :type strict: bool
+    def parse_file(self, file_path: str, strict: bool = True):
+        """Opens and parses a file, from the given file path, as GEDCOM formatted data.
         """
         codec = get_encoding(file_path)
         real_version, reported_version, reported_format = get_version(file_path, codec)
@@ -187,10 +179,8 @@ class Parser():
         with open(file_path, 'r', encoding=codec) as gedcom_stream:
             self.parse(gedcom_stream, strict)
 
-    def parse(self, gedcom_stream, strict=True):
-        """Parses a stream, or an array of lines, as GEDCOM 5.5 formatted data
-        :type gedcom_stream: a file stream, or str array of lines with new line at the end
-        :type strict: bool
+    def parse(self, gedcom_stream: IO, strict: bool = True):
+        """Parses a stream, or an array of lines, as GEDCOM formatted data.
         """
         self.invalidate_cache()
         self.__root_element = RootElement()
@@ -205,18 +195,12 @@ class Parser():
     # Private methods
 
     @staticmethod
-    def __parse_line(line_number, line, last_element, strict=True):
-        """Parse a line from a GEDCOM 5.5 formatted document
+    def __parse_line(line_number: int, line: str, last_element: Element,
+                     strict: bool = True) -> Element:
+        """Parse a line from a GEDCOM formatted document.
 
         Each line should have the following (bracketed items optional):
         level + ' ' + [pointer + ' ' +] tag + [' ' + line_value]
-
-        :type line_number: int
-        :type line: str
-        :type last_element: Element
-        :type strict: bool
-
-        :rtype: Element
         """
 
         # Level must start with non-negative int, no leading zeros.
@@ -305,10 +289,8 @@ class Parser():
 
         return element
 
-    def __build_list(self, element, element_list):
-        """Recursively add elements to a list containing elements
-        :type element: Element
-        :type element_list: list of Element
+    def __build_list(self, element: Element, element_list: List[Element]):
+        """Recursively add elements to a list containing elements.
         """
         element_list.append(element)
         for child in element.get_child_elements():
@@ -316,10 +298,9 @@ class Parser():
 
     # Methods for analyzing individuals and relationships between individuals
 
-    def get_marriages(self, individual):
-        """Returns a list of marriages of an individual formatted as a tuple (`str` date, `str` place)
-        :type individual: IndividualElement
-        :rtype: tuple
+    def get_marriages(self, individual: IndividualElement) -> Tuple[str, str]:
+        """Returns a list of marriages of an individual formatted as a tuple:
+        (`str` date, `str` place)
         """
         marriages = []
         if not isinstance(individual, IndividualElement):
@@ -341,10 +322,8 @@ class Parser():
                     marriages.append((date, place))
         return marriages
 
-    def get_marriage_years(self, individual):
-        """Returns a list of marriage years (as integers) for an individual
-        :type individual: IndividualElement
-        :rtype: list of int
+    def get_marriage_years(self, individual: IndividualElement) -> List[int]:
+        """Returns a list of marriage years for an individual.
         """
         dates = []
 
@@ -358,20 +337,18 @@ class Parser():
         for family in families:
             for child in family.get_child_elements():
                 if child.get_tag() == tags.GEDCOM_TAG_MARRIAGE:
-                    for childOfChild in child.get_child_elements():
-                        if childOfChild.get_tag() == tags.GEDCOM_TAG_DATE:
-                            date = childOfChild.get_value().split()[-1]
+                    for gchild in child.get_child_elements():
+                        if gchild.get_tag() == tags.GEDCOM_TAG_DATE:
+                            date = gchild.get_value().split()[-1]
                             try:
                                 dates.append(int(date))
                             except ValueError:
                                 pass
         return dates
 
-    def marriage_year_match(self, individual, year):
-        """Checks if one of the marriage years of an individual matches the supplied year. Year is an integer.
-        :type individual: IndividualElement
-        :type year: int
-        :rtype: bool
+    def marriage_year_match(self, individual: IndividualElement, year: int) -> bool:
+        """Checks if one of the marriage years of an individual matches the supplied year.
+        Year is an integer.
         """
         if not isinstance(individual, IndividualElement):
             raise NotAnActualIndividualError(
@@ -381,12 +358,10 @@ class Parser():
         years = self.get_marriage_years(individual)
         return year in years
 
-    def marriage_range_match(self, individual, from_year, to_year):
-        """Check if one of the marriage years of an individual is in a given range. Years are integers.
-        :type individual: IndividualElement
-        :type from_year: int
-        :type to_year: int
-        :rtype: bool
+    def marriage_range_match(self, individual: IndividualElement,
+                             from_year: int, to_year: int) -> bool:
+        """Check if one of the marriage years of an individual is in a given range.
+        Years are integers.
         """
         if not isinstance(individual, IndividualElement):
             raise NotAnActualIndividualError(
@@ -399,14 +374,15 @@ class Parser():
                 return True
         return False
 
-    def get_families(self, individual, family_type=tags.GEDCOM_TAG_FAMILY_SPOUSE):
-        """Return family elements listed for an individual
-        family_type can be `tags.GEDCOM_TAG_FAMILY_SPOUSE` (families where the individual is a spouse) or
-        `tags.GEDCOM_TAG_FAMILY_CHILD` (families where the individual is a child). If a value is not
-        provided, `tags.GEDCOM_TAG_FAMILY_SPOUSE` is default value.
-        :type individual: IndividualElement
-        :type family_type: str
-        :rtype: list of FamilyElement
+    def get_families(self, individual: IndividualElement,
+                     family_type: str = tags.GEDCOM_TAG_FAMILY_SPOUSE) -> List[FamilyElement]:
+        """Return family elements listed for an individual.
+
+        Optional argument `family_type` can be used to return specific subsets:
+
+        `tags.GEDCOM_TAG_FAMILY_SPOUSE`: Default, families where the individual is a spouse.
+
+        `tags.GEDCOM_TAG_FAMILY_CHILD`: Families where the individual is a child.
         """
         if not isinstance(individual, IndividualElement):
             raise NotAnActualIndividualError(
@@ -425,13 +401,15 @@ class Parser():
 
         return families
 
-    def get_ancestors(self, individual, ancestor_type="ALL"):
-        """Return elements corresponding to ancestors of an individual
-        Optional `ancestor_type`. Default "ALL" returns all ancestors, "NAT" can be
-        used to specify only natural (genetic) ancestors.
-        :type individual: IndividualElement
-        :type ancestor_type: str
-        :rtype: list of Element
+    def get_ancestors(self, individual: IndividualElement,
+                      ancestor_type: str = "ALL") -> List[Element]:
+        """Return elements corresponding to ancestors of an individual.
+
+        Optional argument `ancestor_type` can be used to return specific subsets:
+
+        "ALL": Default, returns all ancestors.
+
+        "NAT": Return only natural (genetic) ancestors.
         """
         if not isinstance(individual, IndividualElement):
             raise NotAnActualIndividualError(
@@ -447,13 +425,15 @@ class Parser():
 
         return ancestors
 
-    def get_parents(self, individual, parent_type="ALL"):
-        """Return elements corresponding to parents of an individual
-        Optional parent_type. Default "ALL" returns all parents. "NAT" can be
-        used to specify only natural (genetic) parents.
-        :type individual: IndividualElement
-        :type parent_type: str
-        :rtype: list of IndividualElement
+    def get_parents(self, individual: IndividualElement,
+                    parent_type: str = "ALL") -> List[IndividualElement]:
+        """Return elements corresponding to parents of an individual.
+
+        Optional argument `parent_type` can be used to return specific subsets:
+
+        "ALL": Default, returns all parents.
+
+        "NAT": Return only natural (genetic) parents.
         """
         if not isinstance(individual, IndividualElement):
             raise NotAnActualIndividualError(
@@ -473,19 +453,23 @@ class Parser():
                         for child in family_member.get_child_elements():
                             if child.get_value() == "Natural":
                                 if child.get_tag() == tags.GEDCOM_PROGRAM_DEFINED_TAG_MREL:
-                                    parents += self.get_family_members(family, tags.GEDCOM_TAG_WIFE)
+                                    parents += self.get_family_members(family,
+                                                                       tags.GEDCOM_TAG_WIFE)
                                 elif child.get_tag() == tags.GEDCOM_PROGRAM_DEFINED_TAG_FREL:
-                                    parents += self.get_family_members(family, tags.GEDCOM_TAG_HUSBAND)
+                                    parents += self.get_family_members(family,
+                                                                       tags.GEDCOM_TAG_HUSBAND)
             else:
                 parents += self.get_family_members(family, "PARENTS")
 
         return parents
 
-    def find_path_to_ancestor(self, descendant, ancestor, path=None):
-        """Return path from descendant to ancestor
+    def find_path_to_ancestor(self, descendant: IndividualElement,
+                              ancestor: IndividualElement, path: str = None):
+        """Return path from descendant to ancestor.
         :rtype: object
         """
-        if not isinstance(descendant, IndividualElement) and isinstance(ancestor, IndividualElement):
+        if not isinstance(descendant, IndividualElement) and isinstance(ancestor,
+                                                                        IndividualElement):
             raise NotAnActualIndividualError(
                 "Operation only valid for elements with %s tag." % tags.GEDCOM_TAG_INDIVIDUAL
             )
@@ -495,26 +479,30 @@ class Parser():
 
         if path[-1].get_pointer() == ancestor.get_pointer():
             return path
-        else:
-            parents = self.get_parents(descendant, "NAT")
-            for parent in parents:
-                potential_path = self.find_path_to_ancestor(parent, ancestor, path + [parent])
-                if potential_path is not None:
-                    return potential_path
+
+        parents = self.get_parents(descendant, "NAT")
+        for parent in parents:
+            potential_path = self.find_path_to_ancestor(parent, ancestor, path + [parent])
+            if potential_path is not None:
+                return potential_path
 
         return None
 
-    def get_family_members(self, family, members_type=FAMILY_MEMBERS_TYPE_ALL):
-        """Return array of family members: individual, spouse, and children
+    def get_family_members(self, family: FamilyElement,
+                           members_type: str = FAMILY_MEMBERS_TYPE_ALL) -> List[IndividualElement]:
+        """Return array of family members: individual, spouse, and children.
+
         Optional argument `members_type` can be used to return specific subsets:
+
         "FAMILY_MEMBERS_TYPE_ALL": Default, return all members of the family
+
         "FAMILY_MEMBERS_TYPE_PARENTS": Return individuals with "HUSB" and "WIFE" tags (parents)
+
         "FAMILY_MEMBERS_TYPE_HUSBAND": Return individuals with "HUSB" tags (father)
+
         "FAMILY_MEMBERS_TYPE_WIFE": Return individuals with "WIFE" tags (mother)
+
         "FAMILY_MEMBERS_TYPE_CHILDREN": Return individuals with "CHIL" tags (children)
-        :type family: FamilyElement
-        :type members_type: str
-        :rtype: list of IndividualElement
         """
         if not isinstance(family, FamilyElement):
             raise NotAnActualFamilyError(
@@ -547,9 +535,9 @@ class Parser():
 
     # Other methods
 
-    def to_gedcom_string(self, recursive=False):
-        """Formats all elements and optionally all of the sub-elements into a GEDCOM string
-        :type recursive: bool
+    def to_gedcom_string(self, recursive: bool = False) -> str:
+        """Formats all elements and optionally all of the sub-elements into a
+        GEDCOM string.
         """
         is_gte_python_3 = version_info[0] >= 3
         output = '' if is_gte_python_3 else b''
@@ -563,13 +551,10 @@ class Parser():
         return output
 
     def print_gedcom(self):
-        """Write GEDCOM data to stdout"""
-        from sys import stdout
+        """Write GEDCOM data to stdout."""
         self.save_gedcom(stdout)
 
-    def save_gedcom(self, open_file, recursive=True):
-        """Save GEDCOM data to a file
-        :type open_file: file
-        :type recursive: bool
+    def save_gedcom(self, open_file: IO, recursive: bool = True):
+        """Save GEDCOM data to a file.
         """
         open_file.write(self.to_gedcom_string(recursive))
