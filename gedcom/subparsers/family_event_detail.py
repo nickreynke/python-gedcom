@@ -28,6 +28,7 @@ referenced in place as part of another structure there is no identifier tag.
 import gedcom.tags as tags
 from gedcom.subparsers.event_detail import event_detail
 
+
 def family_event_detail(element):
     """Parses and extracts the FAMILY_EVENT_DETAIL
     :rtype: dict

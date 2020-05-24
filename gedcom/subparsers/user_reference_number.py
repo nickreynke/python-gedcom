@@ -27,6 +27,7 @@ Parser for a USER_REFERENCE_NUMBER structure identified by the top level
 
 import gedcom.tags as tags
 
+
 def user_reference_number(element):
     """Parse and extract USER_REFERENCE_NUMBER
     :rtype: dict

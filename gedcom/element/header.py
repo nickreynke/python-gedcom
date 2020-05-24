@@ -45,7 +45,8 @@ HEADER_TAGS = {
     tags.GEDCOM_TAG_LANGUAGE: 'language',
     tags.GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON: 'key_to_home_person'
 }
-    
+
+
 class HeaderElement(Element):
     """Element associated with a `HEADER`"""
 

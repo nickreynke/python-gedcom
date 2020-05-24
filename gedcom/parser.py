@@ -67,6 +67,7 @@ RECORD_ELEMENTS = {
     tags.GEDCOM_TAG_REPOSITORY: RepositoryElement
 }
 
+
 class Parser():
     """Parses and manipulates GEDCOM 5.5 format data
 

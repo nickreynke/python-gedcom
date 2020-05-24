@@ -48,6 +48,7 @@ CONTACT_TAGS = {
     tags.GEDCOM_TAG_WWW: 'www'
 }
 
+
 def address_structure(element):
     """Parses and extracts the ADDRESS_STRUCTURE
     :rtype: dict

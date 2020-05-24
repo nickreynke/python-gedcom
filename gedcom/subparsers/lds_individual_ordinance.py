@@ -43,6 +43,7 @@ ORDINANCE_ATTRIBUTE_TAGS = {
     tags.GEDCOM_TAG_FAMILY_CHILD: 'key_to_family'
 }
 
+
 def lds_individual_ordinance(element):
     """Parses and extracts the LDS_INDIVIDUAL_ORDINANCE
     :rtype: dict

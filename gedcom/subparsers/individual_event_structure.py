@@ -60,6 +60,7 @@ BIRTH_EVENT_TAGS = {
     tags.GEDCOM_TAG_CHRISTENING: 'christening'
 }
 
+
 def individual_event_structure(element):
     """Parses and extracts the INDIVIDUAL_EVENT_STRUCTURE
     :rtype: dict

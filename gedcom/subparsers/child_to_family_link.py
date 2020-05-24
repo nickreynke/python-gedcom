@@ -28,6 +28,7 @@ Substructure parser for the CHILD_TO_FAMILY_LINK record identified by the
 import gedcom.tags as tags
 from gedcom.subparsers.note_structure import note_structure
 
+
 def child_to_family_link(element):
     """Parses and extracts the CHILD_TO_FAMILY_LINK
     :rtype: dict

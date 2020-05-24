@@ -36,6 +36,7 @@ CITATION_TAGS = {
     tags.GEDCOM_PROGRAM_DEFINED_TAG_APID: 'apid'
 }
 
+
 def source_citation(element):
     """Parse and extract a SOURCE_CITATION
     :rtype: dict

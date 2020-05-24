@@ -36,6 +36,7 @@ SEALING_TAGS = {
     tags.GEDCOM_TAG_FAMILY_CHILD: 'key_to_family'
 }
 
+
 def lds_spouse_sealing(element):
     """Parses and extracts the LDS_SPOUSE_SEALING
     :rtype: dict

@@ -30,26 +30,31 @@
 Module containing the exception handling classes.
 """
 
+
 class GedcomFormatViolationError(Exception):
     """Raised when the document format does not appear to conform
     to the standard and strict parsing required.
     """
+
 
 class GedcomStructureViolationError(Exception):
     """Raised when the structure of a record does not conform to
     the standard.
     """
 
+
 class GedcomCharacterSetUnsupportedError(Exception):
     """Raised when a Gedcom appears to contain a character set
     the parser is not yet able to support.
     """
+
 
 class GedcomVersionUnsupportedError(Exception):
     """Raised when a particular Gedcom version is not supported
     by the parser and the standard for the version requires the
     parser to reject it.
     """
+
 
 class GedcomFormatUnsupportedError(Exception):
     """Raised if the GEDCOM format is not recognized by the

@@ -46,6 +46,7 @@ ATTRIBUTE_TAGS = {
     tags.GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE: 'cause_of_death'
 }
 
+
 def individual_attribute_structure(element):
     """Parses and extracts the INDIVIDUAL_ATTRIBUTE_STRUCTURE
     :rtype: dict

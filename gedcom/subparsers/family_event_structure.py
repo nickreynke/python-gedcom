@@ -43,6 +43,7 @@ EVENT_TAGS = {
     tags.GEDCOM_TAG_EVENT: 'event'
 }
 
+
 def family_event_structure(element):
     """Parses and extracts the FAMILY_EVENT_STRUCTURE
     :rtype: dict

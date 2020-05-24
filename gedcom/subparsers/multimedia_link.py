@@ -36,6 +36,7 @@ MEDIA_TAGS = {
     tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY: 'preferred'
 }
 
+
 def multimedia_link(element):
     """Parse and extract a MULTIMEDIA_LINK
     :rtype: dict
@@ -59,7 +60,7 @@ def multimedia_link(element):
             for gchild in child.get_child_elements():
                 if gchild.get_tag() == tags.GEDCOM_TAG_FORMAT:
                     record['format'] = gchild.get_value()
-                    for ggchild in ggchild.get_child_elements():
+                    for ggchild in gchild.get_child_elements():
                         if ggchild.get_tag() == tags.GEDCOM_TAG_MEDIA:
                             record['type'] = ggchild.get_value()
                     continue

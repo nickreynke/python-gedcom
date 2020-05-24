@@ -29,6 +29,7 @@ import gedcom.tags as tags
 from gedcom.subparsers.note_structure import note_structure
 from gedcom.subparsers.source_citation import source_citation
 
+
 def association_structure(element):
     """Parses and extracts the ASSOCIATION_STRUCTURE
     :rtype: dict
