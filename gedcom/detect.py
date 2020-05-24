@@ -31,18 +31,13 @@ Functions to detect GEDCOM encoding and version.
 """
 
 import chardet
+import ansel
 
 import gedcom.standards as standards
-
 from gedcom.errors import GedcomFormatViolationError
 from gedcom.errors import GedcomCharacterSetUnsupportedError
 
-try:
-    import ansel
-    ansel.register()
-    ANSEL_AVAILABLE = True
-except ModuleNotFoundError:
-    ANSEL_AVAILABLE = False
+ansel.register()
 
 
 def validate_encoding(file_path, codec):
@@ -93,12 +88,7 @@ def get_encoding(file_path):
     elif probe['encoding'] == 'ANSEL':
         codec = 'ansel'
     elif 'ISO-8859' in probe['encoding']:
-        if ANSEL_AVAILABLE:
-            codec = 'gedcom'
-        else:
-            errmsg = "This parser can support ANSEL but the Python ansel module is not " + \
-                "available at this time.\nSee: {0}".format(standards.GEDCOM_5_5_1)
-            raise GedcomCharacterSetUnsupportedError(errmsg)
+        codec = 'gedcom'
 
     if codec == 'unknown':
         errmsg = "Unable to properly identify a supported GEDCOM character encoding for" + \
@@ -139,7 +129,7 @@ def get_version(file_path, codec):
 
     real_version = gedcom_version
 
-    # UTF came in the 5.5.1 specification
+    # UTF was added in the 5.5.1 specification
     if gedcom_version == '5.5' and 'utf' in codec:
         real_version = gedcom_version
 

@@ -12,6 +12,7 @@ pdoc3 = "*"
 
 [packages]
 chardet = "*"
+ansel = "*"
 
 [requires]
 python_version = "3.5"
