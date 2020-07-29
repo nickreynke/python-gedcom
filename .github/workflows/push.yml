@@ -1,10 +1,10 @@
-name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+name: Test Python GEDCOM Module 🐍
 
 on: push
 
 jobs:
-  build-n-publish:
-    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+  test:
+    name: Test Python GEDCOM Module 🐍
     runs-on: ubuntu-18.04
     strategy:
       matrix:
