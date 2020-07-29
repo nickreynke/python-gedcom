@@ -1,22 +1,20 @@
-name: Test Python GEDCOM Module 🐍
+name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
 
-on: push
+on:
+  release:
+    types: [created]
 
 jobs:
-  test:
-    name: Test Python GEDCOM Module 🐍
+  build-n-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
     runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        python-version: [ '3.5', '3.6', '3.7', '3.8' ]
 
     steps:
     - uses: actions/checkout@master
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.5
       uses: actions/setup-python@v1
       with:
-        python-version: ${{ matrix.python-version }}
-        architecture: x64
+        python-version: 3.5
 
     - name: Install pipenv
       run: >-
@@ -56,3 +54,17 @@ jobs:
         TWINE_PASSWORD="$TWINE_PASSWORD" \
         TWINE_REPOSITORY_URL="$TWINE_REPOSITORY_URL" \
         pipenv run twine upload dist/*
+
+    - name: Generate docs
+      run: >-
+        pipenv run pdoc3 --html -o docs/ gedcom --force
+
+    - name: Publish docs
+      uses: EndBug/add-and-commit@v4
+      with:
+        author_name: ${{ secrets.AUTHOR_NAME }}
+        author_email: ${{ secrets.AUTHOR_EMAIL }}
+        message: "docs: added new documentation"
+        add: "docs/*"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
