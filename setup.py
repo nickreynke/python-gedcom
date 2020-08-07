@@ -10,7 +10,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='python-gedcom',
-    version='2.0.0-dev2',
+    version='2.0.0-dev3',
     description='A Python module for parsing, analyzing, and manipulating GEDCOM files.',
     long_description=long_description,
     long_description_content_type='text/markdown',
