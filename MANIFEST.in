@@ -24,3 +24,6 @@ exclude .nvmrc
 exclude commitlint.config.js
 exclude package.json
 exclude package-lock.json
+
+# Exclude bump2version config
+exclude .bumpversion.cfg
