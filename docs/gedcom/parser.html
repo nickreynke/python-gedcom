@@ -3,16 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.5" />
+<meta name="generator" content="pdoc 0.8.4" />
 <title>gedcom.parser API documentation</title>
 <meta name="description" content="Module containing the actual `gedcom.parser.Parser` used to generate elements - out of each line -
 which can in return be manipulated." />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
@@ -21,7 +23,7 @@ which can in return be manipulated." />
 <h1 class="title">Module <code>gedcom.parser</code></h1>
 </header>
 <section id="section-intro">
-<p>Module containing the actual <a title="gedcom.parser.Parser" href="#gedcom.parser.Parser"><code>Parser</code></a> used to generate elements - out of each line -
+<p>Module containing the actual <code><a title="gedcom.parser.Parser" href="#gedcom.parser.Parser">Parser</a></code> used to generate elements - out of each line -
 which can in return be manipulated.</p>
 <details class="source">
 <summary>
@@ -588,7 +590,7 @@ class Parser(object):
 <span>(</span><span>...)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Common base class for all non-exit exceptions.</p></section>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -606,14 +608,14 @@ class Parser(object):
 <span>class <span class="ident">Parser</span></span>
 </code></dt>
 <dd>
-<section class="desc"><p>Parses and manipulates GEDCOM 5.5 format data</p>
+<div class="desc"><p>Parses and manipulates GEDCOM 5.5 format data</p>
 <p>For documentation of the GEDCOM 5.5 format, see: <a href="http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm">http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm</a></p>
 <p>This parser reads and parses a GEDCOM file.</p>
 <p>Elements may be accessed via:</p>
 <ul>
-<li>a <code>list</code> through <a title="gedcom.parser.Parser.get_element_list" href="#gedcom.parser.Parser.get_element_list"><code>Parser.get_element_list()</code></a></li>
-<li>a <code>dict</code> through <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.Parser.get_element_dictionary"><code>Parser.get_element_dictionary()</code></a></li>
-</ul></section>
+<li>a <code>list</code> through <code><a title="gedcom.parser.Parser.get_element_list" href="#gedcom.parser.Parser.get_element_list">Parser.get_element_list()</a></code></li>
+<li>a <code>dict</code> through <code><a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.Parser.get_element_dictionary">Parser.get_element_dictionary()</a></code></li>
+</ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1117,8 +1119,8 @@ class Parser(object):
 <span>def <span class="ident">find_path_to_ancestor</span></span>(<span>self, descendant, ancestor, path=None)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return path from descendant to ancestor
-:rtype: object</p></section>
+<div class="desc"><p>Return path from descendant to ancestor
+:rtype: object</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1151,12 +1153,12 @@ class Parser(object):
 <span>def <span class="ident">get_ancestors</span></span>(<span>self, individual, ancestor_type='ALL')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return elements corresponding to ancestors of an individual</p>
+<div class="desc"><p>Return elements corresponding to ancestors of an individual</p>
 <p>Optional <code>ancestor_type</code>. Default "ALL" returns all ancestors, "NAT" can be
 used to specify only natural (genetic) ancestors.</p>
 <p>:type individual: IndividualElement
 :type ancestor_type: str
-:rtype: list of Element</p></section>
+:rtype: list of Element</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1190,13 +1192,13 @@ used to specify only natural (genetic) ancestors.</p>
 <span>def <span class="ident">get_element_dictionary</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a dictionary containing all elements, identified by a pointer, from within the GEDCOM file</p>
+<div class="desc"><p>Returns a dictionary containing all elements, identified by a pointer, from within the GEDCOM file</p>
 <p>Only elements identified by a pointer are listed in the dictionary.
 The keys for the dictionary are the pointers.</p>
 <p>This dictionary gets generated on-the-fly, but gets cached. If the
 database was modified, you should call <code>invalidate_cache()</code> once to let
 this method return updated data.</p>
-<p>:rtype: dict of Element</p></section>
+<p>:rtype: dict of Element</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1225,14 +1227,14 @@ this method return updated data.</p>
 <span>def <span class="ident">get_element_list</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list containing all elements from within the GEDCOM file</p>
+<div class="desc"><p>Returns a list containing all elements from within the GEDCOM file</p>
 <p>By default elements are in the same order as they appeared in the file.</p>
 <p>This list gets generated on-the-fly, but gets cached. If the database
-was modified, you should call <a title="gedcom.parser.Parser.invalidate_cache" href="#gedcom.parser.Parser.invalidate_cache"><code>Parser.invalidate_cache()</code></a> once to let this
+was modified, you should call <code><a title="gedcom.parser.Parser.invalidate_cache" href="#gedcom.parser.Parser.invalidate_cache">Parser.invalidate_cache()</a></code> once to let this
 method return updated data.</p>
-<p>Consider using <a title="gedcom.parser.Parser.get_root_element" href="#gedcom.parser.Parser.get_root_element"><code>Parser.get_root_element()</code></a> or <a title="gedcom.parser.Parser.get_root_child_elements" href="#gedcom.parser.Parser.get_root_child_elements"><code>Parser.get_root_child_elements()</code></a> to access
+<p>Consider using <code><a title="gedcom.parser.Parser.get_root_element" href="#gedcom.parser.Parser.get_root_element">Parser.get_root_element()</a></code> or <code><a title="gedcom.parser.Parser.get_root_child_elements" href="#gedcom.parser.Parser.get_root_child_elements">Parser.get_root_child_elements()</a></code> to access
 the hierarchical GEDCOM tree, unless you rarely modify the database.</p>
-<p>:rtype: list of Element</p></section>
+<p>:rtype: list of Element</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1261,13 +1263,13 @@ the hierarchical GEDCOM tree, unless you rarely modify the database.</p>
 <span>def <span class="ident">get_families</span></span>(<span>self, individual, family_type='FAMS')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return family elements listed for an individual</p>
-<p>family_type can be <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE"><code>GEDCOM_TAG_FAMILY_SPOUSE</code></a> (families where the individual is a spouse) or
-<a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD"><code>GEDCOM_TAG_FAMILY_CHILD</code></a> (families where the individual is a child). If a value is not
-provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE"><code>GEDCOM_TAG_FAMILY_SPOUSE</code></a> is default value.</p>
+<div class="desc"><p>Return family elements listed for an individual</p>
+<p>family_type can be <code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE">GEDCOM_TAG_FAMILY_SPOUSE</a></code> (families where the individual is a spouse) or
+<code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD">GEDCOM_TAG_FAMILY_CHILD</a></code> (families where the individual is a child). If a value is not
+provided, <code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE">GEDCOM_TAG_FAMILY_SPOUSE</a></code> is default value.</p>
 <p>:type individual: IndividualElement
 :type family_type: str
-:rtype: list of FamilyElement</p></section>
+:rtype: list of FamilyElement</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1305,7 +1307,7 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
 <span>def <span class="ident">get_family_members</span></span>(<span>self, family, members_type='ALL')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return array of family members: individual, spouse, and children</p>
+<div class="desc"><p>Return array of family members: individual, spouse, and children</p>
 <p>Optional argument <code>members_type</code> can be used to return specific subsets:</p>
 <p>"FAMILY_MEMBERS_TYPE_ALL": Default, return all members of the family
 "FAMILY_MEMBERS_TYPE_PARENTS": Return individuals with "HUSB" and "WIFE" tags (parents)
@@ -1314,7 +1316,7 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
 "FAMILY_MEMBERS_TYPE_CHILDREN": Return individuals with "CHIL" tags (children)</p>
 <p>:type family: FamilyElement
 :type members_type: str
-:rtype: list of IndividualElement</p></section>
+:rtype: list of IndividualElement</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1368,9 +1370,9 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
 <span>def <span class="ident">get_marriage_years</span></span>(<span>self, individual)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list of marriage years (as integers) for an individual
+<div class="desc"><p>Returns a list of marriage years (as integers) for an individual
 :type individual: IndividualElement
-:rtype: list of int</p></section>
+:rtype: list of int</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1406,9 +1408,9 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
 <span>def <span class="ident">get_marriages</span></span>(<span>self, individual)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list of marriages of an individual formatted as a tuple (<code>str</code> date, <code>str</code> place)
+<div class="desc"><p>Returns a list of marriages of an individual formatted as a tuple (<code>str</code> date, <code>str</code> place)
 :type individual: IndividualElement
-:rtype: tuple</p></section>
+:rtype: tuple</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1443,12 +1445,12 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
 <span>def <span class="ident">get_parents</span></span>(<span>self, individual, parent_type='ALL')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return elements corresponding to parents of an individual</p>
+<div class="desc"><p>Return elements corresponding to parents of an individual</p>
 <p>Optional parent_type. Default "ALL" returns all parents. "NAT" can be
 used to specify only natural (genetic) parents.</p>
 <p>:type individual: IndividualElement
 :type parent_type: str
-:rtype: list of IndividualElement</p></section>
+:rtype: list of IndividualElement</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1494,9 +1496,9 @@ used to specify only natural (genetic) parents.</p>
 <span>def <span class="ident">get_root_child_elements</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list of logical records in the GEDCOM file</p>
+<div class="desc"><p>Returns a list of logical records in the GEDCOM file</p>
 <p>By default, elements are in the same order as they appeared in the file.</p>
-<p>:rtype: list of Element</p></section>
+<p>:rtype: list of Element</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1515,9 +1517,9 @@ used to specify only natural (genetic) parents.</p>
 <span>def <span class="ident">get_root_element</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a virtual root element containing all logical records as children</p>
+<div class="desc"><p>Returns a virtual root element containing all logical records as children</p>
 <p>When printed, this element converts to an empty string.</p>
-<p>:rtype: RootElement</p></section>
+<p>:rtype: RootElement</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1536,9 +1538,9 @@ used to specify only natural (genetic) parents.</p>
 <span>def <span class="ident">invalidate_cache</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Empties the element list and dictionary to cause <a title="gedcom.parser.Parser.get_element_list" href="#gedcom.parser.Parser.get_element_list"><code>Parser.get_element_list()</code></a>
-and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.Parser.get_element_dictionary"><code>Parser.get_element_dictionary()</code></a> to return updated data.</p>
-<p>The update gets deferred until each of the methods actually gets called.</p></section>
+<div class="desc"><p>Empties the element list and dictionary to cause <code><a title="gedcom.parser.Parser.get_element_list" href="#gedcom.parser.Parser.get_element_list">Parser.get_element_list()</a></code>
+and <code><a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.Parser.get_element_dictionary">Parser.get_element_dictionary()</a></code> to return updated data.</p>
+<p>The update gets deferred until each of the methods actually gets called.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1557,11 +1559,11 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 <span>def <span class="ident">marriage_range_match</span></span>(<span>self, individual, from_year, to_year)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Check if one of the marriage years of an individual is in a given range. Years are integers.
+<div class="desc"><p>Check if one of the marriage years of an individual is in a given range. Years are integers.
 :type individual: IndividualElement
 :type from_year: int
 :type to_year: int
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1589,10 +1591,10 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 <span>def <span class="ident">marriage_year_match</span></span>(<span>self, individual, year)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Checks if one of the marriage years of an individual matches the supplied year. Year is an integer.
+<div class="desc"><p>Checks if one of the marriage years of an individual matches the supplied year. Year is an integer.
 :type individual: IndividualElement
 :type year: int
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1616,9 +1618,9 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 <span>def <span class="ident">parse</span></span>(<span>self, gedcom_stream, strict=True)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Parses a stream, or an array of lines, as GEDCOM 5.5 formatted data
+<div class="desc"><p>Parses a stream, or an array of lines, as GEDCOM 5.5 formatted data
 :type gedcom_stream: a file stream, or str array of lines with new line at the end
-:type strict: bool</p></section>
+:type strict: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1643,9 +1645,9 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 <span>def <span class="ident">parse_file</span></span>(<span>self, file_path, strict=True)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Opens and parses a file, from the given file path, as GEDCOM 5.5 formatted data
+<div class="desc"><p>Opens and parses a file, from the given file path, as GEDCOM 5.5 formatted data
 :type file_path: str
-:type strict: bool</p></section>
+:type strict: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1663,7 +1665,7 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 <span>def <span class="ident">print_gedcom</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Write GEDCOM data to stdout</p></section>
+<div class="desc"><p>Write GEDCOM data to stdout</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1678,9 +1680,9 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 <span>def <span class="ident">save_gedcom</span></span>(<span>self, open_file, recursive=True)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Save GEDCOM data to a file
+<div class="desc"><p>Save GEDCOM data to a file
 :type open_file: file
-:type recursive: bool</p></section>
+:type recursive: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1697,8 +1699,8 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 <span>def <span class="ident">to_gedcom_string</span></span>(<span>self, recursive=False)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Formats all elements and optionally all of the sub-elements into a GEDCOM string
-:type recursive: bool</p></section>
+<div class="desc"><p>Formats all elements and optionally all of the sub-elements into a GEDCOM string
+:type recursive: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1770,9 +1772,7 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>
