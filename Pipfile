@@ -9,7 +9,7 @@ wheel = "*"
 twine = "*"
 tox = "*"
 pdoc3 = "*"
-bumpversion = "*"
+bump2version = "*"
 
 [packages]
 
