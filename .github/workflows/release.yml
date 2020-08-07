@@ -38,9 +38,6 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
         TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
       run: >-
-        TWINE_USERNAME="$TWINE_USERNAME" \
-        TWINE_PASSWORD="$TWINE_PASSWORD" \
-        TWINE_REPOSITORY_URL="$TWINE_REPOSITORY_URL" \
         pipenv run twine upload dist/*
 
     - name: Publish distribution 📦 to PyPI
@@ -50,9 +47,6 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
       run: >-
-        TWINE_USERNAME="$TWINE_USERNAME" \
-        TWINE_PASSWORD="$TWINE_PASSWORD" \
-        TWINE_REPOSITORY_URL="$TWINE_REPOSITORY_URL" \
         pipenv run twine upload dist/*
 
     - name: Generate docs
