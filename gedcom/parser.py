@@ -45,7 +45,7 @@ from gedcom.errors import NotAnActualFamilyError
 
 ERROR_TEMPLATE = "Line <{0}:{1}> of document violates GEDCOM format {2}\nSee: {3}"
 
-RECORD_ELEMENTS = {
+ELEMENT_TYPES = {
     tags.GEDCOM_TAG_HEADER: HeaderElement,
     tags.GEDCOM_TAG_INDIVIDUAL: IndividualElement,
     tags.GEDCOM_TAG_FAMILY: FamilyElement,
@@ -258,8 +258,8 @@ class Parser():
             raise GedcomFormatViolationError(errmsg)
 
         # Create element. Store in list and dict, create children and parents.
-        if tag in RECORD_ELEMENTS:
-            element = RECORD_ELEMENTS[tag](level, pointer, tag, value, crlf, multi_line=False)
+        if tag in ELEMENT_TYPES:
+            element = ELEMENT_TYPES[tag](level, pointer, tag, value, crlf, multi_line=False)
         else:
             element = Element(level, pointer, tag, value, crlf, multi_line=False)
 
