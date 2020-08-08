@@ -19,8 +19,8 @@ This is referenced as part of a larger structure so there is no anchor tag.
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.source_citation import source_citation
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.source_citation import parse_source_citation
 
 NAME_TAGS = {
     tags.GEDCOM_TAG_NAME_PREFIX: 'prefix',
@@ -33,7 +33,7 @@ NAME_TAGS = {
 }
 
 
-def personal_name_pieces(element: Element) -> dict:
+def parse_personal_name_pieces(element: Element) -> dict:
     """Parse and extract a `PERSONAL_NAME_PIECES` structure.
 
     The `element` should be the parent that contains it.
@@ -55,11 +55,11 @@ def personal_name_pieces(element: Element) -> dict:
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-            record['notes'].append(note_structure(child))
+            record['notes'].append(parse_note_structure(child))
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
-            record['citations'].append(source_citation(child))
+            record['citations'].append(parse_source_citation(child))
             continue
 
     return record

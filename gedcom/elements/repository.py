@@ -18,10 +18,10 @@ GEDCOM element for a `REPOSITORY_RECORD` repository record identified by the
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.address_structure import address_structure
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.change_date import change_date
-from gedcom.subparsers.user_reference_number import user_reference_number
+from gedcom.subparsers.address_structure import parse_address_structure
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.change_date import parse_change_date
+from gedcom.subparsers.user_reference_number import parse_user_reference_number
 
 
 class RepositoryElement(Element):
@@ -48,15 +48,15 @@ class RepositoryElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_ADDRESS:
-                record['address'] = address_structure(self)
+                record['address'] = parse_address_structure(self)
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-                record['notes'].append(note_structure(child))
+                record['notes'].append(parse_note_structure(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REFERENCE:
-                record['references'].append(user_reference_number(child))
+                record['references'].append(parse_user_reference_number(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REC_ID_NUMBER:
@@ -64,6 +64,6 @@ class RepositoryElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_CHANGE:
-                record['change_date'] = change_date(child)
+                record['change_date'] = parse_change_date(child)
 
         return record

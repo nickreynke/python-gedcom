@@ -18,11 +18,11 @@ GEDCOM element for a `SOURCE_RECORD` source record identified by the
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.change_date import change_date
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.multimedia_link import multimedia_link
-from gedcom.subparsers.user_reference_number import user_reference_number
-from gedcom.subparsers.source_repository_citation import source_repository_citation
+from gedcom.subparsers.change_date import parse_change_date
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.multimedia_link import parse_multimedia_link
+from gedcom.subparsers.user_reference_number import parse_user_reference_number
+from gedcom.subparsers.source_repository_citation import parse_source_repository_citation
 
 SOURCE_PLURAL_TAGS = {
     tags.GEDCOM_TAG_AUTHOR: 'author',
@@ -79,15 +79,15 @@ class SourceElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-                record['notes'].append(note_structure(child))
+                record['notes'].append(parse_note_structure(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_OBJECT:
-                record['media'].append(multimedia_link(child))
+                record['media'].append(parse_multimedia_link(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REPOSITORY:
-                record['repository'] = source_repository_citation(child)
+                record['repository'] = parse_source_repository_citation(child)
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_DATA:
@@ -108,15 +108,15 @@ class SourceElement(Element):
                         continue
 
                     if gchild.get_tag() == tags.GEDCOM_TAG_NOTE:
-                        record['data']['notes'].append(note_structure(gchild))
+                        record['data']['notes'].append(parse_note_structure(gchild))
                         continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REFERENCE:
-                record['references'].append(user_reference_number(child))
+                record['references'].append(parse_user_reference_number(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_CHANGE:
-                record['change_date'] = change_date(child)
+                record['change_date'] = parse_change_date(child)
                 continue
 
         return record

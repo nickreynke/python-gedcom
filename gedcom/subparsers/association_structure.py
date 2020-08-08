@@ -19,11 +19,11 @@ This is anchored by the `gedcom.tags.GEDCOM_TAG_ASSOCIATES` tag.
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.source_citation import source_citation
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.source_citation import parse_source_citation
 
 
-def association_structure(element: Element) -> dict:
+def parse_association_structure(element: Element) -> dict:
     """Parses and extracts the `ASSOCIATION_STRUCTURE` structure.
 
     The `element` should contain the `gedcom.tags.GEDCOM_TAG_ASSOCIATES` tag.
@@ -40,10 +40,10 @@ def association_structure(element: Element) -> dict:
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-            record['notes'].append(note_structure(child))
+            record['notes'].append(parse_note_structure(child))
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
-            record['citations'].append(source_citation(child))
+            record['citations'].append(parse_source_citation(child))
 
     return record

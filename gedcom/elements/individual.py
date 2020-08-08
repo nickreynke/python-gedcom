@@ -21,18 +21,18 @@ import re as regex
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.personal_name_structure import personal_name_structure
-from gedcom.subparsers.individual_event_structure import individual_event_structure
-from gedcom.subparsers.individual_attribute_structure import individual_attribute_structure
-from gedcom.subparsers.lds_individual_ordinance import lds_individual_ordinance
-from gedcom.subparsers.child_to_family_link import child_to_family_link
-from gedcom.subparsers.spouse_to_family_link import spouse_to_family_link
-from gedcom.subparsers.association_structure import association_structure
-from gedcom.subparsers.user_reference_number import user_reference_number
-from gedcom.subparsers.change_date import change_date
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.source_citation import source_citation
-from gedcom.subparsers.multimedia_link import multimedia_link
+from gedcom.subparsers.personal_name_structure import parse_personal_name_structure
+from gedcom.subparsers.individual_event_structure import parse_individual_event_structure
+from gedcom.subparsers.individual_attribute_structure import parse_individual_attribute_structure
+from gedcom.subparsers.lds_individual_ordinance import parse_lds_individual_ordinance
+from gedcom.subparsers.child_to_family_link import parse_child_to_family_link
+from gedcom.subparsers.spouse_to_family_link import parse_spouse_to_family_link
+from gedcom.subparsers.association_structure import parse_association_structure
+from gedcom.subparsers.user_reference_number import parse_user_reference_number
+from gedcom.subparsers.change_date import parse_change_date
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.source_citation import parse_source_citation
+from gedcom.subparsers.multimedia_link import parse_multimedia_link
 from gedcom.helpers import deprecated
 
 INDIVIDUAL_SINGLE_TAGS = {
@@ -58,8 +58,8 @@ class IndividualElement(Element):
             'restriction': '',
             'names': [],
             'sex': 'U',
-            'events': individual_event_structure(self),
-            'attributes': individual_attribute_structure(self),
+            'events': parse_individual_event_structure(self),
+            'attributes': parse_individual_attribute_structure(self),
             'child_to_family': [],
             'spouse_to_family': [],
             'submitters': [],
@@ -76,7 +76,7 @@ class IndividualElement(Element):
             'citations': [],
             'media': []
         }
-        lds_events = lds_individual_ordinance(self)
+        lds_events = parse_lds_individual_ordinance(self)
         if len(lds_events) > 0:
             for event in lds_events:
                 record['events'].append(event)
@@ -87,27 +87,27 @@ class IndividualElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_NAME:
-                record['names'].append(personal_name_structure(child))
+                record['names'].append(parse_personal_name_structure(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_FAMILY_CHILD:
-                record['child_to_family'].append(child_to_family_link(child))
+                record['child_to_family'].append(parse_child_to_family_link(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_FAMILY_SPOUSE:
-                record['spouse_to_family'].append(spouse_to_family_link(child))
+                record['spouse_to_family'].append(parse_spouse_to_family_link(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-                record['notes'].append(note_structure(child))
+                record['notes'].append(parse_note_structure(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
-                record['citations'].append(source_citation(child))
+                record['citations'].append(parse_source_citation(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_MEDIA:
-                record['media'].append(multimedia_link(child))
+                record['media'].append(parse_multimedia_link(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_SUBMITTER:
@@ -115,7 +115,7 @@ class IndividualElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_ASSOCIATES:
-                record['associates'].append(association_structure(child))
+                record['associates'].append(parse_association_structure(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_ALIAS:
@@ -131,11 +131,11 @@ class IndividualElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REFERENCE:
-                record['references'].append(user_reference_number(child))
+                record['references'].append(parse_user_reference_number(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_CHANGE:
-                record['changed'] = change_date(child)
+                record['changed'] = parse_change_date(child)
 
         return record
 

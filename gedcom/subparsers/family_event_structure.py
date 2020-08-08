@@ -21,7 +21,7 @@ from typing import List
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.family_event_detail import family_event_detail
+from gedcom.subparsers.family_event_detail import parse_family_event_detail
 
 EVENT_TAGS = {
     tags.GEDCOM_TAG_ANNULMENT: 'annulment',
@@ -39,7 +39,7 @@ EVENT_TAGS = {
 }
 
 
-def family_event_structure(element: Element) -> List[dict]:
+def parse_family_event_structure(element: Element) -> List[dict]:
     """Parses and extracts a `FAMILY_EVENT_STRUCTURE` structure.
 
     The `element` should be the parent that contains it.
@@ -47,7 +47,7 @@ def family_event_structure(element: Element) -> List[dict]:
     records = []
     for child in element.get_child_elements():
         if child.get_tag() in EVENT_TAGS:
-            record = family_event_detail(child)
+            record = parse_family_event_detail(child)
             record['description'] = child.get_multi_line_value()
             record['tag'] = child.get_tag()
             record['event'] = EVENT_TAGS[child.get_tag()]

@@ -50,7 +50,7 @@ CONTACT_TAGS = {
 }
 
 
-def address_structure(element: Element) -> dict:
+def parse_address_structure(element: Element) -> dict:
     """Parses and extracts a `ADDRESS_STRUCTURE` structure.
 
     The `element` should be the parent that contains it.

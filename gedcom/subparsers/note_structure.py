@@ -20,7 +20,7 @@ This is anchored by the `gedcom.tags.GEDCOM_TAG_NOTE` tag.
 from gedcom.elements.element import Element
 
 
-def note_structure(element: Element) -> dict:
+def parse_note_structure(element: Element) -> dict:
     """Parse and extract a `NOTE_STRUCTURE` structure.
 
     The `element` should contain the `gedcom.tags.GEDCOM_TAG_NOTE` tag.

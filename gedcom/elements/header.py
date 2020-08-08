@@ -18,8 +18,8 @@ GEDCOM element for a `HEADER` header record identified by the
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.address_structure import address_structure
-from gedcom.subparsers.note_structure import note_structure
+from gedcom.subparsers.address_structure import parse_address_structure
+from gedcom.subparsers.note_structure import parse_note_structure
 
 HEADER_TAGS = {
     tags.GEDCOM_TAG_DESTINATION: 'destination',
@@ -89,7 +89,7 @@ class HeaderElement(Element):
 
                         for ggchild in gchild.get_child_elements():
                             if ggchild.get_tag() == tags.GEDCOM_TAG_ADDRESS:
-                                record['product']['address'] = address_structure(gchild)
+                                record['product']['address'] = parse_address_structure(gchild)
                         continue
 
                     if gchild.get_tag() == tags.GEDCOM_TAG_DATA:
@@ -139,6 +139,6 @@ class HeaderElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-                record['notes'].append(note_structure(child))
+                record['notes'].append(parse_note_structure(child))
 
         return record

@@ -30,7 +30,7 @@ MEDIA_TAGS = {
 }
 
 
-def multimedia_link(element: Element) -> dict:
+def parse_multimedia_link(element: Element) -> dict:
     """Parse and extract a `MULTIMEDIA_LINK` structure.
 
     The `element` should contain the `gedcom.tags.GEDCOM_TAG_OBJECT` tag.

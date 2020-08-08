@@ -19,11 +19,11 @@ This is referenced as part of a larger structure so there is no anchor tag.
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.place_structure import place_structure
-from gedcom.subparsers.address_structure import address_structure
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.source_citation import source_citation
-from gedcom.subparsers.multimedia_link import multimedia_link
+from gedcom.subparsers.place_structure import parse_place_structure
+from gedcom.subparsers.address_structure import parse_address_structure
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.source_citation import parse_source_citation
+from gedcom.subparsers.multimedia_link import parse_multimedia_link
 
 EVENT_TAGS = {
     tags.GEDCOM_TAG_TYPE: 'type',
@@ -35,7 +35,7 @@ EVENT_TAGS = {
 }
 
 
-def event_detail(element: Element) -> dict:
+def parse_event_detail(element: Element) -> dict:
     """Parses and extracts a `EVENT_DETAIL` structure.
 
     The `element` should be the parent that contains it.
@@ -59,22 +59,22 @@ def event_detail(element: Element) -> dict:
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_PLACE:
-            record['place'] = place_structure(child)
+            record['place'] = parse_place_structure(child)
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_ADDRESS:
-            record['address'] = address_structure(element)
+            record['address'] = parse_address_structure(element)
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-            record['notes'].append(note_structure(child))
+            record['notes'].append(parse_note_structure(child))
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
-            record['citations'].append(source_citation(child))
+            record['citations'].append(parse_source_citation(child))
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_OBJECT:
-            record['media'].append(multimedia_link(child))
+            record['media'].append(parse_multimedia_link(child))
 
     return record

@@ -18,13 +18,13 @@ GEDCOM element for a `FAM_RECORD` family record identified by the
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.family_event_structure import family_event_structure
-from gedcom.subparsers.change_date import change_date
-from gedcom.subparsers.lds_spouse_sealing import lds_spouse_sealing
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.source_citation import source_citation
-from gedcom.subparsers.multimedia_link import multimedia_link
-from gedcom.subparsers.user_reference_number import user_reference_number
+from gedcom.subparsers.family_event_structure import parse_family_event_structure
+from gedcom.subparsers.change_date import parse_change_date
+from gedcom.subparsers.lds_spouse_sealing import parse_lds_spouse_sealing
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.source_citation import parse_source_citation
+from gedcom.subparsers.multimedia_link import parse_multimedia_link
+from gedcom.subparsers.user_reference_number import parse_user_reference_number
 
 FAMILY_SINGLE_TAGS = {
     tags.GEDCOM_TAG_WIFE: 'key_to_wife',
@@ -47,7 +47,7 @@ class FamilyElement(Element):
         record = {
             'key_to_family': self.get_pointer(),
             'restriction': '',
-            'events': family_event_structure(self),
+            'events': parse_family_event_structure(self),
             'key_to_husband': '',
             'key_to_wife': '',
             'children': [],
@@ -60,7 +60,7 @@ class FamilyElement(Element):
             'citations': [],
             'media': []
         }
-        lds_events = lds_spouse_sealing(self)
+        lds_events = parse_lds_spouse_sealing(self)
         if len(lds_events) > 0:
             for event in lds_events:
                 record['events'].append(event)
@@ -88,23 +88,23 @@ class FamilyElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-                record['notes'].append(note_structure(child))
+                record['notes'].append(parse_note_structure(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
-                record['citations'].append(source_citation(child))
+                record['citations'].append(parse_source_citation(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_OBJECT:
-                record['media'].append(multimedia_link(child))
+                record['media'].append(parse_multimedia_link(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REFERENCE:
-                record['references'].append(user_reference_number(child))
+                record['references'].append(parse_user_reference_number(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_CHANGE:
-                record['change_date'] = change_date(child)
+                record['change_date'] = parse_change_date(child)
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_SUBMITTER:

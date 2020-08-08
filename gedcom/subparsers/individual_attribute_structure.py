@@ -21,7 +21,7 @@ from typing import List
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.individual_event_detail import individual_event_detail
+from gedcom.subparsers.individual_event_detail import parse_individual_event_detail
 
 ATTRIBUTE_TAGS = {
     tags.GEDCOM_TAG_CASTE: 'caste',
@@ -42,7 +42,7 @@ ATTRIBUTE_TAGS = {
 }
 
 
-def individual_attribute_structure(element: Element) -> List[dict]:
+def parse_individual_attribute_structure(element: Element) -> List[dict]:
     """Parses and extracts the `INDIVIDUAL_ATTRIBUTE_STRUCTURE` structures.
 
     The `element` should be the parent that contains them.
@@ -50,7 +50,7 @@ def individual_attribute_structure(element: Element) -> List[dict]:
     records = []
     for child in element.get_child_elements():
         if child.get_tag() in ATTRIBUTE_TAGS:
-            record = individual_event_detail(child)
+            record = parse_individual_event_detail(child)
             record['description'] = child.get_multi_line_value()
             record['tag'] = child.get_tag()
             record['attribute'] = ATTRIBUTE_TAGS[child.get_tag()]

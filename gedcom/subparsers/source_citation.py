@@ -19,8 +19,8 @@ This is anchored by the `gedcom.tags.GEDCOM_TAG_SOURCE` tag.
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.multimedia_link import multimedia_link
-from gedcom.subparsers.note_structure import note_structure
+from gedcom.subparsers.multimedia_link import parse_multimedia_link
+from gedcom.subparsers.note_structure import parse_note_structure
 
 CITATION_TAGS = {
     tags.GEDCOM_TAG_PAGE: 'page',
@@ -30,7 +30,7 @@ CITATION_TAGS = {
 }
 
 
-def source_citation(element: Element) -> dict:
+def parse_source_citation(element: Element) -> dict:
     """Parse and extract a `SOURCE_CITATION` structure.
 
     The `element` should contain the `gedcom.tags.GEDCOM_TAG_SOURCE` tag.
@@ -75,11 +75,11 @@ def source_citation(element: Element) -> dict:
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_OBJECT:
-            record['media'].append(multimedia_link(child))
+            record['media'].append(parse_multimedia_link(child))
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-            record['notes'].append(note_structure(child))
+            record['notes'].append(parse_note_structure(child))
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_TEXT:

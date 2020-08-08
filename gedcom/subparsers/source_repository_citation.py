@@ -19,10 +19,10 @@ This is anchored by the `gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.note_structure import note_structure
+from gedcom.subparsers.note_structure import parse_note_structure
 
 
-def source_repository_citation(element: Element) -> dict:
+def parse_source_repository_citation(element: Element) -> dict:
     """Parse and extract a `SOURCE_REPOSITORY_CITATION` structure.
 
     The `element` should contain the `gedcom.tags.GEDCOM_TAG_REPOSITORY` tag.
@@ -39,7 +39,7 @@ def source_repository_citation(element: Element) -> dict:
 
     for child in element.get_child_elements():
         if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-            record['notes'].append(note_structure(child))
+            record['notes'].append(parse_note_structure(child))
             continue
 
         if child.get_tag() == tags.GEDCOM_TAG_CALL_NUMBER:

@@ -19,15 +19,15 @@ This is referenced as part of a larger structure so there is no anchor tag.
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.event_detail import event_detail
+from gedcom.subparsers.event_detail import parse_event_detail
 
 
-def family_event_detail(element: Element) -> dict:
+def parse_family_event_detail(element: Element) -> dict:
     """Parses and extracts a `FAMILY_EVENT_DETAIL` structure.
 
-    The `element` shouldbe the parent that contains it.
+    The `element` should be the parent that contains it.
     """
-    record = event_detail(element)
+    record = parse_event_detail(element)
     record['husband_age'] = ''
     record['wife_age'] = ''
     for child in element.get_child_elements():

@@ -18,8 +18,8 @@ GEDCOM element for a `SUBMISSION_RECORD` submission record identified by the
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.change_date import change_date
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.change_date import parse_change_date
 
 SUBMISSION_TAGS = {
     tags.GEDCOM_TAG_SUBMITTER: 'key_to_submitter',
@@ -59,10 +59,10 @@ class SubmissionElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_NOTE:
-                record['notes'].append(note_structure(child))
+                record['notes'].append(parse_note_structure(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_CHANGE:
-                record['change_date'] = change_date(child)
+                record['change_date'] = parse_change_date(child)
 
         return record

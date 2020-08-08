@@ -24,7 +24,7 @@ import gedcom.tags as tags
 from gedcom.elements.element import Element
 
 
-def user_reference_number(element: Element) -> dict:
+def parse_user_reference_number(element: Element) -> dict:
     """Parse and extract a `USER_REFERENCE_NUMBER` structure.
 
     The `element` should contain the `gedcom.tags.GEDCOM_TAG_REFERENCE` tag.

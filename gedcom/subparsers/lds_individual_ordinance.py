@@ -21,8 +21,8 @@ from typing import List
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.note_structure import note_structure
-from gedcom.subparsers.source_citation import source_citation
+from gedcom.subparsers.note_structure import parse_note_structure
+from gedcom.subparsers.source_citation import parse_source_citation
 
 ORDINANCE_TAGS = {
     tags.GEDCOM_TAG_BAPTISM_LDS: 'lds_baptism',
@@ -39,7 +39,7 @@ ORDINANCE_ATTRIBUTE_TAGS = {
 }
 
 
-def lds_individual_ordinance(element: Element) -> List[dict]:
+def parse_lds_individual_ordinance(element: Element) -> List[dict]:
     """Parses and extracts a `LDS_INDIVIDUAL_ORDINANCE` structure.
 
     The `element` should be the parent that contains it.
@@ -73,11 +73,11 @@ def lds_individual_ordinance(element: Element) -> List[dict]:
                     continue
 
                 if gchild.get_tag() == tags.GEDCOM_TAG_NOTE:
-                    record['notes'].append(note_structure(child))
+                    record['notes'].append(parse_note_structure(child))
                     continue
 
                 if gchild.get_tag() == tags.GEDCOM_TAG_SOURCE:
-                    record['citations'].append(source_citation(child))
+                    record['citations'].append(parse_source_citation(child))
                     continue
 
             records.append(record)

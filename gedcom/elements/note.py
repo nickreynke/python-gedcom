@@ -18,9 +18,9 @@ GEDCOM element for a `NOTE_RECORD` note record identified by the
 
 import gedcom.tags as tags
 from gedcom.elements.element import Element
-from gedcom.subparsers.source_citation import source_citation
-from gedcom.subparsers.change_date import change_date
-from gedcom.subparsers.user_reference_number import user_reference_number
+from gedcom.subparsers.source_citation import parse_source_citation
+from gedcom.subparsers.change_date import parse_change_date
+from gedcom.subparsers.user_reference_number import parse_user_reference_number
 
 
 class NoteElement(Element):
@@ -42,7 +42,7 @@ class NoteElement(Element):
         }
         for child in self.get_child_elements():
             if child.get_tag() == tags.GEDCOM_TAG_REFERENCE:
-                record['references'].append(user_reference_number(child))
+                record['references'].append(parse_user_reference_number(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_REC_ID_NUMBER:
@@ -50,10 +50,10 @@ class NoteElement(Element):
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_SOURCE:
-                record['citations'].append(source_citation(child))
+                record['citations'].append(parse_source_citation(child))
                 continue
 
             if child.get_tag() == tags.GEDCOM_TAG_CHANGE:
-                record['change_date'] = change_date(child)
+                record['change_date'] = parse_change_date(child)
 
         return record
