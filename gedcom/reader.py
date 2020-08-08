@@ -29,7 +29,7 @@ from gedcom.elements.submission import SubmissionElement
 from gedcom.elements.submitter import SubmitterElement
 from gedcom.elements.repository import RepositoryElement
 
-ELEMENT_TYPES = {
+RECORD_TYPES = {
     'header': HeaderElement,
     'individual': IndividualElement,
     'family': FamilyElement,
@@ -68,7 +68,7 @@ class Reader(Parser):
         record_dict = {}
 
         for element in self.get_root_child_elements():
-            if isinstance(element, ELEMENT_TYPES[record_type]):
+            if isinstance(element, RECORD_TYPES[record_type]):
                 record = element.get_record()
                 if return_output_as_list:
                     record_list.append(record)
@@ -95,8 +95,8 @@ class Reader(Parser):
                 record_dict.update({key: {}})
 
         for element in self.get_root_child_elements():
-            for key in ELEMENT_TYPES:
-                if isinstance(element, ELEMENT_TYPES[key]):
+            for key in RECORD_TYPES:
+                if isinstance(element, RECORD_TYPES[key]):
                     record = element.get_record()
                     if return_entries_as_list:
                         record_dict[key].append(record)
