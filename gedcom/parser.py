@@ -46,7 +46,7 @@ FAMILY_MEMBERS_TYPE_PARENTS = "PARENTS"
 FAMILY_MEMBERS_TYPE_WIFE = tags.GEDCOM_TAG_WIFE
 
 
-class Parser():
+class Parser:
     """Parses and manipulates GEDCOM formatted data.
 
     For documentation of the different GEDCOM standards see the
