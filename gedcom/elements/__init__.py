@@ -17,6 +17,7 @@ An element represents a line within GEDCOM data.
 """
 
 __all__ = [
+    # Modules
     "element",
     "family",
     "header",
@@ -27,5 +28,30 @@ __all__ = [
     "root",
     "source",
     "submission",
-    "submitter"
+    "submitter",
+    # Constants
+    "ELEMENT_TYPES"
 ]
+
+from gedcom import tags
+from gedcom.elements.family import FamilyElement
+from gedcom.elements.header import HeaderElement
+from gedcom.elements.individual import IndividualElement
+from gedcom.elements.note import NoteElement
+from gedcom.elements.object import ObjectElement
+from gedcom.elements.repository import RepositoryElement
+from gedcom.elements.source import SourceElement
+from gedcom.elements.submission import SubmissionElement
+from gedcom.elements.submitter import SubmitterElement
+
+ELEMENT_TYPES = {
+    tags.GEDCOM_TAG_HEADER: HeaderElement,
+    tags.GEDCOM_TAG_INDIVIDUAL: IndividualElement,
+    tags.GEDCOM_TAG_FAMILY: FamilyElement,
+    tags.GEDCOM_TAG_NOTE: NoteElement,
+    tags.GEDCOM_TAG_OBJECT: ObjectElement,
+    tags.GEDCOM_TAG_SOURCE: SourceElement,
+    tags.GEDCOM_TAG_SUBMISSION: SubmissionElement,
+    tags.GEDCOM_TAG_SUBMITTER: SubmitterElement,
+    tags.GEDCOM_TAG_REPOSITORY: RepositoryElement
+}

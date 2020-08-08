@@ -25,16 +25,10 @@ import gedcom.tags as tags
 import gedcom.standards as standards
 
 from gedcom.detect import get_encoding, get_version
+from gedcom.elements import ELEMENT_TYPES
 from gedcom.elements.element import Element
-from gedcom.elements.header import HeaderElement
 from gedcom.elements.family import FamilyElement
 from gedcom.elements.individual import IndividualElement
-from gedcom.elements.note import NoteElement
-from gedcom.elements.object import ObjectElement
-from gedcom.elements.source import SourceElement
-from gedcom.elements.submission import SubmissionElement
-from gedcom.elements.submitter import SubmitterElement
-from gedcom.elements.repository import RepositoryElement
 from gedcom.elements.root import RootElement
 
 from gedcom.errors import GedcomVersionUnsupportedError
@@ -44,18 +38,6 @@ from gedcom.errors import NotAnActualIndividualError
 from gedcom.errors import NotAnActualFamilyError
 
 ERROR_TEMPLATE = "Line <{0}:{1}> of document violates GEDCOM format {2}\nSee: {3}"
-
-ELEMENT_TYPES = {
-    tags.GEDCOM_TAG_HEADER: HeaderElement,
-    tags.GEDCOM_TAG_INDIVIDUAL: IndividualElement,
-    tags.GEDCOM_TAG_FAMILY: FamilyElement,
-    tags.GEDCOM_TAG_NOTE: NoteElement,
-    tags.GEDCOM_TAG_OBJECT: ObjectElement,
-    tags.GEDCOM_TAG_SOURCE: SourceElement,
-    tags.GEDCOM_TAG_SUBMISSION: SubmissionElement,
-    tags.GEDCOM_TAG_SUBMITTER: SubmitterElement,
-    tags.GEDCOM_TAG_REPOSITORY: RepositoryElement
-}
 
 FAMILY_MEMBERS_TYPE_ALL = "ALL"
 FAMILY_MEMBERS_TYPE_CHILDREN = tags.GEDCOM_TAG_CHILD
