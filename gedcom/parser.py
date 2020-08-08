@@ -25,17 +25,17 @@ import gedcom.tags as tags
 import gedcom.standards as standards
 
 from gedcom.detect import get_encoding, get_version
-from gedcom.element.element import Element
-from gedcom.element.header import HeaderElement
-from gedcom.element.family import FamilyElement
-from gedcom.element.individual import IndividualElement
-from gedcom.element.note import NoteElement
-from gedcom.element.object import ObjectElement
-from gedcom.element.source import SourceElement
-from gedcom.element.submission import SubmissionElement
-from gedcom.element.submitter import SubmitterElement
-from gedcom.element.repository import RepositoryElement
-from gedcom.element.root import RootElement
+from gedcom.elements.element import Element
+from gedcom.elements.header import HeaderElement
+from gedcom.elements.family import FamilyElement
+from gedcom.elements.individual import IndividualElement
+from gedcom.elements.note import NoteElement
+from gedcom.elements.object import ObjectElement
+from gedcom.elements.source import SourceElement
+from gedcom.elements.submission import SubmissionElement
+from gedcom.elements.submitter import SubmitterElement
+from gedcom.elements.repository import RepositoryElement
+from gedcom.elements.root import RootElement
 
 from gedcom.errors import GedcomVersionUnsupportedError
 from gedcom.errors import GedcomFormatUnsupportedError

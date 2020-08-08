@@ -9,8 +9,8 @@
 #  For more, have a look at the GitHub repository at:
 #  https://github.com/nickreynke/python-gedcom
 
-from gedcom.element.individual import IndividualElement
-from gedcom.element.root import RootElement
+from gedcom.elements.individual import IndividualElement
+from gedcom.elements.root import RootElement
 from gedcom.parser import Parser
 
 

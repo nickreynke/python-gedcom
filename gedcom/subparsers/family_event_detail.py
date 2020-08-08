@@ -18,7 +18,7 @@ This is referenced as part of a larger structure so there is no anchor tag.
 """
 
 import gedcom.tags as tags
-from gedcom.element.element import Element
+from gedcom.elements.element import Element
 from gedcom.subparsers.event_detail import event_detail
 
 

@@ -29,7 +29,7 @@ the other parts of this structure.
 """
 
 import gedcom.tags as tags
-from gedcom.element.element import Element
+from gedcom.elements.element import Element
 
 ADDRESS_TAGS = {
     tags.GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE: 'addresse',

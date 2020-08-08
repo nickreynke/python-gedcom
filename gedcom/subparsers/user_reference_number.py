@@ -21,7 +21,7 @@ a substructure that repeats itself in a number of record types.
 """
 
 import gedcom.tags as tags
-from gedcom.element.element import Element
+from gedcom.elements.element import Element
 
 
 def user_reference_number(element: Element) -> dict:

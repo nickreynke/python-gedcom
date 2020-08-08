@@ -18,7 +18,7 @@ This is anchored by the `gedcom.tags.GEDCOM_TAG_OBJECT` tag.
 """
 
 import gedcom.tags as tags
-from gedcom.element.element import Element
+from gedcom.elements.element import Element
 
 MEDIA_TAGS = {
     tags.GEDCOM_TAG_FILE: 'file',

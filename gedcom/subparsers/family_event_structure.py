@@ -20,7 +20,7 @@ This is referenced as part of a larger structure so there is no anchor tag.
 from typing import List
 
 import gedcom.tags as tags
-from gedcom.element.element import Element
+from gedcom.elements.element import Element
 from gedcom.subparsers.family_event_detail import family_event_detail
 
 EVENT_TAGS = {

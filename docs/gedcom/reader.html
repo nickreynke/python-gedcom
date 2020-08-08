@@ -48,15 +48,15 @@ base `gedcom.parser.Parser` for extracting records as structured data.
 from typing import Union
 
 from gedcom.parser import Parser
-from gedcom.element.header import HeaderElement
-from gedcom.element.individual import IndividualElement
-from gedcom.element.family import FamilyElement
-from gedcom.element.note import NoteElement
-from gedcom.element.object import ObjectElement
-from gedcom.element.source import SourceElement
-from gedcom.element.submission import SubmissionElement
-from gedcom.element.submitter import SubmitterElement
-from gedcom.element.repository import RepositoryElement
+from gedcom.elements.header import HeaderElement
+from gedcom.elements.individual import IndividualElement
+from gedcom.elements.family import FamilyElement
+from gedcom.elements.note import NoteElement
+from gedcom.elements.object import ObjectElement
+from gedcom.elements.source import SourceElement
+from gedcom.elements.submission import SubmissionElement
+from gedcom.elements.submitter import SubmitterElement
+from gedcom.elements.repository import RepositoryElement
 
 ELEMENT_TYPES = {
     &#39;header&#39;: HeaderElement,

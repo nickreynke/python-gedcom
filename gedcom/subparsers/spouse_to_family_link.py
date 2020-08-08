@@ -18,7 +18,7 @@ This is anchored by the `gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE` tag.
 """
 
 import gedcom.tags as tags
-from gedcom.element.element import Element
+from gedcom.elements.element import Element
 from gedcom.subparsers.note_structure import note_structure
 
 

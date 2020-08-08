@@ -17,7 +17,7 @@ Substructure parser for a `NOTE_STRUCTURE` record.
 This is anchored by the `gedcom.tags.GEDCOM_TAG_NOTE` tag.
 """
 
-from gedcom.element.element import Element
+from gedcom.elements.element import Element
 
 
 def note_structure(element: Element) -> dict:
