@@ -50,36 +50,36 @@ class GedcomFormatUnsupportedError(Exception):
 
 
 class NotAnActualIndividualError(Exception):
-    """Raised if record does not appear to be an `INDIVIDUAL_RECORD`"""
+    """Raised if element does not appear to be an `INDIVIDUAL_RECORD`"""
 
 
 class NotAnActualFamilyError(Exception):
-    """Raised if record does not appear to be a `FAM_RECORD`"""
+    """Raised if element does not appear to be a `FAM_RECORD`"""
 
 
 class NotAnActualSourceError(Exception):
-    """Raised if record does not appear to be a `SOURCE_RECORD`"""
+    """Raised if element does not appear to be a `SOURCE_RECORD`"""
 
 
 class NotAnActualRepositoryError(Exception):
-    """Raised if record does not appear to be a `REPOSITORY_RECORD`"""
+    """Raised if element does not appear to be a `REPOSITORY_RECORD`"""
 
 
 class NotAnActualNoteError(Exception):
-    """Raised if record does not appear to be a `NOTE_RECORD`"""
+    """Raised if element does not appear to be a `NOTE_RECORD`"""
 
 
 class NotAnActualObjectError(Exception):
-    """Raised if record does not appear to be a `MULTIMEDIA_RECORD`"""
+    """Raised if element does not appear to be a `MULTIMEDIA_RECORD`"""
 
 
 class NotAnActualHeaderError(Exception):
-    """Raised if record does not appear to be a `HEADER`"""
+    """Raised if element does not appear to be a `HEADER`"""
 
 
 class NotAnActualSubmitterError(Exception):
-    """Raised if record does not appear to be a `SUBMITTER_RECORD`"""
+    """Raised if element does not appear to be a `SUBMITTER_RECORD`"""
 
 
 class NotAnActualSubmissionError(Exception):
-    """Raised if record does not appear to be a `SUBMISSION_RECORD`"""
+    """Raised if element does not appear to be a `SUBMISSION_RECORD`"""
