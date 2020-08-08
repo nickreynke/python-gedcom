@@ -15,26 +15,42 @@
 GEDCOM `gedcom.reader.Reader`."""
 
 
-GEDCOM_RECORD_FAMILY = 'family'
-"""Identifies the `FAM_RECORD` record type."""
+GEDCOM_RECORD_FAMILY = "family"
+"""Value: `family`
 
-GEDCOM_RECORD_HEADER = 'header'
-"""Identifies the `HEADER` record type."""
+Identifies the `FAM_RECORD` record type."""
 
-GEDCOM_RECORD_INDIVIDUAL = 'individual'
-"""Identifies the `INDIVIDUAL_RECORD` record type."""
+GEDCOM_RECORD_HEADER = "header"
+"""Value: `header`
 
-GEDCOM_RECORD_NOTE = 'note'
-"""Identifies the `NOTE_RECORD` record type."""
+Identifies the `HEADER` record type."""
 
-GEDCOM_RECORD_SOURCE = 'source'
-"""Identifies the `SOURCE_RECORD` record type."""
+GEDCOM_RECORD_INDIVIDUAL = "individual"
+"""Value: `individual`
 
-GEDCOM_RECORD_REPOSITORY = 'repository'
-"""Identifies the `REPOSITORY_RECORD` record type."""
+Identifies the `INDIVIDUAL_RECORD` record type."""
 
-GEDCOM_RECORD_SUBMISSION = 'submission'
-"""Identifies the `SUBMISSION_RECORD` record type."""
+GEDCOM_RECORD_NOTE = "note"
+"""Value: `note`
 
-GEDCOM_RECORD_SUBMITTER = 'submitter'
-"""Identifies the `SUBMITTER_RECORD` record type."""
+Identifies the `NOTE_RECORD` record type."""
+
+GEDCOM_RECORD_SOURCE = "source"
+"""Value: `source`
+
+Identifies the `SOURCE_RECORD` record type."""
+
+GEDCOM_RECORD_REPOSITORY = "repository"
+"""Value: `repository`
+
+Identifies the `REPOSITORY_RECORD` record type."""
+
+GEDCOM_RECORD_SUBMISSION = "submission"
+"""Value: `submission`
+
+Identifies the `SUBMISSION_RECORD` record type."""
+
+GEDCOM_RECORD_SUBMITTER = "submitter"
+"""Value: `submitter`
+
+Identifies the `SUBMITTER_RECORD` record type."""
