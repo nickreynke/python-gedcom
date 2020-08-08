@@ -52,6 +52,7 @@ Local development is done using [pyenv](https://github.com/pyenv/pyenv) and
 ### Generating docs
 
 1. Run `pipenv install -d` to install normal and dev dependencies
+1. Run `rm -rf docs/` to be able to completely overwrite existing docs
 1. Run `pipenv run pdoc3 --html -o docs/ gedcom --force` to generate docs into the `docs/` directory
 
 > To develop docs run `pipenv run pdoc3 --http localhost:8000 gedcom`
