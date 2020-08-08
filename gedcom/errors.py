@@ -15,6 +15,8 @@
 Module containing the exception handling classes.
 """
 
+ERROR_LINE_VIOLATION_TEMPLATE = "Line <{0}:{1}> of document violates GEDCOM format {2}\nSee: {3}"
+
 
 class GedcomFormatViolationError(Exception):
     """Raised when the document format does not appear to conform

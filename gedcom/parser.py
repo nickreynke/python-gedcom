@@ -31,13 +31,12 @@ from gedcom.elements.family import FamilyElement
 from gedcom.elements.individual import IndividualElement
 from gedcom.elements.root import RootElement
 
+from gedcom.errors import ERROR_LINE_VIOLATION_TEMPLATE
 from gedcom.errors import GedcomVersionUnsupportedError
 from gedcom.errors import GedcomFormatUnsupportedError
 from gedcom.errors import GedcomFormatViolationError
 from gedcom.errors import NotAnActualIndividualError
 from gedcom.errors import NotAnActualFamilyError
-
-ERROR_TEMPLATE = "Line <{0}:{1}> of document violates GEDCOM format {2}\nSee: {3}"
 
 FAMILY_MEMBERS_TYPE_ALL = "ALL"
 FAMILY_MEMBERS_TYPE_CHILDREN = tags.GEDCOM_TAG_CHILD
@@ -192,7 +191,7 @@ class Parser:
 
         if regex_match is None:
             if strict:
-                errmsg = ERROR_TEMPLATE.format(line_number, line, '5.5.1', standards.GEDCOM_5_5_1)
+                errmsg = ERROR_LINE_VIOLATION_TEMPLATE.format(line_number, line, '5.5.1', standards.GEDCOM_5_5_1)
                 raise GedcomFormatViolationError(errmsg)
 
             # Quirk check - see if this is a line without a CRLF (which could be the last line)
