@@ -381,8 +381,7 @@ class Parser(object):
 
         for child_element in individual.get_child_elements():
             is_family = (child_element.get_tag() == family_type
-                         and child_element.get_value() in element_dictionary
-                         and element_dictionary[child_element.get_value()].is_family())
+                         and child_element.get_value() in element_dictionary)
             if is_family:
                 families.append(element_dictionary[child_element.get_value()])
 
