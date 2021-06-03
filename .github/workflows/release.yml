@@ -51,6 +51,7 @@ jobs:
 
     - name: Generate docs
       run: >-
+        rm -rf docs/ & \
         pipenv run pdoc3 --html -o docs/ gedcom --force
 
     - name: Publish docs

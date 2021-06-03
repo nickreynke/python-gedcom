@@ -52,6 +52,7 @@ Local development is done using [pyenv](https://github.com/pyenv/pyenv) and
 ### Generating docs
 
 1. Run `pipenv install -d` to install normal and dev dependencies
+1. Run `rm -rf docs/` to be able to completely overwrite existing docs
 1. Run `pipenv run pdoc3 --html -o docs/ gedcom --force` to generate docs into the `docs/` directory
 
 > To develop docs run `pipenv run pdoc3 --http localhost:8000 gedcom`
@@ -67,6 +68,27 @@ Local development is done using [pyenv](https://github.com/pyenv/pyenv) and
 the `repository-url` is `https://upload.pypi.org/legacy/`.
 >
 > `pipenv run twine upload --repository-url https://upload.pypi.org/legacy/ dist/*`
+
+## Contribution
+
+1. Clone the repo
+1. Make your changes
+1. (Write appropriate tests within `tests/`)
+1. Commit using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+1. [Open a pull request](https://github.com/madprime/python-gedcom/compare)
+1. When checks for the PR fail consider making changes so that the checks pass
+
+### Git: Conventional Commits
+
+Git committing is done using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) with NPM.
+
+Consider installing node packages with [NVM](https://github.com/nvm-sh/nvm) and start committing with `npm run commit`.
+Git hooks installed via [Husky](https://github.com/typicode/husky) will do the rest.
+
+How to install:
+
+1. Use Node version `12.16.1` (or use [NVM](https://github.com/nvm-sh/nvm) and run `nvm use`)
+1. Run `npm install` and then `npm run commit` to commit your changes
 
 ## Version bumping (releasing)
 
@@ -105,13 +127,17 @@ was licensed under the GPL v2 and then continued by
 The project was taken over by [Nicklas Reincke](https://github.com/nickreynke) in 2018.
 Together with [Damon Brodie](https://github.com/nomadyow) a lot of changes were made and the parser was optimized.
 
+Ansel support, additional tags, and extensive record and substructure level parsing support were added by
+[Christopher Horn](https://github.com/cdhorn) in 2020.
+
 ## License
 
 Licensed under the [GNU General Public License v2](http://www.gnu.org/licenses/gpl-2.0.html)
 
 **Python GEDCOM Parser**
+<br>Copyright (C) 2020 Christopher Horn (cdhorn at embarqmail dot com)
 <br>Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
-<br>Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
+<br>Copyright (C) 2018 Nicklas Reincke (contact at reynke.com)
 <br>Copyright (C) 2016 Andreas Oberritter
 <br>Copyright (C) 2012 Madeleine Price Ball
 <br>Copyright (C) 2005 Daniel Zappala (zappala at cs.byu.edu)

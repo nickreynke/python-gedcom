@@ -3,17 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.8.4" />
+<meta name="generator" content="pdoc 0.8.1" />
 <title>gedcom.tags API documentation</title>
-<meta name="description" content="GEDCOM tags." />
-<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
-<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
-<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
-<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<meta name="description" content="Module containing the standard GEDCOM tags and some of the most common program defined extensions." />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
 <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
-<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
@@ -22,96 +20,411 @@
 <h1 class="title">Module <code>gedcom.tags</code></h1>
 </header>
 <section id="section-intro">
-<p>GEDCOM tags.</p>
+<p>Module containing the standard GEDCOM tags and some of the most common program defined extensions.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python"># -*- coding: utf-8 -*-
 
-# Python GEDCOM Parser
+#  Copyright (C) 2020
 #
-# Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
-# Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
-# Copyright (C) 2016 Andreas Oberritter
-# Copyright (C) 2012 Madeleine Price Ball
-# Copyright (C) 2005 Daniel Zappala (zappala at cs.byu.edu)
-# Copyright (C) 2005 Brigham Young University
+#  This file is part of the Python GEDCOM Parser.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+#  You should have received a copy of the GNU General Public License along
+#  with this program; if not, write to the Free Software Foundation, Inc.,
+#  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#
-# Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
+#  For more, have a look at the GitHub repository at:
+#  https://github.com/nickreynke/python-gedcom
 
 &#34;&#34;&#34;
-GEDCOM tags.
+Module containing the standard GEDCOM tags and some of the most common program defined extensions.
 &#34;&#34;&#34;
 
-GEDCOM_PROGRAM_DEFINED_TAG_MREL = &#34;_MREL&#34;
-&#34;&#34;&#34;Value: `_MREL`
+GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE = &#34;_NAME&#34;
+&#34;&#34;&#34;Value: `_NAME`
 
-Relationship to a mother.&#34;&#34;&#34;
+Name of addresse in a `gedcom.tags.GEDCOM_TAG_ADDRESS` structure.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_ADMINISTRATIVE_ID = &#34;_AIDN&#34;
+&#34;&#34;&#34;Value: `_AIDN`
+
+Identifier for a location with the intention of an administrative authority,
+e.g. community identifier.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_APID = &#34;_APID&#34;
+&#34;&#34;&#34;Value: `_APID`
+
+Ancestry page identifier. For a citation, points to the page in a Ancestry
+database for the record supporting the citation. For a source record it
+points to the database as a whole.
+
+Ancestry.com Extension.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE = &#34;_DCAUSE&#34;
+&#34;&#34;&#34;Value: `_DCAUSE`
+
+Cause of death.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_DEGREE = &#34;_DEG&#34;
+&#34;&#34;&#34;Value: `_DEG`
+
+Degree or recognition of accomplishment received by an individual.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_DEMOGRAPHIC_DATA = &#34;_DMGD&#34;
+&#34;&#34;&#34;Value: `_DMGD`
+
+A number of ojects, during an ascertainment, e.g. the count of households.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
 
 GEDCOM_PROGRAM_DEFINED_TAG_FREL = &#34;_FREL&#34;
 &#34;&#34;&#34;Value: `_FREL`
 
-Relationship to a father.&#34;&#34;&#34;
+Type of relationship between child and the father in a family.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_FUNERAL = &#34;_FUN&#34;
+&#34;&#34;&#34;Value: `_FUN`
+
+Funeral for an individual.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT = &#34;_GOV&#34;
+&#34;&#34;&#34;Value: `_GOV`
+
+The official government id of the object in the Historical Place Register /
+Historic Gazeteer.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT_TYPE = &#34;_GOVTYPE&#34;
+&#34;&#34;&#34;Value: `_GOVTYPE`
+
+An integer positive number as defined in the GOV system.
+See http://gov.genealogy.net.net/type/list.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON = &#34;_HME&#34;
+&#34;&#34;&#34;Value: `_HME`
+
+Home person in the tree.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_LOCATION = &#34;_LOC&#34;
+&#34;&#34;&#34;Value: `_LOC`
+
+Location data record.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_MAIDENHEAD = &#34;_MAIDENHEAD&#34;
+&#34;&#34;&#34;Value: `_MAIDENHEAD`
+
+The maidenhead code.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_MEDICAL = &#34;_MDCL&#34;
+&#34;&#34;&#34;Value: `_MDCL`
+
+Medical information about an individual.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_MILITARY = &#34;_MILT&#34;
+&#34;&#34;&#34;Value: `_MILT`
+
+A military related event in the individuals life.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_MREL = &#34;_MREL&#34;
+&#34;&#34;&#34;Value: `_MREL`
+
+Type of relationship between child and the mother in a family.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_PHOTO = &#34;_PHOTO&#34;
+&#34;&#34;&#34;Value: `_PHOTO`
+
+Used by some programs to identify the primary multimedia object for an
+individual, the same as `gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY`.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_POSTAL_CODE = &#34;_POST&#34;
+&#34;&#34;&#34;Value: `_POST`
+
+The official zip code, called ADDRESS_POSTAL_CODE in the standard.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED = &#34;_PREF&#34;
+&#34;&#34;&#34;Value: `_PREF`
+
+Indicates a preferred spouse, child or parents.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY = &#34;_PRIM&#34;
+&#34;&#34;&#34;Value: `_PRIM`
+
+Primary multimedia object for an individual.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_SCHEMA = &#34;_SCHEMA&#34;
+&#34;&#34;&#34;Value: `_SCHEMA`
+
+Schema substructure extension to describe user defined tags.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME = &#34;_RUFNAME&#34;
+&#34;&#34;&#34;Value: `_RUFNAME`
+
+An official given name of a German individual used in legal documents.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_PROGRAM_DEFINED_TAG_UUID = &#34;_UID&#34;
+&#34;&#34;&#34;Value: `_UID`
+
+Universal identification number.
+
+5.5.1 GEDCOM-L Addendum.&#34;&#34;&#34;
+
+GEDCOM_TAG_ABBREVIATION = &#34;ABBR&#34;
+&#34;&#34;&#34;Value: `ABBR`
+
+A short name of a title, description, or name.&#34;&#34;&#34;
+
+GEDCOM_TAG_ADDRESS = &#34;ADDR&#34;
+&#34;&#34;&#34;Value: `ADDR`
+
+The contemporary place, usually required for postal purposes, of an individual,
+a submitter of information, a repository, a business, a school, or a company.&#34;&#34;&#34;
+
+GEDCOM_TAG_ADDRESS1 = &#34;ADR1&#34;
+&#34;&#34;&#34;Value: `ADR1`
+
+The first line of an address.&#34;&#34;&#34;
+
+GEDCOM_TAG_ADDRESS2 = &#34;ADR2&#34;
+&#34;&#34;&#34;Value: `ADR2`
+
+The second line of an address.&#34;&#34;&#34;
+
+GEDCOM_TAG_ADDRESS3 = &#34;ADR3&#34;
+&#34;&#34;&#34;Value: `ADR3`
+
+The third line of an address.&#34;&#34;&#34;
+
+GEDCOM_TAG_ADOPTION = &#34;ADOP&#34;
+&#34;&#34;&#34;Value: `ADOP`
+
+Pertaining to creation of a child-parent relationship that does not exist
+biologically.&#34;&#34;&#34;
+
+GEDCOM_TAG_AFN = &#34;AFN&#34;
+&#34;&#34;&#34;Value: `AFN`
+
+Ancestral File Number, a unique permanent record file number of an individual
+record stored in Ancestral File.&#34;&#34;&#34;
+
+GEDCOM_TAG_AGE = &#34;AGE&#34;
+&#34;&#34;&#34;Value: `AGE`
+
+The age of the individual at the time an event occurred, or the age listed in
+the document.&#34;&#34;&#34;
+
+GEDCOM_TAG_AGENCY = &#34;AGNC&#34;
+&#34;&#34;&#34;Value: `AGNC`
+
+The institution or individual having authority and/or responsibility to manage
+or govern.&#34;&#34;&#34;
+
+GEDCOM_TAG_ALIAS = &#34;ALIA&#34;
+&#34;&#34;&#34;Value: `ALIA`
+
+An indicator to link different record descriptions of a person who may be the
+same person.&#34;&#34;&#34;
+
+GEDCOM_TAG_ANCESTORS = &#34;ANCE&#34;
+&#34;&#34;&#34;Value: `ANCE`
+
+Pertaining to forbearers of an individual.&#34;&#34;&#34;
+
+GEDCOM_TAG_ANCES_INTEREST = &#34;ANCI&#34;
+&#34;&#34;&#34;Value: `ANCI`
+
+Indicates an interest in additional research for ancestors of this individual.
+(See also `gedcom.tags.GEDCOM_TAG_DESCENDANTS_INT`)&#34;&#34;&#34;
+
+GEDCOM_TAG_ANNULMENT = &#34;ANUL&#34;
+&#34;&#34;&#34;Value: `ANUL`
+
+Declaring a marriage void from the beginning (never existed).&#34;&#34;&#34;
+
+GEDCOM_TAG_ASSOCIATES = &#34;ASSO&#34;
+&#34;&#34;&#34;Value: `ASSO`
+
+An indicator to link friends, neighbors, relatives, or associates of an
+individual.&#34;&#34;&#34;
+
+GEDCOM_TAG_AUTHOR = &#34;AUTH&#34;
+&#34;&#34;&#34;Value: `AUTH`
+
+The name of the individual who created or compiled information.&#34;&#34;&#34;
+
+GEDCOM_TAG_BAPTISM_LDS = &#34;BAPL&#34;
+&#34;&#34;&#34;Value: `BAPL`
+
+The event of baptism performed at age eight or later by priesthood authority
+of the LDS Church. (See also `gedcom.tags.GEDCOM_TAG_BAPTISM`)&#34;&#34;&#34;
+
+GEDCOM_TAG_BAPTISM = &#34;BAPM&#34;
+&#34;&#34;&#34;Value: `BAPM`
+
+The event of baptism (not LDS), performed in infancy or later.&#34;&#34;&#34;
+
+GEDCOM_TAG_BAR_MITZVAH = &#34;BARM&#34;
+&#34;&#34;&#34;Value: `BARM`
+
+The ceremonial event held when a Jewish boy reaches age 13.&#34;&#34;&#34;
+
+GEDCOM_TAG_BAS_MITZVAH = &#34;BASM&#34;
+&#34;&#34;&#34;Value: `BASM`
+
+The ceremonial event held when a Jewish girl reaches age 13, also known as
+Bat Mitzvah.&#34;&#34;&#34;
 
 GEDCOM_TAG_BIRTH = &#34;BIRT&#34;
 &#34;&#34;&#34;Value: `BIRT`
 
 The event of entering into life.&#34;&#34;&#34;
 
+GEDCOM_TAG_BLESSING = &#34;BLES&#34;
+&#34;&#34;&#34;Value: `BLES`
+
+A religious event of bestowing divine care or intercession. Sometimes given
+in connection with a naming ceremony.&#34;&#34;&#34;
+
 GEDCOM_TAG_BURIAL = &#34;BURI&#34;
 &#34;&#34;&#34;Value: `BURI`
 
 The event of the proper disposing of the mortal remains of a deceased person.&#34;&#34;&#34;
 
+GEDCOM_TAG_CALL_NUMBER = &#34;CALN&#34;
+&#34;&#34;&#34;Value: `CALN`
+
+The number used by a repository to identify the specific items in its
+collections.&#34;&#34;&#34;
+
+GEDCOM_TAG_CASTE = &#34;CAST&#34;
+&#34;&#34;&#34;Value: `CAST`
+
+The name of an individual&#39;s rank or status in society, based on racial or
+religious differences, or differences in wealth, inherited rank, profession,
+occupation, etc.&#34;&#34;&#34;
+
+GEDCOM_TAG_CAUSE = &#34;CAUSE&#34;
+&#34;&#34;&#34;Value: `CAUS`
+
+A description of the cause of the associated event or fact, such as the cause
+of death.&#34;&#34;&#34;
+
 GEDCOM_TAG_CENSUS = &#34;CENS&#34;
 &#34;&#34;&#34;Value: `CENS`.
 
-The event of the periodic count of the population for a designated locality, such as a national or state Census.&#34;&#34;&#34;
+The event of the periodic count of the population for a designated locality,
+such as a national or state Census.&#34;&#34;&#34;
 
 GEDCOM_TAG_CHANGE = &#34;CHAN&#34;
 &#34;&#34;&#34;Value: `CHAN`
 
 Indicates a change, correction, or modification. Typically used in connection
-with a `gedcom.tags.GEDCOM_TAG_DATE` to specify when a change in information occurred.&#34;&#34;&#34;
+with a `gedcom.tags.GEDCOM_TAG_DATE` to specify when a change in information
+occurred.&#34;&#34;&#34;
+
+GEDCOM_TAG_CHARACTER = &#34;CHAR&#34;
+&#34;&#34;&#34;Value: `CHAR`
+
+An indicator of the character set used in writing this automated information.&#34;&#34;&#34;
 
 GEDCOM_TAG_CHILD = &#34;CHIL&#34;
 &#34;&#34;&#34;Value: `CHIL`
 
 The natural, adopted, or sealed (LDS) child of a father and a mother.&#34;&#34;&#34;
 
+GEDCOM_TAG_CHRISTENING = &#34;CHR&#34;
+&#34;&#34;&#34;Value: `CHR`
+
+The religious event (not LDS) of baptizing and/or naming a child.&#34;&#34;&#34;
+
+GEDCOM_TAG_ADULT_CHRISTENING = &#34;CHRA&#34;
+&#34;&#34;&#34;Value: `CHRA`
+
+The religious event (not LDS) of baptizing and/or naming an adult person.&#34;&#34;&#34;
+
+GEDCOM_TAG_CITY = &#34;CITY&#34;
+&#34;&#34;&#34;Value: `CITY`
+
+A lower level jurisdictional unit. Normally an incorporated municipal unit.&#34;&#34;&#34;
+
 GEDCOM_TAG_CONCATENATION = &#34;CONC&#34;
 &#34;&#34;&#34;Value: `CONC`
 
-An indicator that additional data belongs to the superior value. The information from the `CONC` value is to
-be connected to the value of the superior preceding line without a space and without a carriage return and/or
-new line character. Values that are split for a `CONC` tag must always be split at a non-space. If the value is
-split on a space the space will be lost when concatenation takes place. This is because of the treatment that
-spaces get as a GEDCOM delimiter, many GEDCOM values are trimmed of trailing spaces and some systems look for
-the first non-space starting after the tag to determine the beginning of the value.&#34;&#34;&#34;
+An indicator that additional data belongs to the superior value. The information
+from the `CONC` value is to be connected to the value of the superior preceding
+line without a space and without a carriage return and/or new line character.
+Values that are split for a `CONC` tag must always be split at a non-space. If
+the value is split on a space the space will be lost when concatenation takes
+place. This is because of the treatment that spaces get as a GEDCOM delimiter,
+many GEDCOM values are trimmed of trailing spaces and some systems look for
+the first non-space starting after the tag to determine the beginning of the
+value.&#34;&#34;&#34;
+
+GEDCOM_TAG_CONFIRMATION = &#34;CONF&#34;
+&#34;&#34;&#34;Value: `CONF`
+
+The religious event (not LDS) of conferring the gift of the Holy Ghost and,
+among protestants, full church membership.&#34;&#34;&#34;
+
+GEDCOM_TAG_CONFIRMATION_L = &#34;CONL&#34;
+&#34;&#34;&#34;Value: `CONL`
+
+The religious event by which a person receives membership in the LDS Church.&#34;&#34;&#34;
 
 GEDCOM_TAG_CONTINUED = &#34;CONT&#34;
 &#34;&#34;&#34;Value: `CONT`
 
-An indicator that additional data belongs to the superior value. The information from the `CONT` value is to be
-connected to the value of the superior preceding line with a carriage return and/or new line character.
-Leading spaces could be important to the formatting of the resultant text. When importing values from `CONT` lines
-the reader should assume only one delimiter character following the `CONT` tag. Assume that the rest of the leading
-spaces are to be a part of the value.&#34;&#34;&#34;
+An indicator that additional data belongs to the superior value. The information
+from the `CONT` value is to be connected to the value of the superior preceding
+line with a carriage return and/or new line character. Leading spaces could be
+important to the formatting of the resultant text. When importing values from
+`CONT` lines the reader should assume only one delimiter character following
+the `CONT` tag. Assume that the rest of the leading spaces are to be a part
+of the value.&#34;&#34;&#34;
+
+GEDCOM_TAG_COPYRIGHT = &#34;COPR&#34;
+&#34;&#34;&#34;Value: `COPR`
+
+A statement that accompanies data to protect it from unlawful duplication
+and distribution.&#34;&#34;&#34;
+
+GEDCOM_TAG_CORPORATE = &#34;CORP&#34;
+&#34;&#34;&#34;Value: `CORP`
+
+A name of an institution, agency, corporation, or company.&#34;&#34;&#34;
+
+GEDCOM_TAG_CREMATION = &#34;CREM&#34;
+&#34;&#34;&#34;Value: `CREM`
+
+Disposal of the remains of a person&#39;s body by fire.&#34;&#34;&#34;
+
+GEDCOM_TAG_COUNTRY = &#34;CTRY&#34;
+&#34;&#34;&#34;Value: `CTRY`
+
+The name or code of a country.&#34;&#34;&#34;
+
+GEDCOM_TAG_DATA = &#34;DATA&#34;
+&#34;&#34;&#34;Value: `DATA`
+
+Pertaining to stored automation information.&#34;&#34;&#34;
 
 GEDCOM_TAG_DATE = &#34;DATE&#34;
 &#34;&#34;&#34;Value: `DATE`
@@ -123,93 +436,542 @@ GEDCOM_TAG_DEATH = &#34;DEAT&#34;
 
 The event when mortal life terminates.&#34;&#34;&#34;
 
+GEDCOM_TAG_DESCENDANTS = &#34;DESC&#34;
+&#34;&#34;&#34;Value: `DESC`
+
+Pertaining to offspring of an individual.&#34;&#34;&#34;
+
+GEDCOM_TAG_DESCENDANTS_INT = &#34;DESI&#34;
+&#34;&#34;&#34;Value: `DESI`
+
+Indicates an interest in research to identify additional descendants of this
+individual. (See also `gedcom.tags.GEDCOM_TAG_ANCES_INTEREST`)&#34;&#34;&#34;
+
+GEDCOM_TAG_DESTINATION = &#34;DEST&#34;
+&#34;&#34;&#34;Value: `DEST`
+
+A system receiving data.&#34;&#34;&#34;
+
+GEDCOM_TAG_DIVORCE = &#34;DIV&#34;
+&#34;&#34;&#34;Value: `DIV`
+
+The event of disolving a marriage through civil action.&#34;&#34;&#34;
+
+GEDCOM_TAG_DIVORCE_FILED = &#34;DIVF&#34;
+&#34;&#34;&#34;Value: `DIVF`
+
+An event of filing for a divorce by a spouse.&#34;&#34;&#34;
+
+GEDCOM_TAG_PHY_DESCRIPTION = &#34;DSCR&#34;
+&#34;&#34;&#34;Value: `DSCR`
+
+The physical characteristics of a person, place, or thing.&#34;&#34;&#34;
+
+GEDCOM_TAG_EDUCATION = &#34;EDUC&#34;
+&#34;&#34;&#34;Value: `EDUC`
+
+Indicator of a level of education attained.&#34;&#34;&#34;
+
+GEDCOM_TAG_EMAIL = &#34;EMAIL&#34;
+&#34;&#34;&#34;Value: `EMAIL`
+
+An electronic address that can be used for contact such as an email address.&#34;&#34;&#34;
+
+GEDCOM_TAG_EMIGRATION = &#34;EMIG&#34;
+&#34;&#34;&#34;Value: `EMIG`
+
+An event of leaving one&#39;s homeland with the intent of residing elsewhere.&#34;&#34;&#34;
+
+GEDCOM_TAG_ENDOWMENT = &#34;ENDL&#34;
+&#34;&#34;&#34;Value: `ENDL`
+
+A religious event where an endowment ordinance for an individual was performed
+by priesthood authority in an LDS temple.&#34;&#34;&#34;
+
+GEDCOM_TAG_ENGAGEMENT = &#34;ENGA&#34;
+&#34;&#34;&#34;Value: `ENGA`
+
+An event of recording or announcing an agreement between two people to become
+married.&#34;&#34;&#34;
+
+GEDCOM_TAG_EVENT = &#34;EVEN&#34;
+&#34;&#34;&#34;Value: `EVEN`
+
+A noteworthy happening related to an individual, a group, or an organization.&#34;&#34;&#34;
+
+GEDCOM_TAG_FACT = &#34;FACT&#34;
+&#34;&#34;&#34;Value: `FACT`
+
+Pertaining to a noteworthy attribute or fact concerning an individual, a group,
+or an organization. A `FACT` structure is usually qualified or classified by a
+subordinate use of the `gedcom.tags.GEDCOM_TAG_TYPE` tag.&#34;&#34;&#34;
+
 GEDCOM_TAG_FAMILY = &#34;FAM&#34;
 &#34;&#34;&#34;Value: `FAM`.
 
-Identifies a legal, common law, or other customary relationship of man and woman and their children,
-if any, or a family created by virtue of the birth of a child to its biological father and mother.&#34;&#34;&#34;
+Identifies a legal, common law, or other customary relationship of man and woman
+and their children, if any, or a family created by virtue of the birth of a
+child to its biological father and mother.&#34;&#34;&#34;
 
 GEDCOM_TAG_FAMILY_CHILD = &#34;FAMC&#34;
 &#34;&#34;&#34;Value: `FAMC`
 
 Identifies the family in which an individual appears as a child.&#34;&#34;&#34;
 
+GEDCOM_TAG_FAMILY_FILE = &#34;FAMF&#34;
+&#34;&#34;&#34;Value: `FAMF`
+
+Pertaining to, or the name of, a family file. Names stored in a file that are
+assigned to a family for doing temple ordinance work.&#34;&#34;&#34;
+
 GEDCOM_TAG_FAMILY_SPOUSE = &#34;FAMS&#34;
 &#34;&#34;&#34;Value: `FAMS`
 
 Identifies the family in which an individual appears as a spouse.&#34;&#34;&#34;
 
+GEDCOM_TAG_FAX = &#34;FAX&#34;
+&#34;&#34;&#34;Value: `FAX`
+
+A FAX telephone number appropriate for sending data facsimiles.&#34;&#34;&#34;
+
+GEDCOM_TAG_FIRST_COMMUNION = &#34;FCOM&#34;
+&#34;&#34;&#34;Value: `FCOM`
+
+A religious rite, the first act of sharing in the Lord&#39;s supper as part of
+church worship.&#34;&#34;&#34;
+
 GEDCOM_TAG_FILE = &#34;FILE&#34;
 &#34;&#34;&#34;Value: `FILE`
 
-An information storage place that is ordered and arranged for preservation and reference.&#34;&#34;&#34;
+An information storage place that is ordered and arranged for preservation and
+reference.&#34;&#34;&#34;
+
+GEDCOM_TAG_PHONETIC = &#34;FONE&#34;
+&#34;&#34;&#34;Value: `FONE`
+
+A phonetic variation of a superior text string.&#34;&#34;&#34;
+
+GEDCOM_TAG_FORMAT = &#34;FORM&#34;
+&#34;&#34;&#34;Value: `FORM`
+
+An assigned name given to a consistent format in which information can be
+conveyed.&#34;&#34;&#34;
+
+GEDCOM_TAG_GEDCOM = &#34;GEDC&#34;
+&#34;&#34;&#34;Value: `GEDC`
+
+Information about the use of GEDCOM in a transmission.&#34;&#34;&#34;
 
 GEDCOM_TAG_GIVEN_NAME = &#34;GIVN&#34;
 &#34;&#34;&#34;Value: `GIVN`
 
 A given or earned name used for official identification of a person.&#34;&#34;&#34;
 
+GEDCOM_TAG_GRADUATION = &#34;GRAD&#34;
+&#34;&#34;&#34;Value: `GRAD`
+
+An event of awarding educational diplomas or degrees to individuals.&#34;&#34;&#34;
+
+GEDCOM_TAG_HEADER = &#34;HEAD&#34;
+&#34;&#34;&#34;Value: `HEAD`
+
+Identifies information pertaining to an entire GEDCOM transmission.&#34;&#34;&#34;
+
 GEDCOM_TAG_HUSBAND = &#34;HUSB&#34;
 &#34;&#34;&#34;Value: `HUSB`
 
 An individual in the family role of a married man or father.&#34;&#34;&#34;
+
+GEDCOM_TAG_IDENT_NUMBER = &#34;IDNO&#34;
+&#34;&#34;&#34;Value: `IDNO`
+
+A number assigned to identify a person within some significant external system.&#34;&#34;&#34;
+
+GEDCOM_TAG_IMMIGRATION = &#34;IMMI&#34;
+&#34;&#34;&#34;Value: `IMMI`
+
+An event of entering into a new locality witht he intent of residing there.&#34;&#34;&#34;
 
 GEDCOM_TAG_INDIVIDUAL = &#34;INDI&#34;
 &#34;&#34;&#34;Value: `INDI`
 
 A person.&#34;&#34;&#34;
 
+GEDCOM_TAG_LANGUAGE = &#34;LANG&#34;
+&#34;&#34;&#34;Value: `LANG`
+
+The name of the language used in a communication or transmission of information.&#34;&#34;&#34;
+
+GEDCOM_TAG_LATITUDE = &#34;LATI&#34;
+&#34;&#34;&#34;Value: `LATI`
+
+A value indicating a coordinate position on a line, plane, or space.&#34;&#34;&#34;
+
+GEDCOM_TAG_LEGATEE = &#34;LEGA&#34;
+&#34;&#34;&#34;Value: `LEGA`
+
+A role of an individual acting as a person receiving a bequest or legal devise.&#34;&#34;&#34;
+
+GEDCOM_TAG_LONGITUDE = &#34;LONG&#34;
+&#34;&#34;&#34;Value: `LONG`
+
+A value indicating a coordinate position on a line, plane, or space.&#34;&#34;&#34;
+
+GEDCOM_TAG_MAP = &#34;MAP&#34;
+&#34;&#34;&#34;Value: `MAP`
+
+Pertains to a representation of measurements usually presented in a graphical
+form.&#34;&#34;&#34;
+
+GEDCOM_TAG_MARRIAGE_BANN = &#34;MARB&#34;
+&#34;&#34;&#34;Value: `MARB`.
+
+An event of an official public notice given that two people intend to marry.&#34;&#34;&#34;
+
+GEDCOM_TAG_MARR_CONTRACT = &#34;MARC&#34;
+&#34;&#34;&#34;Value: `MARC`.
+
+An event of recording a formal agreement of marriage, including the prenuptial
+agreement in which marriage partners reach agreement about the property rights
+of one or both, securing property to their children.&#34;&#34;&#34;
+
+GEDCOM_TAG_MARR_LICENSE = &#34;MARL&#34;
+&#34;&#34;&#34;Value: `MARL`.
+
+An event of obtaining a legal license to marry.&#34;&#34;&#34;
+
 GEDCOM_TAG_MARRIAGE = &#34;MARR&#34;
 &#34;&#34;&#34;Value: `MARR`.
 
-A legal, common-law, or customary event of creating a family unit of a man and a woman as husband and wife.&#34;&#34;&#34;
+A legal, common-law, or customary event of creating a family unit of a man and
+a woman as husband and wife.&#34;&#34;&#34;
+
+GEDCOM_TAG_MARR_SETTLEMENT = &#34;MARS&#34;
+&#34;&#34;&#34;Value: `MARS`.
+
+An event of creating an agreement between two people contemplating marriage,
+at which time they agree to release or modify property rights that would
+otherwise arise from the marriage.&#34;&#34;&#34;
+
+GEDCOM_TAG_MEDIA = &#34;MEDI&#34;
+&#34;&#34;&#34;Value: `MEDI`.
+
+Identifies information about the media or having to do with the medium in which
+information is stored.&#34;&#34;&#34;
 
 GEDCOM_TAG_NAME = &#34;NAME&#34;
 &#34;&#34;&#34;Value: `NAME`.
 
-A word or combination of words used to help identify an individual, title, or other item.
-More than one NAME line should be used for people who were known by multiple names.&#34;&#34;&#34;
+A word or combination of words used to help identify an individual, title, or
+other item. More than one `NAME` line should be used for people who were known
+by multiple names.&#34;&#34;&#34;
+
+GEDCOM_TAG_NATIONALITY = &#34;NATI&#34;
+&#34;&#34;&#34;Value: `NATI`
+
+The national heritage of an individual.&#34;&#34;&#34;
+
+GEDCOM_TAG_NATURALIZATION = &#34;NATU&#34;
+&#34;&#34;&#34;Value: `NATU`
+
+The event of obtaining citizenship.&#34;&#34;&#34;
+
+GEDCOM_TAG_CHILDREN_COUNT = &#34;NCHI&#34;
+&#34;&#34;&#34;Value: `NCHI`
+
+The number of children that this person is known to be the parent of (all
+marriages) when subordinate to an individual, or that belong to this family
+when subordinate to a `gedcom.tags.GEDCOM_TAG_FAMILY` record.&#34;&#34;&#34;
+
+GEDCOM_TAG_NICKNAME = &#34;NICK&#34;
+&#34;&#34;&#34;Value: `NICK`
+
+A descriptive or familiar that is used instead of, or in addition to, one&#39;s
+proper name.&#34;&#34;&#34;
+
+GEDCOM_TAG_MARRIAGE_COUNT = &#34;NMR&#34;
+&#34;&#34;&#34;Value: `NMR`
+
+The number of times this person has participated in a family as a spouse or
+parent.&#34;&#34;&#34;
+
+GEDCOM_TAG_NOTE = &#34;NOTE&#34;
+&#34;&#34;&#34;Value: `NOTE`
+
+Additional information provided by the submitter for understanding the
+enclosing data.&#34;&#34;&#34;
+
+GEDCOM_TAG_NAME_PREFIX = &#34;NPFX&#34;
+&#34;&#34;&#34;Value: `NPFX`
+
+Text which appears on a name line before the given and surname parts of a name.
+i.e. ( Lt. Cmndr. ) Joseph /Allen/ jr. In this example Lt. Cmndr. is considered
+as the name prefix portion.&#34;&#34;&#34;
+
+GEDCOM_TAG_NAME_SUFFIX = &#34;NSFX&#34;
+&#34;&#34;&#34;Value: `NSFX`
+
+Text which appears on a name line after or behind the given and surname parts
+of a name. i.e. Lt. Cmndr. Joseph /Allen/ ( jr. ) In this example jr. is
+considered as the name suffix portion.&#34;&#34;&#34;
 
 GEDCOM_TAG_OBJECT = &#34;OBJE&#34;
 &#34;&#34;&#34;Value: `OBJE`
 
-Pertaining to a grouping of attributes used in describing something. Usually referring to the data required
-to represent a multimedia object, such an audio recording, a photograph of a person, or an image of a document.&#34;&#34;&#34;
+Pertaining to a grouping of attributes used in describing something. Usually
+referring to the data required to represent a multimedia object, such an audio
+recording, a photograph of a person, or an image of a document.&#34;&#34;&#34;
 
 GEDCOM_TAG_OCCUPATION = &#34;OCCU&#34;
 &#34;&#34;&#34;Value: `OCCU`
 
 The type of work or profession of an individual.&#34;&#34;&#34;
 
+GEDCOM_TAG_ORDINANCE = &#34;ORDI&#34;
+&#34;&#34;&#34;Value: `ORDI`
+
+Pertaining to a religious ordinance in general.&#34;&#34;&#34;
+
+GEDCOM_TAG_ORDINATION = &#34;ORDN&#34;
+&#34;&#34;&#34;Value: `ORDN`
+
+A religious event of receiving authority to act in religious matters.&#34;&#34;&#34;
+
+GEDCOM_TAG_PAGE = &#34;PAGE&#34;
+&#34;&#34;&#34;Value: `PAGE`
+
+A number or description to identify where information can be found in a
+referenced work.&#34;&#34;&#34;
+
+GEDCOM_TAG_PEDIGREE = &#34;PEDI&#34;
+&#34;&#34;&#34;Value: `PEDI`
+
+Information pertaining to an individual to parent lineage chart.&#34;&#34;&#34;
+
+GEDCOM_TAG_PHONE = &#34;PHON&#34;
+&#34;&#34;&#34;Value: `PHON`
+
+A unique number assigned to access a specific telephone.&#34;&#34;&#34;
+
 GEDCOM_TAG_PLACE = &#34;PLAC&#34;
 &#34;&#34;&#34;Value: `PLAC`
 
 A jurisdictional name to identify the place or location of an event.&#34;&#34;&#34;
+
+GEDCOM_TAG_POSTAL_CODE = &#34;POST&#34;
+&#34;&#34;&#34;Value: `POST`
+
+A code used by a postal service to identify an area to facilitate mail handling.&#34;&#34;&#34;
 
 GEDCOM_TAG_PRIVATE = &#34;PRIV&#34;
 &#34;&#34;&#34;Value: `PRIV`
 
 Flag for private address or event.&#34;&#34;&#34;
 
+GEDCOM_TAG_PROBATE = &#34;PROB&#34;
+&#34;&#34;&#34;Value: `PROB`
+
+An event of judicial determination of the validity of a will. May indicate
+several related court activities over several dates.&#34;&#34;&#34;
+
+GEDCOM_TAG_PROPERTY = &#34;PROP&#34;
+&#34;&#34;&#34;Value: `PROP`
+
+Pertaining to possessions such as real estate or other property of interest.&#34;&#34;&#34;
+
+GEDCOM_TAG_PUBLICATION = &#34;PUBL&#34;
+&#34;&#34;&#34;Value: `PUBL`
+
+Refers to when and/or were a work was published or created.&#34;&#34;&#34;
+
+GEDCOM_TAG_QUALITY_OF_DATA = &#34;QUAY&#34;
+&#34;&#34;&#34;Value: `QUAY`
+
+An assessment of the certainty of the evidence to support the conclusion drawn
+from evidence.&#34;&#34;&#34;
+
+GEDCOM_TAG_REFERENCE = &#34;REFN&#34;
+&#34;&#34;&#34;Value: `REFN`
+
+A description or number used to identify an item for filing, storage, or other
+reference purposes.&#34;&#34;&#34;
+
+GEDCOM_TAG_RELATIONSHIP = &#34;RELA&#34;
+&#34;&#34;&#34;Value: `RELA`
+
+A relationship value between the indicated contexts.&#34;&#34;&#34;
+
+GEDCOM_TAG_RELIGION = &#34;RELI&#34;
+&#34;&#34;&#34;Value: `RELI`
+
+A religious denomination to which a person is affiliated or for which a record
+applies.&#34;&#34;&#34;
+
+GEDCOM_TAG_REPOSITORY = &#34;REPO&#34;
+&#34;&#34;&#34;Value: `REPO`
+
+An institution or person that has the specified item as part of their
+collection(s).&#34;&#34;&#34;
+
+GEDCOM_TAG_RESIDENCE = &#34;RESI&#34;
+&#34;&#34;&#34;Value: `RESI`
+
+The act of dwelling at a place for a period of time.&#34;&#34;&#34;
+
+GEDCOM_TAG_RESTRICTION = &#34;RESN&#34;
+&#34;&#34;&#34;Value: `RESN`
+
+A processing indicator signifying access to information has been denied or
+otherwise restricted.&#34;&#34;&#34;
+
+GEDCOM_TAG_RETIREMENT = &#34;RETI&#34;
+&#34;&#34;&#34;Value: `RETI`
+
+An event of exiting an occupational relationship with an employer after a
+qualifying time period.&#34;&#34;&#34;
+
+GEDCOM_TAG_REC_FILE_NUMBER = &#34;RFN&#34;
+&#34;&#34;&#34;Value: `RFN`
+
+A permanent number assigned to a record that uniquely identifies it within a
+known file.&#34;&#34;&#34;
+
+GEDCOM_TAG_REC_ID_NUMBER = &#34;RIN&#34;
+&#34;&#34;&#34;Value: `RIN`
+
+A number assigned to a record by an originating automated system that can be
+used by a receiving system to report results pertaining to that record.&#34;&#34;&#34;
+
+GEDCOM_TAG_ROLE = &#34;ROLE&#34;
+&#34;&#34;&#34;Value: `ROLE`
+
+A name given to a role played by an individual in connection with an event.&#34;&#34;&#34;
+
+GEDCOM_TAG_ROMANIZED = &#34;ROMN&#34;
+&#34;&#34;&#34;Value: `ROMN`
+
+A romanized variation of a superior text string.&#34;&#34;&#34;
+
 GEDCOM_TAG_SEX = &#34;SEX&#34;
 &#34;&#34;&#34;Value: `SEX`
 
 Indicates the sex of an individual--male or female.&#34;&#34;&#34;
+
+GEDCOM_TAG_SEALING_CHILD = &#34;SLGC&#34;
+&#34;&#34;&#34;Value: `SLGC`
+
+A religious event pertaining to the sealing of a child to his or her parents in
+an LDS temple ceremony.&#34;&#34;&#34;
+
+GEDCOM_TAG_SEALING_SPOUSE = &#34;SLGS&#34;
+&#34;&#34;&#34;Value: `SLGS`
+
+A religious event pertaining to the sealing of a husband and wife in an LDS
+temple ceremony.&#34;&#34;&#34;
 
 GEDCOM_TAG_SOURCE = &#34;SOUR&#34;
 &#34;&#34;&#34;Value: `SOUR`
 
 The initial or original material from which information was obtained.&#34;&#34;&#34;
 
+GEDCOM_TAG_SURN_PREFIX = &#34;SPFX&#34;
+&#34;&#34;&#34;Value: `SPFX`
+
+A name piece used as a non-indexing pre-part of a surname.&#34;&#34;&#34;
+
+GEDCOM_TAG_SOC_SEC_NUMBER = &#34;SSN&#34;
+&#34;&#34;&#34;Value: `SSN`
+
+A number assigned by the United States Social Security Administration. Used for
+tax identification purposes.&#34;&#34;&#34;
+
+GEDCOM_TAG_STATE = &#34;STAE&#34;
+&#34;&#34;&#34;Value: `STAE`
+
+A geographical division of a larger jurisdictional area, such as a State within
+the United States of America.&#34;&#34;&#34;
+
+GEDCOM_TAG_STATUS = &#34;STAT&#34;
+&#34;&#34;&#34;Value: `STAT`
+
+An assessment of the state or condition of something.&#34;&#34;&#34;
+
+GEDCOM_TAG_SUBMITTER = &#34;SUBM&#34;
+&#34;&#34;&#34;Value: `SUBM`
+
+An individual or organization who contributes genealogical data to a file or
+transfers it to someone else.&#34;&#34;&#34;
+
+GEDCOM_TAG_SUBMISSION = &#34;SUBN&#34;
+&#34;&#34;&#34;Value: `SUBN`
+
+Pertains to a collection of data issued for processing.&#34;&#34;&#34;
+
 GEDCOM_TAG_SURNAME = &#34;SURN&#34;
 &#34;&#34;&#34;Value: `SURN`
 
 A family name passed on or used by members of a family.&#34;&#34;&#34;
 
+GEDCOM_TAG_TEMPLE = &#34;TEMP&#34;
+&#34;&#34;&#34;Value: `TEMP`
+
+The name or code that represents the name a temple of the LDS Church.&#34;&#34;&#34;
+
+GEDCOM_TAG_TEXT = &#34;TEXT&#34;
+&#34;&#34;&#34;Value: `TEXT`
+
+The exact wording found in an original source document.&#34;&#34;&#34;
+
+GEDCOM_TAG_TIME = &#34;TIME&#34;
+&#34;&#34;&#34;Value: `TIME`
+
+A time value in a 24-hour clock format, including hours, minutes, and optional
+seconds, separated by a colon (:). Fractions of seconds are shown in decimal
+notation.&#34;&#34;&#34;
+
+GEDCOM_TAG_TITLE = &#34;TITL&#34;
+&#34;&#34;&#34;Value: `TITL`
+
+A description of a specific writing or other work, such as the title of a book
+when used in a source context, or a formal designation used by an individual
+in connection with positions of royalty or other social status, such as Grand
+Duke.&#34;&#34;&#34;
+
+GEDCOM_TAG_TRAILER = &#34;TRLR&#34;
+&#34;&#34;&#34;Value: `TRLR`
+
+At level 0, specifies the end of a GEDCOM transmission.&#34;&#34;&#34;
+
+GEDCOM_TAG_TYPE = &#34;TYPE&#34;
+&#34;&#34;&#34;Value: `TYPE`
+
+A further qualification to the meaning of the associated superior tag. The value
+does not have any computer processing reliability. It is more in the form of a
+short one or two word note that should be displayed any time the associated data
+is displayed.&#34;&#34;&#34;
+
+GEDCOM_TAG_VERSION = &#34;VERS&#34;
+&#34;&#34;&#34;Value: `VERS`
+
+Indicates which version of a product, item, or publication is being used or
+referenced.&#34;&#34;&#34;
+
 GEDCOM_TAG_WIFE = &#34;WIFE&#34;
 &#34;&#34;&#34;Value: `WIFE`
 
-An individual in the role as a mother and/or married woman.&#34;&#34;&#34;</code></pre>
+An individual in the role as a mother and/or married woman.&#34;&#34;&#34;
+
+GEDCOM_TAG_WWW = &#34;WWW&#34;
+&#34;&#34;&#34;Value: `WWW`
+
+World Wide Web home page.&#34;&#34;&#34;
+
+GEDCOM_TAG_WILL = &#34;WILL&#34;
+&#34;&#34;&#34;Value: `WILL`
+
+A legal document treated as an event, by which a person disposes of his or her
+estate, to take effect after death. The event date is the date the will was
+signed while the person was alive. (See also `gedcom.tags.GEDCOM_TAG_PROBATE`)&#34;&#34;&#34;</code></pre>
 </details>
 </section>
 <section>
@@ -217,60 +979,384 @@ An individual in the role as a mother and/or married woman.&#34;&#34;&#34;</code
 <section>
 <h2 class="section-title" id="header-variables">Global variables</h2>
 <dl>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_NAME</code></p>
+<p>Name of addresse in a <code><a title="gedcom.tags.GEDCOM_TAG_ADDRESS" href="#gedcom.tags.GEDCOM_TAG_ADDRESS">GEDCOM_TAG_ADDRESS</a></code> structure.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_ADMINISTRATIVE_ID"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_ADMINISTRATIVE_ID</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_AIDN</code></p>
+<p>Identifier for a location with the intention of an administrative authority,
+e.g. community identifier.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_APID"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_APID</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_APID</code></p>
+<p>Ancestry page identifier. For a citation, points to the page in a Ancestry
+database for the record supporting the citation. For a source record it
+points to the database as a whole.</p>
+<p>Ancestry.com Extension.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_DCAUSE</code></p>
+<p>Cause of death.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DEGREE"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_DEGREE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_DEG</code></p>
+<p>Degree or recognition of accomplishment received by an individual.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DEMOGRAPHIC_DATA"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_DEMOGRAPHIC_DATA</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_DMGD</code></p>
+<p>A number of ojects, during an ascertainment, e.g. the count of households.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_FREL"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_FREL</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>_FREL</code></p>
-<p>Relationship to a father.</p></div>
+<p>Type of relationship between child and the father in a family.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_FUNERAL"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_FUNERAL</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_FUN</code></p>
+<p>Funeral for an individual.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_GOV</code></p>
+<p>The official government id of the object in the Historical Place Register /
+Historic Gazeteer.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT_TYPE"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT_TYPE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_GOVTYPE</code></p>
+<p>An integer positive number as defined in the GOV system.
+See <a href="http://gov.genealogy.net.net/type/list.">http://gov.genealogy.net.net/type/list.</a></p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_HME</code></p>
+<p>Home person in the tree.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_LOCATION"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_LOCATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_LOC</code></p>
+<p>Location data record.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MAIDENHEAD"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_MAIDENHEAD</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_MAIDENHEAD</code></p>
+<p>The maidenhead code.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MEDICAL"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_MEDICAL</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_MDCL</code></p>
+<p>Medical information about an individual.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MILITARY"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_MILITARY</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_MILT</code></p>
+<p>A military related event in the individuals life.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MREL"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_MREL</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>_MREL</code></p>
-<p>Relationship to a mother.</p></div>
+<p>Type of relationship between child and the mother in a family.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PHOTO"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_PHOTO</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_PHOTO</code></p>
+<p>Used by some programs to identify the primary multimedia object for an
+individual, the same as <code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY">GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY</a></code>.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_POSTAL_CODE"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_POSTAL_CODE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_POST</code></p>
+<p>The official zip code, called ADDRESS_POSTAL_CODE in the standard.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_PREF</code></p>
+<p>Indicates a preferred spouse, child or parents.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_PRIM</code></p>
+<p>Primary multimedia object for an individual.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_RUFNAME</code></p>
+<p>An official given name of a German individual used in legal documents.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_SCHEMA"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_SCHEMA</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_SCHEMA</code></p>
+<p>Schema substructure extension to describe user defined tags.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_UUID"><code class="name">var <span class="ident">GEDCOM_PROGRAM_DEFINED_TAG_UUID</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>_UID</code></p>
+<p>Universal identification number.</p>
+<p>5.5.1 GEDCOM-L Addendum.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ABBREVIATION"><code class="name">var <span class="ident">GEDCOM_TAG_ABBREVIATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ABBR</code></p>
+<p>A short name of a title, description, or name.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ADDRESS"><code class="name">var <span class="ident">GEDCOM_TAG_ADDRESS</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ADDR</code></p>
+<p>The contemporary place, usually required for postal purposes, of an individual,
+a submitter of information, a repository, a business, a school, or a company.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ADDRESS1"><code class="name">var <span class="ident">GEDCOM_TAG_ADDRESS1</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ADR1</code></p>
+<p>The first line of an address.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ADDRESS2"><code class="name">var <span class="ident">GEDCOM_TAG_ADDRESS2</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ADR2</code></p>
+<p>The second line of an address.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ADDRESS3"><code class="name">var <span class="ident">GEDCOM_TAG_ADDRESS3</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ADR3</code></p>
+<p>The third line of an address.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ADOPTION"><code class="name">var <span class="ident">GEDCOM_TAG_ADOPTION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ADOP</code></p>
+<p>Pertaining to creation of a child-parent relationship that does not exist
+biologically.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ADULT_CHRISTENING"><code class="name">var <span class="ident">GEDCOM_TAG_ADULT_CHRISTENING</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CHRA</code></p>
+<p>The religious event (not LDS) of baptizing and/or naming an adult person.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_AFN"><code class="name">var <span class="ident">GEDCOM_TAG_AFN</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>AFN</code></p>
+<p>Ancestral File Number, a unique permanent record file number of an individual
+record stored in Ancestral File.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_AGE"><code class="name">var <span class="ident">GEDCOM_TAG_AGE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>AGE</code></p>
+<p>The age of the individual at the time an event occurred, or the age listed in
+the document.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_AGENCY"><code class="name">var <span class="ident">GEDCOM_TAG_AGENCY</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>AGNC</code></p>
+<p>The institution or individual having authority and/or responsibility to manage
+or govern.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ALIAS"><code class="name">var <span class="ident">GEDCOM_TAG_ALIAS</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ALIA</code></p>
+<p>An indicator to link different record descriptions of a person who may be the
+same person.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ANCESTORS"><code class="name">var <span class="ident">GEDCOM_TAG_ANCESTORS</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ANCE</code></p>
+<p>Pertaining to forbearers of an individual.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ANCES_INTEREST"><code class="name">var <span class="ident">GEDCOM_TAG_ANCES_INTEREST</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ANCI</code></p>
+<p>Indicates an interest in additional research for ancestors of this individual.
+(See also <code><a title="gedcom.tags.GEDCOM_TAG_DESCENDANTS_INT" href="#gedcom.tags.GEDCOM_TAG_DESCENDANTS_INT">GEDCOM_TAG_DESCENDANTS_INT</a></code>)</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ANNULMENT"><code class="name">var <span class="ident">GEDCOM_TAG_ANNULMENT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ANUL</code></p>
+<p>Declaring a marriage void from the beginning (never existed).</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ASSOCIATES"><code class="name">var <span class="ident">GEDCOM_TAG_ASSOCIATES</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ASSO</code></p>
+<p>An indicator to link friends, neighbors, relatives, or associates of an
+individual.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_AUTHOR"><code class="name">var <span class="ident">GEDCOM_TAG_AUTHOR</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>AUTH</code></p>
+<p>The name of the individual who created or compiled information.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_BAPTISM"><code class="name">var <span class="ident">GEDCOM_TAG_BAPTISM</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>BAPM</code></p>
+<p>The event of baptism (not LDS), performed in infancy or later.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_BAPTISM_LDS"><code class="name">var <span class="ident">GEDCOM_TAG_BAPTISM_LDS</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>BAPL</code></p>
+<p>The event of baptism performed at age eight or later by priesthood authority
+of the LDS Church. (See also <code><a title="gedcom.tags.GEDCOM_TAG_BAPTISM" href="#gedcom.tags.GEDCOM_TAG_BAPTISM">GEDCOM_TAG_BAPTISM</a></code>)</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_BAR_MITZVAH"><code class="name">var <span class="ident">GEDCOM_TAG_BAR_MITZVAH</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>BARM</code></p>
+<p>The ceremonial event held when a Jewish boy reaches age 13.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_BAS_MITZVAH"><code class="name">var <span class="ident">GEDCOM_TAG_BAS_MITZVAH</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>BASM</code></p>
+<p>The ceremonial event held when a Jewish girl reaches age 13, also known as
+Bat Mitzvah.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_BIRTH"><code class="name">var <span class="ident">GEDCOM_TAG_BIRTH</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>BIRT</code></p>
 <p>The event of entering into life.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_BLESSING"><code class="name">var <span class="ident">GEDCOM_TAG_BLESSING</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>BLES</code></p>
+<p>A religious event of bestowing divine care or intercession. Sometimes given
+in connection with a naming ceremony.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_BURIAL"><code class="name">var <span class="ident">GEDCOM_TAG_BURIAL</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>BURI</code></p>
 <p>The event of the proper disposing of the mortal remains of a deceased person.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CALL_NUMBER"><code class="name">var <span class="ident">GEDCOM_TAG_CALL_NUMBER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CALN</code></p>
+<p>The number used by a repository to identify the specific items in its
+collections.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CASTE"><code class="name">var <span class="ident">GEDCOM_TAG_CASTE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CAST</code></p>
+<p>The name of an individual's rank or status in society, based on racial or
+religious differences, or differences in wealth, inherited rank, profession,
+occupation, etc.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CAUSE"><code class="name">var <span class="ident">GEDCOM_TAG_CAUSE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CAUS</code></p>
+<p>A description of the cause of the associated event or fact, such as the cause
+of death.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_CENSUS"><code class="name">var <span class="ident">GEDCOM_TAG_CENSUS</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>CENS</code>.</p>
-<p>The event of the periodic count of the population for a designated locality, such as a national or state Census.</p></div>
+<p>The event of the periodic count of the population for a designated locality,
+such as a national or state Census.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_CHANGE"><code class="name">var <span class="ident">GEDCOM_TAG_CHANGE</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>CHAN</code></p>
 <p>Indicates a change, correction, or modification. Typically used in connection
-with a <code><a title="gedcom.tags.GEDCOM_TAG_DATE" href="#gedcom.tags.GEDCOM_TAG_DATE">GEDCOM_TAG_DATE</a></code> to specify when a change in information occurred.</p></div>
+with a <code><a title="gedcom.tags.GEDCOM_TAG_DATE" href="#gedcom.tags.GEDCOM_TAG_DATE">GEDCOM_TAG_DATE</a></code> to specify when a change in information
+occurred.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CHARACTER"><code class="name">var <span class="ident">GEDCOM_TAG_CHARACTER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CHAR</code></p>
+<p>An indicator of the character set used in writing this automated information.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_CHILD"><code class="name">var <span class="ident">GEDCOM_TAG_CHILD</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>CHIL</code></p>
 <p>The natural, adopted, or sealed (LDS) child of a father and a mother.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CHILDREN_COUNT"><code class="name">var <span class="ident">GEDCOM_TAG_CHILDREN_COUNT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>NCHI</code></p>
+<p>The number of children that this person is known to be the parent of (all
+marriages) when subordinate to an individual, or that belong to this family
+when subordinate to a <code><a title="gedcom.tags.GEDCOM_TAG_FAMILY" href="#gedcom.tags.GEDCOM_TAG_FAMILY">GEDCOM_TAG_FAMILY</a></code> record.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CHRISTENING"><code class="name">var <span class="ident">GEDCOM_TAG_CHRISTENING</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CHR</code></p>
+<p>The religious event (not LDS) of baptizing and/or naming a child.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CITY"><code class="name">var <span class="ident">GEDCOM_TAG_CITY</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CITY</code></p>
+<p>A lower level jurisdictional unit. Normally an incorporated municipal unit.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_CONCATENATION"><code class="name">var <span class="ident">GEDCOM_TAG_CONCATENATION</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>CONC</code></p>
-<p>An indicator that additional data belongs to the superior value. The information from the <code>CONC</code> value is to
-be connected to the value of the superior preceding line without a space and without a carriage return and/or
-new line character. Values that are split for a <code>CONC</code> tag must always be split at a non-space. If the value is
-split on a space the space will be lost when concatenation takes place. This is because of the treatment that
-spaces get as a GEDCOM delimiter, many GEDCOM values are trimmed of trailing spaces and some systems look for
-the first non-space starting after the tag to determine the beginning of the value.</p></div>
+<p>An indicator that additional data belongs to the superior value. The information
+from the <code>CONC</code> value is to be connected to the value of the superior preceding
+line without a space and without a carriage return and/or new line character.
+Values that are split for a <code>CONC</code> tag must always be split at a non-space. If
+the value is split on a space the space will be lost when concatenation takes
+place. This is because of the treatment that spaces get as a GEDCOM delimiter,
+many GEDCOM values are trimmed of trailing spaces and some systems look for
+the first non-space starting after the tag to determine the beginning of the
+value.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CONFIRMATION"><code class="name">var <span class="ident">GEDCOM_TAG_CONFIRMATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CONF</code></p>
+<p>The religious event (not LDS) of conferring the gift of the Holy Ghost and,
+among protestants, full church membership.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CONFIRMATION_L"><code class="name">var <span class="ident">GEDCOM_TAG_CONFIRMATION_L</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CONL</code></p>
+<p>The religious event by which a person receives membership in the LDS Church.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_CONTINUED"><code class="name">var <span class="ident">GEDCOM_TAG_CONTINUED</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>CONT</code></p>
-<p>An indicator that additional data belongs to the superior value. The information from the <code>CONT</code> value is to be
-connected to the value of the superior preceding line with a carriage return and/or new line character.
-Leading spaces could be important to the formatting of the resultant text. When importing values from <code>CONT</code> lines
-the reader should assume only one delimiter character following the <code>CONT</code> tag. Assume that the rest of the leading
-spaces are to be a part of the value.</p></div>
+<p>An indicator that additional data belongs to the superior value. The information
+from the <code>CONT</code> value is to be connected to the value of the superior preceding
+line with a carriage return and/or new line character. Leading spaces could be
+important to the formatting of the resultant text. When importing values from
+<code>CONT</code> lines the reader should assume only one delimiter character following
+the <code>CONT</code> tag. Assume that the rest of the leading spaces are to be a part
+of the value.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_COPYRIGHT"><code class="name">var <span class="ident">GEDCOM_TAG_COPYRIGHT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>COPR</code></p>
+<p>A statement that accompanies data to protect it from unlawful duplication
+and distribution.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CORPORATE"><code class="name">var <span class="ident">GEDCOM_TAG_CORPORATE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CORP</code></p>
+<p>A name of an institution, agency, corporation, or company.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_COUNTRY"><code class="name">var <span class="ident">GEDCOM_TAG_COUNTRY</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CTRY</code></p>
+<p>The name or code of a country.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_CREMATION"><code class="name">var <span class="ident">GEDCOM_TAG_CREMATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>CREM</code></p>
+<p>Disposal of the remains of a person's body by fire.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_DATA"><code class="name">var <span class="ident">GEDCOM_TAG_DATA</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>DATA</code></p>
+<p>Pertaining to stored automation information.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_DATE"><code class="name">var <span class="ident">GEDCOM_TAG_DATE</span></code></dt>
 <dd>
@@ -282,93 +1368,535 @@ spaces are to be a part of the value.</p></div>
 <div class="desc"><p>Value: <code>DEAT</code></p>
 <p>The event when mortal life terminates.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_DESCENDANTS"><code class="name">var <span class="ident">GEDCOM_TAG_DESCENDANTS</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>DESC</code></p>
+<p>Pertaining to offspring of an individual.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_DESCENDANTS_INT"><code class="name">var <span class="ident">GEDCOM_TAG_DESCENDANTS_INT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>DESI</code></p>
+<p>Indicates an interest in research to identify additional descendants of this
+individual. (See also <code><a title="gedcom.tags.GEDCOM_TAG_ANCES_INTEREST" href="#gedcom.tags.GEDCOM_TAG_ANCES_INTEREST">GEDCOM_TAG_ANCES_INTEREST</a></code>)</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_DESTINATION"><code class="name">var <span class="ident">GEDCOM_TAG_DESTINATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>DEST</code></p>
+<p>A system receiving data.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_DIVORCE"><code class="name">var <span class="ident">GEDCOM_TAG_DIVORCE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>DIV</code></p>
+<p>The event of disolving a marriage through civil action.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_DIVORCE_FILED"><code class="name">var <span class="ident">GEDCOM_TAG_DIVORCE_FILED</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>DIVF</code></p>
+<p>An event of filing for a divorce by a spouse.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_EDUCATION"><code class="name">var <span class="ident">GEDCOM_TAG_EDUCATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>EDUC</code></p>
+<p>Indicator of a level of education attained.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_EMAIL"><code class="name">var <span class="ident">GEDCOM_TAG_EMAIL</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>EMAIL</code></p>
+<p>An electronic address that can be used for contact such as an email address.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_EMIGRATION"><code class="name">var <span class="ident">GEDCOM_TAG_EMIGRATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>EMIG</code></p>
+<p>An event of leaving one's homeland with the intent of residing elsewhere.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ENDOWMENT"><code class="name">var <span class="ident">GEDCOM_TAG_ENDOWMENT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ENDL</code></p>
+<p>A religious event where an endowment ordinance for an individual was performed
+by priesthood authority in an LDS temple.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ENGAGEMENT"><code class="name">var <span class="ident">GEDCOM_TAG_ENGAGEMENT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ENGA</code></p>
+<p>An event of recording or announcing an agreement between two people to become
+married.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_EVENT"><code class="name">var <span class="ident">GEDCOM_TAG_EVENT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>EVEN</code></p>
+<p>A noteworthy happening related to an individual, a group, or an organization.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_FACT"><code class="name">var <span class="ident">GEDCOM_TAG_FACT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>FACT</code></p>
+<p>Pertaining to a noteworthy attribute or fact concerning an individual, a group,
+or an organization. A <code>FACT</code> structure is usually qualified or classified by a
+subordinate use of the <code><a title="gedcom.tags.GEDCOM_TAG_TYPE" href="#gedcom.tags.GEDCOM_TAG_TYPE">GEDCOM_TAG_TYPE</a></code> tag.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_FAMILY"><code class="name">var <span class="ident">GEDCOM_TAG_FAMILY</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>FAM</code>.</p>
-<p>Identifies a legal, common law, or other customary relationship of man and woman and their children,
-if any, or a family created by virtue of the birth of a child to its biological father and mother.</p></div>
+<p>Identifies a legal, common law, or other customary relationship of man and woman
+and their children, if any, or a family created by virtue of the birth of a
+child to its biological father and mother.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD"><code class="name">var <span class="ident">GEDCOM_TAG_FAMILY_CHILD</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>FAMC</code></p>
 <p>Identifies the family in which an individual appears as a child.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_FAMILY_FILE"><code class="name">var <span class="ident">GEDCOM_TAG_FAMILY_FILE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>FAMF</code></p>
+<p>Pertaining to, or the name of, a family file. Names stored in a file that are
+assigned to a family for doing temple ordinance work.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE"><code class="name">var <span class="ident">GEDCOM_TAG_FAMILY_SPOUSE</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>FAMS</code></p>
 <p>Identifies the family in which an individual appears as a spouse.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_FAX"><code class="name">var <span class="ident">GEDCOM_TAG_FAX</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>FAX</code></p>
+<p>A FAX telephone number appropriate for sending data facsimiles.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_FILE"><code class="name">var <span class="ident">GEDCOM_TAG_FILE</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>FILE</code></p>
-<p>An information storage place that is ordered and arranged for preservation and reference.</p></div>
+<p>An information storage place that is ordered and arranged for preservation and
+reference.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_FIRST_COMMUNION"><code class="name">var <span class="ident">GEDCOM_TAG_FIRST_COMMUNION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>FCOM</code></p>
+<p>A religious rite, the first act of sharing in the Lord's supper as part of
+church worship.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_FORMAT"><code class="name">var <span class="ident">GEDCOM_TAG_FORMAT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>FORM</code></p>
+<p>An assigned name given to a consistent format in which information can be
+conveyed.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_GEDCOM"><code class="name">var <span class="ident">GEDCOM_TAG_GEDCOM</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>GEDC</code></p>
+<p>Information about the use of GEDCOM in a transmission.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_GIVEN_NAME"><code class="name">var <span class="ident">GEDCOM_TAG_GIVEN_NAME</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>GIVN</code></p>
 <p>A given or earned name used for official identification of a person.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_GRADUATION"><code class="name">var <span class="ident">GEDCOM_TAG_GRADUATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>GRAD</code></p>
+<p>An event of awarding educational diplomas or degrees to individuals.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_HEADER"><code class="name">var <span class="ident">GEDCOM_TAG_HEADER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>HEAD</code></p>
+<p>Identifies information pertaining to an entire GEDCOM transmission.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_HUSBAND"><code class="name">var <span class="ident">GEDCOM_TAG_HUSBAND</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>HUSB</code></p>
 <p>An individual in the family role of a married man or father.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_IDENT_NUMBER"><code class="name">var <span class="ident">GEDCOM_TAG_IDENT_NUMBER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>IDNO</code></p>
+<p>A number assigned to identify a person within some significant external system.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_IMMIGRATION"><code class="name">var <span class="ident">GEDCOM_TAG_IMMIGRATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>IMMI</code></p>
+<p>An event of entering into a new locality witht he intent of residing there.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_INDIVIDUAL"><code class="name">var <span class="ident">GEDCOM_TAG_INDIVIDUAL</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>INDI</code></p>
 <p>A person.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_LANGUAGE"><code class="name">var <span class="ident">GEDCOM_TAG_LANGUAGE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>LANG</code></p>
+<p>The name of the language used in a communication or transmission of information.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_LATITUDE"><code class="name">var <span class="ident">GEDCOM_TAG_LATITUDE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>LATI</code></p>
+<p>A value indicating a coordinate position on a line, plane, or space.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_LEGATEE"><code class="name">var <span class="ident">GEDCOM_TAG_LEGATEE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>LEGA</code></p>
+<p>A role of an individual acting as a person receiving a bequest or legal devise.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_LONGITUDE"><code class="name">var <span class="ident">GEDCOM_TAG_LONGITUDE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>LONG</code></p>
+<p>A value indicating a coordinate position on a line, plane, or space.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_MAP"><code class="name">var <span class="ident">GEDCOM_TAG_MAP</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>MAP</code></p>
+<p>Pertains to a representation of measurements usually presented in a graphical
+form.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_MARRIAGE"><code class="name">var <span class="ident">GEDCOM_TAG_MARRIAGE</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>MARR</code>.</p>
-<p>A legal, common-law, or customary event of creating a family unit of a man and a woman as husband and wife.</p></div>
+<p>A legal, common-law, or customary event of creating a family unit of a man and
+a woman as husband and wife.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_MARRIAGE_BANN"><code class="name">var <span class="ident">GEDCOM_TAG_MARRIAGE_BANN</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>MARB</code>.</p>
+<p>An event of an official public notice given that two people intend to marry.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_MARRIAGE_COUNT"><code class="name">var <span class="ident">GEDCOM_TAG_MARRIAGE_COUNT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>NMR</code></p>
+<p>The number of times this person has participated in a family as a spouse or
+parent.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_MARR_CONTRACT"><code class="name">var <span class="ident">GEDCOM_TAG_MARR_CONTRACT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>MARC</code>.</p>
+<p>An event of recording a formal agreement of marriage, including the prenuptial
+agreement in which marriage partners reach agreement about the property rights
+of one or both, securing property to their children.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_MARR_LICENSE"><code class="name">var <span class="ident">GEDCOM_TAG_MARR_LICENSE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>MARL</code>.</p>
+<p>An event of obtaining a legal license to marry.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_MARR_SETTLEMENT"><code class="name">var <span class="ident">GEDCOM_TAG_MARR_SETTLEMENT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>MARS</code>.</p>
+<p>An event of creating an agreement between two people contemplating marriage,
+at which time they agree to release or modify property rights that would
+otherwise arise from the marriage.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_MEDIA"><code class="name">var <span class="ident">GEDCOM_TAG_MEDIA</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>MEDI</code>.</p>
+<p>Identifies information about the media or having to do with the medium in which
+information is stored.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_NAME"><code class="name">var <span class="ident">GEDCOM_TAG_NAME</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>NAME</code>.</p>
-<p>A word or combination of words used to help identify an individual, title, or other item.
-More than one NAME line should be used for people who were known by multiple names.</p></div>
+<p>A word or combination of words used to help identify an individual, title, or
+other item. More than one <code>NAME</code> line should be used for people who were known
+by multiple names.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_NAME_PREFIX"><code class="name">var <span class="ident">GEDCOM_TAG_NAME_PREFIX</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>NPFX</code></p>
+<p>Text which appears on a name line before the given and surname parts of a name.
+i.e. ( Lt. Cmndr. ) Joseph /Allen/ jr. In this example Lt. Cmndr. is considered
+as the name prefix portion.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_NAME_SUFFIX"><code class="name">var <span class="ident">GEDCOM_TAG_NAME_SUFFIX</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>NSFX</code></p>
+<p>Text which appears on a name line after or behind the given and surname parts
+of a name. i.e. Lt. Cmndr. Joseph /Allen/ ( jr. ) In this example jr. is
+considered as the name suffix portion.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_NATIONALITY"><code class="name">var <span class="ident">GEDCOM_TAG_NATIONALITY</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>NATI</code></p>
+<p>The national heritage of an individual.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_NATURALIZATION"><code class="name">var <span class="ident">GEDCOM_TAG_NATURALIZATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>NATU</code></p>
+<p>The event of obtaining citizenship.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_NICKNAME"><code class="name">var <span class="ident">GEDCOM_TAG_NICKNAME</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>NICK</code></p>
+<p>A descriptive or familiar that is used instead of, or in addition to, one's
+proper name.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_NOTE"><code class="name">var <span class="ident">GEDCOM_TAG_NOTE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>NOTE</code></p>
+<p>Additional information provided by the submitter for understanding the
+enclosing data.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_OBJECT"><code class="name">var <span class="ident">GEDCOM_TAG_OBJECT</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>OBJE</code></p>
-<p>Pertaining to a grouping of attributes used in describing something. Usually referring to the data required
-to represent a multimedia object, such an audio recording, a photograph of a person, or an image of a document.</p></div>
+<p>Pertaining to a grouping of attributes used in describing something. Usually
+referring to the data required to represent a multimedia object, such an audio
+recording, a photograph of a person, or an image of a document.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_OCCUPATION"><code class="name">var <span class="ident">GEDCOM_TAG_OCCUPATION</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>OCCU</code></p>
 <p>The type of work or profession of an individual.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ORDINANCE"><code class="name">var <span class="ident">GEDCOM_TAG_ORDINANCE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ORDI</code></p>
+<p>Pertaining to a religious ordinance in general.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ORDINATION"><code class="name">var <span class="ident">GEDCOM_TAG_ORDINATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ORDN</code></p>
+<p>A religious event of receiving authority to act in religious matters.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_PAGE"><code class="name">var <span class="ident">GEDCOM_TAG_PAGE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>PAGE</code></p>
+<p>A number or description to identify where information can be found in a
+referenced work.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_PEDIGREE"><code class="name">var <span class="ident">GEDCOM_TAG_PEDIGREE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>PEDI</code></p>
+<p>Information pertaining to an individual to parent lineage chart.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_PHONE"><code class="name">var <span class="ident">GEDCOM_TAG_PHONE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>PHON</code></p>
+<p>A unique number assigned to access a specific telephone.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_PHONETIC"><code class="name">var <span class="ident">GEDCOM_TAG_PHONETIC</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>FONE</code></p>
+<p>A phonetic variation of a superior text string.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_PHY_DESCRIPTION"><code class="name">var <span class="ident">GEDCOM_TAG_PHY_DESCRIPTION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>DSCR</code></p>
+<p>The physical characteristics of a person, place, or thing.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_PLACE"><code class="name">var <span class="ident">GEDCOM_TAG_PLACE</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>PLAC</code></p>
 <p>A jurisdictional name to identify the place or location of an event.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_POSTAL_CODE"><code class="name">var <span class="ident">GEDCOM_TAG_POSTAL_CODE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>POST</code></p>
+<p>A code used by a postal service to identify an area to facilitate mail handling.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_PRIVATE"><code class="name">var <span class="ident">GEDCOM_TAG_PRIVATE</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>PRIV</code></p>
 <p>Flag for private address or event.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_PROBATE"><code class="name">var <span class="ident">GEDCOM_TAG_PROBATE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>PROB</code></p>
+<p>An event of judicial determination of the validity of a will. May indicate
+several related court activities over several dates.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_PROPERTY"><code class="name">var <span class="ident">GEDCOM_TAG_PROPERTY</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>PROP</code></p>
+<p>Pertaining to possessions such as real estate or other property of interest.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_PUBLICATION"><code class="name">var <span class="ident">GEDCOM_TAG_PUBLICATION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>PUBL</code></p>
+<p>Refers to when and/or were a work was published or created.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_QUALITY_OF_DATA"><code class="name">var <span class="ident">GEDCOM_TAG_QUALITY_OF_DATA</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>QUAY</code></p>
+<p>An assessment of the certainty of the evidence to support the conclusion drawn
+from evidence.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_REC_FILE_NUMBER"><code class="name">var <span class="ident">GEDCOM_TAG_REC_FILE_NUMBER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>RFN</code></p>
+<p>A permanent number assigned to a record that uniquely identifies it within a
+known file.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_REC_ID_NUMBER"><code class="name">var <span class="ident">GEDCOM_TAG_REC_ID_NUMBER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>RIN</code></p>
+<p>A number assigned to a record by an originating automated system that can be
+used by a receiving system to report results pertaining to that record.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_REFERENCE"><code class="name">var <span class="ident">GEDCOM_TAG_REFERENCE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>REFN</code></p>
+<p>A description or number used to identify an item for filing, storage, or other
+reference purposes.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_RELATIONSHIP"><code class="name">var <span class="ident">GEDCOM_TAG_RELATIONSHIP</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>RELA</code></p>
+<p>A relationship value between the indicated contexts.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_RELIGION"><code class="name">var <span class="ident">GEDCOM_TAG_RELIGION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>RELI</code></p>
+<p>A religious denomination to which a person is affiliated or for which a record
+applies.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_REPOSITORY"><code class="name">var <span class="ident">GEDCOM_TAG_REPOSITORY</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>REPO</code></p>
+<p>An institution or person that has the specified item as part of their
+collection(s).</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_RESIDENCE"><code class="name">var <span class="ident">GEDCOM_TAG_RESIDENCE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>RESI</code></p>
+<p>The act of dwelling at a place for a period of time.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_RESTRICTION"><code class="name">var <span class="ident">GEDCOM_TAG_RESTRICTION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>RESN</code></p>
+<p>A processing indicator signifying access to information has been denied or
+otherwise restricted.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_RETIREMENT"><code class="name">var <span class="ident">GEDCOM_TAG_RETIREMENT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>RETI</code></p>
+<p>An event of exiting an occupational relationship with an employer after a
+qualifying time period.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ROLE"><code class="name">var <span class="ident">GEDCOM_TAG_ROLE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ROLE</code></p>
+<p>A name given to a role played by an individual in connection with an event.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_ROMANIZED"><code class="name">var <span class="ident">GEDCOM_TAG_ROMANIZED</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>ROMN</code></p>
+<p>A romanized variation of a superior text string.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_SEALING_CHILD"><code class="name">var <span class="ident">GEDCOM_TAG_SEALING_CHILD</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>SLGC</code></p>
+<p>A religious event pertaining to the sealing of a child to his or her parents in
+an LDS temple ceremony.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_SEALING_SPOUSE"><code class="name">var <span class="ident">GEDCOM_TAG_SEALING_SPOUSE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>SLGS</code></p>
+<p>A religious event pertaining to the sealing of a husband and wife in an LDS
+temple ceremony.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_SEX"><code class="name">var <span class="ident">GEDCOM_TAG_SEX</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>SEX</code></p>
 <p>Indicates the sex of an individual&ndash;male or female.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_SOC_SEC_NUMBER"><code class="name">var <span class="ident">GEDCOM_TAG_SOC_SEC_NUMBER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>SSN</code></p>
+<p>A number assigned by the United States Social Security Administration. Used for
+tax identification purposes.</p></div>
 </dd>
 <dt id="gedcom.tags.GEDCOM_TAG_SOURCE"><code class="name">var <span class="ident">GEDCOM_TAG_SOURCE</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>SOUR</code></p>
 <p>The initial or original material from which information was obtained.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_STATE"><code class="name">var <span class="ident">GEDCOM_TAG_STATE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>STAE</code></p>
+<p>A geographical division of a larger jurisdictional area, such as a State within
+the United States of America.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_STATUS"><code class="name">var <span class="ident">GEDCOM_TAG_STATUS</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>STAT</code></p>
+<p>An assessment of the state or condition of something.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_SUBMISSION"><code class="name">var <span class="ident">GEDCOM_TAG_SUBMISSION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>SUBN</code></p>
+<p>Pertains to a collection of data issued for processing.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_SUBMITTER"><code class="name">var <span class="ident">GEDCOM_TAG_SUBMITTER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>SUBM</code></p>
+<p>An individual or organization who contributes genealogical data to a file or
+transfers it to someone else.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_SURNAME"><code class="name">var <span class="ident">GEDCOM_TAG_SURNAME</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>SURN</code></p>
 <p>A family name passed on or used by members of a family.</p></div>
 </dd>
+<dt id="gedcom.tags.GEDCOM_TAG_SURN_PREFIX"><code class="name">var <span class="ident">GEDCOM_TAG_SURN_PREFIX</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>SPFX</code></p>
+<p>A name piece used as a non-indexing pre-part of a surname.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_TEMPLE"><code class="name">var <span class="ident">GEDCOM_TAG_TEMPLE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>TEMP</code></p>
+<p>The name or code that represents the name a temple of the LDS Church.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_TEXT"><code class="name">var <span class="ident">GEDCOM_TAG_TEXT</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>TEXT</code></p>
+<p>The exact wording found in an original source document.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_TIME"><code class="name">var <span class="ident">GEDCOM_TAG_TIME</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>TIME</code></p>
+<p>A time value in a 24-hour clock format, including hours, minutes, and optional
+seconds, separated by a colon (:). Fractions of seconds are shown in decimal
+notation.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_TITLE"><code class="name">var <span class="ident">GEDCOM_TAG_TITLE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>TITL</code></p>
+<p>A description of a specific writing or other work, such as the title of a book
+when used in a source context, or a formal designation used by an individual
+in connection with positions of royalty or other social status, such as Grand
+Duke.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_TRAILER"><code class="name">var <span class="ident">GEDCOM_TAG_TRAILER</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>TRLR</code></p>
+<p>At level 0, specifies the end of a GEDCOM transmission.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_TYPE"><code class="name">var <span class="ident">GEDCOM_TAG_TYPE</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>TYPE</code></p>
+<p>A further qualification to the meaning of the associated superior tag. The value
+does not have any computer processing reliability. It is more in the form of a
+short one or two word note that should be displayed any time the associated data
+is displayed.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_VERSION"><code class="name">var <span class="ident">GEDCOM_TAG_VERSION</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>VERS</code></p>
+<p>Indicates which version of a product, item, or publication is being used or
+referenced.</p></div>
+</dd>
 <dt id="gedcom.tags.GEDCOM_TAG_WIFE"><code class="name">var <span class="ident">GEDCOM_TAG_WIFE</span></code></dt>
 <dd>
 <div class="desc"><p>Value: <code>WIFE</code></p>
 <p>An individual in the role as a mother and/or married woman.</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_WILL"><code class="name">var <span class="ident">GEDCOM_TAG_WILL</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>WILL</code></p>
+<p>A legal document treated as an event, by which a person disposes of his or her
+estate, to take effect after death. The event date is the date the will was
+signed while the person was alive. (See also <code><a title="gedcom.tags.GEDCOM_TAG_PROBATE" href="#gedcom.tags.GEDCOM_TAG_PROBATE">GEDCOM_TAG_PROBATE</a></code>)</p></div>
+</dd>
+<dt id="gedcom.tags.GEDCOM_TAG_WWW"><code class="name">var <span class="ident">GEDCOM_TAG_WWW</span></code></dt>
+<dd>
+<div class="desc"><p>Value: <code>WWW</code></p>
+<p>World Wide Web home page.</p></div>
 </dd>
 </dl>
 </section>
@@ -390,41 +1918,177 @@ to represent a multimedia object, such an audio recording, a photograph of a per
 </li>
 <li><h3><a href="#header-variables">Global variables</a></h3>
 <ul class="">
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE">GEDCOM_PROGRAM_DEFINED_TAG_ADDRESSE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_ADMINISTRATIVE_ID" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_ADMINISTRATIVE_ID">GEDCOM_PROGRAM_DEFINED_TAG_ADMINISTRATIVE_ID</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_APID" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_APID">GEDCOM_PROGRAM_DEFINED_TAG_APID</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE">GEDCOM_PROGRAM_DEFINED_TAG_DCAUSE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DEGREE" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DEGREE">GEDCOM_PROGRAM_DEFINED_TAG_DEGREE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DEMOGRAPHIC_DATA" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_DEMOGRAPHIC_DATA">GEDCOM_PROGRAM_DEFINED_TAG_DEMOGRAPHIC_DATA</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_FREL" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_FREL">GEDCOM_PROGRAM_DEFINED_TAG_FREL</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_FUNERAL" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_FUNERAL">GEDCOM_PROGRAM_DEFINED_TAG_FUNERAL</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT">GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT_TYPE" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT_TYPE">GEDCOM_PROGRAM_DEFINED_TAG_GOVERNMENT_TYPE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON">GEDCOM_PROGRAM_DEFINED_TAG_HOME_PERSON</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_LOCATION" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_LOCATION">GEDCOM_PROGRAM_DEFINED_TAG_LOCATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MAIDENHEAD" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MAIDENHEAD">GEDCOM_PROGRAM_DEFINED_TAG_MAIDENHEAD</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MEDICAL" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MEDICAL">GEDCOM_PROGRAM_DEFINED_TAG_MEDICAL</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MILITARY" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MILITARY">GEDCOM_PROGRAM_DEFINED_TAG_MILITARY</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MREL" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MREL">GEDCOM_PROGRAM_DEFINED_TAG_MREL</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PHOTO" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PHOTO">GEDCOM_PROGRAM_DEFINED_TAG_PHOTO</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_POSTAL_CODE" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_POSTAL_CODE">GEDCOM_PROGRAM_DEFINED_TAG_POSTAL_CODE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED">GEDCOM_PROGRAM_DEFINED_TAG_PREFERRED</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY">GEDCOM_PROGRAM_DEFINED_TAG_PRIMARY</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME">GEDCOM_PROGRAM_DEFINED_TAG_RUFNAME</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_SCHEMA" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_SCHEMA">GEDCOM_PROGRAM_DEFINED_TAG_SCHEMA</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_UUID" href="#gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_UUID">GEDCOM_PROGRAM_DEFINED_TAG_UUID</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ABBREVIATION" href="#gedcom.tags.GEDCOM_TAG_ABBREVIATION">GEDCOM_TAG_ABBREVIATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ADDRESS" href="#gedcom.tags.GEDCOM_TAG_ADDRESS">GEDCOM_TAG_ADDRESS</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ADDRESS1" href="#gedcom.tags.GEDCOM_TAG_ADDRESS1">GEDCOM_TAG_ADDRESS1</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ADDRESS2" href="#gedcom.tags.GEDCOM_TAG_ADDRESS2">GEDCOM_TAG_ADDRESS2</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ADDRESS3" href="#gedcom.tags.GEDCOM_TAG_ADDRESS3">GEDCOM_TAG_ADDRESS3</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ADOPTION" href="#gedcom.tags.GEDCOM_TAG_ADOPTION">GEDCOM_TAG_ADOPTION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ADULT_CHRISTENING" href="#gedcom.tags.GEDCOM_TAG_ADULT_CHRISTENING">GEDCOM_TAG_ADULT_CHRISTENING</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_AFN" href="#gedcom.tags.GEDCOM_TAG_AFN">GEDCOM_TAG_AFN</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_AGE" href="#gedcom.tags.GEDCOM_TAG_AGE">GEDCOM_TAG_AGE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_AGENCY" href="#gedcom.tags.GEDCOM_TAG_AGENCY">GEDCOM_TAG_AGENCY</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ALIAS" href="#gedcom.tags.GEDCOM_TAG_ALIAS">GEDCOM_TAG_ALIAS</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ANCESTORS" href="#gedcom.tags.GEDCOM_TAG_ANCESTORS">GEDCOM_TAG_ANCESTORS</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ANCES_INTEREST" href="#gedcom.tags.GEDCOM_TAG_ANCES_INTEREST">GEDCOM_TAG_ANCES_INTEREST</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ANNULMENT" href="#gedcom.tags.GEDCOM_TAG_ANNULMENT">GEDCOM_TAG_ANNULMENT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ASSOCIATES" href="#gedcom.tags.GEDCOM_TAG_ASSOCIATES">GEDCOM_TAG_ASSOCIATES</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_AUTHOR" href="#gedcom.tags.GEDCOM_TAG_AUTHOR">GEDCOM_TAG_AUTHOR</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_BAPTISM" href="#gedcom.tags.GEDCOM_TAG_BAPTISM">GEDCOM_TAG_BAPTISM</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_BAPTISM_LDS" href="#gedcom.tags.GEDCOM_TAG_BAPTISM_LDS">GEDCOM_TAG_BAPTISM_LDS</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_BAR_MITZVAH" href="#gedcom.tags.GEDCOM_TAG_BAR_MITZVAH">GEDCOM_TAG_BAR_MITZVAH</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_BAS_MITZVAH" href="#gedcom.tags.GEDCOM_TAG_BAS_MITZVAH">GEDCOM_TAG_BAS_MITZVAH</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_BIRTH" href="#gedcom.tags.GEDCOM_TAG_BIRTH">GEDCOM_TAG_BIRTH</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_BLESSING" href="#gedcom.tags.GEDCOM_TAG_BLESSING">GEDCOM_TAG_BLESSING</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_BURIAL" href="#gedcom.tags.GEDCOM_TAG_BURIAL">GEDCOM_TAG_BURIAL</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CALL_NUMBER" href="#gedcom.tags.GEDCOM_TAG_CALL_NUMBER">GEDCOM_TAG_CALL_NUMBER</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CASTE" href="#gedcom.tags.GEDCOM_TAG_CASTE">GEDCOM_TAG_CASTE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CAUSE" href="#gedcom.tags.GEDCOM_TAG_CAUSE">GEDCOM_TAG_CAUSE</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_CENSUS" href="#gedcom.tags.GEDCOM_TAG_CENSUS">GEDCOM_TAG_CENSUS</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_CHANGE" href="#gedcom.tags.GEDCOM_TAG_CHANGE">GEDCOM_TAG_CHANGE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CHARACTER" href="#gedcom.tags.GEDCOM_TAG_CHARACTER">GEDCOM_TAG_CHARACTER</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_CHILD" href="#gedcom.tags.GEDCOM_TAG_CHILD">GEDCOM_TAG_CHILD</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CHILDREN_COUNT" href="#gedcom.tags.GEDCOM_TAG_CHILDREN_COUNT">GEDCOM_TAG_CHILDREN_COUNT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CHRISTENING" href="#gedcom.tags.GEDCOM_TAG_CHRISTENING">GEDCOM_TAG_CHRISTENING</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CITY" href="#gedcom.tags.GEDCOM_TAG_CITY">GEDCOM_TAG_CITY</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_CONCATENATION" href="#gedcom.tags.GEDCOM_TAG_CONCATENATION">GEDCOM_TAG_CONCATENATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CONFIRMATION" href="#gedcom.tags.GEDCOM_TAG_CONFIRMATION">GEDCOM_TAG_CONFIRMATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CONFIRMATION_L" href="#gedcom.tags.GEDCOM_TAG_CONFIRMATION_L">GEDCOM_TAG_CONFIRMATION_L</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_CONTINUED" href="#gedcom.tags.GEDCOM_TAG_CONTINUED">GEDCOM_TAG_CONTINUED</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_COPYRIGHT" href="#gedcom.tags.GEDCOM_TAG_COPYRIGHT">GEDCOM_TAG_COPYRIGHT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CORPORATE" href="#gedcom.tags.GEDCOM_TAG_CORPORATE">GEDCOM_TAG_CORPORATE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_COUNTRY" href="#gedcom.tags.GEDCOM_TAG_COUNTRY">GEDCOM_TAG_COUNTRY</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_CREMATION" href="#gedcom.tags.GEDCOM_TAG_CREMATION">GEDCOM_TAG_CREMATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_DATA" href="#gedcom.tags.GEDCOM_TAG_DATA">GEDCOM_TAG_DATA</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_DATE" href="#gedcom.tags.GEDCOM_TAG_DATE">GEDCOM_TAG_DATE</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_DEATH" href="#gedcom.tags.GEDCOM_TAG_DEATH">GEDCOM_TAG_DEATH</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_DESCENDANTS" href="#gedcom.tags.GEDCOM_TAG_DESCENDANTS">GEDCOM_TAG_DESCENDANTS</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_DESCENDANTS_INT" href="#gedcom.tags.GEDCOM_TAG_DESCENDANTS_INT">GEDCOM_TAG_DESCENDANTS_INT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_DESTINATION" href="#gedcom.tags.GEDCOM_TAG_DESTINATION">GEDCOM_TAG_DESTINATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_DIVORCE" href="#gedcom.tags.GEDCOM_TAG_DIVORCE">GEDCOM_TAG_DIVORCE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_DIVORCE_FILED" href="#gedcom.tags.GEDCOM_TAG_DIVORCE_FILED">GEDCOM_TAG_DIVORCE_FILED</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_EDUCATION" href="#gedcom.tags.GEDCOM_TAG_EDUCATION">GEDCOM_TAG_EDUCATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_EMAIL" href="#gedcom.tags.GEDCOM_TAG_EMAIL">GEDCOM_TAG_EMAIL</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_EMIGRATION" href="#gedcom.tags.GEDCOM_TAG_EMIGRATION">GEDCOM_TAG_EMIGRATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ENDOWMENT" href="#gedcom.tags.GEDCOM_TAG_ENDOWMENT">GEDCOM_TAG_ENDOWMENT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ENGAGEMENT" href="#gedcom.tags.GEDCOM_TAG_ENGAGEMENT">GEDCOM_TAG_ENGAGEMENT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_EVENT" href="#gedcom.tags.GEDCOM_TAG_EVENT">GEDCOM_TAG_EVENT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_FACT" href="#gedcom.tags.GEDCOM_TAG_FACT">GEDCOM_TAG_FACT</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_FAMILY" href="#gedcom.tags.GEDCOM_TAG_FAMILY">GEDCOM_TAG_FAMILY</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD">GEDCOM_TAG_FAMILY_CHILD</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_FILE" href="#gedcom.tags.GEDCOM_TAG_FAMILY_FILE">GEDCOM_TAG_FAMILY_FILE</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE">GEDCOM_TAG_FAMILY_SPOUSE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_FAX" href="#gedcom.tags.GEDCOM_TAG_FAX">GEDCOM_TAG_FAX</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_FILE" href="#gedcom.tags.GEDCOM_TAG_FILE">GEDCOM_TAG_FILE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_FIRST_COMMUNION" href="#gedcom.tags.GEDCOM_TAG_FIRST_COMMUNION">GEDCOM_TAG_FIRST_COMMUNION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_FORMAT" href="#gedcom.tags.GEDCOM_TAG_FORMAT">GEDCOM_TAG_FORMAT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_GEDCOM" href="#gedcom.tags.GEDCOM_TAG_GEDCOM">GEDCOM_TAG_GEDCOM</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_GIVEN_NAME" href="#gedcom.tags.GEDCOM_TAG_GIVEN_NAME">GEDCOM_TAG_GIVEN_NAME</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_GRADUATION" href="#gedcom.tags.GEDCOM_TAG_GRADUATION">GEDCOM_TAG_GRADUATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_HEADER" href="#gedcom.tags.GEDCOM_TAG_HEADER">GEDCOM_TAG_HEADER</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_HUSBAND" href="#gedcom.tags.GEDCOM_TAG_HUSBAND">GEDCOM_TAG_HUSBAND</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_IDENT_NUMBER" href="#gedcom.tags.GEDCOM_TAG_IDENT_NUMBER">GEDCOM_TAG_IDENT_NUMBER</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_IMMIGRATION" href="#gedcom.tags.GEDCOM_TAG_IMMIGRATION">GEDCOM_TAG_IMMIGRATION</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_INDIVIDUAL" href="#gedcom.tags.GEDCOM_TAG_INDIVIDUAL">GEDCOM_TAG_INDIVIDUAL</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_LANGUAGE" href="#gedcom.tags.GEDCOM_TAG_LANGUAGE">GEDCOM_TAG_LANGUAGE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_LATITUDE" href="#gedcom.tags.GEDCOM_TAG_LATITUDE">GEDCOM_TAG_LATITUDE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_LEGATEE" href="#gedcom.tags.GEDCOM_TAG_LEGATEE">GEDCOM_TAG_LEGATEE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_LONGITUDE" href="#gedcom.tags.GEDCOM_TAG_LONGITUDE">GEDCOM_TAG_LONGITUDE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_MAP" href="#gedcom.tags.GEDCOM_TAG_MAP">GEDCOM_TAG_MAP</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_MARRIAGE" href="#gedcom.tags.GEDCOM_TAG_MARRIAGE">GEDCOM_TAG_MARRIAGE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_MARRIAGE_BANN" href="#gedcom.tags.GEDCOM_TAG_MARRIAGE_BANN">GEDCOM_TAG_MARRIAGE_BANN</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_MARRIAGE_COUNT" href="#gedcom.tags.GEDCOM_TAG_MARRIAGE_COUNT">GEDCOM_TAG_MARRIAGE_COUNT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_MARR_CONTRACT" href="#gedcom.tags.GEDCOM_TAG_MARR_CONTRACT">GEDCOM_TAG_MARR_CONTRACT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_MARR_LICENSE" href="#gedcom.tags.GEDCOM_TAG_MARR_LICENSE">GEDCOM_TAG_MARR_LICENSE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_MARR_SETTLEMENT" href="#gedcom.tags.GEDCOM_TAG_MARR_SETTLEMENT">GEDCOM_TAG_MARR_SETTLEMENT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_MEDIA" href="#gedcom.tags.GEDCOM_TAG_MEDIA">GEDCOM_TAG_MEDIA</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_NAME" href="#gedcom.tags.GEDCOM_TAG_NAME">GEDCOM_TAG_NAME</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_NAME_PREFIX" href="#gedcom.tags.GEDCOM_TAG_NAME_PREFIX">GEDCOM_TAG_NAME_PREFIX</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_NAME_SUFFIX" href="#gedcom.tags.GEDCOM_TAG_NAME_SUFFIX">GEDCOM_TAG_NAME_SUFFIX</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_NATIONALITY" href="#gedcom.tags.GEDCOM_TAG_NATIONALITY">GEDCOM_TAG_NATIONALITY</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_NATURALIZATION" href="#gedcom.tags.GEDCOM_TAG_NATURALIZATION">GEDCOM_TAG_NATURALIZATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_NICKNAME" href="#gedcom.tags.GEDCOM_TAG_NICKNAME">GEDCOM_TAG_NICKNAME</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_NOTE" href="#gedcom.tags.GEDCOM_TAG_NOTE">GEDCOM_TAG_NOTE</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_OBJECT" href="#gedcom.tags.GEDCOM_TAG_OBJECT">GEDCOM_TAG_OBJECT</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_OCCUPATION" href="#gedcom.tags.GEDCOM_TAG_OCCUPATION">GEDCOM_TAG_OCCUPATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ORDINANCE" href="#gedcom.tags.GEDCOM_TAG_ORDINANCE">GEDCOM_TAG_ORDINANCE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ORDINATION" href="#gedcom.tags.GEDCOM_TAG_ORDINATION">GEDCOM_TAG_ORDINATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_PAGE" href="#gedcom.tags.GEDCOM_TAG_PAGE">GEDCOM_TAG_PAGE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_PEDIGREE" href="#gedcom.tags.GEDCOM_TAG_PEDIGREE">GEDCOM_TAG_PEDIGREE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_PHONE" href="#gedcom.tags.GEDCOM_TAG_PHONE">GEDCOM_TAG_PHONE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_PHONETIC" href="#gedcom.tags.GEDCOM_TAG_PHONETIC">GEDCOM_TAG_PHONETIC</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_PHY_DESCRIPTION" href="#gedcom.tags.GEDCOM_TAG_PHY_DESCRIPTION">GEDCOM_TAG_PHY_DESCRIPTION</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_PLACE" href="#gedcom.tags.GEDCOM_TAG_PLACE">GEDCOM_TAG_PLACE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_POSTAL_CODE" href="#gedcom.tags.GEDCOM_TAG_POSTAL_CODE">GEDCOM_TAG_POSTAL_CODE</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_PRIVATE" href="#gedcom.tags.GEDCOM_TAG_PRIVATE">GEDCOM_TAG_PRIVATE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_PROBATE" href="#gedcom.tags.GEDCOM_TAG_PROBATE">GEDCOM_TAG_PROBATE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_PROPERTY" href="#gedcom.tags.GEDCOM_TAG_PROPERTY">GEDCOM_TAG_PROPERTY</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_PUBLICATION" href="#gedcom.tags.GEDCOM_TAG_PUBLICATION">GEDCOM_TAG_PUBLICATION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_QUALITY_OF_DATA" href="#gedcom.tags.GEDCOM_TAG_QUALITY_OF_DATA">GEDCOM_TAG_QUALITY_OF_DATA</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_REC_FILE_NUMBER" href="#gedcom.tags.GEDCOM_TAG_REC_FILE_NUMBER">GEDCOM_TAG_REC_FILE_NUMBER</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_REC_ID_NUMBER" href="#gedcom.tags.GEDCOM_TAG_REC_ID_NUMBER">GEDCOM_TAG_REC_ID_NUMBER</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_REFERENCE" href="#gedcom.tags.GEDCOM_TAG_REFERENCE">GEDCOM_TAG_REFERENCE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_RELATIONSHIP" href="#gedcom.tags.GEDCOM_TAG_RELATIONSHIP">GEDCOM_TAG_RELATIONSHIP</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_RELIGION" href="#gedcom.tags.GEDCOM_TAG_RELIGION">GEDCOM_TAG_RELIGION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_REPOSITORY" href="#gedcom.tags.GEDCOM_TAG_REPOSITORY">GEDCOM_TAG_REPOSITORY</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_RESIDENCE" href="#gedcom.tags.GEDCOM_TAG_RESIDENCE">GEDCOM_TAG_RESIDENCE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_RESTRICTION" href="#gedcom.tags.GEDCOM_TAG_RESTRICTION">GEDCOM_TAG_RESTRICTION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_RETIREMENT" href="#gedcom.tags.GEDCOM_TAG_RETIREMENT">GEDCOM_TAG_RETIREMENT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ROLE" href="#gedcom.tags.GEDCOM_TAG_ROLE">GEDCOM_TAG_ROLE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_ROMANIZED" href="#gedcom.tags.GEDCOM_TAG_ROMANIZED">GEDCOM_TAG_ROMANIZED</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_SEALING_CHILD" href="#gedcom.tags.GEDCOM_TAG_SEALING_CHILD">GEDCOM_TAG_SEALING_CHILD</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_SEALING_SPOUSE" href="#gedcom.tags.GEDCOM_TAG_SEALING_SPOUSE">GEDCOM_TAG_SEALING_SPOUSE</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_SEX" href="#gedcom.tags.GEDCOM_TAG_SEX">GEDCOM_TAG_SEX</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_SOC_SEC_NUMBER" href="#gedcom.tags.GEDCOM_TAG_SOC_SEC_NUMBER">GEDCOM_TAG_SOC_SEC_NUMBER</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_SOURCE" href="#gedcom.tags.GEDCOM_TAG_SOURCE">GEDCOM_TAG_SOURCE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_STATE" href="#gedcom.tags.GEDCOM_TAG_STATE">GEDCOM_TAG_STATE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_STATUS" href="#gedcom.tags.GEDCOM_TAG_STATUS">GEDCOM_TAG_STATUS</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_SUBMISSION" href="#gedcom.tags.GEDCOM_TAG_SUBMISSION">GEDCOM_TAG_SUBMISSION</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_SUBMITTER" href="#gedcom.tags.GEDCOM_TAG_SUBMITTER">GEDCOM_TAG_SUBMITTER</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_SURNAME" href="#gedcom.tags.GEDCOM_TAG_SURNAME">GEDCOM_TAG_SURNAME</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_SURN_PREFIX" href="#gedcom.tags.GEDCOM_TAG_SURN_PREFIX">GEDCOM_TAG_SURN_PREFIX</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_TEMPLE" href="#gedcom.tags.GEDCOM_TAG_TEMPLE">GEDCOM_TAG_TEMPLE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_TEXT" href="#gedcom.tags.GEDCOM_TAG_TEXT">GEDCOM_TAG_TEXT</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_TIME" href="#gedcom.tags.GEDCOM_TAG_TIME">GEDCOM_TAG_TIME</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_TITLE" href="#gedcom.tags.GEDCOM_TAG_TITLE">GEDCOM_TAG_TITLE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_TRAILER" href="#gedcom.tags.GEDCOM_TAG_TRAILER">GEDCOM_TAG_TRAILER</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_TYPE" href="#gedcom.tags.GEDCOM_TAG_TYPE">GEDCOM_TAG_TYPE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_VERSION" href="#gedcom.tags.GEDCOM_TAG_VERSION">GEDCOM_TAG_VERSION</a></code></li>
 <li><code><a title="gedcom.tags.GEDCOM_TAG_WIFE" href="#gedcom.tags.GEDCOM_TAG_WIFE">GEDCOM_TAG_WIFE</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_WILL" href="#gedcom.tags.GEDCOM_TAG_WILL">GEDCOM_TAG_WILL</a></code></li>
+<li><code><a title="gedcom.tags.GEDCOM_TAG_WWW" href="#gedcom.tags.GEDCOM_TAG_WWW">GEDCOM_TAG_WWW</a></code></li>
 </ul>
 </li>
 </ul>
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>
