@@ -154,9 +154,9 @@ class Parser(object):
 
         line_number = 1
         last_element = self.get_root_element()
-
+        decode_errors_handling = 'strict' if strict else 'ignore'
         for line in gedcom_stream:
-            last_element = self.__parse_line(line_number, line.decode(encoding), last_element, strict)
+            last_element = self.__parse_line(line_number, line.decode(encoding, errors=decode_errors_handling), last_element, strict)
             line_number += 1
 
     # Private methods
