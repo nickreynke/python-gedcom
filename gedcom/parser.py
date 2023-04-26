@@ -134,18 +134,20 @@ class Parser(object):
         """
         return self.get_root_element().get_child_elements()
 
-    def parse_file(self, file_path, strict=True):
+    def parse_file(self, file_path, strict=True, encoding='utf-8-sig'):
         """Opens and parses a file, from the given file path, as GEDCOM 5.5 formatted data
         :type file_path: str
         :type strict: bool
+        :type encoding: string
         """
         with open(file_path, 'rb') as gedcom_stream:
-            self.parse(gedcom_stream, strict)
+            self.parse(gedcom_stream, strict, encoding)
 
-    def parse(self, gedcom_stream, strict=True):
+    def parse(self, gedcom_stream, strict=True, encoding='utf-8-sig'):
         """Parses a stream, or an array of lines, as GEDCOM 5.5 formatted data
         :type gedcom_stream: a file stream, or str array of lines with new line at the end
         :type strict: bool
+        :type encoding: string
         """
         self.invalidate_cache()
         self.__root_element = RootElement()
@@ -154,7 +156,7 @@ class Parser(object):
         last_element = self.get_root_element()
 
         for line in gedcom_stream:
-            last_element = self.__parse_line(line_number, line.decode('utf-8-sig'), last_element, strict)
+            last_element = self.__parse_line(line_number, line.decode(encoding), last_element, strict)
             line_number += 1
 
     # Private methods
