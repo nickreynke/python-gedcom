@@ -334,6 +334,31 @@ class IndividualElement(Element):
 
         return occupation
 
+    def get_occupations(self):
+        """Returns a list of occupation of a person individual formatted as tuples: (`str` date, `str´ place, `str` occu)
+        :rtype: list of tuple
+        """
+        occupations = []
+
+        for child in self.get_child_elements():
+            if child.get_tag() == gedcom.tags.GEDCOM_TAG_OCCUPATION:
+
+                date = ''
+                place = ''
+                occupation = child.get_value()
+
+                for childOfChild in child.get_child_elements():
+
+                    if childOfChild.get_tag() == gedcom.tags.GEDCOM_TAG_DATE:
+                        date = childOfChild.get_value()
+
+                    if childOfChild.get_tag() == gedcom.tags.GEDCOM_TAG_PLACE:
+                        place = childOfChild.get_value()
+
+                occupations.append((date, place, occupation))
+
+        return occupations
+
     def birth_year_match(self, year):
         """Returns `True` if the given year matches the birth year of this person
         :type year: int
