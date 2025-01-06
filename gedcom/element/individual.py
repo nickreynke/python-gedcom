@@ -71,7 +71,7 @@ class IndividualElement(Element):
         for child in self.get_child_elements():
             if child.get_tag() == gedcom.tags.GEDCOM_TAG_PRIVATE:
                 private = child.get_value()
-                if private == 'Y':
+                if private == "Y":
                     return True
 
         return False
@@ -93,7 +93,7 @@ class IndividualElement(Element):
                 # Some GEDCOM files don't use child tags but instead
                 # place the name in the value of the NAME tag.
                 if child.get_value() != "":
-                    name = child.get_value().split('/')
+                    name = child.get_value().split("/")
 
                     if len(name) > 0:
                         given_name = name[0].strip()
@@ -119,7 +119,11 @@ class IndividualElement(Element):
         return given_name, surname
 
     def get_all_names(self):
-        return [a.get_value() for a in self.get_child_elements() if a.get_tag() == gedcom.tags.GEDCOM_TAG_NAME]
+        return [
+            a.get_value()
+            for a in self.get_child_elements()
+            if a.get_tag() == gedcom.tags.GEDCOM_TAG_NAME
+        ]
 
     def surname_match(self, surname_to_match):
         """Matches a string with the surname of an individual
@@ -157,6 +161,17 @@ class IndividualElement(Element):
                 gender = child.get_value()
 
         return gender
+
+    def get_sosadaboville(self):
+        """Returns the sosa daboville of a person in string format
+        :rtype: str
+        """
+        # L'ajout du _SOSADABOVILLE est propre au logiciel Ancestris
+        sosadaboville = ""
+        for child in self.get_child_elements():
+            if child.get_tag() == "_SOSADABOVILLE":
+                sosadaboville = child.get_value()
+        return sosadaboville
 
     def get_birth_data(self):
         """Returns the birth data of a person formatted as a tuple: (`str` date, `str` place, `list` sources)
@@ -289,8 +304,8 @@ class IndividualElement(Element):
         for child in self.get_child_elements():
             if child.get_tag() == gedcom.tags.GEDCOM_TAG_CENSUS:
 
-                date = ''
-                place = ''
+                date = ""
+                place = ""
                 sources = []
 
                 for childOfChild in child.get_child_elements():
@@ -343,8 +358,8 @@ class IndividualElement(Element):
         for child in self.get_child_elements():
             if child.get_tag() == gedcom.tags.GEDCOM_TAG_OCCUPATION:
 
-                date = ''
-                place = ''
+                date = ""
+                place = ""
                 occupation = child.get_value()
 
                 for childOfChild in child.get_child_elements():
@@ -421,15 +436,15 @@ class IndividualElement(Element):
 
         # Check if criteria is a valid criteria and can be split by `:` and `=` characters
         try:
-            for criterion in criteria.split(':'):
-                criterion.split('=')
+            for criterion in criteria.split(":"):
+                criterion.split("=")
         except ValueError:
             return False
 
         match = True
 
-        for criterion in criteria.split(':'):
-            key, value = criterion.split('=')
+        for criterion in criteria.split(":"):
+            key, value = criterion.split("=")
 
             if key == "surname" and not self.surname_match(value):
                 match = False
@@ -447,7 +462,7 @@ class IndividualElement(Element):
             elif key == "birth_range":
 
                 try:
-                    from_year, to_year = value.split('-')
+                    from_year, to_year = value.split("-")
                     from_year = int(from_year)
                     to_year = int(to_year)
                     if not self.birth_range_match(from_year, to_year):
@@ -467,7 +482,7 @@ class IndividualElement(Element):
             elif key == "death_range":
 
                 try:
-                    from_year, to_year = value.split('-')
+                    from_year, to_year = value.split("-")
                     from_year = int(from_year)
                     to_year = int(to_year)
                     if not self.death_range_match(from_year, to_year):
