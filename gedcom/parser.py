@@ -276,6 +276,28 @@ class Parser(object):
             self.__build_list(child, element_list)
 
     # Methods for analyzing individuals and relationships between individuals
+    def get_marriage(self, family:FamilyElement):
+        """Returns a marriage of a family formatted as a tuple (`str` date, `str` place)
+        :type family: FamilyElement
+        :rtype: tuple
+        """
+        if not isinstance(family, FamilyElement):
+            raise NotAnActualFamilyError(
+                "Operation only valid for element with %s tag." % gedcom.tags.GEDCOM_TAG_FAMILY
+            )
+        # Get and analyze family. 
+        for family_data in family.get_child_elements():
+            if family_data.get_tag() == gedcom.tags.GEDCOM_TAG_MARRIAGE:
+                date = ''
+                place = ''
+                for marriage_data in family_data.get_child_elements():
+                    if marriage_data.get_tag() == gedcom.tags.GEDCOM_TAG_DATE:
+                        date = marriage_data.get_value()
+                    if marriage_data.get_tag() == gedcom.tags.GEDCOM_TAG_PLACE:
+                        place = marriage_data.get_value()
+                return ((date,place))
+        return None
+
 
     def get_marriages(self, individual):
         """Returns a list of marriages of an individual formatted as a tuple (`str` date, `str` place)

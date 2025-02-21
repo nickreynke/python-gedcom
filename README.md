@@ -4,8 +4,8 @@
 
 <p align="center">
     <a href="https://pypi.org/project/python-gedcom/" target="_blank"><img src="https://img.shields.io/pypi/v/python-gedcom.svg" alt="PyPI"></a>
-    <a href="https://github.com/nickreynke/python-gedcom/releases" target="_blank"><img src="https://img.shields.io/github/release/nickreynke/python-gedcom.svg" alt="GitHub release"></a>
-    <a href="https://travis-ci.org/nickreynke/python-gedcom" target="_blank"><img src="https://travis-ci.org/nickreynke/python-gedcom.svg?branch=master" alt="Build Status"></a>
+    <a href="https://github.com/joeyaurel/python-gedcom/releases" target="_blank"><img src="https://img.shields.io/github/release/joeyaurel/python-gedcom.svg" alt="GitHub release"></a>
+    <a href="https://travis-ci.org/joeyaurel/python-gedcom" target="_blank"><img src="https://travis-ci.org/joeyaurel/python-gedcom.svg?branch=master" alt="Build Status"></a>
     <img src="https://img.shields.io/badge/GEDCOM%20format%20version-5.5-yellowgreen.svg" alt="GEDCOM format version 5.5">
     <img src="https://img.shields.io/badge/Python%20versions-3.5%20to%203.8-yellowgreen.svg" alt="Python versions 3.5 to 3.8">
 </p>
@@ -21,19 +21,19 @@
 
 ## Documentation
 
-Documentation can be found here: https://nickreynke.github.io/python-gedcom/gedcom/index.html
+Documentation can be found here: https://joeyaurel.github.io/python-gedcom/gedcom/index.html
 
 ## Changelog
 
 For the latest changes please have a look at the [`CHANGELOG.md`](CHANGELOG.md) file.
 
-The current development process can be tracked in the [develop branch](https://github.com/nickreynke/python-gedcom/tree/develop).
+The current development process can be tracked in the [develop branch](https://github.com/joeyaurel/python-gedcom/tree/develop).
 
 ## Common problems
 
 * When you name your script `gedcom.py`, and import the `gedcom` module from this package, running your script won't
   work because Python will try to resolve imports like `gedcom.element.individual` from within your `gedcom.py` but
-  not from within the module from this package. Rename your file in this case. ([#26](https://github.com/nickreynke/python-gedcom/issues/26))
+  not from within the module from this package. Rename your file in this case. ([#26](https://github.com/joeyaurel/python-gedcom/issues/26))
 
 ## Local development
 
@@ -75,14 +75,12 @@ Daniel Zappala at Brigham Young University (Copyright (C) 2005) which
 was licensed under the GPL v2 and then continued by
 [Mad Price Ball](https://github.com/madprime) in 2012.
 
-The project was taken over by [Nicklas Reincke](https://github.com/nickreynke) in 2018.
-Together with [Damon Brodie](https://github.com/nomadyow) a lot of changes were made and the parser was optimized.
-
 ## License
 
 Licensed under the [GNU General Public License v2](http://www.gnu.org/licenses/gpl-2.0.html)
 
 **Python GEDCOM Parser**
+<br>Copyright (C) 2024 Joey Aurel (hi at joeyaurel.dev)
 <br>Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
 <br>Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
 <br>Copyright (C) 2016 Andreas Oberritter
