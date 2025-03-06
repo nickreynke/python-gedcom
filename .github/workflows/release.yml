@@ -1,0 +1,64 @@
+name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-n-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Set up Python 3.5
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.5
+
+    - name: Install pipenv
+      run: >-
+        pip install pipenv
+
+    - name: Install dependencies
+      run: >-
+        pipenv install -d
+
+    - name: Run tests
+      run: >-
+        pipenv run tox -e py35
+
+    - name: Build a binary wheel and a source tarball
+      run: >-
+        pipenv run python setup.py sdist bdist_wheel
+
+    - name: Publish distribution 📦 to Test PyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
+      run: >-
+        pipenv run twine upload dist/*
+
+    - name: Publish distribution 📦 to PyPI
+      if: startsWith(github.ref, 'refs/tags')
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
+      run: >-
+        pipenv run twine upload dist/*
+
+    - name: Generate docs
+      run: >-
+        pipenv run pdoc3 --html -o docs/ gedcom --force
+
+    - name: Publish docs
+      uses: EndBug/add-and-commit@v4
+      with:
+        author_name: ${{ secrets.AUTHOR_NAME }}
+        author_email: ${{ secrets.AUTHOR_EMAIL }}
+        message: "docs: added new documentation"
+        add: "docs/*"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

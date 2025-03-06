@@ -434,7 +434,7 @@ class Parser(object):
                 for family_member in family.get_child_elements():
 
                     if family_member.get_tag() == gedcom.tags.GEDCOM_TAG_CHILD \
-                       and family_member.get_value() == individual.get_pointer():
+                            and family_member.get_value() == individual.get_pointer():
 
                         for child in family_member.get_child_elements():
                             if child.get_value() == "Natural":
@@ -516,16 +516,29 @@ class Parser(object):
 
     # Other methods
 
+    def to_gedcom_string(self, recursive=False):
+        """Formats all elements and optionally all of the sub-elements into a GEDCOM string
+        :type recursive: bool
+        """
+        is_gte_python_3 = version_info[0] >= 3
+        output = '' if is_gte_python_3 else b''
+
+        for element in self.get_root_child_elements():
+            if is_gte_python_3:
+                output += element.to_gedcom_string(recursive)
+            else:
+                output += element.to_gedcom_string(recursive).encode('utf-8-sig')
+
+        return output
+
     def print_gedcom(self):
         """Write GEDCOM data to stdout"""
         from sys import stdout
         self.save_gedcom(stdout)
 
-    def save_gedcom(self, open_file):
+    def save_gedcom(self, open_file, recursive=True):
         """Save GEDCOM data to a file
         :type open_file: file
+        :type recursive: bool
         """
-        if version_info[0] >= 3:
-            open_file.write(self.get_root_element().to_gedcom_string(True))
-        else:
-            open_file.write(self.get_root_element().to_gedcom_string(True).encode('utf-8-sig'))
+        open_file.write(self.to_gedcom_string(recursive))

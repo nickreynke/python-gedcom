@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.5" />
+<meta name="generator" content="pdoc 0.8.4" />
 <title>gedcom.element.individual API documentation</title>
 <meta name="description" content="GEDCOM element consisting of tag `gedcom.tags.GEDCOM_TAG_INDIVIDUAL`" />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
@@ -20,7 +22,7 @@
 <h1 class="title">Module <code>gedcom.element.individual</code></h1>
 </header>
 <section id="section-intro">
-<p>GEDCOM element consisting of tag <a title="gedcom.tags.GEDCOM_TAG_INDIVIDUAL" href="../tags.html#gedcom.tags.GEDCOM_TAG_INDIVIDUAL"><code>GEDCOM_TAG_INDIVIDUAL</code></a></p>
+<p>GEDCOM element consisting of tag <code><a title="gedcom.tags.GEDCOM_TAG_INDIVIDUAL" href="../tags.html#gedcom.tags.GEDCOM_TAG_INDIVIDUAL">GEDCOM_TAG_INDIVIDUAL</a></code></p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -494,7 +496,7 @@ class IndividualElement(Element):
 <span>(</span><span>level, pointer, tag, value, crlf='\n', multi_line=True)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>GEDCOM element</p>
+<div class="desc"><p>GEDCOM element</p>
 <p>Each line in a GEDCOM file is an element with the format</p>
 <p><code>level [pointer] tag [value]</code></p>
 <p>where <code>level</code> and <code>tag</code> are required, and <code>pointer</code> and <code>value</code> are
@@ -514,7 +516,7 @@ is a spouse. Likewise, an element with a tag of <code>FAMC</code> has a value
 that points to a family record in which the associated person is a
 child.</p>
 <p>See a GEDCOM file for examples of tags and their values.</p>
-<p>Tags available to an element are seen here: <a title="gedcom.tags" href="../tags.html"><code>gedcom.tags</code></a></p></section>
+<p>Tags available to an element are seen here: <code><a title="gedcom.tags" href="../tags.html">gedcom.tags</a></code></p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -944,10 +946,10 @@ child.</p>
 <span>def <span class="ident">birth_range_match</span></span>(<span>self, from_year, to_year)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Checks if the birth year of a person lies within the given range
+<div class="desc"><p>Checks if the birth year of a person lies within the given range
 :type from_year: int
 :type to_year: int
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -970,9 +972,9 @@ child.</p>
 <span>def <span class="ident">birth_year_match</span></span>(<span>self, year)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns <code>True</code> if the given year matches the birth year of this person
+<div class="desc"><p>Returns <code>True</code> if the given year matches the birth year of this person
 :type year: int
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -989,7 +991,7 @@ child.</p>
 <span>def <span class="ident">criteria_match</span></span>(<span>self, criteria)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Checks if this individual matches all of the given criteria</p>
+<div class="desc"><p>Checks if this individual matches all of the given criteria</p>
 <p><code>criteria</code> is a colon-separated list, where each item in the
 list has the form [name]=[value]. The following criteria are supported:</p>
 <p>surname=[name]
@@ -1002,7 +1004,7 @@ birth_range=[from_year-to_year]
 Match a person whose birth year is in the range of years from
 [from_year] to [to_year], including both [from_year] and [to_year].</p>
 <p>:type criteria: str
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1090,10 +1092,10 @@ Match a person whose birth year is in the range of years from
 <span>def <span class="ident">death_range_match</span></span>(<span>self, from_year, to_year)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Checks if the death year of a person lies within the given range
+<div class="desc"><p>Checks if the death year of a person lies within the given range
 :type from_year: int
 :type to_year: int
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1116,9 +1118,9 @@ Match a person whose birth year is in the range of years from
 <span>def <span class="ident">death_year_match</span></span>(<span>self, year)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns <code>True</code> if the given year matches the death year of this person
+<div class="desc"><p>Returns <code>True</code> if the given year matches the death year of this person
 :type year: int
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1135,7 +1137,7 @@ Match a person whose birth year is in the range of years from
 <span>def <span class="ident">get_all_names</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1148,8 +1150,8 @@ Match a person whose birth year is in the range of years from
 <span>def <span class="ident">get_birth_data</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the birth data of a person formatted as a tuple: (<code>str</code> date, <code>str</code> place, <code>list</code> sources)
-:rtype: tuple</p></section>
+<div class="desc"><p>Returns the birth data of a person formatted as a tuple: (<code>str</code> date, <code>str</code> place, <code>list</code> sources)
+:rtype: tuple</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1182,8 +1184,8 @@ Match a person whose birth year is in the range of years from
 <span>def <span class="ident">get_birth_year</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the birth year of a person in integer format
-:rtype: int</p></section>
+<div class="desc"><p>Returns the birth year of a person in integer format
+:rtype: int</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1213,9 +1215,9 @@ Match a person whose birth year is in the range of years from
 <span>def <span class="ident">get_burial</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the burial data of a person formatted as a tuple: (<code>str</code> date, <code>str´ place,</code>list<code>sources)
-::deprecated:: As of version 1.0.0 use</code>get_burial_data()` method instead
-:rtype: tuple</p></section>
+<div class="desc"><p>Returns the burial data of a person formatted as a tuple: (<code>str</code> date, <code>str´ place,</code>list` sources)
+::deprecated:: As of version 1.0.0 use <code>get_burial_data()</code> method instead
+:rtype: tuple</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1233,8 +1235,8 @@ def get_burial(self):
 <span>def <span class="ident">get_burial_data</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the burial data of a person formatted as a tuple: (<code>str</code> date, <code>str´ place,</code>list` sources)
-:rtype: tuple</p></section>
+<div class="desc"><p>Returns the burial data of a person formatted as a tuple: (<code>str</code> date, <code>str´ place,</code>list` sources)
+:rtype: tuple</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1267,9 +1269,9 @@ def get_burial(self):
 <span>def <span class="ident">get_census</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list of censuses of an individual formatted as tuples: (<code>str</code> date, <code>str´ place,</code>list<code>sources)
-::deprecated:: As of version 1.0.0 use</code>get_census_data()` method instead
-:rtype: list of tuple</p></section>
+<div class="desc"><p>Returns a list of censuses of an individual formatted as tuples: (<code>str</code> date, <code>str´ place,</code>list` sources)
+::deprecated:: As of version 1.0.0 use <code>get_census_data()</code> method instead
+:rtype: list of tuple</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1287,8 +1289,8 @@ def get_census(self):
 <span>def <span class="ident">get_census_data</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list of censuses of an individual formatted as tuples: (<code>str</code> date, <code>str´ place,</code>list` sources)
-:rtype: list of tuple</p></section>
+<div class="desc"><p>Returns a list of censuses of an individual formatted as tuples: (<code>str</code> date, <code>str´ place,</code>list` sources)
+:rtype: list of tuple</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1326,8 +1328,8 @@ def get_census(self):
 <span>def <span class="ident">get_death_data</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the death data of a person formatted as a tuple: (<code>str</code> date, <code>str</code> place, <code>list</code> sources)
-:rtype: tuple</p></section>
+<div class="desc"><p>Returns the death data of a person formatted as a tuple: (<code>str</code> date, <code>str</code> place, <code>list</code> sources)
+:rtype: tuple</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1357,8 +1359,8 @@ def get_census(self):
 <span>def <span class="ident">get_death_year</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the death year of a person in integer format
-:rtype: int</p></section>
+<div class="desc"><p>Returns the death year of a person in integer format
+:rtype: int</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1388,8 +1390,8 @@ def get_census(self):
 <span>def <span class="ident">get_gender</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the gender of a person in string format
-:rtype: str</p></section>
+<div class="desc"><p>Returns the gender of a person in string format
+:rtype: str</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1411,8 +1413,8 @@ def get_census(self):
 <span>def <span class="ident">get_last_change_date</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the date of when the person data was last changed formatted as a string
-:rtype: str</p></section>
+<div class="desc"><p>Returns the date of when the person data was last changed formatted as a string
+:rtype: str</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1436,8 +1438,8 @@ def get_census(self):
 <span>def <span class="ident">get_name</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns an individual's names as a tuple: (<code>str</code> given_name, <code>str</code> surname)
-:rtype: tuple</p></section>
+<div class="desc"><p>Returns an individual's names as a tuple: (<code>str</code> given_name, <code>str</code> surname)
+:rtype: tuple</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1489,8 +1491,8 @@ def get_census(self):
 <span>def <span class="ident">get_occupation</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns the occupation of a person
-:rtype: str</p></section>
+<div class="desc"><p>Returns the occupation of a person
+:rtype: str</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1512,10 +1514,10 @@ def get_census(self):
 <span>def <span class="ident">given_match</span></span>(<span>self, name)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Matches a string with the given name of an individual
+<div class="desc"><p>Matches a string with the given name of an individual
 ::deprecated:: As of version 1.0.0 use <code>given_name_match()</code> method instead
 :type name: str
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1534,9 +1536,9 @@ def given_match(self, name):
 <span>def <span class="ident">given_name_match</span></span>(<span>self, given_name_to_match)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Matches a string with the given name of an individual
+<div class="desc"><p>Matches a string with the given name of an individual
 :type given_name_to_match: str
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1554,8 +1556,8 @@ def given_match(self, name):
 <span>def <span class="ident">is_child</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Checks if this element is a child of a family
-:rtype: bool</p></section>
+<div class="desc"><p>Checks if this element is a child of a family
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1577,8 +1579,8 @@ def given_match(self, name):
 <span>def <span class="ident">is_deceased</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Checks if this individual is deceased
-:rtype: bool</p></section>
+<div class="desc"><p>Checks if this individual is deceased
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1598,8 +1600,8 @@ def given_match(self, name):
 <span>def <span class="ident">is_private</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Checks if this individual is marked private
-:rtype: bool</p></section>
+<div class="desc"><p>Checks if this individual is marked private
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1621,9 +1623,9 @@ def given_match(self, name):
 <span>def <span class="ident">surname_match</span></span>(<span>self, surname_to_match)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Matches a string with the surname of an individual
+<div class="desc"><p>Matches a string with the surname of an individual
 :type surname_to_match: str
-:rtype: bool</p></section>
+:rtype: bool</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1665,7 +1667,7 @@ def given_match(self, name):
 <span>(</span><span>...)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Common base class for all non-exit exceptions.</p></section>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1733,9 +1735,7 @@ def given_match(self, name):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>

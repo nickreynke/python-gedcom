@@ -98,6 +98,60 @@ def test_parse_from_string():
     assert element_2_children[3].get_value() == '@I84@'
 
 
+def test_to_gedcom_string():
+    # From string
+    case_1 = """0 @I5@ INDI
+1 NAME First /Last/
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 1900
+2 PLAC Kirkland, King, Washington, USA
+3 MAP
+4 LATI N47.680663
+4 LONG W122.234319
+"""
+
+    gedcom_parser = Parser()
+    gedcom_parser.parse([(a + '\n').encode('utf-8-sig') for a in case_1.splitlines()])
+
+    case_1_string_array = case_1.splitlines()
+    gedcom_string = gedcom_parser.to_gedcom_string(True)
+    gedcom_string_array = gedcom_string.splitlines()
+
+    # Check number of lines
+    assert len(case_1_string_array) == len(gedcom_string_array) == 9
+
+    # Check each line
+    for i in range(len(case_1_string_array)):
+        assert case_1_string_array[i] == gedcom_string_array[i]
+
+    # Check whole file string
+    assert gedcom_string == case_1
+
+    # From file
+    case_2 = ""
+
+    with open('tests/files/Musterstammbaum.ged', 'rb') as gedcom_stream:
+        for line in gedcom_stream:
+            case_2 += line.decode('utf-8-sig')
+
+    gedcom_parser.parse_file('tests/files/Musterstammbaum.ged')
+
+    case_2_string_array = case_2.splitlines()
+    gedcom_string = gedcom_parser.to_gedcom_string(True)
+    gedcom_string_array = gedcom_string.splitlines()
+
+    # Check number of lines
+    assert len(case_2_string_array) == len(gedcom_string_array) == 396
+
+    # Check each line
+    for i in range(len(case_2_string_array)):
+        assert case_2_string_array[i] == gedcom_string_array[i]
+
+    # Check whole file string
+    assert gedcom_string == case_2
+
+
 def test___parse_line():
     # @TODO Add appropriate testing cases
     pass
