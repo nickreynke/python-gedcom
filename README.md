@@ -68,6 +68,33 @@ the `repository-url` is `https://upload.pypi.org/legacy/`.
 >
 > `pipenv run twine upload --repository-url https://upload.pypi.org/legacy/ dist/*`
 
+## Version bumping (releasing)
+
+All of the following will generate a `<major>.<minor>.<patch>-dev<build>` version:
+
+```bash
+# Major
+pipenv run bumpversion major --message 'chore: release {new_version}'
+
+# Minor
+pipenv run bumpversion minor --message 'chore: release {new_version}'
+
+# Patch
+pipenv run bumpversion patch --message 'chore: release {new_version}'
+```
+
+To bump up the `<build>` number, run the following:
+
+```bash
+pipenv run bumpversion build --message 'chore: release {new_version}'
+```
+
+To do a final release of the current `<major>.<minor>.<patch>` part, run the following:
+
+```bash
+pipenv run bumpversion release --message 'chore: release {new_version}'
+```
+
 ## History
 
 This module was originally based on a GEDCOM parser written by 

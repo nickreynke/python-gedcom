@@ -16,5 +16,14 @@ exclude docs
 recursive-exclude docs *
 recursive-exclude gedcom *.md
 
-# Include GEDCOM test files
-include tests/files/*.ged
+# Exclude test files
+recursive-exclude tests *
+
+# Exclude Node related files
+exclude .nvmrc
+exclude commitlint.config.js
+exclude package.json
+exclude package-lock.json
+
+# Exclude bump2version config
+exclude .bumpversion.cfg
