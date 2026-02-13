@@ -5,9 +5,8 @@
 <p align="center">
     <a href="https://pypi.org/project/python-gedcom/" target="_blank"><img src="https://img.shields.io/pypi/v/python-gedcom.svg" alt="PyPI"></a>
     <a href="https://github.com/nickreynke/python-gedcom/releases" target="_blank"><img src="https://img.shields.io/github/release/nickreynke/python-gedcom.svg" alt="GitHub release"></a>
-    <a href="https://travis-ci.org/nickreynke/python-gedcom" target="_blank"><img src="https://travis-ci.org/nickreynke/python-gedcom.svg?branch=master" alt="Build Status"></a>
     <img src="https://img.shields.io/badge/GEDCOM%20format%20version-5.5-yellowgreen.svg" alt="GEDCOM format version 5.5">
-    <img src="https://img.shields.io/badge/Python%20versions-3.5%20to%203.8-yellowgreen.svg" alt="Python versions 3.5 to 3.8">
+    <img src="https://img.shields.io/badge/Python%20versions-3.8%20to%203.12-yellowgreen.svg" alt="Python versions 3.8 to 3.12">
 </p>
 
 <p align="center">
@@ -37,36 +36,31 @@ The current development process can be tracked in the [develop branch](https://g
 
 ## Local development
 
-Local development is done using [pyenv](https://github.com/pyenv/pyenv) and
-[pipenv](https://github.com/pypa/pipenv) using Python 3.5.
+Local development is done using [uv](https://github.com/astral-sh/uv).
 
 ### Running tests
 
-1. Run `pipenv install -d` to install normal and dev dependencies
-1. Run tests with [tox](https://tox.readthedocs.io/en/latest/index.html) (`pipenv run tox` in your console)
-    * For Python 3.5 run `pipenv run tox -e py35` (you need to have Python 3.5 installed)
-    * For Python 3.6 run `pipenv run tox -e py36` (you need to have Python 3.6 installed)
-    * For Python 3.7 run `pipenv run tox -e py37` (you need to have Python 3.7 installed)
-    * For Python 3.8 run `pipenv run tox -e py38` (you need to have Python 3.8 installed)
+1. Run `uv sync` to install dependencies
+1. Run tests with [pytest](https://docs.pytest.org/) (`uv run pytest` in your console)
 
 ### Generating docs
 
-1. Run `pipenv install -d` to install normal and dev dependencies
-1. Run `pipenv run pdoc3 --html -o docs/ gedcom --force` to generate docs into the `docs/` directory
+1. Run `uv sync` to install dependencies
+1. Run `uv run pdoc3 --html -o docs/ gedcom --force` to generate docs into the `docs/` directory
 
-> To develop docs run `pipenv run pdoc3 --http localhost:8000 gedcom`
+> To develop docs run `uv run pdoc3 --http localhost:8000 gedcom`
 > to watch files and instantly see changes in your browser under http://localhost:8000.
 
 ### Uploading a new package to PyPI
 
-1. Run `pipenv install -d` to install normal and dev dependencies
-1. Run `pipenv run python3 setup.py sdist bdist_wheel` to generate distribution archives
-1. Run `pipenv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*` to upload the archives to the Test Python Package Index repository
+1. Run `uv sync` to install dependencies
+1. Run `uv build` to generate distribution archives
+1. Run `uv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*` to upload the archives to the Test Python Package Index repository
 
 > When the package is ready to be published to the real Python Package Index
 the `repository-url` is `https://upload.pypi.org/legacy/`.
 >
-> `pipenv run twine upload --repository-url https://upload.pypi.org/legacy/ dist/*`
+> `uv run twine upload --repository-url https://upload.pypi.org/legacy/ dist/*`
 
 ## History
 

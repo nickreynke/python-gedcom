@@ -1,5 +1,16 @@
 # Python GEDCOM Parser - Changelog
 
+## [v1.1.0](https://github.com/nickreynke/python-gedcom/releases/tag/v1.1.0)
+
+### Changes:
+
+- Migrated to `uv` for local development and package management.
+- Added GitHub Actions workflow for automated testing on push and pull requests.
+- Moved project metadata from `setup.py` and `Pipfile` to `pyproject.toml`.
+- Replaced `tox` with `uv run pytest` for testing.
+- Updated minimum supported Python version to 3.8.
+- Re-generated docs via `uv run pdoc3 --html -o docs/ gedcom --force`.
+
 ## [v1.0.0](https://github.com/nickreynke/python-gedcom/releases/tag/v1.0.0)
 
 ### Changes:
