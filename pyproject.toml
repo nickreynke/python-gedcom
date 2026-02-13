@@ -1,0 +1,48 @@
+[project]
+name = "python-gedcom"
+version = "1.1.0"
+description = "A Python module for parsing, analyzing, and manipulating GEDCOM files."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "GPLv2"}
+authors = [
+    {name = "Nicklas Reincke", email = "3816295+nickreynke@users.noreply.github.com"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Sociology :: Genealogy",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+keywords = ["python", "gedcom", "parser"]
+dependencies = []
+
+[project.urls]
+"Bug Reports" = "https://github.com/nickreynke/python-gedcom/issues"
+"Source" = "https://github.com/nickreynke/python-gedcom"
+Homepage = "https://github.com/nickreynke/python-gedcom"
+
+[dependency-groups]
+dev = [
+    "setuptools",
+    "wheel",
+    "twine",
+    "tox",
+    "pdoc3",
+    "pytest",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["gedcom"]

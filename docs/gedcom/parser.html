@@ -2,17 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.5" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
 <title>gedcom.parser API documentation</title>
 <meta name="description" content="Module containing the actual `gedcom.parser.Parser` used to generate elements - out of each line -
-which can in return be manipulated." />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+which can in return be manipulated.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
 </head>
 <body>
 <main>
@@ -21,545 +37,8 @@ which can in return be manipulated." />
 <h1 class="title">Module <code>gedcom.parser</code></h1>
 </header>
 <section id="section-intro">
-<p>Module containing the actual <a title="gedcom.parser.Parser" href="#gedcom.parser.Parser"><code>Parser</code></a> used to generate elements - out of each line -
+<p>Module containing the actual <code><a title="gedcom.parser.Parser" href="#gedcom.parser.Parser">Parser</a></code> used to generate elements - out of each line -
 which can in return be manipulated.</p>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python"># -*- coding: utf-8 -*-
-
-# Python GEDCOM Parser
-#
-# Copyright (C) 2018 Damon Brodie (damon.brodie at gmail.com)
-# Copyright (C) 2018-2019 Nicklas Reincke (contact at reynke.com)
-# Copyright (C) 2016 Andreas Oberritter
-# Copyright (C) 2012 Madeleine Price Ball
-# Copyright (C) 2005 Daniel Zappala (zappala at cs.byu.edu)
-# Copyright (C) 2005 Brigham Young University
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#
-# Further information about the license: http://www.gnu.org/licenses/gpl-2.0.html
-
-&#34;&#34;&#34;
-Module containing the actual `gedcom.parser.Parser` used to generate elements - out of each line -
-which can in return be manipulated.
-&#34;&#34;&#34;
-
-import re as regex
-from sys import version_info
-from gedcom.element.element import Element
-from gedcom.element.family import FamilyElement, NotAnActualFamilyError
-from gedcom.element.file import FileElement
-from gedcom.element.individual import IndividualElement, NotAnActualIndividualError
-from gedcom.element.object import ObjectElement
-from gedcom.element.root import RootElement
-import gedcom.tags
-
-FAMILY_MEMBERS_TYPE_ALL = &#34;ALL&#34;
-FAMILY_MEMBERS_TYPE_CHILDREN = gedcom.tags.GEDCOM_TAG_CHILD
-FAMILY_MEMBERS_TYPE_HUSBAND = gedcom.tags.GEDCOM_TAG_HUSBAND
-FAMILY_MEMBERS_TYPE_PARENTS = &#34;PARENTS&#34;
-FAMILY_MEMBERS_TYPE_WIFE = gedcom.tags.GEDCOM_TAG_WIFE
-
-
-class GedcomFormatViolationError(Exception):
-    pass
-
-
-class Parser(object):
-    &#34;&#34;&#34;Parses and manipulates GEDCOM 5.5 format data
-
-    For documentation of the GEDCOM 5.5 format, see: http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm
-
-    This parser reads and parses a GEDCOM file.
-
-    Elements may be accessed via:
-
-    * a `list` through `gedcom.parser.Parser.get_element_list()`
-    * a `dict` through `gedcom.parser.Parser.get_element_dictionary()`
-    &#34;&#34;&#34;
-
-    def __init__(self):
-        self.__element_list = []
-        self.__element_dictionary = {}
-        self.__root_element = RootElement()
-
-    def invalidate_cache(self):
-        &#34;&#34;&#34;Empties the element list and dictionary to cause `gedcom.parser.Parser.get_element_list()`
-        and `gedcom.parser.Parser.get_element_dictionary()` to return updated data.
-
-        The update gets deferred until each of the methods actually gets called.
-        &#34;&#34;&#34;
-        self.__element_list = []
-        self.__element_dictionary = {}
-
-    def get_element_list(self):
-        &#34;&#34;&#34;Returns a list containing all elements from within the GEDCOM file
-
-        By default elements are in the same order as they appeared in the file.
-
-        This list gets generated on-the-fly, but gets cached. If the database
-        was modified, you should call `gedcom.parser.Parser.invalidate_cache()` once to let this
-        method return updated data.
-
-        Consider using `gedcom.parser.Parser.get_root_element()` or `gedcom.parser.Parser.get_root_child_elements()` to access
-        the hierarchical GEDCOM tree, unless you rarely modify the database.
-
-        :rtype: list of Element
-        &#34;&#34;&#34;
-        if not self.__element_list:
-            for element in self.get_root_child_elements():
-                self.__build_list(element, self.__element_list)
-        return self.__element_list
-
-    def get_element_dictionary(self):
-        &#34;&#34;&#34;Returns a dictionary containing all elements, identified by a pointer, from within the GEDCOM file
-
-        Only elements identified by a pointer are listed in the dictionary.
-        The keys for the dictionary are the pointers.
-
-        This dictionary gets generated on-the-fly, but gets cached. If the
-        database was modified, you should call `invalidate_cache()` once to let
-        this method return updated data.
-
-        :rtype: dict of Element
-        &#34;&#34;&#34;
-        if not self.__element_dictionary:
-            self.__element_dictionary = {
-                element.get_pointer(): element for element in self.get_root_child_elements() if element.get_pointer()
-            }
-
-        return self.__element_dictionary
-
-    def get_root_element(self):
-        &#34;&#34;&#34;Returns a virtual root element containing all logical records as children
-
-        When printed, this element converts to an empty string.
-
-        :rtype: RootElement
-        &#34;&#34;&#34;
-        return self.__root_element
-
-    def get_root_child_elements(self):
-        &#34;&#34;&#34;Returns a list of logical records in the GEDCOM file
-
-        By default, elements are in the same order as they appeared in the file.
-
-        :rtype: list of Element
-        &#34;&#34;&#34;
-        return self.get_root_element().get_child_elements()
-
-    def parse_file(self, file_path, strict=True):
-        &#34;&#34;&#34;Opens and parses a file, from the given file path, as GEDCOM 5.5 formatted data
-        :type file_path: str
-        :type strict: bool
-        &#34;&#34;&#34;
-        with open(file_path, &#39;rb&#39;) as gedcom_stream:
-            self.parse(gedcom_stream, strict)
-
-    def parse(self, gedcom_stream, strict=True):
-        &#34;&#34;&#34;Parses a stream, or an array of lines, as GEDCOM 5.5 formatted data
-        :type gedcom_stream: a file stream, or str array of lines with new line at the end
-        :type strict: bool
-        &#34;&#34;&#34;
-        self.invalidate_cache()
-        self.__root_element = RootElement()
-
-        line_number = 1
-        last_element = self.get_root_element()
-
-        for line in gedcom_stream:
-            last_element = self.__parse_line(line_number, line.decode(&#39;utf-8-sig&#39;), last_element, strict)
-            line_number += 1
-
-    # Private methods
-
-    @staticmethod
-    def __parse_line(line_number, line, last_element, strict=True):
-        &#34;&#34;&#34;Parse a line from a GEDCOM 5.5 formatted document
-
-        Each line should have the following (bracketed items optional):
-        level + &#39; &#39; + [pointer + &#39; &#39; +] tag + [&#39; &#39; + line_value]
-
-        :type line_number: int
-        :type line: str
-        :type last_element: Element
-        :type strict: bool
-
-        :rtype: Element
-        &#34;&#34;&#34;
-
-        # Level must start with non-negative int, no leading zeros.
-        level_regex = &#39;^(0|[1-9]+[0-9]*) &#39;
-
-        # Pointer optional, if it exists it must be flanked by `@`
-        pointer_regex = &#39;(@[^@]+@ |)&#39;
-
-        # Tag must be an alphanumeric string
-        tag_regex = &#39;([A-Za-z0-9_]+)&#39;
-
-        # Value optional, consists of anything after a space to end of line
-        value_regex = &#39;( [^\n\r]*|)&#39;
-
-        # End of line defined by `\n` or `\r`
-        end_of_line_regex = &#39;([\r\n]{1,2})&#39;
-
-        # Complete regex
-        gedcom_line_regex = level_regex + pointer_regex + tag_regex + value_regex + end_of_line_regex
-        regex_match = regex.match(gedcom_line_regex, line)
-
-        if regex_match is None:
-            if strict:
-                error_message = (&#34;Line &lt;%d:%s&gt; of document violates GEDCOM format 5.5&#34; % (line_number, line)
-                                 + &#34;\nSee: https://chronoplexsoftware.com/gedcomvalidator/gedcom/gedcom-5.5.pdf&#34;)
-                raise GedcomFormatViolationError(error_message)
-            else:
-                # Quirk check - see if this is a line without a CRLF (which could be the last line)
-                last_line_regex = level_regex + pointer_regex + tag_regex + value_regex
-                regex_match = regex.match(last_line_regex, line)
-                if regex_match is not None:
-                    line_parts = regex_match.groups()
-
-                    level = int(line_parts[0])
-                    pointer = line_parts[1].rstrip(&#39; &#39;)
-                    tag = line_parts[2]
-                    value = line_parts[3][1:]
-                    crlf = &#39;\n&#39;
-                else:
-                    # Quirk check - Sometimes a gedcom has a text field with a CR.
-                    # This creates a line without the standard level and pointer.
-                    # If this is detected then turn it into a CONC or CONT.
-                    line_regex = &#39;([^\n\r]*|)&#39;
-                    cont_line_regex = line_regex + end_of_line_regex
-                    regex_match = regex.match(cont_line_regex, line)
-                    line_parts = regex_match.groups()
-                    level = last_element.get_level()
-                    tag = last_element.get_tag()
-                    pointer = None
-                    value = line_parts[0][1:]
-                    crlf = line_parts[1]
-                    if tag != gedcom.tags.GEDCOM_TAG_CONTINUED and tag != gedcom.tags.GEDCOM_TAG_CONCATENATION:
-                        # Increment level and change this line to a CONC
-                        level += 1
-                        tag = gedcom.tags.GEDCOM_TAG_CONCATENATION
-        else:
-            line_parts = regex_match.groups()
-
-            level = int(line_parts[0])
-            pointer = line_parts[1].rstrip(&#39; &#39;)
-            tag = line_parts[2]
-            value = line_parts[3][1:]
-            crlf = line_parts[4]
-
-        # Check level: should never be more than one higher than previous line.
-        if level &gt; last_element.get_level() + 1:
-            error_message = (&#34;Line %d of document violates GEDCOM format 5.5&#34; % line_number
-                             + &#34;\nLines must be no more than one level higher than previous line.&#34;
-                             + &#34;\nSee: https://chronoplexsoftware.com/gedcomvalidator/gedcom/gedcom-5.5.pdf&#34;)
-            raise GedcomFormatViolationError(error_message)
-
-        # Create element. Store in list and dict, create children and parents.
-        if tag == gedcom.tags.GEDCOM_TAG_INDIVIDUAL:
-            element = IndividualElement(level, pointer, tag, value, crlf, multi_line=False)
-        elif tag == gedcom.tags.GEDCOM_TAG_FAMILY:
-            element = FamilyElement(level, pointer, tag, value, crlf, multi_line=False)
-        elif tag == gedcom.tags.GEDCOM_TAG_FILE:
-            element = FileElement(level, pointer, tag, value, crlf, multi_line=False)
-        elif tag == gedcom.tags.GEDCOM_TAG_OBJECT:
-            element = ObjectElement(level, pointer, tag, value, crlf, multi_line=False)
-        else:
-            element = Element(level, pointer, tag, value, crlf, multi_line=False)
-
-        # Start with last element as parent, back up if necessary.
-        parent_element = last_element
-
-        while parent_element.get_level() &gt; level - 1:
-            parent_element = parent_element.get_parent_element()
-
-        # Add child to parent &amp; parent to child.
-        parent_element.add_child_element(element)
-
-        return element
-
-    def __build_list(self, element, element_list):
-        &#34;&#34;&#34;Recursively add elements to a list containing elements
-        :type element: Element
-        :type element_list: list of Element
-        &#34;&#34;&#34;
-        element_list.append(element)
-        for child in element.get_child_elements():
-            self.__build_list(child, element_list)
-
-    # Methods for analyzing individuals and relationships between individuals
-
-    def get_marriages(self, individual):
-        &#34;&#34;&#34;Returns a list of marriages of an individual formatted as a tuple (`str` date, `str` place)
-        :type individual: IndividualElement
-        :rtype: tuple
-        &#34;&#34;&#34;
-        marriages = []
-        if not isinstance(individual, IndividualElement):
-            raise NotAnActualIndividualError(
-                &#34;Operation only valid for elements with %s tag&#34; % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
-            )
-        # Get and analyze families where individual is spouse.
-        families = self.get_families(individual, gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE)
-        for family in families:
-            for family_data in family.get_child_elements():
-                if family_data.get_tag() == gedcom.tags.GEDCOM_TAG_MARRIAGE:
-                    date = &#39;&#39;
-                    place = &#39;&#39;
-                    for marriage_data in family_data.get_child_elements():
-                        if marriage_data.get_tag() == gedcom.tags.GEDCOM_TAG_DATE:
-                            date = marriage_data.get_value()
-                        if marriage_data.get_tag() == gedcom.tags.GEDCOM_TAG_PLACE:
-                            place = marriage_data.get_value()
-                    marriages.append((date, place))
-        return marriages
-
-    def get_marriage_years(self, individual):
-        &#34;&#34;&#34;Returns a list of marriage years (as integers) for an individual
-        :type individual: IndividualElement
-        :rtype: list of int
-        &#34;&#34;&#34;
-        dates = []
-
-        if not isinstance(individual, IndividualElement):
-            raise NotAnActualIndividualError(
-                &#34;Operation only valid for elements with %s tag&#34; % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
-            )
-
-        # Get and analyze families where individual is spouse.
-        families = self.get_families(individual, gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE)
-        for family in families:
-            for child in family.get_child_elements():
-                if child.get_tag() == gedcom.tags.GEDCOM_TAG_MARRIAGE:
-                    for childOfChild in child.get_child_elements():
-                        if childOfChild.get_tag() == gedcom.tags.GEDCOM_TAG_DATE:
-                            date = childOfChild.get_value().split()[-1]
-                            try:
-                                dates.append(int(date))
-                            except ValueError:
-                                pass
-        return dates
-
-    def marriage_year_match(self, individual, year):
-        &#34;&#34;&#34;Checks if one of the marriage years of an individual matches the supplied year. Year is an integer.
-        :type individual: IndividualElement
-        :type year: int
-        :rtype: bool
-        &#34;&#34;&#34;
-        if not isinstance(individual, IndividualElement):
-            raise NotAnActualIndividualError(
-                &#34;Operation only valid for elements with %s tag&#34; % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
-            )
-
-        years = self.get_marriage_years(individual)
-        return year in years
-
-    def marriage_range_match(self, individual, from_year, to_year):
-        &#34;&#34;&#34;Check if one of the marriage years of an individual is in a given range. Years are integers.
-        :type individual: IndividualElement
-        :type from_year: int
-        :type to_year: int
-        :rtype: bool
-        &#34;&#34;&#34;
-        if not isinstance(individual, IndividualElement):
-            raise NotAnActualIndividualError(
-                &#34;Operation only valid for elements with %s tag&#34; % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
-            )
-
-        years = self.get_marriage_years(individual)
-        for year in years:
-            if from_year &lt;= year &lt;= to_year:
-                return True
-        return False
-
-    def get_families(self, individual, family_type=gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE):
-        &#34;&#34;&#34;Return family elements listed for an individual
-
-        family_type can be `gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE` (families where the individual is a spouse) or
-        `gedcom.tags.GEDCOM_TAG_FAMILY_CHILD` (families where the individual is a child). If a value is not
-        provided, `gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE` is default value.
-
-        :type individual: IndividualElement
-        :type family_type: str
-        :rtype: list of FamilyElement
-        &#34;&#34;&#34;
-        if not isinstance(individual, IndividualElement):
-            raise NotAnActualIndividualError(
-                &#34;Operation only valid for elements with %s tag&#34; % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
-            )
-
-        families = []
-        element_dictionary = self.get_element_dictionary()
-
-        for child_element in individual.get_child_elements():
-            is_family = (child_element.get_tag() == family_type
-                         and child_element.get_value() in element_dictionary
-                         and element_dictionary[child_element.get_value()].is_family())
-            if is_family:
-                families.append(element_dictionary[child_element.get_value()])
-
-        return families
-
-    def get_ancestors(self, individual, ancestor_type=&#34;ALL&#34;):
-        &#34;&#34;&#34;Return elements corresponding to ancestors of an individual
-
-        Optional `ancestor_type`. Default &#34;ALL&#34; returns all ancestors, &#34;NAT&#34; can be
-        used to specify only natural (genetic) ancestors.
-
-        :type individual: IndividualElement
-        :type ancestor_type: str
-        :rtype: list of Element
-        &#34;&#34;&#34;
-        if not isinstance(individual, IndividualElement):
-            raise NotAnActualIndividualError(
-                &#34;Operation only valid for elements with %s tag&#34; % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
-            )
-
-        parents = self.get_parents(individual, ancestor_type)
-        ancestors = []
-        ancestors.extend(parents)
-
-        for parent in parents:
-            ancestors.extend(self.get_ancestors(parent))
-
-        return ancestors
-
-    def get_parents(self, individual, parent_type=&#34;ALL&#34;):
-        &#34;&#34;&#34;Return elements corresponding to parents of an individual
-
-        Optional parent_type. Default &#34;ALL&#34; returns all parents. &#34;NAT&#34; can be
-        used to specify only natural (genetic) parents.
-
-        :type individual: IndividualElement
-        :type parent_type: str
-        :rtype: list of IndividualElement
-        &#34;&#34;&#34;
-        if not isinstance(individual, IndividualElement):
-            raise NotAnActualIndividualError(
-                &#34;Operation only valid for elements with %s tag&#34; % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
-            )
-
-        parents = []
-        families = self.get_families(individual, gedcom.tags.GEDCOM_TAG_FAMILY_CHILD)
-
-        for family in families:
-            if parent_type == &#34;NAT&#34;:
-                for family_member in family.get_child_elements():
-
-                    if family_member.get_tag() == gedcom.tags.GEDCOM_TAG_CHILD \
-                       and family_member.get_value() == individual.get_pointer():
-
-                        for child in family_member.get_child_elements():
-                            if child.get_value() == &#34;Natural&#34;:
-                                if child.get_tag() == gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_MREL:
-                                    parents += self.get_family_members(family, gedcom.tags.GEDCOM_TAG_WIFE)
-                                elif child.get_tag() == gedcom.tags.GEDCOM_PROGRAM_DEFINED_TAG_FREL:
-                                    parents += self.get_family_members(family, gedcom.tags.GEDCOM_TAG_HUSBAND)
-            else:
-                parents += self.get_family_members(family, &#34;PARENTS&#34;)
-
-        return parents
-
-    def find_path_to_ancestor(self, descendant, ancestor, path=None):
-        &#34;&#34;&#34;Return path from descendant to ancestor
-        :rtype: object
-        &#34;&#34;&#34;
-        if not isinstance(descendant, IndividualElement) and isinstance(ancestor, IndividualElement):
-            raise NotAnActualIndividualError(
-                &#34;Operation only valid for elements with %s tag.&#34; % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
-            )
-
-        if not path:
-            path = [descendant]
-
-        if path[-1].get_pointer() == ancestor.get_pointer():
-            return path
-        else:
-            parents = self.get_parents(descendant, &#34;NAT&#34;)
-            for parent in parents:
-                potential_path = self.find_path_to_ancestor(parent, ancestor, path + [parent])
-                if potential_path is not None:
-                    return potential_path
-
-        return None
-
-    def get_family_members(self, family, members_type=FAMILY_MEMBERS_TYPE_ALL):
-        &#34;&#34;&#34;Return array of family members: individual, spouse, and children
-
-        Optional argument `members_type` can be used to return specific subsets:
-
-        &#34;FAMILY_MEMBERS_TYPE_ALL&#34;: Default, return all members of the family
-        &#34;FAMILY_MEMBERS_TYPE_PARENTS&#34;: Return individuals with &#34;HUSB&#34; and &#34;WIFE&#34; tags (parents)
-        &#34;FAMILY_MEMBERS_TYPE_HUSBAND&#34;: Return individuals with &#34;HUSB&#34; tags (father)
-        &#34;FAMILY_MEMBERS_TYPE_WIFE&#34;: Return individuals with &#34;WIFE&#34; tags (mother)
-        &#34;FAMILY_MEMBERS_TYPE_CHILDREN&#34;: Return individuals with &#34;CHIL&#34; tags (children)
-
-        :type family: FamilyElement
-        :type members_type: str
-        :rtype: list of IndividualElement
-        &#34;&#34;&#34;
-        if not isinstance(family, FamilyElement):
-            raise NotAnActualFamilyError(
-                &#34;Operation only valid for element with %s tag.&#34; % gedcom.tags.GEDCOM_TAG_FAMILY
-            )
-
-        family_members = []
-        element_dictionary = self.get_element_dictionary()
-
-        for child_element in family.get_child_elements():
-            # Default is ALL
-            is_family = (child_element.get_tag() == gedcom.tags.GEDCOM_TAG_HUSBAND
-                         or child_element.get_tag() == gedcom.tags.GEDCOM_TAG_WIFE
-                         or child_element.get_tag() == gedcom.tags.GEDCOM_TAG_CHILD)
-
-            if members_type == FAMILY_MEMBERS_TYPE_PARENTS:
-                is_family = (child_element.get_tag() == gedcom.tags.GEDCOM_TAG_HUSBAND
-                             or child_element.get_tag() == gedcom.tags.GEDCOM_TAG_WIFE)
-            elif members_type == FAMILY_MEMBERS_TYPE_HUSBAND:
-                is_family = child_element.get_tag() == gedcom.tags.GEDCOM_TAG_HUSBAND
-            elif members_type == FAMILY_MEMBERS_TYPE_WIFE:
-                is_family = child_element.get_tag() == gedcom.tags.GEDCOM_TAG_WIFE
-            elif members_type == FAMILY_MEMBERS_TYPE_CHILDREN:
-                is_family = child_element.get_tag() == gedcom.tags.GEDCOM_TAG_CHILD
-
-            if is_family and child_element.get_value() in element_dictionary:
-                family_members.append(element_dictionary[child_element.get_value()])
-
-        return family_members
-
-    # Other methods
-
-    def print_gedcom(self):
-        &#34;&#34;&#34;Write GEDCOM data to stdout&#34;&#34;&#34;
-        from sys import stdout
-        self.save_gedcom(stdout)
-
-    def save_gedcom(self, open_file):
-        &#34;&#34;&#34;Save GEDCOM data to a file
-        :type open_file: file
-        &#34;&#34;&#34;
-        if version_info[0] &gt;= 3:
-            open_file.write(self.get_root_element().to_gedcom_string(True))
-        else:
-            open_file.write(self.get_root_element().to_gedcom_string(True).encode(&#39;utf-8-sig&#39;))</code></pre>
-</details>
 </section>
 <section>
 </section>
@@ -572,10 +51,9 @@ class Parser(object):
 <dl>
 <dt id="gedcom.parser.GedcomFormatViolationError"><code class="flex name class">
 <span>class <span class="ident">GedcomFormatViolationError</span></span>
-<span>(</span><span>...)</span>
+<span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Common base class for all non-exit exceptions.</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -583,6 +61,7 @@ class Parser(object):
 <pre><code class="python">class GedcomFormatViolationError(Exception):
     pass</code></pre>
 </details>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li>builtins.Exception</li>
@@ -593,14 +72,6 @@ class Parser(object):
 <span>class <span class="ident">Parser</span></span>
 </code></dt>
 <dd>
-<section class="desc"><p>Parses and manipulates GEDCOM 5.5 format data</p>
-<p>For documentation of the GEDCOM 5.5 format, see: <a href="http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm">http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm</a></p>
-<p>This parser reads and parses a GEDCOM file.</p>
-<p>Elements may be accessed via:</p>
-<ul>
-<li>a <code>list</code> through <a title="gedcom.parser.Parser.get_element_list" href="#gedcom.parser.Parser.get_element_list"><code>Parser.get_element_list()</code></a></li>
-<li>a <code>dict</code> through <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.Parser.get_element_dictionary"><code>Parser.get_element_dictionary()</code></a></li>
-</ul></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -935,8 +406,7 @@ class Parser(object):
 
         for child_element in individual.get_child_elements():
             is_family = (child_element.get_tag() == family_type
-                         and child_element.get_value() in element_dictionary
-                         and element_dictionary[child_element.get_value()].is_family())
+                         and child_element.get_value() in element_dictionary)
             if is_family:
                 families.append(element_dictionary[child_element.get_value()])
 
@@ -1085,14 +555,20 @@ class Parser(object):
         else:
             open_file.write(self.get_root_element().to_gedcom_string(True).encode(&#39;utf-8-sig&#39;))</code></pre>
 </details>
+<div class="desc"><p>Parses and manipulates GEDCOM 5.5 format data</p>
+<p>For documentation of the GEDCOM 5.5 format, see: <a href="http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm">http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm</a></p>
+<p>This parser reads and parses a GEDCOM file.</p>
+<p>Elements may be accessed via:</p>
+<ul>
+<li>a <code>list</code> through <code><a title="gedcom.parser.Parser.get_element_list" href="#gedcom.parser.Parser.get_element_list">Parser.get_element_list()</a></code></li>
+<li>a <code>dict</code> through <code><a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.Parser.get_element_dictionary">Parser.get_element_dictionary()</a></code></li>
+</ul></div>
 <h3>Methods</h3>
 <dl>
 <dt id="gedcom.parser.Parser.find_path_to_ancestor"><code class="name flex">
 <span>def <span class="ident">find_path_to_ancestor</span></span>(<span>self, descendant, ancestor, path=None)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return path from descendant to ancestor
-:rtype: object</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1120,17 +596,13 @@ class Parser(object):
 
     return None</code></pre>
 </details>
+<div class="desc"><p>Return path from descendant to ancestor
+:rtype: object</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_ancestors"><code class="name flex">
 <span>def <span class="ident">get_ancestors</span></span>(<span>self, individual, ancestor_type='ALL')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return elements corresponding to ancestors of an individual</p>
-<p>Optional <code>ancestor_type</code>. Default "ALL" returns all ancestors, "NAT" can be
-used to specify only natural (genetic) ancestors.</p>
-<p>:type individual: IndividualElement
-:type ancestor_type: str
-:rtype: list of Element</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1159,18 +631,17 @@ used to specify only natural (genetic) ancestors.</p>
 
     return ancestors</code></pre>
 </details>
+<div class="desc"><p>Return elements corresponding to ancestors of an individual</p>
+<p>Optional <code>ancestor_type</code>. Default "ALL" returns all ancestors, "NAT" can be
+used to specify only natural (genetic) ancestors.</p>
+<p>:type individual: IndividualElement
+:type ancestor_type: str
+:rtype: list of Element</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_element_dictionary"><code class="name flex">
 <span>def <span class="ident">get_element_dictionary</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a dictionary containing all elements, identified by a pointer, from within the GEDCOM file</p>
-<p>Only elements identified by a pointer are listed in the dictionary.
-The keys for the dictionary are the pointers.</p>
-<p>This dictionary gets generated on-the-fly, but gets cached. If the
-database was modified, you should call <code>invalidate_cache()</code> once to let
-this method return updated data.</p>
-<p>:rtype: dict of Element</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1194,19 +665,18 @@ this method return updated data.</p>
 
     return self.__element_dictionary</code></pre>
 </details>
+<div class="desc"><p>Returns a dictionary containing all elements, identified by a pointer, from within the GEDCOM file</p>
+<p>Only elements identified by a pointer are listed in the dictionary.
+The keys for the dictionary are the pointers.</p>
+<p>This dictionary gets generated on-the-fly, but gets cached. If the
+database was modified, you should call <code>invalidate_cache()</code> once to let
+this method return updated data.</p>
+<p>:rtype: dict of Element</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_element_list"><code class="name flex">
 <span>def <span class="ident">get_element_list</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list containing all elements from within the GEDCOM file</p>
-<p>By default elements are in the same order as they appeared in the file.</p>
-<p>This list gets generated on-the-fly, but gets cached. If the database
-was modified, you should call <a title="gedcom.parser.Parser.invalidate_cache" href="#gedcom.parser.Parser.invalidate_cache"><code>Parser.invalidate_cache()</code></a> once to let this
-method return updated data.</p>
-<p>Consider using <a title="gedcom.parser.Parser.get_root_element" href="#gedcom.parser.Parser.get_root_element"><code>Parser.get_root_element()</code></a> or <a title="gedcom.parser.Parser.get_root_child_elements" href="#gedcom.parser.Parser.get_root_child_elements"><code>Parser.get_root_child_elements()</code></a> to access
-the hierarchical GEDCOM tree, unless you rarely modify the database.</p>
-<p>:rtype: list of Element</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1230,18 +700,19 @@ the hierarchical GEDCOM tree, unless you rarely modify the database.</p>
             self.__build_list(element, self.__element_list)
     return self.__element_list</code></pre>
 </details>
+<div class="desc"><p>Returns a list containing all elements from within the GEDCOM file</p>
+<p>By default elements are in the same order as they appeared in the file.</p>
+<p>This list gets generated on-the-fly, but gets cached. If the database
+was modified, you should call <code><a title="gedcom.parser.Parser.invalidate_cache" href="#gedcom.parser.Parser.invalidate_cache">Parser.invalidate_cache()</a></code> once to let this
+method return updated data.</p>
+<p>Consider using <code><a title="gedcom.parser.Parser.get_root_element" href="#gedcom.parser.Parser.get_root_element">Parser.get_root_element()</a></code> or <code><a title="gedcom.parser.Parser.get_root_child_elements" href="#gedcom.parser.Parser.get_root_child_elements">Parser.get_root_child_elements()</a></code> to access
+the hierarchical GEDCOM tree, unless you rarely modify the database.</p>
+<p>:rtype: list of Element</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_families"><code class="name flex">
 <span>def <span class="ident">get_families</span></span>(<span>self, individual, family_type='FAMS')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return family elements listed for an individual</p>
-<p>family_type can be <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE"><code>GEDCOM_TAG_FAMILY_SPOUSE</code></a> (families where the individual is a spouse) or
-<a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD"><code>GEDCOM_TAG_FAMILY_CHILD</code></a> (families where the individual is a child). If a value is not
-provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE"><code>GEDCOM_TAG_FAMILY_SPOUSE</code></a> is default value.</p>
-<p>:type individual: IndividualElement
-:type family_type: str
-:rtype: list of FamilyElement</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1267,28 +738,24 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
 
     for child_element in individual.get_child_elements():
         is_family = (child_element.get_tag() == family_type
-                     and child_element.get_value() in element_dictionary
-                     and element_dictionary[child_element.get_value()].is_family())
+                     and child_element.get_value() in element_dictionary)
         if is_family:
             families.append(element_dictionary[child_element.get_value()])
 
     return families</code></pre>
 </details>
+<div class="desc"><p>Return family elements listed for an individual</p>
+<p>family_type can be <code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE">GEDCOM_TAG_FAMILY_SPOUSE</a></code> (families where the individual is a spouse) or
+<code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_CHILD" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_CHILD">GEDCOM_TAG_FAMILY_CHILD</a></code> (families where the individual is a child). If a value is not
+provided, <code><a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE">GEDCOM_TAG_FAMILY_SPOUSE</a></code> is default value.</p>
+<p>:type individual: IndividualElement
+:type family_type: str
+:rtype: list of FamilyElement</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_family_members"><code class="name flex">
 <span>def <span class="ident">get_family_members</span></span>(<span>self, family, members_type='ALL')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return array of family members: individual, spouse, and children</p>
-<p>Optional argument <code>members_type</code> can be used to return specific subsets:</p>
-<p>"FAMILY_MEMBERS_TYPE_ALL": Default, return all members of the family
-"FAMILY_MEMBERS_TYPE_PARENTS": Return individuals with "HUSB" and "WIFE" tags (parents)
-"FAMILY_MEMBERS_TYPE_HUSBAND": Return individuals with "HUSB" tags (father)
-"FAMILY_MEMBERS_TYPE_WIFE": Return individuals with "WIFE" tags (mother)
-"FAMILY_MEMBERS_TYPE_CHILDREN": Return individuals with "CHIL" tags (children)</p>
-<p>:type family: FamilyElement
-:type members_type: str
-:rtype: list of IndividualElement</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1337,14 +804,21 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
 
     return family_members</code></pre>
 </details>
+<div class="desc"><p>Return array of family members: individual, spouse, and children</p>
+<p>Optional argument <code>members_type</code> can be used to return specific subsets:</p>
+<p>"FAMILY_MEMBERS_TYPE_ALL": Default, return all members of the family
+"FAMILY_MEMBERS_TYPE_PARENTS": Return individuals with "HUSB" and "WIFE" tags (parents)
+"FAMILY_MEMBERS_TYPE_HUSBAND": Return individuals with "HUSB" tags (father)
+"FAMILY_MEMBERS_TYPE_WIFE": Return individuals with "WIFE" tags (mother)
+"FAMILY_MEMBERS_TYPE_CHILDREN": Return individuals with "CHIL" tags (children)</p>
+<p>:type family: FamilyElement
+:type members_type: str
+:rtype: list of IndividualElement</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_marriage_years"><code class="name flex">
 <span>def <span class="ident">get_marriage_years</span></span>(<span>self, individual)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list of marriage years (as integers) for an individual
-:type individual: IndividualElement
-:rtype: list of int</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1375,14 +849,14 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
                             pass
     return dates</code></pre>
 </details>
+<div class="desc"><p>Returns a list of marriage years (as integers) for an individual
+:type individual: IndividualElement
+:rtype: list of int</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_marriages"><code class="name flex">
 <span>def <span class="ident">get_marriages</span></span>(<span>self, individual)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list of marriages of an individual formatted as a tuple (<code>str</code> date, <code>str</code> place)
-:type individual: IndividualElement
-:rtype: tuple</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1412,17 +886,14 @@ provided, <a title="gedcom.tags.GEDCOM_TAG_FAMILY_SPOUSE" href="tags.html#gedcom
                 marriages.append((date, place))
     return marriages</code></pre>
 </details>
+<div class="desc"><p>Returns a list of marriages of an individual formatted as a tuple (<code>str</code> date, <code>str</code> place)
+:type individual: IndividualElement
+:rtype: tuple</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_parents"><code class="name flex">
 <span>def <span class="ident">get_parents</span></span>(<span>self, individual, parent_type='ALL')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Return elements corresponding to parents of an individual</p>
-<p>Optional parent_type. Default "ALL" returns all parents. "NAT" can be
-used to specify only natural (genetic) parents.</p>
-<p>:type individual: IndividualElement
-:type parent_type: str
-:rtype: list of IndividualElement</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1463,14 +934,17 @@ used to specify only natural (genetic) parents.</p>
 
     return parents</code></pre>
 </details>
+<div class="desc"><p>Return elements corresponding to parents of an individual</p>
+<p>Optional parent_type. Default "ALL" returns all parents. "NAT" can be
+used to specify only natural (genetic) parents.</p>
+<p>:type individual: IndividualElement
+:type parent_type: str
+:rtype: list of IndividualElement</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_root_child_elements"><code class="name flex">
 <span>def <span class="ident">get_root_child_elements</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a list of logical records in the GEDCOM file</p>
-<p>By default, elements are in the same order as they appeared in the file.</p>
-<p>:rtype: list of Element</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1484,14 +958,14 @@ used to specify only natural (genetic) parents.</p>
     &#34;&#34;&#34;
     return self.get_root_element().get_child_elements()</code></pre>
 </details>
+<div class="desc"><p>Returns a list of logical records in the GEDCOM file</p>
+<p>By default, elements are in the same order as they appeared in the file.</p>
+<p>:rtype: list of Element</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.get_root_element"><code class="name flex">
 <span>def <span class="ident">get_root_element</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Returns a virtual root element containing all logical records as children</p>
-<p>When printed, this element converts to an empty string.</p>
-<p>:rtype: RootElement</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1505,14 +979,14 @@ used to specify only natural (genetic) parents.</p>
     &#34;&#34;&#34;
     return self.__root_element</code></pre>
 </details>
+<div class="desc"><p>Returns a virtual root element containing all logical records as children</p>
+<p>When printed, this element converts to an empty string.</p>
+<p>:rtype: RootElement</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.invalidate_cache"><code class="name flex">
 <span>def <span class="ident">invalidate_cache</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Empties the element list and dictionary to cause <a title="gedcom.parser.Parser.get_element_list" href="#gedcom.parser.Parser.get_element_list"><code>Parser.get_element_list()</code></a>
-and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.Parser.get_element_dictionary"><code>Parser.get_element_dictionary()</code></a> to return updated data.</p>
-<p>The update gets deferred until each of the methods actually gets called.</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1526,16 +1000,14 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
     self.__element_list = []
     self.__element_dictionary = {}</code></pre>
 </details>
+<div class="desc"><p>Empties the element list and dictionary to cause <code><a title="gedcom.parser.Parser.get_element_list" href="#gedcom.parser.Parser.get_element_list">Parser.get_element_list()</a></code>
+and <code><a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.Parser.get_element_dictionary">Parser.get_element_dictionary()</a></code> to return updated data.</p>
+<p>The update gets deferred until each of the methods actually gets called.</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.marriage_range_match"><code class="name flex">
 <span>def <span class="ident">marriage_range_match</span></span>(<span>self, individual, from_year, to_year)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Check if one of the marriage years of an individual is in a given range. Years are integers.
-:type individual: IndividualElement
-:type from_year: int
-:type to_year: int
-:rtype: bool</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1558,15 +1030,16 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
             return True
     return False</code></pre>
 </details>
+<div class="desc"><p>Check if one of the marriage years of an individual is in a given range. Years are integers.
+:type individual: IndividualElement
+:type from_year: int
+:type to_year: int
+:rtype: bool</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.marriage_year_match"><code class="name flex">
 <span>def <span class="ident">marriage_year_match</span></span>(<span>self, individual, year)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Checks if one of the marriage years of an individual matches the supplied year. Year is an integer.
-:type individual: IndividualElement
-:type year: int
-:rtype: bool</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1585,14 +1058,15 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
     years = self.get_marriage_years(individual)
     return year in years</code></pre>
 </details>
+<div class="desc"><p>Checks if one of the marriage years of an individual matches the supplied year. Year is an integer.
+:type individual: IndividualElement
+:type year: int
+:rtype: bool</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.parse"><code class="name flex">
 <span>def <span class="ident">parse</span></span>(<span>self, gedcom_stream, strict=True)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Parses a stream, or an array of lines, as GEDCOM 5.5 formatted data
-:type gedcom_stream: a file stream, or str array of lines with new line at the end
-:type strict: bool</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1612,14 +1086,14 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
         last_element = self.__parse_line(line_number, line.decode(&#39;utf-8-sig&#39;), last_element, strict)
         line_number += 1</code></pre>
 </details>
+<div class="desc"><p>Parses a stream, or an array of lines, as GEDCOM 5.5 formatted data
+:type gedcom_stream: a file stream, or str array of lines with new line at the end
+:type strict: bool</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.parse_file"><code class="name flex">
 <span>def <span class="ident">parse_file</span></span>(<span>self, file_path, strict=True)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Opens and parses a file, from the given file path, as GEDCOM 5.5 formatted data
-:type file_path: str
-:type strict: bool</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1632,12 +1106,14 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
     with open(file_path, &#39;rb&#39;) as gedcom_stream:
         self.parse(gedcom_stream, strict)</code></pre>
 </details>
+<div class="desc"><p>Opens and parses a file, from the given file path, as GEDCOM 5.5 formatted data
+:type file_path: str
+:type strict: bool</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.print_gedcom"><code class="name flex">
 <span>def <span class="ident">print_gedcom</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Write GEDCOM data to stdout</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1647,13 +1123,12 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
     from sys import stdout
     self.save_gedcom(stdout)</code></pre>
 </details>
+<div class="desc"><p>Write GEDCOM data to stdout</p></div>
 </dd>
 <dt id="gedcom.parser.Parser.save_gedcom"><code class="name flex">
 <span>def <span class="ident">save_gedcom</span></span>(<span>self, open_file)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Save GEDCOM data to a file
-:type open_file: file</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1667,6 +1142,8 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
     else:
         open_file.write(self.get_root_element().to_gedcom_string(True).encode(&#39;utf-8-sig&#39;))</code></pre>
 </details>
+<div class="desc"><p>Save GEDCOM data to a file
+:type open_file: file</p></div>
 </dd>
 </dl>
 </dd>
@@ -1674,7 +1151,6 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 </section>
 </article>
 <nav id="sidebar">
-<h1>Index</h1>
 <div class="toc">
 <ul></ul>
 </div>
@@ -1718,9 +1194,7 @@ and <a title="gedcom.parser.Parser.get_element_dictionary" href="#gedcom.parser.
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>
