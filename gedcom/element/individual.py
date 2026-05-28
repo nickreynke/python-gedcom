@@ -247,7 +247,7 @@ class IndividualElement(Element):
         ::deprecated:: As of version 1.0.0 use `get_burial_data()` method instead
         :rtype: tuple
         """
-        self.get_burial_data()
+        return self.get_burial_data()
 
     def get_burial_data(self):
         """Returns the burial data of a person formatted as a tuple: (`str` date, `str´ place, `list` sources)
@@ -278,7 +278,7 @@ class IndividualElement(Element):
         ::deprecated:: As of version 1.0.0 use `get_census_data()` method instead
         :rtype: list of tuple
         """
-        self.get_census_data()
+        return self.get_census_data()
 
     def get_census_data(self):
         """Returns a list of censuses of an individual formatted as tuples: (`str` date, `str´ place, `list` sources)
