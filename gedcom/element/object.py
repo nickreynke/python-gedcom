@@ -32,10 +32,12 @@ import gedcom.tags
 
 
 class NotAnActualObjectError(Exception):
+    """Raised when an operation requires an ObjectElement but a different element type is provided."""
     pass
 
 
 class ObjectElement(Element):
+    """Represents a GEDCOM multimedia object (OBJE) record."""
 
     def is_object(self):
         """Checks if this element is an actual object

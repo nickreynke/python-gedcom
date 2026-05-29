@@ -32,10 +32,15 @@ import gedcom.tags
 
 
 class NotAnActualFileError(Exception):
+    """Raised when an operation requires a FileElement but a different element type is provided."""
     pass
 
 
 class FileElement(Element):
+    """Represents a GEDCOM file (FILE) record."""
 
     def get_tag(self):
+        """Returns the GEDCOM tag for this element.
+        :rtype: str
+        """
         return gedcom.tags.GEDCOM_TAG_FILE

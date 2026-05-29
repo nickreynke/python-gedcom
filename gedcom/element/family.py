@@ -32,10 +32,15 @@ import gedcom.tags
 
 
 class NotAnActualFamilyError(Exception):
+    """Raised when an operation requires a FamilyElement but a different element type is provided."""
     pass
 
 
 class FamilyElement(Element):
+    """Represents a GEDCOM family (FAM) record."""
 
     def get_tag(self):
+        """Returns the GEDCOM tag for this element.
+        :rtype: str
+        """
         return gedcom.tags.GEDCOM_TAG_FAMILY

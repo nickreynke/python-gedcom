@@ -34,12 +34,17 @@ import gedcom.tags
 
 
 class NotAnActualIndividualError(Exception):
+    """Raised when an operation requires an IndividualElement but a different element type is provided."""
     pass
 
 
 class IndividualElement(Element):
+    """Represents a GEDCOM individual (INDI) record."""
 
     def get_tag(self):
+        """Returns the GEDCOM tag for this element.
+        :rtype: str
+        """
         return gedcom.tags.GEDCOM_TAG_INDIVIDUAL
 
     def is_deceased(self):
@@ -119,6 +124,9 @@ class IndividualElement(Element):
         return given_name, surname
 
     def get_all_names(self):
+        """Returns a list of all name values for this individual.
+        :rtype: list of str
+        """
         return [a.get_value() for a in self.get_child_elements() if a.get_tag() == gedcom.tags.GEDCOM_TAG_NAME]
 
     def surname_match(self, surname_to_match):
@@ -182,7 +190,7 @@ class IndividualElement(Element):
         return date, place, sources
 
     def get_birth_year(self):
-        """Returns the birth year of a person in integer format
+        """Returns the birth year of a person as an integer, or -1 if no birth date is set or the year cannot be parsed.
         :rtype: int
         """
         date = ""
@@ -222,7 +230,7 @@ class IndividualElement(Element):
         return date, place, sources
 
     def get_death_year(self):
-        """Returns the death year of a person in integer format
+        """Returns the death year of a person as an integer, or -1 if no death date is set or the year cannot be parsed.
         :rtype: int
         """
         date = ""

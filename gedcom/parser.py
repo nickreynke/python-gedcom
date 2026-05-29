@@ -280,7 +280,7 @@ class Parser(object):
     def get_marriages(self, individual):
         """Returns a list of marriages of an individual formatted as a tuple (`str` date, `str` place)
         :type individual: IndividualElement
-        :rtype: tuple
+        :rtype: list of tuple
         """
         marriages = []
         if not isinstance(individual, IndividualElement):
