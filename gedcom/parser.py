@@ -48,7 +48,7 @@ FAMILY_MEMBERS_TYPE_WIFE = gedcom.tags.GEDCOM_TAG_WIFE
 
 
 class GedcomFormatViolationError(Exception):
-    pass
+    """Raised when a GEDCOM format violation is encountered during parsing."""
 
 
 class Parser(object):

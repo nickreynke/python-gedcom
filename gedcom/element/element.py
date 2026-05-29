@@ -63,6 +63,16 @@ class Element(object):
     """
 
     def __init__(self, level, pointer, tag, value, crlf="\n", multi_line=True):
+        """Creates a new GEDCOM element.
+        :type level: int
+        :type pointer: str
+        :type tag: str
+        :type value: str
+        :param crlf: line ending appended when serialising the element
+        :type crlf: str
+        :param multi_line: when True, long values are split across CONC/CONT continuation lines
+        :type multi_line: bool
+        """
         # basic element info
         self.__level = level
         self.__pointer = pointer
