@@ -63,6 +63,16 @@ class Element(object):
     """
 
     def __init__(self, level, pointer, tag, value, crlf="\n", multi_line=True):
+        """Creates a new GEDCOM element.
+        :type level: int
+        :type pointer: str
+        :type tag: str
+        :type value: str
+        :param crlf: line ending appended when serialising the element
+        :type crlf: str
+        :param multi_line: when True, long values are split across CONC/CONT continuation lines
+        :type multi_line: bool
+        """
         # basic element info
         self.__level = level
         self.__pointer = pointer
@@ -131,7 +141,8 @@ class Element(object):
         return 0 if element_characters > 255 else 255 - element_characters
 
     def __line_length(self, line):
-        """@TODO Write docs.
+        """Returns the number of characters from `line` that fit within the available space of a GEDCOM line (max 255 chars).
+        Trims trailing spaces to avoid splitting a word across lines.
         :type line: str
         :rtype: int
         """
@@ -147,7 +158,8 @@ class Element(object):
         return available_characters - spaces
 
     def __set_bounded_value(self, value):
-        """@TODO Write docs.
+        """Sets this element's value to as many characters of `value` as fit within GEDCOM line limits.
+        Returns the number of characters consumed.
         :type value: str
         :rtype: int
         """
@@ -156,7 +168,8 @@ class Element(object):
         return line_length
 
     def __add_bounded_child(self, tag, value):
-        """@TODO Write docs.
+        """Adds a child element with the given `tag` and as many characters of `value` as fit within GEDCOM line limits.
+        Returns the number of characters consumed.
         :type tag: str
         :type value: str
         :rtype: int
@@ -165,8 +178,8 @@ class Element(object):
         return child.__set_bounded_value(value)
 
     def __add_concatenation(self, string):
-        """@TODO Write docs.
-        :rtype: str
+        """Splits `string` into GEDCOM CONC child elements, each fitting within line length limits.
+        :type string: str
         """
         index = 0
         size = len(string)

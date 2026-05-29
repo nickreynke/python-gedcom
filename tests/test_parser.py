@@ -1,4 +1,6 @@
-from gedcom.element.individual import IndividualElement
+import pytest
+from gedcom.element.element import Element
+from gedcom.element.individual import IndividualElement, NotAnActualIndividualError
 from gedcom.element.root import RootElement
 from gedcom.parser import Parser
 
@@ -101,3 +103,31 @@ def test_parse_from_string():
 def test___parse_line():
     # @TODO Add appropriate testing cases
     pass
+
+
+def test_find_path_to_ancestor_raises_for_invalid_ancestor():
+    """Regression test for the 'and' vs 'or' bug in find_path_to_ancestor.
+
+    The guard condition uses 'and' instead of 'or', so passing a valid
+    descendant with an invalid ancestor silently skips the check and crashes
+    later with an AttributeError instead of NotAnActualIndividualError.
+    """
+    parser = Parser()
+    individual = IndividualElement(0, '@I1@', 'INDI', '', '\n')
+    non_individual = Element(0, '', 'NOTE', 'some note', '\n')
+
+    # valid descendant, invalid ancestor — the bug lets this slip through
+    with pytest.raises(NotAnActualIndividualError):
+        parser.find_path_to_ancestor(individual, non_individual)
+
+
+def test_find_path_to_ancestor_raises_for_both_invalid():
+    """Both arguments invalid — the buggy 'and' condition evaluates to False
+    and skips the guard entirely, crashing later instead of raising properly.
+    """
+    parser = Parser()
+    non_individual_1 = Element(0, '', 'NOTE', 'some note', '\n')
+    non_individual_2 = Element(0, '', 'SOUR', 'some source', '\n')
+
+    with pytest.raises(NotAnActualIndividualError):
+        parser.find_path_to_ancestor(non_individual_1, non_individual_2)
