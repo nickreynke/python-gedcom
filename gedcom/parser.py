@@ -448,10 +448,13 @@ class Parser(object):
         return parents
 
     def find_path_to_ancestor(self, descendant, ancestor, path=None):
-        """Return path from descendant to ancestor
-        :rtype: object
+        """Return the path of IndividualElements from descendant to ancestor, or None if no path exists.
+
+        :type descendant: IndividualElement
+        :type ancestor: IndividualElement
+        :rtype: list of IndividualElement or None
         """
-        if not isinstance(descendant, IndividualElement) and isinstance(ancestor, IndividualElement):
+        if not isinstance(descendant, IndividualElement) or not isinstance(ancestor, IndividualElement):
             raise NotAnActualIndividualError(
                 "Operation only valid for elements with %s tag." % gedcom.tags.GEDCOM_TAG_INDIVIDUAL
             )
